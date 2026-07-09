@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@reyou/burden-engine": "workspace:*",
     "@reyou/contracts": "workspace:*",
     "@reyou/evidence-runtime": "workspace:*",
     "@reyou/founder-mode": "workspace:*",

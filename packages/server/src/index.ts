@@ -11,6 +11,7 @@ import type { HumanStateVector } from "@reyou/human-runtime";
 import { computePresence, extractSignals, type PresenceState } from "@reyou/presence-engine";
 import { computeFounderMode, extractFounderModeContext, type FounderMode, type TransitionTrigger } from "@reyou/founder-mode";
 import { EvidenceRuntime } from "@reyou/evidence-runtime";
+import { calculateBurdenFromState, recordBurdenTrend } from "@reyou/burden-engine";
 
 // ─── Initialize Runtime ───────────────────────────────────
 
@@ -97,10 +98,7 @@ const app = express();
 app.set("trust proxy", 1);
 
 // Security
-app.use(helmet({
-  contentSecurityPolicy: false,
-  crossOriginEmbedderPolicy: false,
-}));
+app.use(helmet() as any);
 
 // Compression
 app.use(compression());
@@ -532,79 +530,12 @@ app.get("/api/metrics", (_req, res) => {
 
 app.get("/api/burden", (_req, res) => {
   const state = getState();
-  const data = state.data as any;
-
-  const tasks = Object.values(data.execution?.tasks ?? {});
-  const activeTasks = tasks.filter((t: any) => t.status === "in_progress");
-  const pendingTasks = tasks.filter((t: any) => t.status === "pending");
-  const completedTasks = tasks.filter((t: any) => t.status === "completed");
-  const blockedTasks = tasks.filter((t: any) => t.status === "blocked");
-
-  const emotions = Object.values(data.emotion?.observations ?? []) as any[];
-  const recentEmotions = emotions.slice(0, 5);
-  const negativeEmotions = recentEmotions.filter((e: any) => e.confidence > 0.6 && ["stressed", "overwhelmed", "anxious", "tired", "frustrated"].includes(e.observation));
-
-  const dreams = Object.values(data.dreams ?? {});
-  const activeDreams = dreams.filter((d: any) => d.activated);
-
-  const projects = Object.values(data.execution?.projects ?? {});
-  const activeProjects = projects.filter((p: any) => p.status === "active");
-
-  const knowledge = Object.values(data.knowledge?.nodes ?? []);
-
-  const timeSinceLastActive = Date.now() - state.timestamp;
-  const hoursSinceActive = timeSinceLastActive / 3600000;
-
-  let openLoops = 0;
-  openLoops += pendingTasks.length;
-  openLoops += blockedTasks.length;
-  openLoops += activeDreams.length;
-  openLoops += activeProjects.length;
-
-  let attentionCost = 0;
-  attentionCost += activeTasks.length * 25;
-  attentionCost += pendingTasks.length * 10;
-  attentionCost += blockedTasks.length * 15;
-  attentionCost += negativeEmotions.length * 20;
-  attentionCost += Math.min(openLoops * 5, 50);
-
-  let recoveryScore = 100;
-  recoveryScore -= Math.min(attentionCost, 80);
-  if (hoursSinceActive > 8) recoveryScore += 10;
-  if (negativeEmotions.length === 0 && completedTasks.length > 0) recoveryScore += 10;
-  recoveryScore = Math.max(0, Math.min(100, recoveryScore));
-
-  let burdenScore = Math.max(0, Math.min(100, attentionCost));
-
-  const trend = burdenScore < 30 ? "low" : burdenScore < 60 ? "moderate" : "high";
-
-  const explanation = [];
-  if (activeTasks.length > 0) explanation.push(`${activeTasks.length} task${activeTasks.length > 1 ? "s" : ""} in progress`);
-  if (pendingTasks.length > 0) explanation.push(`${pendingTasks.length} task${pendingTasks.length > 1 ? "s" : ""} awaiting attention`);
-  if (blockedTasks.length > 0) explanation.push(`${blockedTasks.length} task${blockedTasks.length > 1 ? "s" : ""} blocked`);
-  if (negativeEmotions.length > 0) explanation.push(`${negativeEmotions.length} negative observation${negativeEmotions.length > 1 ? "s" : ""}`);
-  if (openLoops > 3) explanation.push(`${openLoops} open loops`);
-  if (completedTasks.length > 0) explanation.push(`${completedTasks.length} task${completedTasks.length > 1 ? "s" : ""} addressed today`);
-
-  const confidence = Math.min(1, 0.5 + (emotions.length * 0.05) + (tasks.length * 0.03));
+  const result = calculateBurdenFromState(state);
+  const trend = recordBurdenTrend(result);
 
   res.json({
-    burdenScore,
-    recoveryScore,
-    attentionCost,
+    ...result,
     trend,
-    confidence,
-    explanation,
-    inputs: {
-      activeTasks: activeTasks.length,
-      pendingTasks: pendingTasks.length,
-      blockedTasks: blockedTasks.length,
-      completedTasks: completedTasks.length,
-      openLoops,
-      negativeEmotions: negativeEmotions.length,
-      activeDreams: activeDreams.length,
-      activeProjects: activeProjects.length,
-    },
   });
 });
 

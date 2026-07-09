@@ -12,6 +12,16 @@ importers:
         specifier: ~5.8.2
         version: 5.8.3
 
+  packages/burden-engine:
+    dependencies:
+      '@reyou/human-runtime':
+        specifier: workspace:*
+        version: link:../human-runtime
+    devDependencies:
+      typescript:
+        specifier: ~5.8.2
+        version: 5.8.3
+
   packages/contracts: {}
 
   packages/errors:
@@ -136,6 +146,9 @@ importers:
 
   packages/server:
     dependencies:
+      '@reyou/burden-engine':
+        specifier: workspace:*
+        version: link:../burden-engine
       '@reyou/contracts':
         specifier: workspace:*
         version: link:../contracts
