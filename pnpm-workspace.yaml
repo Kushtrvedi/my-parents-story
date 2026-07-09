@@ -1,0 +1,6 @@
+packages:
+  - "packages/*"
+  - "tooling/*"
+  - "apps/*"
+  - "reyouos.com-vite2"
+  - "dashboard"
