@@ -1,5 +1,5 @@
 {
-  "name": "@reyou/event-bus",
+  "name": "@reyou/presence-engine",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -15,15 +15,12 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist",
-    "test": "vitest run"
+    "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@reyou/contracts": "workspace:*",
-    "@reyou/errors": "workspace:*"
+    "@reyou/human-runtime": "workspace:*"
   },
   "devDependencies": {
-    "vitest": "^3.1.0"
-  },
-  "license": "UNLICENSED"
+    "typescript": "~5.8.2"
+  }
 }

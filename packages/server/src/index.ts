@@ -8,6 +8,7 @@ import { createServer } from "http";
 import { randomUUID } from "crypto";
 import { getState, mutate, subscribe, health, getMetrics, hydrateFromDisk } from "@reyou/runtime-api";
 import type { HumanStateVector } from "@reyou/human-runtime";
+import { computePresence, extractSignals, type PresenceState } from "@reyou/presence-engine";
 
 // ─── Initialize Runtime ───────────────────────────────────
 
@@ -279,11 +280,59 @@ app.get("/api/conversations", (_req, res) => {
   res.json(selectConversations(getState()));
 });
 
+// ─── Presence Engine ────────────────────────────────────
+
+let lastPresenceState: PresenceState = "offline";
+let lastPresenceTimestamp = Date.now();
+
+app.get("/api/presence", (_req, res) => {
+  const state = getState();
+  const signals = extractSignals(state, wsClientCount, lastPresenceTimestamp);
+  const result = computePresence(signals, lastPresenceState);
+
+  if (result.changed) {
+    lastPresenceState = result.state;
+    lastPresenceTimestamp = Date.now();
+    // Persist presence to runtime state
+    mutate((s) => ({
+      ...s,
+      data: {
+        ...s.data,
+        presence: {
+          state: result.state,
+          previousState: result.previousState,
+          changedAt: Date.now(),
+          evidence: result.evidence,
+        },
+      },
+    }));
+  }
+
+  res.json({
+    state: result.state,
+    previousState: result.previousState,
+    changed: result.changed,
+    evidence: result.evidence,
+    signals: {
+      timeSinceLastMutation: signals.timeSinceLastMutation,
+      activeTasks: signals.activeTasks,
+      pendingTasks: signals.pendingTasks,
+      completedTasksToday: signals.completedTasksToday,
+      currentHour: signals.currentHour,
+      meetingDetected: signals.meetingDetected,
+    },
+  });
+});
+
 // ─── Continuity (Founder Wedge) ──────────────────────────
 
 app.get("/api/continuity", (_req, res) => {
   const state = getState();
   const data = state.data as any;
+
+  // Get presence state
+  const presenceState = data.presence?.state ?? "offline";
+  const presenceChanged = data.presence?.changedAt ?? 0;
 
   const activeDreams = Object.values(data.dreams ?? {}).filter((d: any) => d.activated);
   const recentEmotions = Object.values(data.emotion?.observations ?? {}).slice(0, 3);
@@ -299,7 +348,9 @@ app.get("/api/continuity", (_req, res) => {
   const timeSinceLastActive = Date.now() - lastTimestamp;
 
   let greeting = "";
-  if (timeSinceLastActive < 3600000) {
+  if (presenceState === "returning") {
+    greeting = "Welcome back. Everything is where you left it.";
+  } else if (timeSinceLastActive < 3600000) {
     greeting = "Welcome back. Everything is where you left it.";
   } else if (timeSinceLastActive < 86400000) {
     greeting = "Welcome back. Your state has been preserved.";
@@ -321,7 +372,9 @@ app.get("/api/continuity", (_req, res) => {
   }
 
   let recommendation = "";
-  if (activeTasks.length > 0) {
+  if (presenceState === "returning" && activeTasks.length > 0) {
+    recommendation = `Resume "${(activeTasks[0] as any).title}" — it's in progress.`;
+  } else if (activeTasks.length > 0) {
     recommendation = "Continue with your active commitment.";
   } else if (pendingTasks.length > 0) {
     recommendation = `Start working on "${(pendingTasks[0] as any).title}".`;
@@ -340,12 +393,14 @@ app.get("/api/continuity", (_req, res) => {
   if (recentEmotions.length > 0) evidence.push(`Last emotion: ${(recentEmotions[0] as any).observation}`);
   if (timeSinceLastActive < 3600000) evidence.push(`Last active ${Math.round(timeSinceLastActive / 60000)} minutes ago`);
   else if (timeSinceLastActive < 86400000) evidence.push(`Last active ${Math.round(timeSinceLastActive / 3600000)} hours ago`);
+  evidence.push(`Presence: ${presenceState}`);
 
   res.json({
     greeting,
     context,
     recommendation,
     evidence,
+    presence: presenceState,
     activeDreams: activeDreams.length,
     activeTasks: activeTasks.length,
     pendingTasks: pendingTasks.length,
@@ -638,6 +693,7 @@ const openApiSpec = {
     "/api/reflection": { get: { summary: "Reflection insights", tags: ["Runtime"], responses: { "200": { description: "Insights" } } } },
     "/api/conversations": { get: { summary: "Conversation sessions", tags: ["Runtime"], responses: { "200": { description: "Session array" } } } },
     "/api/continuity": { get: { summary: "Continuity context for returning founder", tags: ["Intelligence"], responses: { "200": { description: "Continuity data" } } } },
+    "/api/presence": { get: { summary: "Founder presence state detection", tags: ["Intelligence"], responses: { "200": { description: "Presence state" } } } },
     "/api/burden": { get: { summary: "Cognitive burden score and recovery", tags: ["Intelligence"], responses: { "200": { description: "Burden metrics" } } } },
     "/api/decisions": { get: { summary: "Product intelligence recommendations", tags: ["Intelligence"], responses: { "200": { description: "Decision array" } } } },
     "/api/evidence": { get: { summary: "Evidence trail of all actions", tags: ["Intelligence"], responses: { "200": { description: "Evidence array" } } } },

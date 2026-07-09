@@ -14,6 +14,7 @@
   "dependencies": {
     "@reyou/contracts": "workspace:*",
     "@reyou/human-runtime": "workspace:*",
+    "@reyou/presence-engine": "workspace:*",
     "@reyou/runtime-api": "workspace:*",
     "compression": "^1.8.1",
     "cors": "^2.8.5",
@@ -30,5 +31,6 @@
     "@types/ws": "^8.5.0",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0"
-  }
+  },
+  "license": "UNLICENSED"
 }
