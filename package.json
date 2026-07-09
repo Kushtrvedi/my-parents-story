@@ -4,8 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "build": "pnpm install && pnpm --filter @reyou/server... run build",
+    "build": "pnpm --filter @reyou/server... run build",
     "start": "node packages/server/dist/index.js"
+  },
+  "dependencies": {
+    "typescript": "~5.8.2"
   },
   "packageManager": "pnpm@10.33.0"
 }
