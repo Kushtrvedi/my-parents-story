@@ -6,7 +6,7 @@ import { homedir } from "node:os";
 
 // ─── Persistence ────────────────────────────────────────
 
-const REYOU_DIR = join(homedir(), ".reyou");
+const REYOU_DIR = process.env.REYOU_DATA_DIR || join(homedir(), ".reyou");
 const STATE_FILE = join(REYOU_DIR, "state.json");
 
 export interface PersistedState {
