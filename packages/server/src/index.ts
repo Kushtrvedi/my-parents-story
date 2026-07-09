@@ -427,9 +427,9 @@ app.get("/api/continuity", (_req, res) => {
   const state = getState();
   const data = state.data as any;
 
-  // Get presence state
+  // Get presence and founder mode state
   const presenceState = data.presence?.state ?? "offline";
-  const presenceChanged = data.presence?.changedAt ?? 0;
+  const founderMode = data.founderMode?.mode ?? "shutdown";
 
   const activeDreams = Object.values(data.dreams ?? {}).filter((d: any) => d.activated);
   const recentEmotions = Object.values(data.emotion?.observations ?? {}).slice(0, 3);
@@ -444,6 +444,7 @@ app.get("/api/continuity", (_req, res) => {
   const lastTimestamp = state.timestamp;
   const timeSinceLastActive = Date.now() - lastTimestamp;
 
+  // Generate greeting based on presence and time
   let greeting = "";
   if (presenceState === "returning") {
     greeting = "Welcome back. Everything is where you left it.";
@@ -455,6 +456,28 @@ app.get("/api/continuity", (_req, res) => {
     greeting = "Welcome back. Nothing has been lost.";
   }
 
+  // Generate narrative: what was I doing?
+  let whatWasIDoing = "";
+  if (activeTasks.length > 0) {
+    const task = activeTasks[0] as any;
+    whatWasIDoing = `You were working on "${task.title}"`;
+    if (task.description) whatWasIDoing += ` — ${task.description}`;
+    whatWasIDoing += ".";
+  } else if (pendingTasks.length > 0) {
+    whatWasIDoing = `You had ${pendingTasks.length} unfinished task${pendingTasks.length > 1 ? "s" : ""}: "${(pendingTasks[0] as any).title}"`;
+    if (pendingTasks.length > 1) whatWasIDoing += ` and ${pendingTasks.length - 1} more`;
+    whatWasIDoing += ".";
+  } else if (activeDreams.length > 0) {
+    whatWasIDoing = `Your aspiration was: "${(activeDreams[0] as any).content}".`;
+  } else if (projects.length > 0) {
+    whatWasIDoing = `Active project: "${(projects[0] as any).name}".`;
+  } else if (completedTasks.length > 0) {
+    whatWasIDoing = `You completed ${completedTasks.length} task${completedTasks.length > 1 ? "s" : ""} today.`;
+  } else {
+    whatWasIDoing = "No active commitments.";
+  }
+
+  // Generate context
   let context = "";
   if (activeTasks.length > 0) {
     context = `You were working on ${(activeTasks[0] as any).title}.`;
@@ -468,21 +491,30 @@ app.get("/api/continuity", (_req, res) => {
     context = "No active commitments.";
   }
 
+  // Generate recommendation with evidence
   let recommendation = "";
+  let recommendationEvidence: string[] = [];
   if (presenceState === "returning" && activeTasks.length > 0) {
     recommendation = `Resume "${(activeTasks[0] as any).title}" — it's in progress.`;
+    recommendationEvidence = [`Active task found`, `Task started at ${(activeTasks[0] as any).createdAt}`];
   } else if (activeTasks.length > 0) {
     recommendation = "Continue with your active commitment.";
+    recommendationEvidence = [`Active task: ${(activeTasks[0] as any).title}`];
   } else if (pendingTasks.length > 0) {
     recommendation = `Start working on "${(pendingTasks[0] as any).title}".`;
+    recommendationEvidence = [`${pendingTasks.length} pending tasks`, `Latest: ${(pendingTasks[0] as any).title}`];
   } else if (opportunities.length > 0) {
     recommendation = "Consider the next opportunity.";
+    recommendationEvidence = [`${opportunities.length} opportunities available`];
   } else if (activeDreams.length > 0) {
     recommendation = "Review your aspirations.";
+    recommendationEvidence = [`Active aspiration: ${(activeDreams[0] as any).content}`];
   } else {
     recommendation = "Nothing requires your attention.";
+    recommendationEvidence = ["No tasks, no dreams, no opportunities"];
   }
 
+  // Gather evidence
   const evidence = [];
   if (activeTasks.length > 0) evidence.push(`Active task: ${(activeTasks[0] as any).title}`);
   if (pendingTasks.length > 0) evidence.push(`${pendingTasks.length} pending tasks`);
@@ -491,13 +523,17 @@ app.get("/api/continuity", (_req, res) => {
   if (timeSinceLastActive < 3600000) evidence.push(`Last active ${Math.round(timeSinceLastActive / 60000)} minutes ago`);
   else if (timeSinceLastActive < 86400000) evidence.push(`Last active ${Math.round(timeSinceLastActive / 3600000)} hours ago`);
   evidence.push(`Presence: ${presenceState}`);
+  evidence.push(`Founder mode: ${founderMode}`);
 
   res.json({
     greeting,
+    whatWasIDoing,
     context,
     recommendation,
+    recommendationEvidence,
     evidence,
     presence: presenceState,
+    founderMode,
     activeDreams: activeDreams.length,
     activeTasks: activeTasks.length,
     pendingTasks: pendingTasks.length,
