@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@reyou/contracts": "workspace:*",
+    "@reyou/founder-mode": "workspace:*",
     "@reyou/human-runtime": "workspace:*",
     "@reyou/presence-engine": "workspace:*",
     "@reyou/runtime-api": "workspace:*",

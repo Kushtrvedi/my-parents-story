@@ -9,6 +9,7 @@ import { randomUUID } from "crypto";
 import { getState, mutate, subscribe, health, getMetrics, hydrateFromDisk } from "@reyou/runtime-api";
 import type { HumanStateVector } from "@reyou/human-runtime";
 import { computePresence, extractSignals, type PresenceState } from "@reyou/presence-engine";
+import { computeFounderMode, extractFounderModeContext, type FounderMode, type TransitionTrigger } from "@reyou/founder-mode";
 
 // ─── Initialize Runtime ───────────────────────────────────
 
@@ -287,6 +288,9 @@ app.get("/api/conversations", (_req, res) => {
 
 let lastPresenceState: PresenceState = "offline";
 let lastPresenceTimestamp = Date.now();
+let lastFounderMode: FounderMode = "shutdown";
+let lastFounderModeTimestamp = Date.now();
+let founderModeDayMetrics: ReturnType<typeof computeFounderMode>["dayMetrics"] | undefined;
 
 app.get("/api/presence", (_req, res) => {
   const state = getState();
@@ -324,6 +328,61 @@ app.get("/api/presence", (_req, res) => {
       currentHour: signals.currentHour,
       meetingDetected: signals.meetingDetected,
     },
+  });
+});
+
+// ─── Founder Mode ────────────────────────────────────────
+
+app.get("/api/founder-mode", (_req, res) => {
+  const state = getState();
+  const presence = lastPresenceState;
+  const timeInCurrentMode = Date.now() - lastFounderModeTimestamp;
+
+  // Map presence changes to founder mode triggers
+  let trigger: TransitionTrigger = "presence_change";
+  const prevPresence: PresenceState = lastPresenceState;
+  if (presence === "meeting") {
+    trigger = "meeting_started";
+  } else if (prevPresence === "meeting") {
+    trigger = "meeting_ended";
+  } else if (presence === "returning") {
+    trigger = "session_start";
+  } else if (presence === "working") {
+    trigger = "task_started";
+  }
+
+  const context = extractFounderModeContext(state, trigger, presence, timeInCurrentMode);
+  const result = computeFounderMode(context, lastFounderMode, founderModeDayMetrics);
+
+  if (result.changed) {
+    lastFounderMode = result.mode;
+    lastFounderModeTimestamp = Date.now();
+    founderModeDayMetrics = result.dayMetrics;
+
+    // Persist founder mode to runtime state
+    mutate((s) => ({
+      ...s,
+      data: {
+        ...s.data,
+        founderMode: {
+          mode: result.mode,
+          previousMode: result.previousMode,
+          changedAt: Date.now(),
+          action: result.action,
+          evidence: result.evidence,
+          dayMetrics: result.dayMetrics,
+        },
+      },
+    }));
+  }
+
+  res.json({
+    mode: result.mode,
+    previousMode: result.previousMode,
+    changed: result.changed,
+    action: result.action,
+    evidence: result.evidence,
+    dayMetrics: result.dayMetrics,
   });
 });
 
@@ -697,6 +756,7 @@ const openApiSpec = {
     "/api/conversations": { get: { summary: "Conversation sessions", tags: ["Runtime"], responses: { "200": { description: "Session array" } } } },
     "/api/continuity": { get: { summary: "Continuity context for returning founder", tags: ["Intelligence"], responses: { "200": { description: "Continuity data" } } } },
     "/api/presence": { get: { summary: "Founder presence state detection", tags: ["Intelligence"], responses: { "200": { description: "Presence state" } } } },
+    "/api/founder-mode": { get: { summary: "Founder mode state machine", tags: ["Intelligence"], responses: { "200": { description: "Founder mode state" } } } },
     "/api/burden": { get: { summary: "Cognitive burden score and recovery", tags: ["Intelligence"], responses: { "200": { description: "Burden metrics" } } } },
     "/api/decisions": { get: { summary: "Product intelligence recommendations", tags: ["Intelligence"], responses: { "200": { description: "Decision array" } } } },
     "/api/evidence": { get: { summary: "Evidence trail of all actions", tags: ["Intelligence"], responses: { "200": { description: "Evidence array" } } } },
