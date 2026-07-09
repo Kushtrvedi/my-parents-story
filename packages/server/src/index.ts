@@ -10,6 +10,7 @@ import { getState, mutate, subscribe, health, getMetrics, hydrateFromDisk } from
 import type { HumanStateVector } from "@reyou/human-runtime";
 import { computePresence, extractSignals, type PresenceState } from "@reyou/presence-engine";
 import { computeFounderMode, extractFounderModeContext, type FounderMode, type TransitionTrigger } from "@reyou/founder-mode";
+import { EvidenceRuntime } from "@reyou/evidence-runtime";
 
 // ─── Initialize Runtime ───────────────────────────────────
 
@@ -33,6 +34,10 @@ interface RequestMetrics {
 
 const recentRequests: RequestMetrics[] = [];
 const MAX_RECENT_REQUESTS = 100;
+
+// ─── Evidence Runtime ────────────────────────────────────
+
+const evidenceRuntime = new EvidenceRuntime();
 
 // ─── State Selectors ──────────────────────────────────────
 
@@ -313,6 +318,18 @@ app.get("/api/presence", (_req, res) => {
         },
       },
     }));
+    // Record evidence
+    evidenceRuntime.record({
+      source: "presence-engine",
+      action: "PresenceChanged",
+      rationale: result.evidence?.reason ?? `Presence changed to ${result.state}`,
+      input: { previousState: result.previousState, signals },
+      output: { state: result.state },
+      confidence: result.evidence?.confidence ?? 0.5,
+      category: "observation",
+      duration: Date.now() - lastPresenceTimestamp,
+      result: "success",
+    });
   }
 
   res.json({
@@ -374,6 +391,18 @@ app.get("/api/founder-mode", (_req, res) => {
         },
       },
     }));
+    // Record evidence
+    evidenceRuntime.record({
+      source: "founder-mode",
+      action: "ModeChanged",
+      rationale: result.evidence?.reason ?? `Mode changed to ${result.mode}`,
+      input: { previousMode: result.previousMode, trigger, presence },
+      output: { mode: result.mode, action: result.action },
+      confidence: 0.8,
+      category: "state-transition",
+      duration: timeInCurrentMode,
+      result: "success",
+    });
   }
 
   res.json({
@@ -720,11 +749,27 @@ app.get("/api/evidence", (_req, res) => {
     });
   }
 
+  // Add evidence from the evidence runtime
+  const runtimeEvidence = evidenceRuntime.getAll();
+  for (const bundle of runtimeEvidence) {
+    evidence.push({
+      action: bundle.action,
+      timestamp: bundle.timestamp.getTime(),
+      source: bundle.source,
+      input: bundle.input,
+      output: bundle.output,
+      confidence: bundle.confidence,
+      duration: bundle.duration ?? null,
+      result: bundle.result ?? "success",
+    });
+  }
+
   evidence.sort((a, b) => b.timestamp - a.timestamp);
 
   res.json({
     evidence: evidence.slice(0, 50),
     totalEvents: evidence.length,
+    chainIntegrity: evidenceRuntime.verifyChain(),
     timespan: evidence.length > 0
       ? { from: new Date(evidence[evidence.length - 1].timestamp).toISOString(), to: new Date(evidence[0].timestamp).toISOString() }
       : null,

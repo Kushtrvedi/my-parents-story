@@ -37,6 +37,19 @@ importers:
         specifier: ^3.1.0
         version: 3.2.6(@types/debug@4.1.13)(@types/node@26.1.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@26.1.0)(typescript@5.9.3))(terser@5.47.1)
 
+  packages/evidence-runtime:
+    dependencies:
+      '@reyou/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+    devDependencies:
+      '@types/node':
+        specifier: ^22.14.0
+        version: 22.20.0
+      vitest:
+        specifier: ^3.1.0
+        version: 3.2.6(@types/debug@4.1.13)(@types/node@22.20.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@22.20.0)(typescript@5.9.3))(terser@5.47.1)
+
   packages/founder-mode:
     dependencies:
       '@reyou/human-runtime':
@@ -126,6 +139,9 @@ importers:
       '@reyou/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@reyou/evidence-runtime':
+        specifier: workspace:*
+        version: link:../evidence-runtime
       '@reyou/founder-mode':
         specifier: workspace:*
         version: link:../founder-mode
@@ -722,9 +738,6 @@ packages:
 
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
-
-  '@types/node@20.19.41':
-    resolution: {integrity: sha512-ECymXOukMnOoVkC2bb1Vc/w/836DXncOg5m8Xj1RH7xSHZJWNYY6Zh7EH477vcnD5egKNNfy2RpNOmuChhFPgQ==}
 
   '@types/node@22.20.0':
     resolution: {integrity: sha512-QWlFW2wf3nTjC13/DqRnBpR4ZO36VJH/JVBkA/vcnmbTBNQIlnObqyqZE1tUR7+Ni23Lda8R1BxMfbXRpCUx5g==}
@@ -1906,7 +1919,7 @@ snapshots:
   '@types/body-parser@1.19.6':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 20.19.41
+      '@types/node': 22.20.0
 
   '@types/chai@5.2.3':
     dependencies:
@@ -1916,15 +1929,15 @@ snapshots:
   '@types/compression@1.8.1':
     dependencies:
       '@types/express': 5.0.6
-      '@types/node': 20.19.41
+      '@types/node': 22.20.0
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 20.19.41
+      '@types/node': 22.20.0
 
   '@types/cors@2.8.19':
     dependencies:
-      '@types/node': 20.19.41
+      '@types/node': 22.20.0
 
   '@types/debug@4.1.13':
     dependencies:
@@ -1939,7 +1952,7 @@ snapshots:
 
   '@types/express-serve-static-core@5.1.1':
     dependencies:
-      '@types/node': 20.19.41
+      '@types/node': 22.20.0
       '@types/qs': 6.15.1
       '@types/range-parser': 1.2.7
       '@types/send': 1.2.1
@@ -1959,10 +1972,6 @@ snapshots:
   '@types/ms@2.1.0':
     optional: true
 
-  '@types/node@20.19.41':
-    dependencies:
-      undici-types: 6.21.0
-
   '@types/node@22.20.0':
     dependencies:
       undici-types: 6.21.0
@@ -1978,12 +1987,12 @@ snapshots:
 
   '@types/send@1.2.1':
     dependencies:
-      '@types/node': 20.19.41
+      '@types/node': 22.20.0
 
   '@types/serve-static@2.2.0':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 20.19.41
+      '@types/node': 22.20.0
 
   '@types/set-cookie-parser@2.4.10':
     dependencies:
@@ -1995,7 +2004,7 @@ snapshots:
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 20.19.41
+      '@types/node': 22.20.0
 
   '@vitest/expect@3.2.6':
     dependencies:
