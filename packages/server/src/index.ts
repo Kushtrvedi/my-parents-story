@@ -87,6 +87,9 @@ function selectConversations(state: HumanStateVector) {
 
 const app = express();
 
+// Trust proxy (Railway, Vercel, etc.)
+app.set("trust proxy", 1);
+
 // Security
 app.use(helmet({
   contentSecurityPolicy: false,
