@@ -66,6 +66,16 @@ importers:
         specifier: ^3.1.0
         version: 3.2.6(@types/debug@4.1.13)(@types/node@26.1.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@26.1.0)(typescript@5.9.3))(terser@5.47.1)
 
+  packages/presence-engine:
+    dependencies:
+      '@reyou/human-runtime':
+        specifier: workspace:*
+        version: link:../human-runtime
+    devDependencies:
+      typescript:
+        specifier: ~5.8.2
+        version: 5.8.3
+
   packages/runtime-api:
     dependencies:
       '@reyou/contracts':
@@ -106,6 +116,9 @@ importers:
       '@reyou/human-runtime':
         specifier: workspace:*
         version: link:../human-runtime
+      '@reyou/presence-engine':
+        specifier: workspace:*
+        version: link:../presence-engine
       '@reyou/runtime-api':
         specifier: workspace:*
         version: link:../runtime-api
