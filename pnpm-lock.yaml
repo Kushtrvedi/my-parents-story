@@ -22,6 +22,22 @@ importers:
         specifier: ~5.8.2
         version: 5.8.3
 
+  packages/computational-physics:
+    dependencies:
+      '@reyou/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@reyou/human-runtime':
+        specifier: workspace:*
+        version: link:../human-runtime
+    devDependencies:
+      '@types/node':
+        specifier: ^22.14.0
+        version: 22.20.0
+      vitest:
+        specifier: ^3.1.0
+        version: 3.2.6(@types/debug@4.1.13)(@types/node@22.20.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@22.20.0)(typescript@5.9.3))(terser@5.47.1)
+
   packages/contracts: {}
 
   packages/errors:
@@ -52,6 +68,22 @@ importers:
       '@reyou/contracts':
         specifier: workspace:*
         version: link:../contracts
+    devDependencies:
+      '@types/node':
+        specifier: ^22.14.0
+        version: 22.20.0
+      vitest:
+        specifier: ^3.1.0
+        version: 3.2.6(@types/debug@4.1.13)(@types/node@22.20.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@22.20.0)(typescript@5.9.3))(terser@5.47.1)
+
+  packages/experience-runtime:
+    dependencies:
+      '@reyou/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@reyou/runtime-api':
+        specifier: workspace:*
+        version: link:../runtime-api
     devDependencies:
       '@types/node':
         specifier: ^22.14.0
@@ -102,6 +134,25 @@ importers:
         specifier: ^3.1.0
         version: 3.2.6(@types/debug@4.1.13)(@types/node@26.1.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@26.1.0)(typescript@5.9.3))(terser@5.47.1)
 
+  packages/prediction-runtime:
+    dependencies:
+      '@reyou/computational-physics':
+        specifier: workspace:*
+        version: link:../computational-physics
+      '@reyou/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@reyou/human-runtime':
+        specifier: workspace:*
+        version: link:../human-runtime
+    devDependencies:
+      '@types/node':
+        specifier: ^22.14.0
+        version: 22.20.0
+      vitest:
+        specifier: ^3.1.0
+        version: 3.2.6(@types/debug@4.1.13)(@types/node@22.20.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@22.20.0)(typescript@5.9.3))(terser@5.47.1)
+
   packages/presence-engine:
     dependencies:
       '@reyou/human-runtime':
@@ -111,6 +162,31 @@ importers:
       typescript:
         specifier: ~5.8.2
         version: 5.8.3
+
+  packages/product-intelligence:
+    dependencies:
+      '@reyou/computational-physics':
+        specifier: workspace:*
+        version: link:../computational-physics
+      '@reyou/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@reyou/experience-runtime':
+        specifier: workspace:*
+        version: link:../experience-runtime
+      '@reyou/human-runtime':
+        specifier: workspace:*
+        version: link:../human-runtime
+      '@reyou/prediction-runtime':
+        specifier: workspace:*
+        version: link:../prediction-runtime
+    devDependencies:
+      '@types/node':
+        specifier: ^22.14.0
+        version: 22.20.0
+      vitest:
+        specifier: ^3.1.0
+        version: 3.2.6(@types/debug@4.1.13)(@types/node@22.20.0)(lightningcss@1.32.0)(msw@2.14.6(@types/node@22.20.0)(typescript@5.9.3))(terser@5.47.1)
 
   packages/runtime-api:
     dependencies:
@@ -155,6 +231,9 @@ importers:
       '@reyou/evidence-runtime':
         specifier: workspace:*
         version: link:../evidence-runtime
+      '@reyou/experience-runtime':
+        specifier: workspace:*
+        version: link:../experience-runtime
       '@reyou/founder-mode':
         specifier: workspace:*
         version: link:../founder-mode
@@ -164,6 +243,9 @@ importers:
       '@reyou/presence-engine':
         specifier: workspace:*
         version: link:../presence-engine
+      '@reyou/product-intelligence':
+        specifier: workspace:*
+        version: link:../product-intelligence
       '@reyou/runtime-api':
         specifier: workspace:*
         version: link:../runtime-api

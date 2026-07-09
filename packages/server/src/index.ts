@@ -12,6 +12,8 @@ import { computePresence, extractSignals, type PresenceState } from "@reyou/pres
 import { computeFounderMode, extractFounderModeContext, type FounderMode, type TransitionTrigger } from "@reyou/founder-mode";
 import { EvidenceRuntime } from "@reyou/evidence-runtime";
 import { calculateBurdenFromState, recordBurdenTrend } from "@reyou/burden-engine";
+import { ProductIntelligence } from "@reyou/product-intelligence";
+import { ExperienceRuntime } from "@reyou/experience-runtime";
 
 // ─── Initialize Runtime ───────────────────────────────────
 
@@ -39,6 +41,12 @@ const MAX_RECENT_REQUESTS = 100;
 // ─── Evidence Runtime ────────────────────────────────────
 
 const evidenceRuntime = new EvidenceRuntime();
+
+// ─── Product Intelligence ────────────────────────────────
+
+const experienceRuntime = new ExperienceRuntime();
+const productIntelligence = new ProductIntelligence(experienceRuntime);
+productIntelligence.setStateAccessor(getState);
 
 // ─── State Selectors ──────────────────────────────────────
 
@@ -542,77 +550,19 @@ app.get("/api/burden", (_req, res) => {
 // ─── Product Intelligence ────────────────────────────────
 
 app.get("/api/decisions", (_req, res) => {
-  const state = getState();
-  const data = state.data as any;
+  const decision = productIntelligence.decide();
 
-  const tasks = Object.values(data.execution?.tasks ?? {});
-  const activeTasks = tasks.filter((t: any) => t.status === "in_progress");
-  const pendingTasks = tasks.filter((t: any) => t.status === "pending");
-  const completedTasks = tasks.filter((t: any) => t.status === "completed");
-
-  const emotions = Object.values(data.emotion?.observations ?? []) as any[];
-  const recentEmotions = emotions.slice(0, 3);
-
-  const dreams = Object.values(data.dreams ?? {});
-  const activeDreams = dreams.filter((d: any) => d.activated);
-
-  const timeSinceLastActive = Date.now() - state.timestamp;
-  const minutesSinceActive = timeSinceLastActive / 60000;
-
-  const decisions = [];
-
-  if (activeTasks.length > 0) {
-    decisions.push({
-      decision: "continue",
-      confidence: 0.9,
-      evidence: [`Active task: ${(activeTasks[0] as any).title}`, "Task already started"],
-      reason: "You have work in progress. Continuing is the most efficient path.",
-    });
-  } else if (pendingTasks.length > 0) {
-    decisions.push({
-      decision: "start",
-      confidence: 0.7,
-      evidence: [`${pendingTasks.length} tasks awaiting attention`, `Latest: ${(pendingTasks[0] as any).title}`],
-      reason: "You have pending commitments. Starting one reduces open loops.",
-    });
-  } else if (activeDreams.length > 0) {
-    decisions.push({
-      decision: "reflect",
-      confidence: 0.6,
-      evidence: [`Active aspiration: ${(activeDreams[0] as any).content}`],
-      reason: "No immediate tasks. Consider your longer-term aspirations.",
-    });
-  } else {
-    decisions.push({
-      decision: "rest",
-      confidence: 0.8,
-      evidence: ["No active tasks", "No pending commitments"],
-      reason: "Nothing requires your attention. Rest is appropriate.",
-    });
-  }
-
-  if (recentEmotions.length > 0) {
-    const lastEmotion = recentEmotions[0];
-    if (["stressed", "overwhelmed", "anxious"].includes(lastEmotion.observation)) {
-      decisions.push({
-        decision: "recover",
-        confidence: 0.85,
-        evidence: [`Recent observation: ${lastEmotion.observation}`, `Confidence: ${lastEmotion.confidence}`],
-        reason: "Recent emotional state suggests recovery is needed.",
-      });
-    }
-  }
-
-  if (minutesSinceActive > 480) {
-    decisions.push({
-      decision: "resume",
-      confidence: 0.75,
-      evidence: [`Last active ${Math.round(minutesSinceActive / 60)} hours ago`],
-      reason: "Significant time has passed. Resume where you left off.",
-    });
-  }
-
-  res.json({ decisions });
+  res.json({
+    decisions: [{
+      decision: decision.action,
+      confidence: decision.confidence,
+      evidence: decision.evidence,
+      reason: decision.reason,
+      attentionCost: decision.attentionCost,
+      benefit: decision.benefit,
+      risk: decision.risk,
+    }],
+  });
 });
 
 // ─── Evidence Trail ──────────────────────────────────────
