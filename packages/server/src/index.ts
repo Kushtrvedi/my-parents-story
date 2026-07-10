@@ -5,7 +5,10 @@ import compression from "compression";
 import rateLimit from "express-rate-limit";
 import { WebSocketServer, WebSocket } from "ws";
 import { createServer } from "http";
-import { randomUUID } from "crypto";
+import { randomUUID, timingSafeEqual } from "crypto";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, copyFileSync, rmSync, statSync, appendFileSync } from "fs";
+import { join } from "path";
+import { homedir, hostname as osHostname } from "os";
 import { getState, mutate, subscribe, health, getMetrics, hydrateFromDisk } from "@reyou/runtime-api";
 import type { HumanStateVector } from "@reyou/human-runtime";
 import { computePresence, extractSignals, type PresenceState } from "@reyou/presence-engine";
@@ -20,7 +23,6 @@ import {
   computeContinuityAccuracy,
   computeBurdenCalibration,
   recordBurdenObservation,
-  updateBurdenObservation,
   recordExperiment,
   recordExperimentOutcome,
   getExperiments,
@@ -55,6 +57,61 @@ interface RequestMetrics {
 const recentRequests: RequestMetrics[] = [];
 const MAX_RECENT_REQUESTS = 100;
 
+// ─── Operational Metrics ────────────────────────────────
+
+interface OpSnapshot {
+  timestamp: number;
+  latencyP50: number;
+  latencyP95: number;
+  latencyP99: number;
+  errorRate: number;
+  rssMb: number;
+  heapUsedMb: number;
+  heapTotalMb: number;
+  wsClients: number;
+  runtimeVersion: number;
+  requestCount: number;
+}
+
+const opMetrics: { snapshots: OpSnapshot[]; perPath: Record<string, number[]> } = {
+  snapshots: [],
+  perPath: {},
+};
+
+const OP_SNAPSHOT_INTERVAL = 60_000;
+const MAX_OP_SNAPSHOTS = 1440;
+
+function takeOpSnapshot(): void {
+  const mem = process.memoryUsage();
+  const latencies = Object.values(opMetrics.perPath).flat();
+  const sorted = [...latencies].sort((a, b) => a - b);
+  const p50 = sorted.length > 0 ? sorted[Math.floor(sorted.length * 0.5)]! : 0;
+  const p95 = sorted.length > 0 ? sorted[Math.floor(sorted.length * 0.95)]! : 0;
+  const p99 = sorted.length > 0 ? sorted[Math.floor(sorted.length * 0.99)]! : 0;
+  const totalRequests = Object.values(opMetrics.perPath).reduce((s, v) => s + v.length, 0);
+  const totalErrors = errorCount;
+
+  opMetrics.snapshots.push({
+    timestamp: Date.now(),
+    latencyP50: p50,
+    latencyP95: p95,
+    latencyP99: p99,
+    errorRate: totalRequests > 0 ? totalErrors / totalRequests : 0,
+    rssMb: Math.round(mem.rss / 1024 / 1024 * 10) / 10,
+    heapUsedMb: Math.round(mem.heapUsed / 1024 / 1024 * 10) / 10,
+    heapTotalMb: Math.round(mem.heapTotal / 1024 / 1024 * 10) / 10,
+    wsClients: wsClientCount,
+    runtimeVersion: getState().version,
+    requestCount: totalRequests,
+  });
+
+  if (opMetrics.snapshots.length > MAX_OP_SNAPSHOTS) {
+    opMetrics.snapshots.shift();
+  }
+}
+
+setInterval(takeOpSnapshot, OP_SNAPSHOT_INTERVAL);
+
 // ─── Evidence Runtime ────────────────────────────────────
 
 const evidenceRuntime = new EvidenceRuntime();
@@ -64,6 +121,51 @@ const evidenceRuntime = new EvidenceRuntime();
 const experienceRuntime = new ExperienceRuntime();
 const productIntelligence = new ProductIntelligence(experienceRuntime);
 productIntelligence.setStateAccessor(getState);
+
+// ─── Startup Verification ───────────────────────────────
+
+const REYOU_DIR = process.env.REYOU_DATA_DIR || join(homedir(), ".reyou");
+const APP_VERSION = process.env.REYOU_VERSION || "0.1.0";
+const SERVER_ID = `reyou-${osHostname()}-${Date.now().toString(36)}`;
+
+function verifyEnvironment(): string[] {
+  const warnings: string[] = [];
+  if (!process.env.REYOU_DATA_DIR) warnings.push("REYOU_DATA_DIR not set, using default");
+  if (!existsSync(REYOU_DIR)) warnings.push("Data directory does not exist yet");
+  return warnings;
+}
+
+function verifyStateIntegrity(): string[] {
+  const warnings: string[] = [];
+  const state = getState();
+  if (state.version === 0) warnings.push("Runtime state is empty");
+  if (state.data && typeof state.data !== "object") warnings.push("Runtime state data is malformed");
+  return warnings;
+}
+
+function verifyEvidenceChain(): { valid: boolean; bundles: number; error?: string } {
+  try {
+    const result = evidenceRuntime.verifyChain();
+    return { valid: result.valid, bundles: result.totalBundles, error: result.valid ? undefined : "Chain integrity check failed" };
+  } catch (e) {
+    return { valid: false, bundles: 0, error: String(e) };
+  }
+}
+
+const envWarnings = verifyEnvironment();
+const integrityWarnings = verifyStateIntegrity();
+const allWarnings = [...envWarnings, ...integrityWarnings];
+
+let lastRestartCheck = Date.now();
+let serverRestartCount = 0;
+try {
+  const restartFile = join(REYOU_DIR, ".restart_count");
+  if (existsSync(restartFile)) {
+    serverRestartCount = parseInt(readFileSync(restartFile, "utf-8").trim(), 10) || 0;
+  }
+  serverRestartCount++;
+  writeFileSync(restartFile, String(serverRestartCount), "utf-8");
+} catch { /* persist restart count silently */ }
 
 // ─── State Selectors ──────────────────────────────────────
 
@@ -179,6 +281,11 @@ app.use((req, res, next) => {
       recentRequests.pop();
     }
 
+    if (!opMetrics.perPath[req.path]) {
+      opMetrics.perPath[req.path] = [];
+    }
+    opMetrics.perPath[req.path]!.push(duration);
+
     if (res.statusCode >= 400) {
       errorCount++;
     }
@@ -226,7 +333,16 @@ app.get("/", (_req, res) => {
       experiments: "/api/analytics/experiments",
       dogfood: "/api/dogfood/run",
       report: "/api/dogfood/report",
+      status: "/api/status",
+      version: "/api/version",
+      runtime: "/api/runtime",
       metrics: "/api/metrics",
+      backup: "/api/ops/backup",
+      backups: "/api/ops/backups",
+      ops: "/api/ops/dashboard/operational",
+      errors: "/api/ops/dashboard/errors",
+      performance: "/api/ops/dashboard/performance",
+      audit: "/api/ops/audit",
       websocket: "/ws",
     },
   });
@@ -586,28 +702,28 @@ app.get("/api/continuity", (_req, res) => {
   });
 });
 
-// ─── Metrics ──────────────────────────────────────────────
+// ─── Metrics (Operational Only) ──────────────────────────
 
 app.get("/api/metrics", (_req, res) => {
+  const mem = process.memoryUsage();
+  const last = opMetrics.snapshots[opMetrics.snapshots.length - 1];
   const state = getState();
-  const data = state.data as any;
+  const runMetrics = getMetrics();
 
-  const metrics = {
-    ...getMetrics(),
-    stateVersion: state.version,
-    stateTimestamp: new Date(state.timestamp).toISOString(),
-    uptimeMs: Date.now() - state.timestamp,
-    dreams: Object.keys(data.dreams ?? {}).length,
-    emotions: Object.keys(data.emotion?.observations ?? {}).length,
-    tasks: Object.keys(data.execution?.tasks ?? {}).length,
-    projects: Object.keys(data.execution?.projects ?? {}).length,
-    skills: Object.keys(data.learning?.skills ?? {}).length,
-    opportunities: Object.keys(data.opportunity?.opportunities ?? {}).length,
-    knowledgeNodes: Object.keys(data.knowledge?.nodes ?? {}).length,
-    identityTraits: Object.keys(data.identity?.traits ?? {}).length,
-  };
-
-  res.json(metrics);
+  res.json({
+    version: 1,
+    uptime: Math.floor((Date.now() - serverStartTime) / 1000),
+    requests: { total: requestCount, errors: errorCount },
+    latency: last ? { p50: last.latencyP50, p95: last.latencyP95, p99: last.latencyP99 } : null,
+    memory: {
+      rssMb: Math.round(mem.rss / 1024 / 1024 * 10) / 10,
+      heapUsedMb: Math.round(mem.heapUsed / 1024 / 1024 * 10) / 10,
+      heapTotalMb: Math.round(mem.heapTotal / 1024 / 1024 * 10) / 10,
+    },
+    websocket: { clients: wsClientCount },
+    runtime: { version: state.version, mutations: runMetrics.mutationCount, uptimeMs: Date.now() - state.timestamp },
+    monitoring: { snapshots: opMetrics.snapshots.length, historyMinutes: Math.floor(opMetrics.snapshots.length / 60) },
+  });
 });
 
 // ─── Cognitive Burden ───────────────────────────────────
@@ -664,7 +780,6 @@ app.get("/api/decisions", (_req, res) => {
 app.get("/api/evidence", (_req, res) => {
   const state = getState();
   const data = state.data as any;
-  const now = Date.now();
 
   const evidence = [];
 
@@ -909,6 +1024,287 @@ app.get("/api/dogfood/report", (_req, res) => {
   });
 });
 
+// ─── Alpha Operations: Workstream 2 — Status/Version/Runtime ──
+
+app.get("/api/status", (_req, res) => {
+  const lastSnapshot = opMetrics.snapshots[opMetrics.snapshots.length - 1];
+  res.json({
+    status: "operational",
+    serverId: SERVER_ID,
+    uptime: Math.floor((Date.now() - serverStartTime) / 1000),
+    version: APP_VERSION,
+    requests: { total: requestCount, errors: errorCount },
+    latency: lastSnapshot ? { p50: lastSnapshot.latencyP50, p95: lastSnapshot.latencyP95, p99: lastSnapshot.latencyP99 } : null,
+    websocket: { clients: wsClientCount },
+    warnings: allWarnings,
+    restartCount: serverRestartCount,
+  });
+});
+
+app.get("/api/version", (_req, res) => {
+  res.json({
+    app: "RE-YOU OS Runtime Gateway",
+    version: APP_VERSION,
+    build: process.env.REYOU_BUILD || "dev",
+    commit: process.env.REYOU_COMMIT || "unknown",
+    node: process.version,
+    platform: process.platform,
+    arch: process.arch,
+    serverId: SERVER_ID,
+  });
+});
+
+app.get("/api/runtime", (_req, res) => {
+  const state = getState();
+  const runMetrics = getMetrics();
+  const evidenceChain = verifyEvidenceChain();
+  const diskFree = (() => { try { const s = statSync(REYOU_DIR); return s.size; } catch { return -1; } })();
+  res.json({
+    runtime: { version: state.version, timestamp: state.timestamp, uptimeMs: Date.now() - state.timestamp },
+    mutations: runMetrics,
+    evidence: evidenceChain,
+    analytics: { datasets: listDatasets().length, experiments: getExperiments().length },
+    dataDir: { path: REYOU_DIR, exists: existsSync(REYOU_DIR), sizeBytes: diskFree },
+    warnings: integrityWarnings,
+  });
+});
+
+// ─── Alpha Operations: Workstream 3+4 — Backup & Recovery ──
+
+const BACKUP_DIR = join(REYOU_DIR, "backups");
+const MAX_BACKUPS = 30;
+
+function ensureBackupDir(): void {
+  if (!existsSync(BACKUP_DIR)) mkdirSync(BACKUP_DIR, { recursive: true });
+}
+
+interface BackupManifest {
+  id: string;
+  createdAt: string;
+  runtimeVersion: number;
+  stateFileSize: number;
+  evidenceCount: number;
+  datasetCount: number;
+  integrity: string;
+}
+
+function createBackup(): BackupManifest {
+  ensureBackupDir();
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const id = `backup-${timestamp}`;
+  const backupPath = join(BACKUP_DIR, id);
+  mkdirSync(backupPath, { recursive: true });
+
+  // Backup runtime state.json
+  const stateFile = join(REYOU_DIR, "state.json");
+  let stateFileSize = 0;
+  if (existsSync(stateFile)) {
+    copyFileSync(stateFile, join(backupPath, "state.json"));
+    stateFileSize = statSync(stateFile).size;
+  }
+
+  // Backup analytics data
+  const analyticsDir = join(REYOU_DIR, "analytics");
+  if (existsSync(analyticsDir)) {
+    const analyticsBackup = join(backupPath, "analytics");
+    mkdirSync(analyticsBackup, { recursive: true });
+    for (const f of readdirSync(analyticsDir)) {
+      copyFileSync(join(analyticsDir, f), join(analyticsBackup, f));
+    }
+  }
+
+  const manifest: BackupManifest = {
+    id,
+    createdAt: new Date().toISOString(),
+    runtimeVersion: getState().version,
+    stateFileSize,
+    evidenceCount: evidenceRuntime.getCount(),
+    datasetCount: listDatasets().length,
+    integrity: verifyEvidenceChain().valid ? "ok" : "chain_broken",
+  };
+
+  writeFileSync(join(backupPath, "manifest.json"), JSON.stringify(manifest, null, 2), "utf-8");
+  writeFileSync(join(backupPath, "evidence.json"), JSON.stringify(evidenceRuntime.getAll()), "utf-8");
+
+  // Rotate old backups
+  const all = readdirSync(BACKUP_DIR).filter((f) => f.startsWith("backup-")).sort();
+  while (all.length > MAX_BACKUPS) {
+    const oldest = all.shift()!;
+    rmSync(join(BACKUP_DIR, oldest), { recursive: true, force: true });
+  }
+
+  return manifest;
+}
+
+function verifyBackupIntegrity(backupId: string): { valid: boolean; error?: string } {
+  const backupPath = join(BACKUP_DIR, backupId);
+  if (!existsSync(backupPath)) return { valid: false, error: "Backup not found" };
+  const manifestFile = join(backupPath, "manifest.json");
+  if (!existsSync(manifestFile)) return { valid: false, error: "Manifest missing" };
+  const stateFile = join(backupPath, "state.json");
+  if (!existsSync(stateFile)) return { valid: false, error: "State file missing" };
+  try {
+    const manifest = JSON.parse(readFileSync(manifestFile, "utf-8")) as BackupManifest;
+    const actualSize = statSync(stateFile).size;
+    if (actualSize !== manifest.stateFileSize) return { valid: false, error: "State file size mismatch" };
+    return { valid: true };
+  } catch (e) {
+    return { valid: false, error: String(e) };
+  }
+}
+
+app.post("/api/ops/backup", (_req, res) => {
+  const manifest = createBackup();
+  res.status(201).json({ backup: manifest });
+});
+
+app.get("/api/ops/backups", (_req, res) => {
+  ensureBackupDir();
+  const backups = readdirSync(BACKUP_DIR).filter((f) => f.startsWith("backup-")).sort().reverse();
+  const details = backups.map((id) => {
+    const manifestFile = join(BACKUP_DIR, id, "manifest.json");
+    try { return JSON.parse(readFileSync(manifestFile, "utf-8")) as BackupManifest; }
+    catch { return { id, createdAt: "unknown", runtimeVersion: 0, stateFileSize: 0, evidenceCount: 0, datasetCount: 0, integrity: "unknown" }; }
+  });
+  res.json({ backups: details, count: details.length });
+});
+
+app.post("/api/ops/backups/:id/verify", (req, res) => {
+  const result = verifyBackupIntegrity(req.params.id!);
+  res.json({ backupId: req.params.id, ...result });
+});
+
+// ─── Alpha Operations: Workstream 5 — Observability Dashboards ──
+
+function opsHtmlPage(title: string, body: string): string {
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>${title} — RE-YU Ops</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#0a0a0a;color:#e0e0e0;padding:20px}
+h1{font-size:18px;font-weight:600;color:#d4af37;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+h2{font-size:14px;color:#888;margin:16px 0 8px;text-transform:uppercase;letter-spacing:0.5px}
+.metric{background:#141414;border:1px solid #222;border-radius:6px;padding:12px 16px;margin-bottom:8px}
+.metric .label{font-size:11px;color:#666;text-transform:uppercase}
+.metric .value{font-size:22px;font-weight:700;color:#fff;margin-top:2px}
+.metric .value.warn{color:#f59e0b}.metric .value.err{color:#ef4444}.metric .value.ok{color:#22c55e}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:16px}
+pre{font-size:11px;color:#888;overflow-x:auto;background:#0d0d0d;padding:12px;border-radius:6px;border:1px solid #1a1a1a}
+.warning{color:#f59e0b;font-size:12px;padding:8px 12px;background:#1a1500;border-radius:6px;border:1px solid #3a3000;margin-bottom:8px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px}
+th{text-align:left;color:#666;padding:6px 8px;border-bottom:1px solid #222;font-size:10px;text-transform:uppercase}
+td{padding:6px 8px;border-bottom:1px solid #111;color:#aaa}
+td.num{font-family:monospace;text-align:right;color:#fff}
+.nav{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.nav a{color:#888;text-decoration:none;font-size:12px;padding:6px 12px;border:1px solid #222;border-radius:4px}
+.nav a:hover{color:#d4af37;border-color:#d4af37}
+a{color:#60a5fa}</style></head><body>${body}</body></html>`;
+}
+
+app.get("/api/ops/dashboard/operational", (_req, res) => {
+  const last = opMetrics.snapshots[opMetrics.snapshots.length - 1];
+  const uptime = Math.floor((Date.now() - serverStartTime) / 1000);
+  const uptimeStr = `${Math.floor(uptime / 86400)}d ${Math.floor((uptime % 86400) / 3600)}h ${Math.floor((uptime % 3600) / 60)}m`;
+  const snapshots = opMetrics.snapshots.slice(-60);
+  const latencyChart = snapshots.map((s) => s.latencyP95).join(",");
+  const rssChart = snapshots.map((s) => s.rssMb).join(",");
+
+  const body = `<div class="nav">
+    <a href="/api/ops/dashboard/operational">Operational</a>
+    <a href="/api/ops/dashboard/errors">Errors</a>
+    <a href="/api/ops/dashboard/performance">Performance</a>
+  </div>
+  <h1>Operational Dashboard</h1>
+  <p style="font-size:12px;color:#666;margin-bottom:12px">Server: ${SERVER_ID} | Uptime: ${uptimeStr}</p>
+  ${allWarnings.map((w) => `<div class="warning">${w}</div>`).join("")}
+  <div class="grid">
+    <div class="metric"><div class="label">Uptime</div><div class="value">${uptimeStr}</div></div>
+    <div class="metric"><div class="label">Requests</div><div class="value">${requestCount}</div></div>
+    <div class="metric"><div class="label">Errors</div><div class="value ${errorCount > 0 ? 'warn' : 'ok'}">${errorCount}</div></div>
+    <div class="metric"><div class="label">Error Rate</div><div class="value ${(last?.errorRate ?? 0) > 0.05 ? 'err' : 'ok'}">${last ? (last.errorRate * 100).toFixed(1) : '0.0'}%</div></div>
+    <div class="metric"><div class="label">P95 Latency</div><div class="value ${(last?.latencyP95 ?? 0) > 500 ? 'warn' : 'ok'}">${last?.latencyP95 ?? 0}ms</div></div>
+    <div class="metric"><div class="label">WS Clients</div><div class="value">${wsClientCount}</div></div>
+    <div class="metric"><div class="label">Memory RSS</div><div class="value">${last?.rssMb ?? 0} MB</div></div>
+    <div class="metric"><div class="label">Heap Used</div><div class="value">${last?.heapUsedMb ?? 0} MB</div></div>
+    <div class="metric"><div class="label">Runtime Version</div><div class="value">${getState().version}</div></div>
+    <div class="metric"><div class="label">Restarts</div><div class="value">${serverRestartCount}</div></div>
+  </div>
+  <h2>Latency (P95) — Last 60 min</h2>
+  <pre>${latencyChart || "no data"}</pre>
+  <h2>Memory RSS — Last 60 min</h2>
+  <pre>${rssChart || "no data"}</pre>`;
+
+  res.type("html").send(opsHtmlPage("Operational", body));
+});
+
+app.get("/api/ops/dashboard/errors", (_req, res) => {
+  const recent = recentRequests.filter((r) => r.status >= 400).slice(0, 50);
+  const rows = recent.map((r) =>
+    `<tr><td>${r.method}</td><td>${r.path}</td><td class="num" style="color:${r.status >= 500 ? '#ef4444' : '#f59e0b'}">${r.status}</td><td class="num">${r.duration}ms</td><td style="font-size:10px;color:#555">${new Date(r.timestamp).toISOString()}</td></tr>`
+  ).join("");
+
+  const body = `<div class="nav">
+    <a href="/api/ops/dashboard/operational">Operational</a>
+    <a href="/api/ops/dashboard/errors">Errors</a>
+    <a href="/api/ops/dashboard/performance">Performance</a>
+  </div>
+  <h1>Error Dashboard</h1>
+  <div class="grid">
+    <div class="metric"><div class="label">Total Errors</div><div class="value ${errorCount > 0 ? 'warn' : 'ok'}">${errorCount}</div></div>
+    <div class="metric"><div class="label">Error Rate</div><div class="value">${requestCount > 0 ? (errorCount / requestCount * 100).toFixed(2) : '0'}%</div></div>
+    <div class="metric"><div class="label">Recent Errors</div><div class="value">${recent.length}</div></div>
+  </div>
+  <h2>Recent Errors (last 50)</h2>
+  <table><thead><tr><th>Method</th><th>Path</th><th>Status</th><th>Duration</th><th>Time</th></tr></thead><tbody>${rows || '<tr><td colspan="5" style="color:#555;text-align:center">No errors</td></tr>'}</tbody></table>`;
+
+  res.type("html").send(opsHtmlPage("Errors", body));
+});
+
+app.get("/api/ops/dashboard/performance", (_req, res) => {
+  const paths = Object.entries(opMetrics.perPath).sort((a, b) => b[1].length - a[1].length).slice(0, 20);
+  const rows = paths.map(([path, latencies]) => {
+    const avg = latencies.reduce((s, v) => s + v, 0) / latencies.length;
+    const sorted = [...latencies].sort((a, b) => a - b);
+    const p95 = sorted[Math.floor(sorted.length * 0.95)] ?? 0;
+    return `<tr><td style="font-family:monospace;font-size:11px">${path}</td><td class="num">${latencies.length}</td><td class="num">${Math.round(avg)}ms</td><td class="num">${p95}ms</td></tr>`;
+  }).join("");
+
+  const body = `<div class="nav">
+    <a href="/api/ops/dashboard/operational">Operational</a>
+    <a href="/api/ops/dashboard/errors">Errors</a>
+    <a href="/api/ops/dashboard/performance">Performance</a>
+  </div>
+  <h1>Performance Dashboard</h1>
+  <h2>Per-Endpoint Latency</h2>
+  <table><thead><tr><th>Path</th><th>Requests</th><th>Avg (ms)</th><th>P95 (ms)</th></tr></thead><tbody>${rows || '<tr><td colspan="4" style="color:#555;text-align:center">No data</td></tr>'}</tbody></table>`;
+
+  res.type("html").send(opsHtmlPage("Performance", body));
+});
+
+// ─── Alpha Operations: Workstream 7 — Security ──────────
+
+function auditLog(action: string, detail: string): void {
+  const auditFile = join(REYOU_DIR, "audit.log");
+  try {
+    appendFileSync(auditFile, JSON.stringify({ timestamp: new Date().toISOString(), action, detail, serverId: SERVER_ID }) + "\n", "utf-8");
+  } catch { /* fail silently */ }
+}
+
+app.get("/api/ops/audit", (_req, res) => {
+  const auditFile = join(REYOU_DIR, "audit.log");
+  if (!existsSync(auditFile)) return res.json({ entries: [] });
+  const lines = readFileSync(auditFile, "utf-8").trim().split("\n").filter(Boolean).reverse().slice(0, 100);
+  const entries = lines.map((l) => JSON.parse(l));
+  res.json({ entries, total: entries.length });
+});
+
+// Audit all mutation endpoints
+const AUDITED_ROUTES = ["/api/presence", "/api/founder-mode", "/api/continuity", "/api/burden", "/api/decisions"];
+app.use("/api", (req, res, next) => {
+  if (AUDITED_ROUTES.includes(req.path)) {
+    auditLog("api_call", `${req.method} ${req.path}`);
+  }
+  next();
+});
+
 // ─── Update root route ──────────────────────────────────
 
 // ─── OpenAPI Specification ────────────────────────────────
@@ -1010,12 +1406,16 @@ const PORT = process.env.PORT ?? 3001;
 
 server.listen(PORT, () => {
   const runtimeLoaded = getState().version > 0;
-  console.log(`  RE-YOU OS Runtime Gateway v0.1.0`);
+  console.log(`  RE-YOU OS Runtime Gateway v${APP_VERSION}`);
+  console.log(`  Server ID: ${SERVER_ID}`);
   console.log(`  http://localhost:${PORT}`);
   console.log(`  ws://localhost:${PORT}/ws`);
   console.log(`  docs: http://localhost:${PORT}/api/docs`);
   console.log(`  health: http://localhost:${PORT}/api/health`);
+  console.log(`  status: http://localhost:${PORT}/api/status`);
   console.log(`  runtime: ${runtimeLoaded ? "loaded" : "empty"}`);
+  console.log(`  restarts: ${serverRestartCount}`);
+  console.log(`  warnings: ${allWarnings.length > 0 ? allWarnings.join(", ") : "none"}`);
   console.log(`  security: helmet + cors + rate-limit + compression`);
-  console.log(`  observability: request-id + timing + memory`);
+  console.log(`  observability: request-id + timing + memory + monitoring`);
 });
