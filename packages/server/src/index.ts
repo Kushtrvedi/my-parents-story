@@ -14,6 +14,23 @@ import { EvidenceRuntime } from "@reyou/evidence-runtime";
 import { calculateBurdenFromState, recordBurdenTrend } from "@reyou/burden-engine";
 import { ProductIntelligence } from "@reyou/product-intelligence";
 import { ExperienceRuntime } from "@reyou/experience-runtime";
+import {
+  computeFounderAnalytics,
+  buildTimeline,
+  computeContinuityAccuracy,
+  computeBurdenCalibration,
+  recordBurdenObservation,
+  updateBurdenObservation,
+  recordExperiment,
+  recordExperimentOutcome,
+  getExperiments,
+  generateDailyDataset,
+  saveDailyDataset,
+  getDailyDataset,
+  listDatasets,
+  buildDailySummary,
+  buildDogfoodCycle,
+} from "@reyou/analytics-engine";
 
 // ─── Initialize Runtime ───────────────────────────────────
 
@@ -199,6 +216,16 @@ app.get("/", (_req, res) => {
       burden: "/api/burden",
       decisions: "/api/decisions",
       evidence: "/api/evidence",
+      analytics: "/api/analytics",
+      timeline: "/api/analytics/timeline",
+      "continuity-accuracy": "/api/analytics/continuity-accuracy",
+      "burden-calibration": "/api/analytics/burden-calibration",
+      dataset: "/api/analytics/dataset/:date",
+      datasets: "/api/analytics/datasets",
+      summary: "/api/analytics/summary",
+      experiments: "/api/analytics/experiments",
+      dogfood: "/api/dogfood/run",
+      report: "/api/dogfood/report",
       metrics: "/api/metrics",
       websocket: "/ws",
     },
@@ -525,6 +552,19 @@ app.get("/api/continuity", (_req, res) => {
   evidence.push(`Presence: ${presenceState}`);
   evidence.push(`Founder mode: ${founderMode}`);
 
+  // Record recommendation as evidence for continuity accuracy scoring
+  if (recommendation && recommendation !== "Nothing requires your attention.") {
+    evidenceRuntime.record({
+      source: "continuity",
+      action: "RecommendationMade",
+      rationale: `Recommendation: ${recommendation}`,
+      input: { recommendation, evidence: recommendationEvidence, hasContext: context !== "No active commitments." },
+      output: { recommendation, whatWasIDoing, context },
+      confidence: recommendationEvidence.length > 1 ? 0.7 : 0.4,
+      category: "decision",
+    });
+  }
+
   res.json({
     greeting,
     whatWasIDoing,
@@ -576,6 +616,24 @@ app.get("/api/burden", (_req, res) => {
   const state = getState();
   const result = calculateBurdenFromState(state);
   const trend = recordBurdenTrend(result);
+
+  // Record burden prediction for calibration tracking
+  recordBurdenObservation({
+    timestamp: Date.now(),
+    predictedBurden: result.burdenScore,
+    predictedRecovery: result.recoveryScore,
+  });
+
+  // Record evidence
+  evidenceRuntime.record({
+    source: "burden-engine",
+    action: "BurdenRecorded",
+    rationale: `Burden score: ${result.burdenScore}, recovery: ${result.recoveryScore}`,
+    input: { signalCount: result.explanation.length },
+    output: { burdenScore: result.burdenScore, recoveryScore: result.recoveryScore, trend },
+    confidence: result.confidence,
+    category: "observation",
+  });
 
   res.json({
     ...result,
@@ -693,6 +751,166 @@ app.get("/api/evidence", (_req, res) => {
   });
 });
 
+// ─── Program G: Founder Analytics ────────────────────────
+
+app.get("/api/analytics", (_req, res) => {
+  const state = getState();
+  const evidence = evidenceRuntime.getAll();
+  const analytics = computeFounderAnalytics(state, evidence);
+  res.json(analytics);
+});
+
+// ─── Program J: Founder Timeline ─────────────────────────
+
+app.get("/api/analytics/timeline", (_req, res) => {
+  const evidence = evidenceRuntime.getAll();
+  const timeline = buildTimeline(evidence);
+  res.json({ timeline, total: timeline.length });
+});
+
+// ─── Program H: Continuity Accuracy ──────────────────────
+
+app.get("/api/analytics/continuity-accuracy", (_req, res) => {
+  const evidence = evidenceRuntime.getAll();
+  const accuracy = computeContinuityAccuracy(evidence);
+  res.json(accuracy);
+});
+
+// ─── Program I: Burden Calibration ───────────────────────
+
+app.get("/api/analytics/burden-calibration", (_req, res) => {
+  const calibration = computeBurdenCalibration();
+  res.json(calibration);
+});
+
+// ─── Program L: Scientific Dataset ───────────────────────
+
+app.get("/api/analytics/dataset/:date", (req, res) => {
+  const dataset = getDailyDataset(req.params.date!);
+  if (!dataset) return res.status(404).json({ error: "Dataset not found for date" });
+  res.json(dataset);
+});
+
+app.get("/api/analytics/datasets", (_req, res) => {
+  const dates = listDatasets();
+  res.json({ datasets: dates });
+});
+
+app.post("/api/analytics/dataset/generate", (_req, res) => {
+  const state = getState();
+  const evidence = evidenceRuntime.getAll();
+  const date = new Date().toISOString().split("T")[0]!;
+  const analytics = computeFounderAnalytics(state, evidence, date);
+  const timeline = buildTimeline(evidence);
+  const accuracy = computeContinuityAccuracy(evidence);
+  const calibration = computeBurdenCalibration();
+  const dataset = generateDailyDataset(date, analytics, timeline, accuracy, calibration, state);
+  saveDailyDataset(dataset);
+  res.json({ dataset, saved: true });
+});
+
+// ─── Program M: Daily Summary ───────────────────────────
+
+app.get("/api/analytics/summary", (_req, res) => {
+  const state = getState();
+  const evidence = evidenceRuntime.getAll();
+  const analytics = computeFounderAnalytics(state, evidence);
+  const accuracy = computeContinuityAccuracy(evidence);
+  const summary = buildDailySummary(analytics, accuracy);
+  res.json(summary);
+});
+
+// ─── Program K: Self Validation (Experiments) ────────────
+
+app.get("/api/analytics/experiments", (_req, res) => {
+  const experiments = getExperiments();
+  const classification = experiments.reduce(
+    (acc: Record<string, number>, e: { classification?: string | null }) => {
+      if (e.classification) acc[e.classification] = (acc[e.classification] ?? 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>,
+  );
+  res.json({ experiments, total: experiments.length, classification });
+});
+
+app.post("/api/analytics/experiments", (req, res) => {
+  const { recommendation, reason, evidence } = req.body;
+  if (!recommendation || !reason) {
+    return res.status(400).json({ error: "recommendation and reason are required" });
+  }
+  recordExperiment({
+    recommendation,
+    reason,
+    evidence: evidence ?? [],
+    context: { stateVersion: getState().version },
+  });
+  res.status(201).json({ recorded: true });
+});
+
+app.post("/api/analytics/experiments/:id/outcome", (req, res) => {
+  const { userAction, userActionResult, classification } = req.body;
+  if (!classification || !userAction) {
+    return res.status(400).json({ error: "classification and userAction are required" });
+  }
+  recordExperimentOutcome(req.params.id!, {
+    userAction,
+    userActionResult: userActionResult ?? "",
+    classification,
+  });
+  res.json({ recorded: true });
+});
+
+// ─── Program N: Dogfood Mode ────────────────────────────
+
+app.post("/api/dogfood/run", (_req, res) => {
+  const state = getState();
+  const evidence = evidenceRuntime.getAll();
+  const cycle = buildDogfoodCycle(state, evidence);
+
+  // Save the daily dataset
+  const analytics = cycle.endDay.analytics;
+  const timeline = buildTimeline(evidence);
+  const accuracy = computeContinuityAccuracy(evidence);
+  const calibration = computeBurdenCalibration();
+  const dataset = generateDailyDataset(analytics.date, analytics, timeline, accuracy, calibration, state);
+  saveDailyDataset(dataset);
+
+  res.json(cycle);
+});
+
+app.get("/api/dogfood/report", (_req, res) => {
+  const state = getState();
+  const evidence = evidenceRuntime.getAll();
+  const analytics = computeFounderAnalytics(state, evidence);
+  const accuracy = computeContinuityAccuracy(evidence);
+  const summary = buildDailySummary(analytics, accuracy);
+  const calibration = computeBurdenCalibration();
+  const experiments = getExperiments();
+
+  const classified = experiments.filter((e: { classification?: string | null }) => e.classification !== null);
+  const helpful = classified.filter((e: { classification?: string | null }) => e.classification === "helpful").length;
+  const ignored = classified.filter((e: { classification?: string | null }) => e.classification === "ignored").length;
+  const wrong = classified.filter((e: { classification?: string | null }) => e.classification === "wrong").length;
+
+  res.json({
+    date: analytics.date,
+    summary,
+    analytics,
+    accuracy,
+    calibration,
+    experiments: {
+      total: experiments.length,
+      classified: classified.length,
+      helpful,
+      ignored,
+      wrong,
+    },
+  });
+});
+
+// ─── Update root route ──────────────────────────────────
+
 // ─── OpenAPI Specification ────────────────────────────────
 
 const openApiSpec = {
@@ -723,6 +941,18 @@ const openApiSpec = {
     "/api/decisions": { get: { summary: "Product intelligence recommendations", tags: ["Intelligence"], responses: { "200": { description: "Decision array" } } } },
     "/api/evidence": { get: { summary: "Evidence trail of all actions", tags: ["Intelligence"], responses: { "200": { description: "Evidence array" } } } },
     "/api/metrics": { get: { summary: "Runtime metrics summary", tags: ["System"], responses: { "200": { description: "Metrics" } } } },
+    "/api/analytics": { get: { summary: "Founder analytics — resume latency, context recovery, burden trend", tags: ["Analytics"], responses: { "200": { description: "Analytics" } } } },
+    "/api/analytics/timeline": { get: { summary: "Founder timeline — reconstructed day from evidence", tags: ["Analytics"], responses: { "200": { description: "Timeline" } } } },
+    "/api/analytics/continuity-accuracy": { get: { summary: "Continuity accuracy scoring", tags: ["Analytics"], responses: { "200": { description: "Accuracy" } } } },
+    "/api/analytics/burden-calibration": { get: { summary: "Burden prediction calibration", tags: ["Analytics"], responses: { "200": { description: "Calibration" } } } },
+    "/api/analytics/dataset/{date}": { get: { summary: "Scientific dataset for a date", tags: ["Analytics"], responses: { "200": { description: "Dataset" } } } },
+    "/api/analytics/datasets": { get: { summary: "List available dataset dates", tags: ["Analytics"], responses: { "200": { description: "Dates" } } } },
+    "/api/analytics/dataset/generate": { post: { summary: "Generate and save today's dataset", tags: ["Analytics"], responses: { "200": { description: "Dataset saved" } } } },
+    "/api/analytics/summary": { get: { summary: "Daily summary for founder dashboard", tags: ["Analytics"], responses: { "200": { description: "Summary" } } } },
+    "/api/analytics/experiments": { get: { summary: "Self-validation experiments", tags: ["Analytics"], responses: { "200": { description: "Experiments" } } }, post: { summary: "Record a new recommendation experiment", tags: ["Analytics"], responses: { "201": { description: "Recorded" } } } },
+    "/api/analytics/experiments/{id}/outcome": { post: { summary: "Record experiment outcome", tags: ["Analytics"], responses: { "200": { description: "Recorded" } } } },
+    "/api/dogfood/run": { post: { summary: "Run dogfood daily cycle", tags: ["Dogfood"], responses: { "200": { description: "Cycle result" } } } },
+    "/api/dogfood/report": { get: { summary: "Dogfood daily report", tags: ["Dogfood"], responses: { "200": { description: "Report" } } } },
   },
   components: {
     schemas: {

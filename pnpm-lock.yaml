@@ -12,6 +12,22 @@ importers:
         specifier: ~5.8.2
         version: 5.8.3
 
+  packages/analytics-engine:
+    dependencies:
+      '@reyou/evidence-runtime':
+        specifier: workspace:*
+        version: link:../evidence-runtime
+      '@reyou/human-runtime':
+        specifier: workspace:*
+        version: link:../human-runtime
+    devDependencies:
+      '@types/node':
+        specifier: ^22.14.0
+        version: 22.20.0
+      typescript:
+        specifier: ~5.8.2
+        version: 5.8.3
+
   packages/burden-engine:
     dependencies:
       '@reyou/human-runtime':
@@ -222,6 +238,9 @@ importers:
 
   packages/server:
     dependencies:
+      '@reyou/analytics-engine':
+        specifier: workspace:*
+        version: link:../analytics-engine
       '@reyou/burden-engine':
         specifier: workspace:*
         version: link:../burden-engine
