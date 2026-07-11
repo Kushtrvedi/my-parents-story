@@ -275,7 +275,6 @@ function makeRateLimiter(windowMs: number, max: number, label: string) {
     max,
     standardHeaders: true,
     legacyHeaders: false,
-    keyGenerator: (req) => req.ip ?? req.socket.remoteAddress ?? "unknown",
     message: { error: "Too many requests", retryAfter: Math.ceil(windowMs / 1000), category: label },
   });
 }
