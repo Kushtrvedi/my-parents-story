@@ -102,7 +102,7 @@ export function hashBundle(bundle: Omit<EvidenceBundle, "hash">): string {
 
 // ─── Signatures ─────────────────────────────────────────
 
-const SIGNING_KEY = "reyou-evidence-signing-key";
+const SIGNING_KEY = process.env.EVIDENCE_SIGNING_KEY || "reyou-evidence-signing-key-dev-only";
 
 export function signPayload(data: string): string {
   return createHmac("sha256", SIGNING_KEY).update(data).digest("hex");

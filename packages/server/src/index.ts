@@ -132,6 +132,7 @@ function verifyEnvironment(): string[] {
   const warnings: string[] = [];
   if (!process.env.REYOU_DATA_DIR) warnings.push("REYOU_DATA_DIR not set, using default");
   if (!existsSync(REYOU_DIR)) warnings.push("Data directory does not exist yet");
+  if (!process.env.EVIDENCE_SIGNING_KEY) warnings.push("EVIDENCE_SIGNING_KEY not set, using default dev key");
   return warnings;
 }
 
@@ -225,7 +226,29 @@ const app = express();
 app.set("trust proxy", 1);
 
 // Security
-app.use(helmet() as any);
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'none'"],
+      scriptSrc: ["'self'", "https://unpkg.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com"],
+      imgSrc: ["'self'"],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      frameAncestors: ["'none'"],
+      baseUri: ["'none'"],
+      formAction: ["'none'"],
+    },
+  },
+  hsts: { maxAge: 31536000, includeSubDomains: true, preload: true },
+  referrerPolicy: { policy: "no-referrer" },
+  crossOriginEmbedderPolicy: true,
+  crossOriginOpenerPolicy: true,
+  crossOriginResourcePolicy: { policy: "same-origin" },
+  noSniff: true,
+  xssFilter: true,
+} as any) as any);
 
 // Compression
 app.use(compression());
@@ -242,18 +265,113 @@ app.use(cors({
   credentials: true,
 }));
 
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 60 * 1000,
-  max: 100,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { error: "Too many requests, please try again later" },
-});
-app.use("/api", limiter);
+// ─── Rate Limiting (Category-Based) ──────────────────────
+
+const RATE_WINDOW = 60 * 1000;
+
+function makeRateLimiter(windowMs: number, max: number, label: string) {
+  return rateLimit({
+    windowMs,
+    max,
+    standardHeaders: true,
+    legacyHeaders: false,
+    keyGenerator: (req) => req.ip ?? req.socket.remoteAddress ?? "unknown",
+    message: { error: "Too many requests", retryAfter: Math.ceil(windowMs / 1000), category: label },
+  });
+}
+
+// Public: health, status, version, docs — generous limits
+const publicLimiter = makeRateLimiter(RATE_WINDOW, 200, "public");
+
+// API queries: analytics, evidence, metrics, continuity, burden, decisions
+const queryLimiter = makeRateLimiter(RATE_WINDOW, 100, "query");
+
+// Runtime mutations: presence, founder-mode — protect state integrity
+const mutationLimiter = makeRateLimiter(RATE_WINDOW, 30, "mutation");
+
+// Operations: backup, audit — administrative endpoints
+const opsLimiter = makeRateLimiter(RATE_WINDOW, 10, "operations");
+
+// Analytics writes: dataset/generate, experiments — infrequent
+const analyticsWriteLimiter = makeRateLimiter(RATE_WINDOW, 20, "analytics-write");
+
+// Apply category-specific rate limits to route groups
+app.use("/api/health", publicLimiter);
+app.use("/api/status", publicLimiter);
+app.use("/api/version", publicLimiter);
+app.use("/api/docs", publicLimiter);
+app.use("/api/openapi.json", publicLimiter);
+app.use("/api/presence", mutationLimiter);
+app.use("/api/founder-mode", mutationLimiter);
+app.use("/api/continuity", queryLimiter);
+app.use("/api/burden", queryLimiter);
+app.use("/api/decisions", queryLimiter);
+app.use("/api/evidence", queryLimiter);
+app.use("/api/analytics", queryLimiter);
+app.use("/api/analytics/dataset/generate", analyticsWriteLimiter);
+app.use("/api/analytics/experiments", analyticsWriteLimiter);
+app.use("/api/dogfood", analyticsWriteLimiter);
+app.use("/api/ops", opsLimiter);
+app.use("/api/metrics", queryLimiter);
 
 // Body parsing
 app.use(express.json({ limit: "1mb" }));
+
+// ─── Input Validation Middleware ─────────────────────────
+
+function validateContentType(req: express.Request, res: express.Response, next: express.NextFunction): void {
+  if (req.method === "POST" || req.method === "PUT" || req.method === "PATCH") {
+    const ct = req.headers["content-type"];
+    if (!ct || !ct.includes("application/json")) {
+      res.status(415).json({ error: "Content-Type must be application/json" });
+      return;
+    }
+  }
+  next();
+}
+
+function validateJsonBody(req: express.Request, res: express.Response, next: express.NextFunction): void {
+  if (req.method === "POST" || req.method === "PUT" || req.method === "PATCH") {
+    if (req.body && typeof req.body === "object") {
+      const keys = Object.keys(req.body);
+      if (keys.length > 50) {
+        res.status(400).json({ error: "Request body too large" });
+        return;
+      }
+      // Reject prototype pollution attempts
+      for (const key of keys) {
+        if (key === "__proto__" || key === "constructor" || key === "prototype") {
+          res.status(400).json({ error: "Invalid field name" });
+          return;
+        }
+      }
+    }
+  }
+  next();
+}
+
+function validateNoPathTraversal(req: express.Request, res: express.Response, next: express.NextFunction): void {
+  const path = req.originalUrl;
+  if (path.includes("..") || path.includes("%2e%2e") || path.includes("%2E%2E")) {
+    res.status(400).json({ error: "Invalid path" });
+    return;
+  }
+  next();
+}
+
+function validateMethod(req: express.Request, res: express.Response, next: express.NextFunction): void {
+  const allowed = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"];
+  if (!allowed.includes(req.method)) {
+    res.status(405).json({ error: "Method not allowed" });
+    return;
+  }
+  next();
+}
+
+app.use(validateMethod);
+app.use(validateNoPathTraversal);
+app.use(validateContentType);
+app.use(validateJsonBody);
 
 // Request ID + timing middleware
 app.use((req, res, next) => {
@@ -262,7 +380,7 @@ app.use((req, res, next) => {
   requestCount++;
 
   res.setHeader("X-Request-ID", requestId);
-  res.setHeader("X-Powered-By", "RE-YOU OS");
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 
   const originalEnd = res.end;
   res.end = function (this: any, ...args: any[]) {
@@ -296,6 +414,22 @@ app.use((req, res, next) => {
 
   next();
 });
+
+// ─── Error Handling ─────────────────────────────────────
+
+function safeHandler(fn: (req: express.Request, res: express.Response) => void | Promise<void>) {
+  return async (req: express.Request, res: express.Response) => {
+    try {
+      await fn(req, res);
+    } catch (err) {
+      const errId = randomUUID();
+      console.error(`[${errId}] ${req.method} ${req.path}:`, err);
+      if (!res.headersSent) {
+        res.status(500).json({ error: "Internal server error", id: errId });
+      }
+    }
+  };
+}
 
 // ─── Root ────────────────────────────────────────────────
 
@@ -446,7 +580,7 @@ let lastFounderMode: FounderMode = "shutdown";
 let lastFounderModeTimestamp = Date.now();
 let founderModeDayMetrics: ReturnType<typeof computeFounderMode>["dayMetrics"] | undefined;
 
-app.get("/api/presence", (_req, res) => {
+app.get("/api/presence", safeHandler(async (_req, res) => {
   const state = getState();
   const signals = extractSignals(state, wsClientCount, lastPresenceTimestamp);
   const result = computePresence(signals, lastPresenceState);
@@ -495,11 +629,11 @@ app.get("/api/presence", (_req, res) => {
       meetingDetected: signals.meetingDetected,
     },
   });
-});
+}));
 
 // ─── Founder Mode ────────────────────────────────────────
 
-app.get("/api/founder-mode", (_req, res) => {
+app.get("/api/founder-mode", safeHandler(async (_req, res) => {
   const state = getState();
   const presence = lastPresenceState;
   const timeInCurrentMode = Date.now() - lastFounderModeTimestamp;
@@ -562,11 +696,11 @@ app.get("/api/founder-mode", (_req, res) => {
     evidence: result.evidence,
     dayMetrics: result.dayMetrics,
   });
-});
+}));
 
 // ─── Continuity (Founder Wedge) ──────────────────────────
 
-app.get("/api/continuity", (_req, res) => {
+app.get("/api/continuity", safeHandler(async (_req, res) => {
   const state = getState();
   const data = state.data as any;
 
@@ -700,7 +834,7 @@ app.get("/api/continuity", (_req, res) => {
     version: lastVersion,
     lastActive: new Date(lastTimestamp).toISOString(),
   });
-});
+}));
 
 // ─── Metrics (Operational Only) ──────────────────────────
 
@@ -728,7 +862,7 @@ app.get("/api/metrics", (_req, res) => {
 
 // ─── Cognitive Burden ───────────────────────────────────
 
-app.get("/api/burden", (_req, res) => {
+app.get("/api/burden", safeHandler(async (_req, res) => {
   const state = getState();
   const result = calculateBurdenFromState(state);
   const trend = recordBurdenTrend(result);
@@ -755,7 +889,7 @@ app.get("/api/burden", (_req, res) => {
     ...result,
     trend,
   });
-});
+}));
 
 // ─── Product Intelligence ────────────────────────────────
 
@@ -777,7 +911,7 @@ app.get("/api/decisions", (_req, res) => {
 
 // ─── Evidence Trail ──────────────────────────────────────
 
-app.get("/api/evidence", (_req, res) => {
+app.get("/api/evidence", safeHandler(async (_req, res) => {
   const state = getState();
   const data = state.data as any;
 
@@ -864,7 +998,7 @@ app.get("/api/evidence", (_req, res) => {
       ? { from: new Date(evidence[evidence.length - 1].timestamp).toISOString(), to: new Date(evidence[0].timestamp).toISOString() }
       : null,
   });
-});
+}));
 
 // ─── Program G: Founder Analytics ────────────────────────
 
@@ -1377,6 +1511,11 @@ app.get("/api/docs", (_req, res) => {
 // ─── HTTP Server + WebSocket ──────────────────────────────
 
 const server = createServer(app);
+const MAX_WS_CLIENTS = 100;
+const WS_HEARTBEAT_INTERVAL = 30_000;
+const WS_IDLE_TIMEOUT = 120_000;
+const WS_MAX_MESSAGE_SIZE = 64 * 1024;
+
 const wss = new WebSocketServer({ server, path: "/ws" });
 
 function broadcastState() {
@@ -1393,11 +1532,84 @@ subscribe("HumanStateMutation", () => {
   broadcastState();
 });
 
-wss.on("connection", (ws) => {
+// WebSocket heartbeat — detect stale connections
+const wsAlive = new Map<WebSocket, boolean>();
+const wsLastActivity = new Map<WebSocket, number>();
+
+const heartbeatInterval = setInterval(() => {
+  wss.clients.forEach((ws) => {
+    if (wsAlive.get(ws) === false) {
+      wsLastActivity.delete(ws);
+      wsAlive.delete(ws);
+      return ws.terminate();
+    }
+    wsAlive.set(ws, false);
+    if (ws.readyState === WebSocket.OPEN) ws.ping();
+  });
+}, WS_HEARTBEAT_INTERVAL);
+
+wss.on("close", () => { clearInterval(heartbeatInterval); });
+
+wss.on("connection", (ws, req) => {
+  // Connection limit
+  if (wsClientCount >= MAX_WS_CLIENTS) {
+    ws.close(1013, "Too many connections");
+    return;
+  }
+
   wsClientCount++;
+  wsAlive.set(ws, true);
+  wsLastActivity.set(ws, Date.now());
+
+  // Rate limit: reject oversized messages
+  ws.on("message", (data, isBinary) => {
+    const msgLen = Buffer.isBuffer(data) ? data.length : ArrayBuffer.isView(data) ? data.byteLength : 0;
+    if (!isBinary && msgLen > WS_MAX_MESSAGE_SIZE) {
+      ws.close(1009, "Message too large");
+      return;
+    }
+    wsLastActivity.set(ws, Date.now());
+    // Reject client mutations — WebSocket is read-only for clients
+    try {
+      const msg = JSON.parse(data.toString());
+      if (msg.type === "mutate" || msg.type === "state:set") {
+        ws.send(JSON.stringify({ type: "error", error: "Mutations not allowed via WebSocket" }));
+        return;
+      }
+    } catch { /* ignore non-JSON */ }
+  });
+
+  ws.on("pong", () => { wsAlive.set(ws, true); });
+
   const state = getState();
   ws.send(JSON.stringify({ type: "state:initial", version: state.version, timestamp: state.timestamp }));
-  ws.on("close", () => { wsClientCount--; });
+
+  ws.on("close", () => {
+    wsClientCount--;
+    wsAlive.delete(ws);
+    wsLastActivity.delete(ws);
+  });
+});
+
+// Idle timeout — close inactive connections
+setInterval(() => {
+  const now = Date.now();
+  wss.clients.forEach((ws) => {
+    const lastActivity = wsLastActivity.get(ws) ?? 0;
+    if (now - lastActivity > WS_IDLE_TIMEOUT && ws.readyState === WebSocket.OPEN) {
+      ws.close(1000, "Idle timeout");
+    }
+  });
+}, WS_IDLE_TIMEOUT / 2);
+
+// ─── Global Error Handler ───────────────────────────────
+
+app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  const errId = randomUUID();
+  console.error(`[${errId}] Unhandled:`, err.message);
+  if (!res.headersSent) {
+    res.status(500).json({ error: "Internal server error", id: errId });
+  }
 });
 
 // ─── Start ────────────────────────────────────────────────
