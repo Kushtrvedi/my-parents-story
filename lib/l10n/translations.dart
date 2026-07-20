@@ -77,7 +77,6 @@ class T {
       'bookPreview': 'book preview',
       'storiesHere': 'memories here',
       'tapToHear': 'Tap the question to hear it',
-      'switchLang': 'Choose your language',
     },
     'hi': {
       'appTitle': 'मेरे माता-पिता की कहानी',
@@ -154,7 +153,6 @@ class T {
       'bookPreview': 'किताब का पूर्वावलोकन',
       'storiesHere': 'यादें यहाँ',
       'tapToHear': 'सुनने के लिए सवाल पर टैप करें',
-      'switchLang': 'भाषा चुनें',
     },
     'gu': {
       'appTitle': 'મારા માતા-પિતાની વાર્તા',
@@ -231,7 +229,6 @@ class T {
       'bookPreview': 'પુસ્તકનું પૂર્વાવલોકન',
       'storiesHere': 'યાદો અહીં',
       'tapToHear': 'સાંભળવા માટે સવાલ પર ટેપ કરો',
-      'switchLang': 'ભાષા પસંદ કરો',
     },
     'es': {
       'appTitle': 'La Historia de Mis Padres',
@@ -308,7 +305,6 @@ class T {
       'bookPreview': 'vista previa del libro',
       'storiesHere': 'recuerdos aquí',
       'tapToHear': 'Toca la pregunta para escucharla',
-      'switchLang': 'Elige tu idioma',
     },
   };
 

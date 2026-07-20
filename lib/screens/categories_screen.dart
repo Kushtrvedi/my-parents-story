@@ -35,7 +35,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final categories = QuestionDatabase.categories;
+    final chapters = QuestionDatabase.chapters;
 
     return Scaffold(
       appBar: AppBar(
@@ -48,7 +48,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       body: Column(
         children: [
           const SizedBox(height: 8),
-          // Greeting
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 36),
             child: Text(
@@ -57,15 +56,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          // Categories
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 28),
-              itemCount: categories.length,
+              itemCount: chapters.length,
               itemBuilder: (context, index) {
-                final category = categories[index];
-                final completed = _progress[category] ?? 0;
-                final total = QuestionDatabase.getQuestionCount(category);
+                final chapter = chapters[index];
+                final completed = _progress[chapter.id] ?? 0;
+                final total = chapter.questionCount;
                 final progress = total > 0 ? completed / total : 0.0;
                 final isDone = progress >= 1.0;
 
@@ -76,8 +74,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       MaterialPageRoute(
                         builder: (_) => QuestionScreen(
                           profile: widget.profile,
-                          category: category,
-                          categoryIndex: index,
+                          chapterId: chapter.id,
+                          chapterIndex: index,
                         ),
                       ),
                     );
@@ -121,7 +119,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(category, style: Theme.of(context).textTheme.titleMedium),
+                              Text(chapter.title, style: Theme.of(context).textTheme.titleMedium),
                               const SizedBox(height: 4),
                               Text(
                                 '$completed / $total ${T.tr('memories')}',
@@ -142,7 +140,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               },
             ),
           ),
-          // Book button
           Padding(
             padding: const EdgeInsets.fromLTRB(28, 0, 28, 32),
             child: SizedBox(

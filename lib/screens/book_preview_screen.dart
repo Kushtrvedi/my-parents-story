@@ -121,7 +121,6 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
                 const SizedBox(height: 24),
                 // Chapter list
                 ...chapters.map((chapter) {
-                  final responseCount = chapter.responses.length;
                   return Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     padding: const EdgeInsets.all(20),
@@ -149,7 +148,7 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                '$responseCount ${T.tr('storiesHere')}',
+                                T.tr('storiesHere'),
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],

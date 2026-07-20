@@ -1,0 +1,168 @@
+{
+  "version": "1.0",
+  "totalChapters": 20,
+  "questionsPerChapter": 15,
+  "totalQuestions": 300,
+  "chapters": [
+    {
+      "number": 1,
+      "id": "ch01",
+      "name": "Roots and Family Origins",
+      "introduction": "Every family has a story that begins before we were born. Let's explore where your family came from.",
+      "questionCount": 15,
+      "emotionalArc": "warm to nostalgic"
+    },
+    {
+      "number": 2,
+      "id": "ch02",
+      "name": "Birth and Early Childhood",
+      "introduction": "The very beginning of your life story. Let's talk about the day you were born and your earliest memories.",
+      "questionCount": 15,
+      "emotionalArc": "gentle and tender"
+    },
+    {
+      "number": 3,
+      "id": "ch03",
+      "name": "Home and Neighbourhood",
+      "introduction": "The place where you grew up shaped who you became. Tell me about it.",
+      "questionCount": 15,
+      "emotionalArc": "nostalgic and vivid"
+    },
+    {
+      "number": 4,
+      "id": "ch04",
+      "name": "School Days",
+      "introduction": "School is where we first discover the world beyond our family. What do you remember?",
+      "questionCount": 15,
+      "emotionalArc": "curious and reflective"
+    },
+    {
+      "number": 5,
+      "id": "ch05",
+      "name": "Friends and Growing Up",
+      "introduction": "The people we grow up with become part of our story. Tell me about your friends.",
+      "questionCount": 15,
+      "emotionalArc": "warm and affectionate"
+    },
+    {
+      "number": 6,
+      "id": "ch06",
+      "name": "Dreams and Youth",
+      "introduction": "When we are young, everything feels possible. What did you dream about?",
+      "questionCount": 15,
+      "emotionalArc": "hopeful and expansive"
+    },
+    {
+      "number": 7,
+      "id": "ch07",
+      "name": "Education and Learning",
+      "introduction": "Learning shapes us in ways we don't always realize. What stayed with you?",
+      "questionCount": 15,
+      "emotionalArc": "thoughtful and appreciative"
+    },
+    {
+      "number": 8,
+      "id": "ch08",
+      "name": "First Job and Career",
+      "introduction": "Work takes up so much of our lives. Tell me about your working years.",
+      "questionCount": 15,
+      "emotionalArc": "pride and accomplishment"
+    },
+    {
+      "number": 9,
+      "id": "ch09",
+      "name": "Love and Relationships",
+      "introduction": "Love is one of life's greatest gifts. How did it find you?",
+      "questionCount": 15,
+      "emotionalArc": "romantic and heartfelt"
+    },
+    {
+      "number": 10,
+      "id": "ch10",
+      "name": "Marriage and Partnership",
+      "introduction": "Building a life with someone is a beautiful journey. Tell me about yours.",
+      "questionCount": 15,
+      "emotionalArc": "intimate and celebratory"
+    },
+    {
+      "number": 11,
+      "id": "ch11",
+      "name": "Parenthood",
+      "introduction": "Becoming a parent changes everything. What was it like for you?",
+      "questionCount": 15,
+      "emotionalArc": "deep and emotional"
+    },
+    {
+      "number": 12,
+      "id": "ch12",
+      "name": "Home and Family Life",
+      "introduction": "The home you built holds so many memories. Tell me about it.",
+      "questionCount": 15,
+      "emotionalArc": "comforting and warm"
+    },
+    {
+      "number": 13,
+      "id": "ch13",
+      "name": "Festivals, Food and Traditions",
+      "introduction": "The traditions we keep connect us to our roots and to each other.",
+      "questionCount": 15,
+      "emotionalArc": "joyful and celebratory"
+    },
+    {
+      "number": 14,
+      "id": "ch14",
+      "name": "Challenges and Difficult Times",
+      "introduction": "Life isn't always easy. How did you find your way through the hard times?",
+      "questionCount": 15,
+      "emotionalArc": "empathetic and supportive"
+    },
+    {
+      "number": 15,
+      "id": "ch15",
+      "name": "Successes and Turning Points",
+      "introduction": "Some moments change the direction of our lives. Tell me about yours.",
+      "questionCount": 15,
+      "emotionalArc": "inspiring and triumphant"
+    },
+    {
+      "number": 16,
+      "id": "ch16",
+      "name": "Faith, Values and Beliefs",
+      "introduction": "What we believe in shapes how we live. What guides you?",
+      "questionCount": 15,
+      "emotionalArc": "reverent and introspective"
+    },
+    {
+      "number": 17,
+      "id": "ch17",
+      "name": "Travel and Adventures",
+      "introduction": "The places we go and the things we see become part of who we are.",
+      "questionCount": 15,
+      "emotionalArc": "adventurous and expansive"
+    },
+    {
+      "number": 18,
+      "id": "ch18",
+      "name": "Wisdom and Life Lessons",
+      "introduction": "A life well-lived teaches us things no school ever could.",
+      "questionCount": 15,
+      "emotionalArc": "reflective and profound"
+    },
+    {
+      "number": 19,
+      "id": "ch19",
+      "name": "Legacy for Future Generations",
+      "introduction": "What you leave behind matters. What do you want future generations to know?",
+      "questionCount": 15,
+      "emotionalArc": "purposeful and meaningful"
+    },
+    {
+      "number": 20,
+      "id": "ch20",
+      "name": "Final Reflections",
+      "introduction": "As we near the end of our conversation, what matters most to you?",
+      "questionCount": 15,
+      "emotionalArc": "peaceful and fulfilling"
+    }
+  ]
+}

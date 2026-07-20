@@ -15,8 +15,8 @@ class GenerateBookScreen extends StatefulWidget {
 }
 
 class _GenerateBookScreenState extends State<GenerateBookScreen> {
-  final _templateService = TemplateBookService();
   final _storageService = StorageService();
+  late final TemplateBookService _templateService = TemplateBookService(_storageService);
 
   bool _isGenerating = false;
   bool _isDone = false;

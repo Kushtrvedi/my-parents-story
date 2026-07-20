@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:my_parents_story/services/storage_service.dart';
@@ -5,6 +6,7 @@ import 'package:my_parents_story/services/template_book_service.dart';
 import 'package:my_parents_story/models/parent_profile.dart';
 import 'package:my_parents_story/models/response.dart';
 import 'package:my_parents_story/models/generated_chapter.dart';
+import 'package:my_parents_story/models/question.dart';
 import 'package:my_parents_story/data/questions.dart';
 import 'package:my_parents_story/l10n/translations.dart';
 
@@ -75,9 +77,9 @@ void main() {
 
       final response = storageService.saveResponse(
         profileId: profile.id,
-        category: 'Childhood',
+        category: 'ch01',
         questionIndex: 0,
-        question: 'What is your earliest memory?',
+        question: 'Where does your family come from?',
         answer: 'I remember playing in the garden.',
       );
 
@@ -85,7 +87,7 @@ void main() {
       expect(response.hasAnswer, isTrue);
     });
 
-    test('retrieves responses for a category', () {
+    test('retrieves responses for a chapter', () {
       final profile = storageService.createProfile(
         name: 'Category Test',
         parentType: 'dad',
@@ -93,7 +95,7 @@ void main() {
 
       storageService.saveResponse(
         profileId: profile.id,
-        category: 'Childhood',
+        category: 'ch01',
         questionIndex: 0,
         question: 'Question 1',
         answer: 'Answer 1',
@@ -101,7 +103,7 @@ void main() {
 
       storageService.saveResponse(
         profileId: profile.id,
-        category: 'Childhood',
+        category: 'ch01',
         questionIndex: 1,
         question: 'Question 2',
         answer: 'Answer 2',
@@ -109,7 +111,7 @@ void main() {
 
       final responses = storageService.getResponsesForCategory(
         profile.id,
-        'Childhood',
+        'ch01',
       );
 
       expect(responses.length, equals(2));
@@ -123,7 +125,7 @@ void main() {
 
       storageService.saveResponse(
         profileId: profile.id,
-        category: 'Childhood',
+        category: 'ch01',
         questionIndex: 0,
         question: 'Q1',
         answer: 'A1',
@@ -131,15 +133,15 @@ void main() {
 
       storageService.saveResponse(
         profileId: profile.id,
-        category: 'Family',
+        category: 'ch02',
         questionIndex: 0,
         question: 'Q1',
         answer: 'A1',
       );
 
       final progress = storageService.getCompletionProgress(profile.id);
-      expect(progress['Childhood'], equals(1));
-      expect(progress['Family'], equals(1));
+      expect(progress['ch01'], equals(1));
+      expect(progress['ch02'], equals(1));
     });
 
     test('deletes a profile and its responses', () {
@@ -150,7 +152,7 @@ void main() {
 
       storageService.saveResponse(
         profileId: profile.id,
-        category: 'Childhood',
+        category: 'ch01',
         questionIndex: 0,
         question: 'Q1',
         answer: 'A1',
@@ -164,31 +166,64 @@ void main() {
   });
 
   group('QuestionDatabase', () {
-    test('has exactly 12 categories', () {
-      expect(QuestionDatabase.categories.length, equals(12));
+    test('has exactly 20 chapters', () {
+      expect(QuestionDatabase.chapters.length, equals(20));
     });
 
     test('has 300 total questions', () {
       expect(QuestionDatabase.totalQuestions, equals(300));
     });
 
-    test('each category has exactly 25 questions', () {
-      for (final category in QuestionDatabase.categories) {
-        final questions = QuestionDatabase.getQuestionsForCategory(category);
+    test('each chapter has exactly 15 questions', () {
+      for (final chapter in QuestionDatabase.chapters) {
+        final questions = QuestionDatabase.getQuestionsForChapter(chapter.id);
         expect(
           questions.length,
-          equals(25),
-          reason: '$category should have 25 questions',
+          equals(15),
+          reason: '${chapter.title} should have 15 questions',
         );
       }
     });
 
     test('questions are not empty strings', () {
-      for (final category in QuestionDatabase.categories) {
-        final questions = QuestionDatabase.getQuestionsForCategory(category);
-        for (final question in questions) {
-          expect(question.isNotEmpty, isTrue, reason: 'Question should not be empty');
-        }
+      for (final question in QuestionDatabase.questions) {
+        expect(question.question.isNotEmpty, isTrue, reason: 'Question should not be empty');
+      }
+    });
+
+    test('all question IDs are unique', () {
+      final ids = QuestionDatabase.questions.map((q) => q.id).toList();
+      final uniqueIds = ids.toSet();
+      expect(ids.length, equals(uniqueIds.length), reason: 'All question IDs must be unique');
+    });
+
+    test('all question IDs follow format ch##_##', () {
+      final idPattern = RegExp(r'^ch\d{2}_q\d{2}$');
+      for (final question in QuestionDatabase.questions) {
+        expect(
+          idPattern.hasMatch(question.id),
+          isTrue,
+          reason: 'Question ID ${question.id} does not match format ch##_##',
+        );
+      }
+    });
+
+    test('chapters have valid IDs', () {
+      final validIds = ['ch01', 'ch02', 'ch03', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10',
+        'ch11', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch19', 'ch20'];
+      for (final chapter in QuestionDatabase.chapters) {
+        expect(validIds.contains(chapter.id), isTrue, reason: 'Chapter ID ${chapter.id} is not valid');
+      }
+    });
+
+    test('questions reference valid chapter IDs', () {
+      final validChapterIds = QuestionDatabase.chapters.map((c) => c.id).toSet();
+      for (final question in QuestionDatabase.questions) {
+        expect(
+          validChapterIds.contains(question.chapterId),
+          isTrue,
+          reason: 'Question ${question.id} references invalid chapter ${question.chapterId}',
+        );
       }
     });
   });
@@ -221,21 +256,21 @@ void main() {
 
       storageService.saveResponse(
         profileId: profile.id,
-        category: 'Childhood',
+        category: 'ch01',
         questionIndex: 0,
-        question: 'What is your earliest memory?',
+        question: 'Where does your family come from?',
         answer: 'I remember the garden behind our house.',
       );
 
       final bookService = TemplateBookService(storageService);
       final responses = storageService.getResponsesForCategory(
         profile.id,
-        'Childhood',
+        'ch01',
       );
 
       final content = bookService.generateChapter(
         profile,
-        'Childhood',
+        'ch01',
         responses,
       );
 
@@ -251,7 +286,7 @@ void main() {
 
       storageService.saveResponse(
         profileId: profile.id,
-        category: 'Childhood',
+        category: 'ch01',
         questionIndex: 0,
         question: 'Q1',
         answer: 'A meaningful answer about my life.',
@@ -267,7 +302,7 @@ void main() {
       expect(letter.contains('Dear Family'), isTrue);
     });
 
-    test('generates all chapters', () {
+    test('generates all 20 chapters', () {
       final profile = storageService.createProfile(
         name: 'All Chapters Test',
         parentType: 'mom',
@@ -276,7 +311,7 @@ void main() {
       final bookService = TemplateBookService(storageService);
       final chapters = bookService.generateAllChapters(profile);
 
-      expect(chapters.length, equals(12));
+      expect(chapters.length, equals(20));
     });
   });
 
@@ -303,7 +338,7 @@ void main() {
       final response = StoryResponse(
         id: 'resp-id',
         profileId: 'profile-id',
-        category: 'Childhood',
+        category: 'ch01',
         questionIndex: 5,
         question: 'Test question?',
         answer: 'Test answer.',
@@ -313,7 +348,7 @@ void main() {
       final restored = StoryResponse.fromMap(map);
 
       expect(restored.answer, equals('Test answer.'));
-      expect(restored.category, equals('Childhood'));
+      expect(restored.category, equals('ch01'));
       expect(restored.questionIndex, equals(5));
     });
 
@@ -321,18 +356,63 @@ void main() {
       final chapter = GeneratedChapter(
         id: 'ch-id',
         profileId: 'profile-id',
-        category: 'Childhood',
+        category: 'ch01',
         chapterNumber: 1,
-        title: 'Childhood',
+        title: 'Roots and Family Origins',
         content: 'Chapter content here.',
       );
 
       final map = chapter.toMap();
       final restored = GeneratedChapter.fromMap(map);
 
-      expect(restored.title, equals('Childhood'));
+      expect(restored.title, equals('Roots and Family Origins'));
       expect(restored.content, equals('Chapter content here.'));
       expect(restored.chapterNumber, equals(1));
+    });
+
+    test('Question model toMap and fromMap', () {
+      final question = Question(
+        id: 'ch01_q01',
+        chapterId: 'ch01',
+        chapterNumber: 1,
+        questionNumber: 1,
+        question: 'Where does your family come from?',
+        purpose: 'Establishes family roots',
+        expectedMemoryType: ExpectedMemoryType.factual,
+        emotionalTone: EmotionalTone.warm,
+        estimatedDuration: EstimatedDuration.medium,
+        searchTags: ['family', 'origins'],
+        people: ['parents'],
+        places: ['hometown'],
+        difficulty: Difficulty.easy,
+        priority: QuestionPriority.core,
+        followUps: ['Can you tell me more?', 'What do you remember?'],
+      );
+
+      final map = question.toMap();
+      final restored = Question.fromMap(map);
+
+      expect(restored.id, equals('ch01_q01'));
+      expect(restored.question, equals('Where does your family come from?'));
+      expect(restored.emotionalTone, equals(EmotionalTone.warm));
+      expect(restored.followUps.length, equals(2));
+    });
+
+    test('Chapter model toMap and fromMap', () {
+      final chapter = Chapter(
+        number: 1,
+        id: 'ch01',
+        title: 'Roots and Family Origins',
+        description: 'Exploring where your family came from.',
+        icon: '🌳',
+      );
+
+      final map = chapter.toMap();
+      final restored = Chapter.fromMap(map);
+
+      expect(restored.title, equals('Roots and Family Origins'));
+      expect(restored.id, equals('ch01'));
+      expect(restored.icon, equals('🌳'));
     });
   });
 }

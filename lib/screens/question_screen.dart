@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
 import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
+import '../models/question.dart';
 import '../services/storage_service.dart';
 import '../services/native_voice_service.dart';
 import '../services/tts_service.dart';
 
 class QuestionScreen extends StatefulWidget {
   final ParentProfile profile;
-  final String category;
-  final int categoryIndex;
+  final String chapterId;
+  final int chapterIndex;
   const QuestionScreen({
     super.key,
     required this.profile,
-    required this.category,
-    required this.categoryIndex,
+    required this.chapterId,
+    required this.chapterIndex,
   });
 
   @override
@@ -26,7 +27,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
   final _voiceService = NativeVoiceService();
   final _ttsService = TextToSpeechService();
 
-  List<String> _questions = [];
+  List<Question> _questions = [];
   int _currentQuestionIndex = 0;
   bool _isRecording = false;
   bool _isSaving = false;
@@ -52,9 +53,9 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
 
   void _loadQuestions() {
     setState(() {
-      _questions = _storageService.getQuestionsForCategory(widget.category);
+      _questions = _storageService.getQuestionsForChapter(widget.chapterId);
       if (_questions.isEmpty) {
-        _questions = ['No questions available for this category.'];
+        _questions = [];
       }
       _currentQuestionIndex = 0;
       _recordedText = '';
@@ -70,11 +71,14 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
     super.dispose();
   }
 
-  String get _currentQuestion =>
-      _questions.isNotEmpty ? _questions[_currentQuestionIndex] : '';
+  Question? get _currentQuestion =>
+      _questions.isNotEmpty ? _questions[_currentQuestionIndex] : null;
 
   void _speakQuestion() {
-    _ttsService.speak(_currentQuestion);
+    final q = _currentQuestion;
+    if (q != null) {
+      _ttsService.speak(q.question);
+    }
   }
 
   Future<void> _toggleRecording() async {
@@ -105,13 +109,16 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
 
   void _saveResponse() {
     if (_recordedText.trim().isEmpty) return;
+    final q = _currentQuestion;
+    if (q == null) return;
+
     setState(() => _isSaving = true);
 
     _storageService.saveResponse(
       profileId: widget.profile.id,
-      category: widget.category,
+      category: widget.chapterId,
       questionIndex: _currentQuestionIndex,
-      question: _currentQuestion,
+      question: q.question,
       answer: _recordedText.trim(),
     );
 
@@ -177,13 +184,16 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
+    final chapter = _storageService.getChapterById(widget.chapterId);
+    final chapterTitle = chapter?.title ?? '';
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, size: 22),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text(widget.category),
+        title: Text(chapterTitle),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16),
@@ -199,54 +209,59 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
-        child: Column(
-          children: [
-            const SizedBox(height: 48),
-            // The question — one job, huge
-            GestureDetector(
-              onTap: _speakQuestion,
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(32),
-                decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha: 0.04),
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(Icons.volume_up_rounded, color: AppColors.primary.withValues(alpha: 0.4), size: 28),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Text(
-                        _currentQuestion,
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                              fontSize: 38,
-                              fontWeight: FontWeight.w700,
-                              height: 1.25,
+      body: _currentQuestion == null
+          ? Center(
+              child: Text(
+                'No questions available.',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            )
+          : SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
+              child: Column(
+                children: [
+                  const SizedBox(height: 48),
+                  GestureDetector(
+                    onTap: _speakQuestion,
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(32),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary.withValues(alpha: 0.04),
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(Icons.volume_up_rounded, color: AppColors.primary.withValues(alpha: 0.4), size: 28),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Text(
+                              _currentQuestion!.question,
+                              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                    fontSize: 38,
+                                    fontWeight: FontWeight.w700,
+                                    height: 1.25,
+                                  ),
                             ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(T.tr('tapToHear'), style: Theme.of(context).textTheme.bodySmall),
+                  const SizedBox(height: 64),
+                  if (_isRecording)
+                    _buildPulsingMic()
+                  else if (_hasRecording)
+                    _buildTextPreview()
+                  else
+                    _buildMicButton(),
+                  const SizedBox(height: 40),
+                ],
               ),
             ),
-            const SizedBox(height: 8),
-            Text(T.tr('tapToHear'), style: Theme.of(context).textTheme.bodySmall),
-            const SizedBox(height: 64),
-            // Mic or text preview — nothing else
-            if (_isRecording)
-              _buildPulsingMic()
-            else if (_hasRecording)
-              _buildTextPreview()
-            else
-              _buildMicButton(),
-            const SizedBox(height: 40),
-          ],
-        ),
-      ),
     );
   }
 
@@ -353,7 +368,6 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
           ),
         ),
         const SizedBox(height: 32),
-        // Two choices — save or retry
         Row(
           children: [
             Expanded(

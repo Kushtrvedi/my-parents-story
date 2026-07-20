@@ -2,6 +2,7 @@ import 'package:uuid/uuid.dart';
 import '../models/parent_profile.dart';
 import '../models/response.dart';
 import '../models/generated_chapter.dart';
+import '../models/question.dart';
 import '../data/questions.dart';
 import 'local_storage.dart';
 
@@ -138,9 +139,20 @@ class StorageService {
   }
 
   // Questions
-  List<String> getQuestionsForCategory(String category) {
-    return QuestionDatabase.getQuestionsForCategory(category);
+  List<Question> getQuestionsForChapter(String chapterId) {
+    return QuestionDatabase.getQuestionsForChapter(chapterId);
   }
+
+  List<Chapter> getAllChapters() {
+    return QuestionDatabase.chapters;
+  }
+
+  Chapter? getChapterById(String chapterId) {
+    return QuestionDatabase.getChapterById(chapterId);
+  }
+
+  int get totalQuestions => QuestionDatabase.totalQuestions;
+  int get totalChapters => QuestionDatabase.totalChapters;
 
   // Milestones
   void incrementMilestone(String profileId, String type) {
