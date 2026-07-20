@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive/hive.dart';
 import 'package:my_parents_story/services/storage_service.dart';
 import 'package:my_parents_story/services/template_book_service.dart';
-import 'package:my_parents_story/services/local_storage.dart';
 import 'package:my_parents_story/models/parent_profile.dart';
 import 'package:my_parents_story/models/response.dart';
 import 'package:my_parents_story/models/generated_chapter.dart';
@@ -11,8 +11,25 @@ import 'package:my_parents_story/l10n/translations.dart';
 void main() {
   late StorageService storageService;
 
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    final dir = Directory.systemTemp.createTempSync('hive_test_');
+    Hive.init(dir.path);
+    await Hive.openBox('profiles');
+    await Hive.openBox('responses');
+    await Hive.openBox('chapters');
+    await Hive.openBox('settings');
+  });
+
   setUp(() async {
     storageService = StorageService();
+    await Hive.box('profiles').clear();
+    await Hive.box('responses').clear();
+    await Hive.box('chapters').clear();
+  });
+
+  tearDownAll(() async {
+    await Hive.close();
   });
 
   group('StorageService', () {

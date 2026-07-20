@@ -96,6 +96,16 @@ class TemplateBookService {
     return buffer.toString();
   }
 
+  GeneratedBook generateBook(ParentProfile profile, List<StoryResponse> allResponses) {
+    final chapters = generateAllChapters(profile);
+    final letter = generateFinalLetter(profile, allResponses);
+    return GeneratedBook(
+      profileId: profile.id,
+      chapters: chapters,
+      finalLetter: letter,
+    );
+  }
+
   List<GeneratedChapter> generateAllChapters(ParentProfile profile) {
     final categories = [
       'Childhood', 'Family', 'School', 'Teenage Years', 'Love', 'Marriage',

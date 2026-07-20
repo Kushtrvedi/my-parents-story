@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
-import '../data/questions.dart';
 import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
-import '../models/response.dart';
 import '../services/storage_service.dart';
 import '../services/native_voice_service.dart';
 import '../services/tts_service.dart';
-import 'generate_book_screen.dart';
 
 class QuestionScreen extends StatefulWidget {
   final ParentProfile profile;
   final String category;
   final int categoryIndex;
-
   const QuestionScreen({
     super.key,
     required this.profile,
@@ -25,353 +21,369 @@ class QuestionScreen extends StatefulWidget {
   State<QuestionScreen> createState() => _QuestionScreenState();
 }
 
-class _QuestionScreenState extends State<QuestionScreen> {
+class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProviderStateMixin {
   final _storageService = StorageService();
   final _voiceService = NativeVoiceService();
   final _ttsService = TextToSpeechService();
-  final _textController = TextEditingController();
-  late List<String> _questions;
+
+  List<String> _questions = [];
   int _currentQuestionIndex = 0;
-  Map<int, StoryResponse> _responses = {};
   bool _isRecording = false;
-  String _currentTranscript = '';
   bool _isSaving = false;
+  String _recordedText = '';
+  bool _hasRecording = false;
+
+  late AnimationController _pulseController;
+  late Animation<double> _pulseAnimation;
 
   @override
   void initState() {
     super.initState();
-    _questions = QuestionDatabase.getQuestionsForCategory(widget.category);
-    _loadResponses();
-    _voiceService.initialize();
     _ttsService.init();
-    _readQuestionAloud();
+    _loadQuestions();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+    _pulseAnimation = Tween<double>(begin: 1.0, end: 1.15).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+    );
+  }
+
+  void _loadQuestions() {
+    setState(() {
+      _questions = _storageService.getQuestionsForCategory(widget.category);
+      if (_questions.isEmpty) {
+        _questions = ['No questions available for this category.'];
+      }
+      _currentQuestionIndex = 0;
+      _recordedText = '';
+      _hasRecording = false;
+    });
   }
 
   @override
   void dispose() {
-    _textController.dispose();
     _voiceService.dispose();
-    _ttsService.dispose();
+    _ttsService.stop();
+    _pulseController.dispose();
     super.dispose();
   }
 
-  void _loadResponses() {
-    final responses = _storageService.getResponsesForCategory(
-      widget.profile.id,
-      widget.category,
-    );
-    final map = <int, StoryResponse>{};
-    for (final r in responses) {
-      map[r.questionIndex] = r;
-    }
-    setState(() => _responses = map);
-    _loadCurrentAnswer();
-  }
+  String get _currentQuestion =>
+      _questions.isNotEmpty ? _questions[_currentQuestionIndex] : '';
 
-  void _loadCurrentAnswer() {
-    final response = _responses[_currentQuestionIndex];
-    if (response != null && response.hasAnswer) {
-      _textController.text = response.answer;
-    } else {
-      _textController.clear();
-    }
-  }
-
-  void _saveAndAutoAdvance() {
-    final text = _textController.text.trim();
-    if (text.isEmpty) return;
-
-    _storageService.saveResponse(
-      profileId: widget.profile.id,
-      category: widget.category,
-      questionIndex: _currentQuestionIndex,
-      question: _questions[_currentQuestionIndex],
-      answer: text,
-    );
-
-    setState(() {
-      _responses[_currentQuestionIndex] = StoryResponse(
-        id: '${widget.profile.id}_${widget.category}_$_currentQuestionIndex',
-        profileId: widget.profile.id,
-        category: widget.category,
-        questionIndex: _currentQuestionIndex,
-        question: _questions[_currentQuestionIndex],
-        answer: text,
-      );
-      _isSaving = true;
-    });
-
-    Future.delayed(const Duration(milliseconds: 600), () {
-      if (mounted) setState(() => _isSaving = false);
-    });
-  }
-
-  void _nextQuestion() {
-    _saveAndAutoAdvance();
-    if (_currentQuestionIndex < _questions.length - 1) {
-      setState(() => _currentQuestionIndex++);
-      _loadCurrentAnswer();
-      Future.delayed(const Duration(milliseconds: 300), _readQuestionAloud);
-    } else {
-      _showChapterComplete();
-    }
-  }
-
-  void _previousQuestion() {
-    _saveAndAutoAdvance();
-    if (_currentQuestionIndex > 0) {
-      setState(() => _currentQuestionIndex--);
-      _loadCurrentAnswer();
-      Future.delayed(const Duration(milliseconds: 300), _readQuestionAloud);
-    }
-  }
-
-  void _readQuestionAloud() {
-    _ttsService.speak(_questions[_currentQuestionIndex]);
-  }
-
-  void _showChapterComplete() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(T.tr('chapterComplete'), style: Theme.of(context).textTheme.headlineSmall),
-        content: Text(T.tr('chapterCompleteBody'), style: Theme.of(context).textTheme.bodyLarge),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              setState(() => _currentQuestionIndex = 0);
-              _loadCurrentAnswer();
-            },
-            child: Text(T.tr('continue_'), style: const TextStyle(fontSize: 20)),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => GenerateBookScreen(profile: widget.profile),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(minimumSize: const Size(160, 56)),
-            child: Text(T.tr('generateBook')),
-          ),
-        ],
-      ),
-    );
+  void _speakQuestion() {
+    _ttsService.speak(_currentQuestion);
   }
 
   Future<void> _toggleRecording() async {
     if (_isRecording) {
       await _voiceService.stopListening();
-      await _ttsService.stop();
+      _pulseController.stop();
       setState(() {
         _isRecording = false;
-        if (_currentTranscript.isNotEmpty) {
-          final current = _textController.text;
-          _textController.text = current.isEmpty ? _currentTranscript : '$current $_currentTranscript';
-          _currentTranscript = '';
-        }
+        _hasRecording = _recordedText.trim().isNotEmpty;
       });
     } else {
-      if (!_voiceService.isAvailable) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(T.tr('voiceUnavailable')), duration: const Duration(seconds: 3)),
-          );
-        }
-        return;
-      }
-      setState(() {
-        _isRecording = true;
-        _currentTranscript = '';
-      });
-      await _voiceService.startListening(onResult: (text) {
-        setState(() => _currentTranscript = text);
-      });
+      await _voiceService.startListening(
+        onResult: (text) {
+          if (mounted) setState(() => _recordedText = text);
+        },
+      );
+      _pulseController.repeat(reverse: true);
+      setState(() => _isRecording = true);
     }
   }
 
-  double get _progress => (_currentQuestionIndex + 1) / _questions.length;
+  void _retryRecording() {
+    setState(() {
+      _recordedText = '';
+      _hasRecording = false;
+    });
+  }
+
+  void _saveResponse() {
+    if (_recordedText.trim().isEmpty) return;
+    setState(() => _isSaving = true);
+
+    _storageService.saveResponse(
+      profileId: widget.profile.id,
+      category: widget.category,
+      questionIndex: _currentQuestionIndex,
+      question: _currentQuestion,
+      answer: _recordedText.trim(),
+    );
+
+    setState(() => _isSaving = false);
+
+    if (_recordedText.trim().length >= 50) {
+      _storageService.incrementMilestone(widget.profile.id, 'stories');
+    }
+    if (_currentQuestionIndex >= 2) {
+      _storageService.incrementMilestone(widget.profile.id, 'sessions');
+    }
+
+    if (mounted) {
+      _showThankYouAndNext();
+    }
+  }
+
+  void _showThankYouAndNext() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 12),
+            const Icon(Icons.auto_awesome, size: 40, color: AppColors.accent),
+            const SizedBox(height: 20),
+            Text(
+              T.tr('insight'),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.infinity,
+              height: 64,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(ctx);
+                  _goToNextQuestion();
+                },
+                child: Text(T.tr('nextQuestion')),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _goToNextQuestion() {
+    if (_currentQuestionIndex < _questions.length - 1) {
+      setState(() {
+        _currentQuestionIndex++;
+        _recordedText = '';
+        _hasRecording = false;
+      });
+    } else {
+      Navigator.pop(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final t = T.tr;
-    final currentQuestion = _questions[_currentQuestionIndex];
-
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, size: 22),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: Text(widget.category),
         actions: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 20),
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Center(
               child: Text(
                 '${_currentQuestionIndex + 1} / ${_questions.length}',
-                style: const TextStyle(color: AppColors.secondaryText, fontSize: 18),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.textLight,
+                      fontSize: 18,
+                    ),
               ),
             ),
           ),
         ],
       ),
-      body: Column(
-        children: [
-          // Progress bar
-          LinearProgressIndicator(
-            value: _progress,
-            backgroundColor: AppColors.divider,
-            valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accent),
-            minHeight: 4,
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(28),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Soft category context
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: AppColors.accentLight,
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: Text(
-                      '${t('todayTalk')} ${widget.category}',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.accent),
-                    ),
-                  ),
-                  const SizedBox(height: 28),
-                  // Question — large, clear
-                  Text(
-                    currentQuestion,
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(height: 1.35),
-                  ),
-                  const SizedBox(height: 32),
-                  // Text input (fallback for typing)
-                  TextField(
-                    controller: _textController,
-                    maxLines: null,
-                    minLines: 5,
-                    textCapitalization: TextCapitalization.sentences,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    decoration: InputDecoration(hintText: t('typeHint')),
-                  ),
-                  // Live transcript while recording
-                  if (_isRecording && _currentTranscript.isNotEmpty) ...[
-                    const SizedBox(height: 16),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: AppColors.accentLight,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
-                      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
+        child: Column(
+          children: [
+            const SizedBox(height: 48),
+            // The question — one job, huge
+            GestureDetector(
+              onTap: _speakQuestion,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(32),
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.04),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(Icons.volume_up_rounded, color: AppColors.primary.withValues(alpha: 0.4), size: 28),
+                    const SizedBox(width: 16),
+                    Expanded(
                       child: Text(
-                        _currentTranscript,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: AppColors.primaryText,
-                              fontStyle: FontStyle.italic,
+                        _currentQuestion,
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                              fontSize: 38,
+                              fontWeight: FontWeight.w700,
+                              height: 1.25,
                             ),
                       ),
                     ),
                   ],
-                  // Auto-save indicator
-                  if (_isSaving) ...[
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.accent)),
-                        const SizedBox(width: 8),
-                        Text(t('saved'), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.success)),
-                      ],
-                    ),
-                  ],
-                ],
+                ),
               ),
             ),
-          ),
-          // Bottom controls — large, simple
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
-            decoration: const BoxDecoration(
-              color: AppColors.background,
-              border: Border(top: BorderSide(color: AppColors.divider, width: 0.5)),
+            const SizedBox(height: 8),
+            Text(T.tr('tapToHear'), style: Theme.of(context).textTheme.bodySmall),
+            const SizedBox(height: 64),
+            // Mic or text preview — nothing else
+            if (_isRecording)
+              _buildPulsingMic()
+            else if (_hasRecording)
+              _buildTextPreview()
+            else
+              _buildMicButton(),
+            const SizedBox(height: 40),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMicButton() {
+    return GestureDetector(
+      onTap: _toggleRecording,
+      child: Container(
+        width: 140,
+        height: 140,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.primary,
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primary.withValues(alpha: 0.3),
+              blurRadius: 24,
+              offset: const Offset(0, 8),
             ),
-            child: Column(
-              children: [
-                // Voice button — THE primary action
-                SizedBox(
-                  width: double.infinity,
-                  height: 80,
-                  child: ElevatedButton.icon(
-                    onPressed: _toggleRecording,
-                    icon: Icon(
-                      _isRecording ? Icons.stop_circle : Icons.mic,
-                      size: 36,
-                      color: _isRecording ? AppColors.error : Colors.white,
-                    ),
-                    label: Text(
-                      _isRecording ? t('stopRecording') : t('tapToSpeak'),
-                      style: TextStyle(
-                        fontSize: 26,
-                        color: _isRecording ? AppColors.error : Colors.white,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: _isRecording ? AppColors.error.withValues(alpha: 0.1) : AppColors.accent,
-                      foregroundColor: _isRecording ? AppColors.error : Colors.white,
-                      side: _isRecording ? const BorderSide(color: AppColors.error, width: 2) : null,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 14),
-                // Navigation
-                Row(
-                  children: [
-                    if (_currentQuestionIndex > 0)
-                      Expanded(
-                        child: SizedBox(
-                          height: 56,
-                          child: OutlinedButton(
-                            onPressed: _previousQuestion,
-                            child: Text(t('previous')),
-                          ),
-                        ),
-                      ),
-                    if (_currentQuestionIndex > 0) const SizedBox(width: 14),
-                    Expanded(
-                      child: SizedBox(
-                        height: 56,
-                        child: ElevatedButton(
-                          onPressed: _nextQuestion,
-                          child: Text(
-                            _currentQuestionIndex == _questions.length - 1
-                                ? t('finishChapter')
-                                : t('next'),
-                          ),
-                        ),
-                      ),
+          ],
+        ),
+        child: const Icon(Icons.mic, color: Colors.white, size: 56),
+      ),
+    );
+  }
+
+  Widget _buildPulsingMic() {
+    return Column(
+      children: [
+        AnimatedBuilder(
+          animation: _pulseAnimation,
+          builder: (context, child) {
+            return Transform.scale(
+              scale: _pulseAnimation.value,
+              child: Container(
+                width: 160,
+                height: 160,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.error,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.error.withValues(alpha: 0.4),
+                      blurRadius: 32,
+                      offset: const Offset(0, 8),
                     ),
                   ],
                 ),
-                // Re-read question button
-                const SizedBox(height: 8),
-                TextButton.icon(
-                  onPressed: _readQuestionAloud,
-                  icon: const Icon(Icons.volume_up, size: 22),
-                  label: const Text('Read again', style: TextStyle(fontSize: 18)),
-                ),
-              ],
-            ),
-          ),
+                child: const Icon(Icons.stop_rounded, color: Colors.white, size: 64),
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 20),
+        Text(
+          _recordedText.isEmpty ? T.tr('listening') : _recordedText,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: _recordedText.isEmpty ? AppColors.textLight : AppColors.text,
+                fontStyle: _recordedText.isEmpty ? FontStyle.italic : FontStyle.normal,
+                fontSize: _recordedText.isEmpty ? 22 : 20,
+              ),
+        ),
+        if (_recordedText.isNotEmpty) ...[
+          const SizedBox(height: 24),
+          Text(T.tr('tapStopHint'), style: Theme.of(context).textTheme.bodySmall),
         ],
-      ),
+      ],
+    );
+  }
+
+  Widget _buildTextPreview() {
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(28),
+          decoration: BoxDecoration(
+            color: AppColors.card,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: AppColors.primary.withValues(alpha: 0.2), width: 1.5),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.check_circle, color: AppColors.success, size: 22),
+                  const SizedBox(width: 8),
+                  Text(
+                    T.tr('done'),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.success,
+                          fontSize: 16,
+                        ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                _recordedText,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 20),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 32),
+        // Two choices — save or retry
+        Row(
+          children: [
+            Expanded(
+              child: SizedBox(
+                height: 68,
+                child: OutlinedButton(
+                  onPressed: _retryRecording,
+                  child: Text(T.tr('tryAgain')),
+                ),
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: SizedBox(
+                height: 68,
+                child: ElevatedButton(
+                  onPressed: _isSaving ? null : _saveResponse,
+                  child: _isSaving
+                      ? const SizedBox(
+                          width: 22,
+                          height: 22,
+                          child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                        )
+                      : Text(T.tr('saveResponse')),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

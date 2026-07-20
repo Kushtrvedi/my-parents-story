@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
-import '../data/questions.dart';
 import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
-import '../models/generated_chapter.dart';
 import '../services/storage_service.dart';
 import '../services/template_book_service.dart';
 import 'book_preview_screen.dart';
@@ -17,91 +15,37 @@ class GenerateBookScreen extends StatefulWidget {
 }
 
 class _GenerateBookScreenState extends State<GenerateBookScreen> {
+  final _templateService = TemplateBookService();
   final _storageService = StorageService();
-  late TemplateBookService _bookService;
-  String _currentStep = '';
-  double _progress = 0;
-  List<GeneratedChapter> _chapters = [];
-  String _finalLetter = '';
-  bool _isGenerating = true;
 
-  @override
-  void initState() {
-    super.initState();
-    _bookService = TemplateBookService(_storageService);
-    _generateBook();
-  }
+  bool _isGenerating = false;
+  bool _isDone = false;
+  int _progress = 0;
 
-  Future<void> _generateBook() async {
+  void _startGeneration() async {
     setState(() {
-      _currentStep = T.tr('gathering');
-      _progress = 0.1;
+      _isGenerating = true;
+      _progress = 0;
     });
-    await Future.delayed(const Duration(milliseconds: 500));
 
-    final categories = QuestionDatabase.categories;
-
-    _chapters = [];
-
-    for (int i = 0; i < categories.length; i++) {
-      final category = categories[i];
-      setState(() {
-        final writing = T.tr('writing');
-        _currentStep = '$writing $category';
-        _progress = 0.1 + (0.7 * ((i + 1) / categories.length));
-      });
-
-      final responses = _storageService.getResponsesForCategory(widget.profile.id, category);
-      final validResponses = responses.where((r) => r.hasAnswer).toList();
-      if (validResponses.isEmpty) continue;
-
-      final content = _bookService.generateChapter(widget.profile, category, responses);
-
-      final chapter = GeneratedChapter(
-        id: '${widget.profile.id}_$category',
-        profileId: widget.profile.id,
-        category: category,
-        chapterNumber: i + 1,
-        title: category,
-        content: content,
-      );
-
-      _storageService.saveChapter(chapter);
-      _chapters.add(chapter);
-      await Future.delayed(const Duration(milliseconds: 200));
+    for (int i = 0; i <= 100; i += 2) {
+      await Future.delayed(const Duration(milliseconds: 30));
+      if (mounted) setState(() => _progress = i);
     }
 
-    setState(() {
-      _currentStep = T.tr('gathering');
-      _progress = 0.85;
-    });
-
-    final allResponses = _storageService.getResponsesForProfile(widget.profile.id);
-    _finalLetter = _bookService.generateFinalLetter(widget.profile, allResponses);
+    final responses = _storageService.getResponsesForProfile(widget.profile.id);
+    final book = _templateService.generateBook(widget.profile, responses);
 
     setState(() {
-      _progress = 0.95;
-      _currentStep = T.tr('generating');
-    });
-    await Future.delayed(const Duration(milliseconds: 600));
-
-    setState(() {
-      _progress = 1.0;
-      _currentStep = T.tr('ready');
       _isGenerating = false;
+      _isDone = true;
     });
-
-    await Future.delayed(const Duration(milliseconds: 800));
 
     if (mounted) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => BookPreviewScreen(
-            profile: widget.profile,
-            chapters: _chapters,
-            finalLetter: _finalLetter,
-          ),
+          builder: (_) => BookPreviewScreen(profile: widget.profile, book: book),
         ),
       );
     }
@@ -110,47 +54,112 @@ class _GenerateBookScreenState extends State<GenerateBookScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, size: 22),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(T.tr('generateBook')),
+      ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(40),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.accent.withValues(alpha: 0.1),
-                ),
-                child: _isGenerating
-                    ? const Padding(
-                        padding: EdgeInsets.all(28),
-                        child: CircularProgressIndicator(color: AppColors.accent, strokeWidth: 4),
-                      )
-                    : const Icon(Icons.auto_stories_rounded, size: 56, color: AppColors.accent),
-              ),
-              const SizedBox(height: 44),
-              Text(
-                _currentStep,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              const SizedBox(height: 28),
               if (_isGenerating) ...[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: LinearProgressIndicator(
-                    value: _progress,
-                    backgroundColor: AppColors.divider,
-                    valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accent),
-                    minHeight: 10,
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.primary.withValues(alpha: 0.08),
                   ),
+                  child: const Icon(
+                    Icons.menu_book_outlined,
+                    size: 48,
+                    color: AppColors.primary,
+                  ),
+                ),
+                const SizedBox(height: 40),
+                Text(
+                  T.tr('generatingBook'),
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 20),
+                // Progress bar — gentle
+                Container(
+                  width: double.infinity,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: AppColors.divider,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: FractionallySizedBox(
+                    alignment: Alignment.centerLeft,
+                    widthFactor: _progress / 100,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  '$_progress%',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.textLight,
+                        fontSize: 18,
+                      ),
+                ),
+              ] else if (_isDone) ...[
+                Icon(
+                  Icons.check_circle,
+                  size: 80,
+                  color: AppColors.success,
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  T.tr('bookDone'),
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+              ] else ...[
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.primary.withValues(alpha: 0.08),
+                  ),
+                  child: const Icon(
+                    Icons.auto_stories_outlined,
+                    size: 48,
+                    color: AppColors.primary,
+                  ),
+                ),
+                const SizedBox(height: 40),
+                Text(
+                  T.tr('readyToCreate'),
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  '${(_progress * 100).round()}%',
-                  style: const TextStyle(fontSize: 18, color: AppColors.secondaryText),
+                  '${widget.profile.name}\'s story will become a beautiful PDF book.',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: AppColors.textLight,
+                      ),
+                ),
+                const SizedBox(height: 56),
+                SizedBox(
+                  width: double.infinity,
+                  height: 76,
+                  child: ElevatedButton(
+                    onPressed: _startGeneration,
+                    child: Text(T.tr('generateBook')),
+                  ),
                 ),
               ],
             ],

@@ -2,6 +2,7 @@ import 'package:uuid/uuid.dart';
 import '../models/parent_profile.dart';
 import '../models/response.dart';
 import '../models/generated_chapter.dart';
+import '../data/questions.dart';
 import 'local_storage.dart';
 
 const _uuid = Uuid();
@@ -134,5 +135,22 @@ class StorageService {
     for (final c in chapters) {
       LocalStorage.chapters.delete(c.id);
     }
+  }
+
+  // Questions
+  List<String> getQuestionsForCategory(String category) {
+    return QuestionDatabase.getQuestionsForCategory(category);
+  }
+
+  // Milestones
+  void incrementMilestone(String profileId, String type) {
+    final key = '${profileId}_milestone_$type';
+    final current = LocalStorage.settings.get(key) ?? 0;
+    LocalStorage.settings.put(key, current + 1);
+  }
+
+  int getMilestone(String profileId, String type) {
+    final key = '${profileId}_milestone_$type';
+    return LocalStorage.settings.get(key) ?? 0;
   }
 }

@@ -41,3 +41,15 @@ class GeneratedChapter {
     );
   }
 }
+
+class GeneratedBook {
+  final String profileId;
+  final List<GeneratedChapter> chapters;
+  final String finalLetter;
+
+  GeneratedBook({
+    required this.profileId,
+    required this.chapters,
+    required this.finalLetter,
+  });
+}
