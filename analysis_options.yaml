@@ -1,0 +1,30 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_final_locals
+    - avoid_print
+    - prefer_single_quotes
+    - sort_child_properties_last
+    - use_key_in_widget_constructors
+    - prefer_is_empty
+    - prefer_is_not_empty
+    - avoid_unnecessary_containers
+    - sized_box_for_whitespace
+    - unnecessary_string_interpolations
+    - unnecessary_brace_in_string_interps
+    - prefer_if_null_operators
+    - unnecessary_null_checks
+    - prefer_typing_uninitialized_variables
+    - avoid_redundant_argument_values
+
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.mocks.dart"
+    - "**/generated/**"
