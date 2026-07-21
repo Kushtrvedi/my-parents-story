@@ -3,9 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  file_selector_windows
   flutter_tts
-  permission_handler_windows
   printing
   share_plus
   speech_to_text_windows

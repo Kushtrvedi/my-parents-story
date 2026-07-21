@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
 import 'package:path_provider/path_provider.dart';
 import '../models/parent_profile.dart';
 import '../models/generated_chapter.dart';
@@ -349,13 +348,6 @@ class PdfExportService {
           ),
         );
       },
-    );
-  }
-
-  Future<void> sharePdf(File file) async {
-    await Printing.sharePdf(
-      bytes: await file.readAsBytes(),
-      filename: file.path.split(Platform.pathSeparator).last,
     );
   }
 }
