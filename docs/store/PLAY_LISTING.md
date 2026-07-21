@@ -4,76 +4,64 @@
 My Parents' Story
 
 ## Short Description (80 chars max)
-Preserve your parents' life stories through voice recordings — free and private.
+Preserve the voice, memories, and wisdom of the people you love.
 
 ## Full Description (4000 chars max)
 
-**Every parent carries a library inside them. Let's make sure those stories are never lost.**
+**Preserve the voice, memories, and wisdom of the people you love.**
 
-My Parents' Story helps you capture your parents' life stories through guided voice conversation. No accounts. No cloud. No complexity. Just a patient interface that listens while your parent speaks, and transforms those spoken memories into a beautiful memoir.
+Every family has stories that deserve to be remembered. The way your mother describes her childhood kitchen. The advice your father gives when no one is listening. The recipes, the laughter, the life lessons that shaped who you are.
+
+My Parents' Story helps you capture those moments before they fade. Not with technology that gets in the way, but with a quiet, patient space where your parent can speak, and you can listen.
 
 **WHY THIS APP EXISTS**
 
-Most family stories are never written down. When a parent passes, those stories go with them. There is no undo button for an unwritten legacy. This app exists to change that.
+Most families lose their stories. When a parent passes, their voice goes with them. The way they told stories. The pauses. The details only they remembered. There is no undo button for an unwritten legacy.
+
+This app exists to change that.
 
 **HOW IT WORKS**
 
-1. **Choose who you're preserving** — Mom, Dad, Grandma, Grandpa, or someone special
-2. **Answer guided questions** — 300 thoughtful questions across 20 life chapters, from childhood to legacy
-3. **Record their voice** — Use the built-in recorder to capture their stories in their own words
-4. **Generate a memoir** — Transform recordings into a beautifully formatted book
-5. **Share with family** — Export as PDF and share with anyone you love
+1. Choose whose story you want to preserve — Mom, Dad, Grandma, Grandpa, or someone special
+2. Sit together and ask the questions that matter — 300 thoughtful prompts across 20 life chapters
+3. Record their voice as they answer — capture not just words, but the sound of their voice
+4. Create a beautiful memoir from their stories — a keepsake your family will treasure
+5. Share it with the people you love — export as PDF, keep it forever
 
-**KEY FEATURES**
+**DESIGNED FOR REAL CONVERSATIONS**
 
-• **Voice-First Design** — Record stories by speaking, not typing. Perfect for elderly parents.
-• **12 Languages** — English, Hindi, Gujarati, Spanish, Marathi, Tamil, Telugu, Malayalam, Odia, Punjabi, Bengali, Kannada
-• **Offline-First** — Works without internet. Your data never leaves your device.
-• **300 Guided Questions** — Thoughtful prompts that help parents share meaningful stories
-• **20 Life Chapters** — From early childhood to life lessons and legacy
-• **PDF Memoir Generation** — Create a beautiful book from their stories
-• **Voice Recording** — Capture the sound of their voice telling their own story
-• **Text-to-Speech** — Have questions read aloud for parents who prefer to listen
-• **Photo Attachments** — Add photos to memories
-• **Backup & Restore** — Export and import your data
-• **Free Forever** — No subscriptions, no in-app purchases, no hidden costs
+This isn't an app you hand someone and walk away. It's an app you use together. Sit across from your parent. Ask a question. Listen. Record.
 
-**DESIGNED FOR ELDERLY PARENTS**
+The interface is built for that moment:
 
-• Giant, easy-to-read text (34-38px questions)
-• Large touch targets (72-80px buttons)
-• Warm, calming color palette
-• Simple, one-action-per-screen design
-• Patient, encouraging language throughout
-• No ads, no distractions, no complexity
+- Giant, easy-to-read text so your parent can follow along
+- Large touch targets that don't require precision
+- Warm, calming colors that feel like home
+- One question at a time, never overwhelming
+- Questions read aloud if your parent prefers to listen
+- No ads, no distractions, no complexity
 
-**PRIVACY FIRST**
+**PRIVACY YOU CAN TRUST**
 
-• 100% offline — no internet required
-• No accounts or sign-ups
-• No data collection
-• No analytics or tracking
-• No cloud storage
-• Your stories stay on your device
-• Open source — verify our privacy claims
+Your family's stories belong to you. Not to us. Not to the cloud.
 
-**PERFECT FOR**
+- 100% offline — works without internet
+- No accounts or sign-ups required
+- No data collected, ever
+- No analytics, no tracking, no cloud storage
+- Your recordings stay on your device
+- Open source — verify our privacy claims yourself
 
-• Adult children preserving their parents' stories
-• Grandparents sharing wisdom with grandchildren
-• Families documenting their history
-• Anyone who wants to capture a loved one's voice and memories
+**A GIFT THAT LASTS**
 
-**WHAT MAKES THIS DIFFERENT**
+My Parents' Story isn't just an app. It's a gift. The kind you give when you say: "Your story matters to me. I want to remember."
 
-This isn't a journal app. It isn't a note-taking app. It isn't social media. It's a dedicated tool for one purpose: preserving the voices and stories of the people you love before they're gone.
+Give it to your parent. Sit together. Ask the questions you've always wanted to ask. Record their voice while you still can.
 
-Every feature exists to strengthen that purpose. Nothing else.
-
-Download My Parents' Story today and give the gift of remembrance.
+Download My Parents' Story and start the conversation.
 
 ## Keywords (for ASO)
-voice recorder, family stories, memoir, legacy, preserve memories, life story, parents, grandparents, genealogy, family history, voice recording, storytelling, elderly, senior, offline, private, free, Indian languages, Hindi, Gujarati
+preserve family stories, voice memories, parents legacy, record parents voice, life story app, family memoir, elderly storytelling, voice recording, grandparent stories, offline private, Indian languages, Hindi Gujarati Tamil
 
 ## Category
 Apps > Lifestyle > Life Planning
