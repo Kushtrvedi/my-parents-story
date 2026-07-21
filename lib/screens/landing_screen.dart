@@ -26,18 +26,19 @@ class _LandingScreenState extends State<LandingScreen> {
   @override
   void initState() {
     super.initState();
-    _checkSetup();
     _loadProfiles();
+    // Defer setup check to avoid navigator lock during build
+    Future.delayed(Duration.zero, () {
+      if (mounted) _checkSetup();
+    });
   }
 
-  Future<void> _checkSetup() async {
-    if (!_speechService.isSetupComplete) {
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const SetupWizardScreen()),
-        );
-      }
+  void _checkSetup() {
+    if (!_speechService.isSetupComplete && mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const SetupWizardScreen()),
+      );
     }
   }
 

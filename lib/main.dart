@@ -3,7 +3,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'config/app_theme.dart';
 import 'services/local_storage.dart';
 import 'services/locale_provider.dart';
+import 'services/speech_setup_service.dart';
 import 'screens/landing_screen.dart';
+import 'screens/setup_wizard_screen.dart';
 
 final localeProvider = LocaleProvider();
 
@@ -19,6 +21,9 @@ class MyParentsStoryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final speechService = SpeechSetupService();
+    final showSetup = !speechService.isSetupComplete;
+
     return ListenableBuilder(
       listenable: localeProvider,
       builder: (context, _) {
@@ -33,7 +38,7 @@ class MyParentsStoryApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          home: const LandingScreen(),
+          home: showSetup ? const SetupWizardScreen() : const LandingScreen(),
         );
       },
     );
