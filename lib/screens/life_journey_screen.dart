@@ -75,7 +75,7 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.s),
         child: Text(
-          'You\'ve shared $_totalAnswered wonderful memories. Let\'s continue.',
+          T.tr('sharedMemoriesCount').replaceAll('{count}', '$_totalAnswered'),
           textAlign: TextAlign.center,
           style: AppTypography.body.copyWith(
             color: AppColors.text,

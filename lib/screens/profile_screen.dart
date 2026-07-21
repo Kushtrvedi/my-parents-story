@@ -99,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 textCapitalization: TextCapitalization.words,
                 style: Theme.of(context).textTheme.bodyLarge,
                 decoration: InputDecoration(hintText: T.tr('nameHint')),
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Please enter a name' : null,
+                validator: (v) => (v == null || v.trim().isEmpty) ? T.tr('enterName') : null,
               ),
               const SizedBox(height: 36),
               // Birth year

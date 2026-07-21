@@ -345,7 +345,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
         ),
         const SizedBox(height: AppSpacing.l),
         Text(
-          'Tap once to begin telling your story',
+          T.tr('tapToBeginStory'),
           style: AppTypography.caption,
         ),
       ],

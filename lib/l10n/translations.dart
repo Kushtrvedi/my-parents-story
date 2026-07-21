@@ -57,6 +57,20 @@ class T {
       'groupJourneyDesc': 'Challenges, triumphs, and the path you walked',
       'groupLegacy': 'Legacy',
       'groupLegacyDesc': 'Wisdom, reflections, and what you leave behind',
+
+      // Validation & Errors
+      'enterName': 'Please enter a name',
+      'errorOccurred': 'Something went wrong',
+      'bornYear': 'Born {year}',
+      'sharedMemoriesCount': 'You\'ve shared {count} wonderful memories. Let\'s continue.',
+
+      // PDF & Book
+      'tableOfContents': 'Table of Contents',
+      'finalLetterTitle': 'What I Hope My Family Remembers',
+      'chapterLabel': 'Chapter {number}',
+
+      // Recording
+      'tapToBeginStory': 'Tap once to begin telling your story',
     },
     'hi': {
       'tagline': 'हर माता-पिता के अंदर एक किताबाखाना है।',
@@ -113,6 +127,20 @@ class T {
       'groupJourneyDesc': 'चुनौतियाँ, सफलताएँ, और आपका सफर',
       'groupLegacy': 'विरासत',
       'groupLegacyDesc': 'ज्ञान, विचार, और जो आप छोड़ जाते हैं',
+
+      // Validation & Errors
+      'enterName': 'कृपया नाम दर्ज करें',
+      'errorOccurred': 'कुछ गलत हो गया',
+      'bornYear': '{year} में पैदा हुए',
+      'sharedMemoriesCount': 'आपने {count} अद्भुत यादें साझा की हैं। चलिए आगे बढ़ते हैं।',
+
+      // PDF & Book
+      'tableOfContents': 'विषय सूची',
+      'finalLetterTitle': 'मैं अपने परिवार को क्या याद रखना चाहता/चाहती हूँ',
+      'chapterLabel': 'अध्याय {number}',
+
+      // Recording
+      'tapToBeginStory': 'अपनी कहानी बताने के लिए एक बार टैप करें',
     },
     'gu': {
       'tagline': 'દરેક માતા-પિતાની અંદર એક પુસ્તકાલય છે.',
@@ -169,6 +197,20 @@ class T {
       'groupJourneyDesc': 'પડકારો, સફળતાઓ, અને તમારો રસ્તો',
       'groupLegacy': 'વારસો',
       'groupLegacyDesc': 'જ્ઞાન, વિચારો, અને જે તમે છોડી જાઓ છો',
+
+      // Validation & Errors
+      'enterName': 'કૃપા કરીને નામ દાખલ કરો',
+      'errorOccurred': 'કંઈક ખોટું થયું',
+      'bornYear': '{year} માં જન્મ્યા',
+      'sharedMemoriesCount': 'તમે {count} અદ્ભુત યાદો શેર કરી છે. ચાલો આગળ વધીએ.',
+
+      // PDF & Book
+      'tableOfContents': 'વિષય સૂચિ',
+      'finalLetterTitle': 'હું મારા કુટુંબને શું યાદ રાખવા માંગુ છું',
+      'chapterLabel': 'અધ્યાય {number}',
+
+      // Recording
+      'tapToBeginStory': 'તમારી વાર્તા કહેવા માટે એક વાર ટેપ કરો',
     },
     'es': {
       'tagline': 'Todo padre lleva una biblioteca dentro.',
@@ -225,6 +267,20 @@ class T {
       'groupJourneyDesc': 'Desafíos, triunfos y el camino recorrido',
       'groupLegacy': 'Legado',
       'groupLegacyDesc': 'Sabiduría, reflexiones y lo que dejas atrás',
+
+      // Validation & Errors
+      'enterName': 'Por favor, ingresa un nombre',
+      'errorOccurred': 'Algo salió mal',
+      'bornYear': 'Nacido en {year}',
+      'sharedMemoriesCount': 'Has compartido {count} recuerdos maravillosos. Sigamos.',
+
+      // PDF & Book
+      'tableOfContents': 'Contenido',
+      'finalLetterTitle': 'Lo Que Espero Que Mi Familia Recuerde',
+      'chapterLabel': 'Capítulo {number}',
+
+      // Recording
+      'tapToBeginStory': 'Toca una vez para comenzar a contar tu historia',
     },
   };
 

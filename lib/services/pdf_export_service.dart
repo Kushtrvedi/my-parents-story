@@ -5,6 +5,7 @@ import 'package:printing/printing.dart';
 import 'package:path_provider/path_provider.dart';
 import '../models/parent_profile.dart';
 import '../models/generated_chapter.dart';
+import '../l10n/translations.dart';
 
 class PdfExportService {
   Future<File> generateBook({
@@ -80,7 +81,7 @@ class PdfExportService {
               if (profile.birthYear.isNotEmpty) ...[
                 pw.SizedBox(height: 8),
                 pw.Text(
-                  'Born ${profile.birthYear}',
+                  T.tr('bornYear').replaceAll('{year}', profile.birthYear),
                   style: pw.TextStyle(
                     fontSize: 14,
                     color: PdfColor.fromHex('#666666'),
@@ -143,7 +144,7 @@ class PdfExportService {
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
               pw.Text(
-                'Table of Contents',
+                T.tr('tableOfContents'),
                 style: pw.TextStyle(
                   fontSize: 28,
                   fontWeight: pw.FontWeight.bold,
@@ -202,7 +203,7 @@ class PdfExportService {
                     pw.SizedBox(width: 16),
                     pw.Expanded(
                       child: pw.Text(
-                        'What I Hope My Family Remembers',
+                        T.tr('finalLetterTitle'),
                         style: pw.TextStyle(
                           fontSize: 16,
                           color: PdfColor.fromHex('#111111'),

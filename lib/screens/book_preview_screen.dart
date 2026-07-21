@@ -36,7 +36,7 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
+        SnackBar(content: Text(T.tr('errorOccurred'))),
       );
     } finally {
       if (mounted) setState(() => _isExporting = false);
@@ -109,7 +109,7 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
                       if (widget.profile.birthYear != null && widget.profile.birthYear!.isNotEmpty) ...[
                         const SizedBox(height: 8),
                         Text(
-                          'Born ${widget.profile.birthYear}',
+                          T.tr('bornYear').replaceAll('{year}', widget.profile.birthYear!),
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                 color: Colors.white.withValues(alpha: 0.6),
