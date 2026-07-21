@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-class AppColors {
-  static const background = Color(0xFFFAF8F5);
-  static const card = Color(0xFFFFFFFF);
-  static const primary = Color(0xFF3A5A40);
-  static const accent = Color(0xFFD4A373);
-  static const text = Color(0xFF1F2937);
-  static const textLight = Color(0xFF6B7280);
-  static const divider = Color(0xFFE5E2DC);
-  static const error = Color(0xFFC0392B);
-  static const success = Color(0xFF3A5A40);
-  static const warmWhite = Color(0xFFFFFDF9);
-}
+import '../design_system/design_system.dart';
 
 class AppTheme {
   static ThemeData get theme {
@@ -27,64 +14,13 @@ class AppTheme {
         surface: AppColors.card,
         onSurface: AppColors.text,
       ),
-      textTheme: GoogleFonts.loraTextTheme(
-        const TextTheme(
-          headlineLarge: TextStyle(
-            fontSize: 38,
-            fontWeight: FontWeight.w700,
-            color: AppColors.text,
-            height: 1.4,
-            letterSpacing: -0.3,
-          ),
-          headlineMedium: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.w600,
-            color: AppColors.text,
-            height: 1.4,
-          ),
-          headlineSmall: TextStyle(
-            fontSize: 26,
-            fontWeight: FontWeight.w600,
-            color: AppColors.text,
-            height: 1.4,
-          ),
-          titleLarge: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-            color: AppColors.text,
-            height: 1.4,
-          ),
-          titleMedium: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w500,
-            color: AppColors.text,
-            height: 1.4,
-          ),
-          bodyLarge: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w400,
-            color: AppColors.text,
-            height: 1.7,
-          ),
-          bodyMedium: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w400,
-            color: AppColors.text,
-            height: 1.6,
-          ),
-          bodySmall: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w400,
-            color: AppColors.textLight,
-            height: 1.5,
-          ),
-          labelLarge: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
-            letterSpacing: 0.3,
-          ),
-        ),
+      textTheme: TextTheme(
+        headlineLarge: AppTypography.display,
+        headlineMedium: AppTypography.heading,
+        headlineSmall: AppTypography.question,
+        bodyLarge: AppTypography.body,
+        labelLarge: AppTypography.button,
+        bodySmall: AppTypography.caption,
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.background,
@@ -92,62 +28,60 @@ class AppTheme {
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: true,
-        titleTextStyle: GoogleFonts.lora(
-          fontSize: 22,
-          fontWeight: FontWeight.w600,
-          color: AppColors.text,
-        ),
+        titleTextStyle: AppTypography.heading.copyWith(fontSize: 22),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
-          minimumSize: const Size(double.infinity, 76),
+          minimumSize: const Size(double.infinity, AppTouchTargets.min + 12),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(AppRadius.l),
           ),
           elevation: 0,
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 22),
-          textStyle: GoogleFonts.lora(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.m),
+          textStyle: AppTypography.button,
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.text,
-          minimumSize: const Size(double.infinity, 76),
+          minimumSize: const Size(double.infinity, AppTouchTargets.min + 12),
           side: const BorderSide(color: AppColors.divider, width: 2),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(AppRadius.l),
           ),
-          textStyle: GoogleFonts.lora(
-            fontSize: 24,
-            fontWeight: FontWeight.w500,
-          ),
+          textStyle: AppTypography.button.copyWith(color: AppColors.text),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.card,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(AppRadius.m),
           borderSide: const BorderSide(color: AppColors.divider, width: 2),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(AppRadius.m),
           borderSide: const BorderSide(color: AppColors.divider, width: 2),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(AppRadius.m),
           borderSide: const BorderSide(color: AppColors.primary, width: 2.5),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
-        hintStyle: GoogleFonts.lora(
-          color: AppColors.textLight,
-          fontSize: 22,
+        contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.m),
+        hintStyle: AppTypography.caption.copyWith(fontSize: 22),
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          minimumSize: const Size(AppTouchTargets.min, AppTouchTargets.min),
         ),
+      ),
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        },
       ),
     );
   }

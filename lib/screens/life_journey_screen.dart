@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../config/app_theme.dart';
+import '../design_system/design_system.dart';
 import '../data/questions.dart';
 import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
@@ -23,15 +23,15 @@ class _LifeStageGroup {
   });
 }
 
-class CategoriesScreen extends StatefulWidget {
+class LifeJourneyScreen extends StatefulWidget {
   final ParentProfile profile;
-  const CategoriesScreen({super.key, required this.profile});
+  const LifeJourneyScreen({super.key, required this.profile});
 
   @override
-  State<CategoriesScreen> createState() => _CategoriesScreenState();
+  State<LifeJourneyScreen> createState() => _LifeJourneyScreenState();
 }
 
-class _CategoriesScreenState extends State<CategoriesScreen> {
+class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
   final _storageService = StorageService();
   Map<String, int> _progress = {};
   final Set<int> _expandedGroups = {0};
@@ -57,38 +57,32 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   }
 
   int get _totalAnswered => _progress.values.fold(0, (sum, c) => sum + c);
-  int get _totalQuestions => QuestionDatabase.questions.length;
 
-  double _groupProgress(_LifeStageGroup group) {
-    int completed = 0;
-    int total = 0;
-    for (var ch in QuestionDatabase.chapters) {
-      if (ch.number - 1 >= group.startChapter && ch.number - 1 <= group.endChapter) {
-        completed += _progress[ch.id] ?? 0;
-        total += ch.questionCount;
-      }
+  Widget _buildEmptyStateOrProgress() {
+    if (_totalAnswered == 0) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.s),
+        child: Text(
+          T.tr('emptyMemories'),
+          textAlign: TextAlign.center,
+          style: AppTypography.body.copyWith(
+            color: AppColors.text,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.s),
+        child: Text(
+          'You\'ve shared $_totalAnswered wonderful memories. Let\'s continue.',
+          textAlign: TextAlign.center,
+          style: AppTypography.body.copyWith(
+            color: AppColors.text,
+          ),
+        ),
+      );
     }
-    return total > 0 ? completed / total : 0.0;
-  }
-
-  int _groupCompletedCount(_LifeStageGroup group) {
-    int completed = 0;
-    for (var ch in QuestionDatabase.chapters) {
-      if (ch.number - 1 >= group.startChapter && ch.number - 1 <= group.endChapter) {
-        completed += _progress[ch.id] ?? 0;
-      }
-    }
-    return completed;
-  }
-
-  int _groupTotalCount(_LifeStageGroup group) {
-    int total = 0;
-    for (var ch in QuestionDatabase.chapters) {
-      if (ch.number - 1 >= group.startChapter && ch.number - 1 <= group.endChapter) {
-        total += ch.questionCount;
-      }
-    }
-    return total;
   }
 
   @override
@@ -98,41 +92,44 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, size: 22),
+          icon: const Icon(Icons.arrow_back_ios_new, size: 26),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(widget.profile.name),
       ),
       body: Column(
         children: [
-          const SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 36),
-            child: Text(
-              '${T.tr('youreDoingGreat')}  $_totalAnswered / $_totalQuestions ${T.tr('memoriesCaptured')}.',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AppSpacing.s),
+          _buildEmptyStateOrProgress(),
+          const SizedBox(height: AppSpacing.l),
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 28),
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.m),
               itemCount: _groups.length,
               itemBuilder: (context, groupIndex) {
                 final group = _groups[groupIndex];
                 final isExpanded = _expandedGroups.contains(groupIndex);
-                final progress = _groupProgress(group);
-                final completedCount = _groupCompletedCount(group);
-                final totalCount = _groupTotalCount(group);
-                final isDone = progress >= 1.0;
+
+                // Stage Progress via Dots
+                final totalChaptersInGroup = group.endChapter - group.startChapter + 1;
+                int fullyCompletedChapters = 0;
+                for (int i = group.startChapter; i <= group.endChapter; i++) {
+                  if (i >= chapters.length) continue;
+                  final ch = chapters[i];
+                  final completed = _progress[ch.id] ?? 0;
+                  if (completed >= ch.questionCount && ch.questionCount > 0) {
+                    fullyCompletedChapters++;
+                  }
+                }
+                final isGroupDone = fullyCompletedChapters == totalChaptersInGroup;
 
                 return Container(
-                  margin: const EdgeInsets.only(bottom: 14),
+                  margin: const EdgeInsets.only(bottom: AppSpacing.s),
                   decoration: BoxDecoration(
-                    color: isDone ? AppColors.primary.withValues(alpha: 0.06) : AppColors.card,
-                    borderRadius: BorderRadius.circular(18),
+                    color: isGroupDone ? AppColors.primary.withOpacity(0.06) : AppColors.card,
+                    borderRadius: BorderRadius.circular(AppRadius.l),
                     border: Border.all(
-                      color: isDone ? AppColors.primary.withValues(alpha: 0.3) : AppColors.divider,
+                      color: isGroupDone ? AppColors.primary.withOpacity(0.3) : AppColors.divider,
                       width: 1.5,
                     ),
                   ),
@@ -150,64 +147,41 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         },
                         behavior: HitTestBehavior.opaque,
                         child: Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(AppSpacing.l),
                           child: Row(
                             children: [
-                              Text(group.emoji, style: const TextStyle(fontSize: 28)),
-                              const SizedBox(width: 14),
+                              Text(group.emoji, style: const TextStyle(fontSize: 32)),
+                              const SizedBox(width: AppSpacing.m),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       T.tr(group.titleKey),
-                                      style: Theme.of(context).textTheme.titleMedium,
+                                      style: AppTypography.heading,
                                     ),
-                                    const SizedBox(height: 2),
+                                    const SizedBox(height: AppSpacing.xs),
                                     Text(
                                       T.tr(group.descKey),
-                                      style: Theme.of(context).textTheme.bodySmall,
+                                      style: AppTypography.caption,
                                     ),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(4),
-                                            child: LinearProgressIndicator(
-                                              value: progress,
-                                              backgroundColor: AppColors.primary.withValues(alpha: 0.1),
-                                              valueColor: AlwaysStoppedAnimation<Color>(
-                                                isDone ? AppColors.primary : AppColors.accent,
-                                              ),
-                                              minHeight: 6,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(
-                                          '$completedCount / $totalCount',
-                                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
+                                    const SizedBox(height: AppSpacing.s),
+                                    _buildDotProgress(totalChaptersInGroup, fullyCompletedChapters),
                                   ],
                                 ),
                               ),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: AppSpacing.s),
                               Icon(
                                 isExpanded ? Icons.expand_less : Icons.expand_more,
                                 color: AppColors.textLight,
-                                size: 26,
+                                size: AppIcons.l,
                               ),
                             ],
                           ),
                         ),
                       ),
                       if (isExpanded)
-                        ...List.generate(group.endChapter - group.startChapter + 1, (i) {
+                        ...List.generate(totalChaptersInGroup, (i) {
                           final chapterIndex = group.startChapter + i;
                           if (chapterIndex >= chapters.length) return const SizedBox.shrink();
                           final chapter = chapters[chapterIndex];
@@ -230,32 +204,32 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                               _loadProgress();
                             },
                             child: Container(
-                              margin: const EdgeInsets.fromLTRB(20, 0, 20, 12),
-                              padding: const EdgeInsets.all(18),
+                              margin: const EdgeInsets.fromLTRB(AppSpacing.l, 0, AppSpacing.l, AppSpacing.m),
+                              padding: const EdgeInsets.all(AppSpacing.m),
                               decoration: BoxDecoration(
                                 color: chapterDone
-                                    ? AppColors.primary.withValues(alpha: 0.04)
+                                    ? AppColors.primary.withOpacity(0.04)
                                     : AppColors.background,
-                                borderRadius: BorderRadius.circular(14),
+                                borderRadius: BorderRadius.circular(AppRadius.m),
                               ),
                               child: Row(
                                 children: [
                                   Container(
-                                    width: 40,
-                                    height: 40,
+                                    width: AppTouchTargets.min - 16,
+                                    height: AppTouchTargets.min - 16,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: chapterDone
                                           ? AppColors.primary
-                                          : AppColors.primary.withValues(alpha: 0.08),
+                                          : AppColors.primary.withOpacity(0.08),
                                     ),
                                     child: Center(
                                       child: chapterDone
-                                          ? const Icon(Icons.check, color: Colors.white, size: 20)
+                                          ? const Icon(Icons.check, color: Colors.white, size: AppIcons.m)
                                           : Text(
                                               '${chapter.number}',
                                               style: TextStyle(
-                                                fontSize: 16,
+                                                fontSize: 20,
                                                 fontWeight: FontWeight.w700,
                                                 color: completed > 0
                                                     ? AppColors.primary
@@ -264,29 +238,29 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                             ),
                                     ),
                                   ),
-                                  const SizedBox(width: 14),
+                                  const SizedBox(width: AppSpacing.m),
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           chapter.title,
-                                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                                          style: AppTypography.body,
                                         ),
-                                        const SizedBox(height: 2),
-                                        Text(
-                                          '$completed / $total ${T.tr('memories')}',
-                                          style: Theme.of(context).textTheme.bodySmall,
-                                        ),
+                                        if (completed > 0) ...[
+                                          const SizedBox(height: AppSpacing.xs),
+                                          Text(
+                                            '$completed of $total memories shared',
+                                            style: AppTypography.caption.copyWith(color: AppColors.primary),
+                                          ),
+                                        ],
                                       ],
                                     ),
                                   ),
                                   Icon(
                                     chapterDone ? Icons.check_circle_outline : Icons.chevron_right,
                                     color: AppColors.textLight,
-                                    size: 22,
+                                    size: AppIcons.l,
                                   ),
                                 ],
                               ),
@@ -300,24 +274,41 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(28, 0, 28, 32),
-            child: SizedBox(
-              width: double.infinity,
-              height: 68,
-              child: ElevatedButton.icon(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => GenerateBookScreen(profile: widget.profile),
-                  ),
+            padding: const EdgeInsets.fromLTRB(AppSpacing.l, AppSpacing.s, AppSpacing.l, AppSpacing.xl),
+            child: ElevatedButton.icon(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => GenerateBookScreen(profile: widget.profile),
                 ),
-                icon: const Icon(Icons.menu_book_outlined, size: 24),
-                label: Text(T.tr('generateBook')),
               ),
+              icon: const Icon(Icons.menu_book_outlined, size: AppIcons.l),
+              label: Text(T.tr('generateBook')),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildDotProgress(int total, int completed) {
+    return Row(
+      children: List.generate(total, (index) {
+        final isDone = index < completed;
+        return Container(
+          margin: const EdgeInsets.only(right: 6),
+          width: 10,
+          height: 10,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: isDone ? AppColors.primary : AppColors.divider,
+            border: Border.all(
+              color: isDone ? AppColors.primary : AppColors.textLight.withOpacity(0.3),
+              width: 1,
+            ),
+          ),
+        );
+      }),
     );
   }
 }

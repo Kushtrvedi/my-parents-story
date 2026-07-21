@@ -32,13 +32,21 @@ class T {
       'storiesHere': 'memories here',
       'tapToHear': 'Tap the question to hear it',
       'tryAgain': 'Try once more',
-      'saveResponse': 'Save response',
-      'listening': 'Listening...',
+      'saveResponse': 'Save this memory',
+      'listening': "I'm listening.",
       'tapStopHint': 'Tap the mic to finish recording.',
       'done': 'Done',
       'insight': 'What a beautiful memory.',
       'nextQuestion': 'Next question',
       'switchLang': 'Choose your language',
+      
+      // Phase 3 Warm Strings
+      'recordingComplete': 'Your story has been safely saved.',
+      'transcriptGenerated': "We've written down your story.",
+      'emptyMemories': "Every family story begins with a single memory.\nLet's start with yours.",
+      'recordingFailed': "We couldn't save that recording this time.\nNothing else has been lost.\nPlease try again.",
+
+      // Life Stages
       'groupChildhood': 'Childhood',
       'groupChildhoodDesc': 'Where you came from, your earliest days',
       'groupYouth': 'Youth',
@@ -53,8 +61,8 @@ class T {
     'hi': {
       'tagline': 'हर माता-पिता के अंदर एक किताबाखाना है।',
       'subtagline': 'आइए उनकी कहानी को संजोएं।',
-      'startMom': 'माँ से शरू करें',
-      'startDad': 'पापा से शरू करें',
+      'startMom': 'माँ से शुरू करें',
+      'startDad': 'पापा से शुरू करें',
       'profileTitle': 'उनके बारे में बताइए',
       'nameLabel': 'उनका नाम क्या है?',
       'nameHint': 'पूरा नाम',
@@ -62,7 +70,7 @@ class T {
       'birthYearHint': 'साल (जैसे, 1955)',
       'cityLabel': 'वो किस शहर में पले-बढ़े?',
       'cityHint': 'शहर',
-      'beginStory': 'शरू करें',
+      'beginStory': 'शुरू करें',
       'addPhoto': 'फ़ोटो लगाएं',
       'optional': 'वैकल्पिक',
       'memoriesCaptured': 'यादें जुटाई गईं',
@@ -80,13 +88,21 @@ class T {
       'storiesHere': 'यादें यहाँ',
       'tapToHear': 'सुनने के लिए सवाल पर टैप करें',
       'tryAgain': 'एक बार और कोशिश करें',
-      'saveResponse': 'जवाब सहेजें',
-      'listening': 'सुन रहे हैं...',
+      'saveResponse': 'इस याद को सहेजें',
+      'listening': 'मैं सुन रहा हूँ...',
       'tapStopHint': 'रिकॉर्डिंग रोकने के लिए माइक दबाएं।',
       'done': 'हो गया',
       'insight': 'कितनी सुंदर याद है।',
       'nextQuestion': 'अगला सवाल',
       'switchLang': 'भाषा चुनें',
+      
+      // Phase 3 Warm Strings
+      'recordingComplete': 'आपकी कहानी सुरक्षित रूप से सहेजी गई है।',
+      'transcriptGenerated': 'हमने आपकी कहानी लिख ली है।',
+      'emptyMemories': 'हर पारिवारिक कहानी एक याद से शुरू होती है।\nआइए आपकी कहानी से शुरू करें।',
+      'recordingFailed': 'हम इस बार रिकॉर्डिंग को सहेज नहीं सके।\nबाकी सब कुछ सुरक्षित है।\nकृपया पुनः प्रयास करें।',
+
+      // Life Stages
       'groupChildhood': 'बचपन',
       'groupChildhoodDesc': 'आप कहाँ से आए, आपके पहले दिन',
       'groupYouth': 'जवानी',
@@ -128,13 +144,21 @@ class T {
       'storiesHere': 'યાદો અહીં',
       'tapToHear': 'સાંભળવા માટે સવાલ પર ટેપ કરો',
       'tryAgain': 'ફરી એકવાર કોશિશ કરો',
-      'saveResponse': 'જવાબ સાચવો',
-      'listening': 'સાંભી રહ્યા છીએ...',
+      'saveResponse': 'આ યાદને સાચવો',
+      'listening': 'હું સાંભળી રહ્યો છું...',
       'tapStopHint': 'રેકોર્ડિંગ રોકવા માટે માઈક દબાવો.',
       'done': 'થઈ ગયું',
       'insight': 'કેટલી સુંદર યાદ છે.',
       'nextQuestion': 'આગળનો સવાલ',
       'switchLang': 'ભાષા પસંદ કરો',
+      
+      // Phase 3 Warm Strings
+      'recordingComplete': 'તમારી વાર્તા સુરક્ષિત રીતે સાચવવામાં આવી છે.',
+      'transcriptGenerated': 'અમે તમારી વાર્તા લખી લીધી છે.',
+      'emptyMemories': 'દરેક કુટુંબની વાર્તા એક યાદથી શરૂ થાય છે.\nઆવો તમારી વાર્તાથી શરૂ કરીએ.',
+      'recordingFailed': 'અમે આ વખતે રેકોર્ડિંગ સાચવી શક્યા નથી.\nબીજું બધું સુરક્ષિત છે.\nકૃપા કરીને ફરીથી પ્રયાસ કરો.',
+
+      // Life Stages
       'groupChildhood': 'બાળપણ',
       'groupChildhoodDesc': 'તમે ક્યાંથી આવ્યા, તમારા પહેલા દિવસો',
       'groupYouth': 'જવાની',
@@ -176,13 +200,21 @@ class T {
       'storiesHere': 'recuerdos aquí',
       'tapToHear': 'Toca la pregunta para escucharla',
       'tryAgain': 'Intenta una vez más',
-      'saveResponse': 'Guardar respuesta',
-      'listening': 'Escuchando...',
+      'saveResponse': 'Guarda este recuerdo',
+      'listening': 'Te escucho...',
       'tapStopHint': 'Toca el micrófono para terminar.',
       'done': 'Listo',
       'insight': 'Qué hermoso recuerdo.',
       'nextQuestion': 'Siguiente pregunta',
       'switchLang': 'Elige tu idioma',
+      
+      // Phase 3 Warm Strings
+      'recordingComplete': 'Tu historia se ha guardado de forma segura.',
+      'transcriptGenerated': 'Hemos escrito tu historia.',
+      'emptyMemories': 'Toda historia familiar comienza con un recuerdo.\nEmpecemos con el tuyo.',
+      'recordingFailed': 'No pudimos guardar esa grabación esta vez.\nNo se ha perdido nada más.\nPor favor, inténtalo de nuevo.',
+
+      // Life Stages
       'groupChildhood': 'Infancia',
       'groupChildhoodDesc': 'De dónde vienes, tus primeros días',
       'groupYouth': 'Juventud',

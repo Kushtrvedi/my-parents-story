@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
 import '../l10n/translations.dart';
 import '../services/storage_service.dart';
-import 'categories_screen.dart';
+import 'life_journey_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String parentType;
@@ -44,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (mounted) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => CategoriesScreen(profile: profile)),
+        MaterialPageRoute(builder: (_) => LifeJourneyScreen(profile: profile)),
       );
     }
   }

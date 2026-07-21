@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../config/app_theme.dart';
+import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
 import '../models/question.dart';
@@ -34,20 +34,20 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
   String _recordedText = '';
   bool _hasRecording = false;
 
-  late AnimationController _pulseController;
-  late Animation<double> _pulseAnimation;
+  late AnimationController _glowController;
+  late Animation<double> _glowAnimation;
 
   @override
   void initState() {
     super.initState();
     _ttsService.init();
     _loadQuestions();
-    _pulseController = AnimationController(
+    _glowController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 2000),
     );
-    _pulseAnimation = Tween<double>(begin: 1.0, end: 1.15).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+    _glowAnimation = Tween<double>(begin: 1.0, end: 1.08).animate(
+      CurvedAnimation(parent: _glowController, curve: Curves.easeInOutSine),
     );
   }
 
@@ -67,7 +67,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
   void dispose() {
     _voiceService.dispose();
     _ttsService.stop();
-    _pulseController.dispose();
+    _glowController.dispose();
     super.dispose();
   }
 
@@ -84,19 +84,27 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
   Future<void> _toggleRecording() async {
     if (_isRecording) {
       await _voiceService.stopListening();
-      _pulseController.stop();
+      _glowController.stop();
       setState(() {
         _isRecording = false;
         _hasRecording = _recordedText.trim().isNotEmpty;
       });
+      if (!_hasRecording) {
+        // If nothing was recorded, just show the error message.
+        _showErrorDialog();
+      }
     } else {
       await _voiceService.startListening(
         onResult: (text) {
           if (mounted) setState(() => _recordedText = text);
         },
       );
-      _pulseController.repeat(reverse: true);
-      setState(() => _isRecording = true);
+      _glowController.repeat(reverse: true);
+      setState(() {
+        _isRecording = true;
+        _hasRecording = false;
+        _recordedText = '';
+      });
     }
   }
 
@@ -107,19 +115,21 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
     });
   }
 
-  void _saveResponse() {
-    if (_recordedText.trim().isEmpty) return;
+  void _saveMemory() {
+    if (_recordedText.trim().isEmpty) {
+      _showErrorDialog();
+      return;
+    }
     final q = _currentQuestion;
     if (q == null) return;
 
     setState(() => _isSaving = true);
 
-    _storageService.saveResponse(
+    _storageService.saveMemory(
       profileId: widget.profile.id,
-      category: widget.chapterId,
-      questionIndex: _currentQuestionIndex,
-      question: q.question,
-      answer: _recordedText.trim(),
+      chapterId: widget.chapterId,
+      questionId: q.id,
+      originalTranscript: _recordedText.trim(),
     );
 
     setState(() => _isSaving = false);
@@ -132,39 +142,64 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
     }
 
     if (mounted) {
-      _showThankYouAndNext();
+      _showSavedAndNext();
     }
   }
 
-  void _showThankYouAndNext() {
+  void _showErrorDialog() {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 12),
-            const Icon(Icons.auto_awesome, size: 40, color: AppColors.accent),
-            const SizedBox(height: 20),
-            Text(
-              T.tr('insight'),
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            const SizedBox(height: 32),
-            SizedBox(
-              width: double.infinity,
-              height: 64,
-              child: ElevatedButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.l)),
+        content: Padding(
+          padding: const EdgeInsets.all(AppSpacing.m),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                T.tr('recordingFailed'),
+                textAlign: TextAlign.center,
+                style: AppTypography.body,
+              ),
+              const SizedBox(height: AppSpacing.l),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showSavedAndNext() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.l)),
+        content: Padding(
+          padding: const EdgeInsets.all(AppSpacing.m),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: AppSpacing.m),
+              Text(
+                T.tr('recordingComplete'),
+                textAlign: TextAlign.center,
+                style: AppTypography.heading,
+              ),
+              const SizedBox(height: AppSpacing.xl),
+              ElevatedButton(
                 onPressed: () {
                   Navigator.pop(ctx);
                   _goToNextQuestion();
                 },
                 child: Text(T.tr('nextQuestion')),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -182,6 +217,26 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
     }
   }
 
+  Widget _buildProgressIndicator() {
+    if (_questions.isEmpty) return const SizedBox.shrink();
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(_questions.length, (index) {
+        final isActive = index == _currentQuestionIndex;
+        final isPast = index < _currentQuestionIndex;
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 6),
+          width: 12,
+          height: 12,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: isActive || isPast ? AppColors.primary : AppColors.divider,
+          ),
+        );
+      }),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final chapter = _storageService.getChapterById(widget.chapterId);
@@ -190,209 +245,174 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, size: 22),
+          icon: const Icon(Icons.arrow_back_ios_new, size: 26),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text(chapterTitle),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Center(
-              child: Text(
-                '${_currentQuestionIndex + 1} / ${_questions.length}',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textLight,
-                      fontSize: 18,
-                    ),
-              ),
-            ),
-          ),
-        ],
       ),
       body: _currentQuestion == null
           ? Center(
               child: Text(
                 'No questions available.',
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: AppTypography.body,
               ),
             )
-          : SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
-              child: Column(
-                children: [
-                  const SizedBox(height: 48),
-                  GestureDetector(
-                    onTap: _speakQuestion,
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(32),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.04),
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(Icons.volume_up_rounded, color: AppColors.primary.withValues(alpha: 0.4), size: 28),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: Text(
-                              _currentQuestion!.question,
-                              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                    fontSize: 38,
-                                    fontWeight: FontWeight.w700,
-                                    height: 1.25,
-                                  ),
-                            ),
+          : SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.m),
+                child: Column(
+                  children: [
+                    // Chapter Title
+                    Text(
+                      chapterTitle,
+                      textAlign: TextAlign.center,
+                      style: AppTypography.caption.copyWith(fontSize: 22, color: AppColors.textLight),
+                    ),
+                    const SizedBox(height: AppSpacing.xs),
+                    
+                    // Question Progress
+                    Text(
+                      'Question ${_currentQuestionIndex + 1} of ${_questions.length}',
+                      textAlign: TextAlign.center,
+                      style: AppTypography.caption,
+                    ),
+                    const SizedBox(height: AppSpacing.s),
+                    _buildProgressIndicator(),
+                    const SizedBox(height: AppSpacing.xl),
+
+                    // Question Text
+                    Expanded(
+                      child: Center(
+                        child: GestureDetector(
+                          onTap: _speakQuestion,
+                          child: Text(
+                            _currentQuestion!.question,
+                            textAlign: TextAlign.center,
+                            style: AppTypography.question,
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(T.tr('tapToHear'), style: Theme.of(context).textTheme.bodySmall),
-                  const SizedBox(height: 64),
-                  if (_isRecording)
-                    _buildPulsingMic()
-                  else if (_hasRecording)
-                    _buildTextPreview()
-                  else
-                    _buildMicButton(),
-                  const SizedBox(height: 40),
-                ],
-              ),
-            ),
-    );
-  }
 
-  Widget _buildMicButton() {
-    return GestureDetector(
-      onTap: _toggleRecording,
-      child: Container(
-        width: 140,
-        height: 140,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.primary,
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.primary.withValues(alpha: 0.3),
-              blurRadius: 24,
-              offset: const Offset(0, 8),
-            ),
-          ],
-        ),
-        child: const Icon(Icons.mic, color: Colors.white, size: 56),
-      ),
-    );
-  }
+                    // Microphone Area
+                    if (_isRecording)
+                      _buildRecordingState()
+                    else if (_hasRecording)
+                      _buildReviewState()
+                    else
+                      _buildIdleState(),
 
-  Widget _buildPulsingMic() {
-    return Column(
-      children: [
-        AnimatedBuilder(
-          animation: _pulseAnimation,
-          builder: (context, child) {
-            return Transform.scale(
-              scale: _pulseAnimation.value,
-              child: Container(
-                width: 160,
-                height: 160,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.error,
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.error.withValues(alpha: 0.4),
-                      blurRadius: 32,
-                      offset: const Offset(0, 8),
+                    const SizedBox(height: AppSpacing.xl),
+
+                    // Continue Later
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size(double.infinity, AppTouchTargets.min),
+                      ),
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(
+                        'Continue Later',
+                        style: AppTypography.button.copyWith(color: AppColors.textLight),
+                      ),
                     ),
                   ],
                 ),
-                child: const Icon(Icons.stop_rounded, color: Colors.white, size: 64),
               ),
-            );
-          },
+            ),
+    );
+  }
+
+  Widget _buildIdleState() {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: _toggleRecording,
+          child: Container(
+            width: 120,
+            height: 120,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColors.primary,
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primary.withOpacity(0.1),
+                  blurRadius: 20,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: const Icon(Icons.mic, color: Colors.white, size: AppIcons.xl),
+          ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: AppSpacing.l),
         Text(
-          _recordedText.isEmpty ? T.tr('listening') : _recordedText,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: _recordedText.isEmpty ? AppColors.textLight : AppColors.text,
-                fontStyle: _recordedText.isEmpty ? FontStyle.italic : FontStyle.normal,
-                fontSize: _recordedText.isEmpty ? 22 : 20,
-              ),
+          'Tap once to begin telling your story',
+          style: AppTypography.caption,
         ),
-        if (_recordedText.isNotEmpty) ...[
-          const SizedBox(height: 24),
-          Text(T.tr('tapStopHint'), style: Theme.of(context).textTheme.bodySmall),
-        ],
       ],
     );
   }
 
-  Widget _buildTextPreview() {
+  Widget _buildRecordingState() {
     return Column(
       children: [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(28),
-          decoration: BoxDecoration(
-            color: AppColors.card,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: AppColors.primary.withValues(alpha: 0.2), width: 1.5),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(Icons.check_circle, color: AppColors.success, size: 22),
-                  const SizedBox(width: 8),
-                  Text(
-                    T.tr('done'),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.success,
-                          fontSize: 16,
-                        ),
+        AnimatedBuilder(
+          animation: _glowAnimation,
+          builder: (context, child) {
+            return Transform.scale(
+              scale: _glowAnimation.value,
+              child: GestureDetector(
+                onTap: _toggleRecording,
+                child: Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.primary,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primary.withOpacity(0.4),
+                        blurRadius: 30 * _glowAnimation.value,
+                        spreadRadius: 10 * _glowAnimation.value,
+                      ),
+                    ],
                   ),
-                ],
+                  child: const Icon(Icons.stop_rounded, color: Colors.white, size: AppIcons.xl),
+                ),
               ),
-              const SizedBox(height: 16),
-              Text(
-                _recordedText,
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 20),
-              ),
-            ],
-          ),
+            );
+          },
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: AppSpacing.l),
+        Text(
+          T.tr('listening'),
+          style: AppTypography.body,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildReviewState() {
+    return Column(
+      children: [
         Row(
           children: [
             Expanded(
-              child: SizedBox(
-                height: 68,
-                child: OutlinedButton(
-                  onPressed: _retryRecording,
-                  child: Text(T.tr('tryAgain')),
-                ),
+              child: OutlinedButton(
+                onPressed: _retryRecording,
+                child: Text(T.tr('tryAgain')),
               ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: AppSpacing.s),
             Expanded(
-              child: SizedBox(
-                height: 68,
-                child: ElevatedButton(
-                  onPressed: _isSaving ? null : _saveResponse,
-                  child: _isSaving
-                      ? const SizedBox(
-                          width: 22,
-                          height: 22,
-                          child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
-                        )
-                      : Text(T.tr('saveResponse')),
-                ),
+              child: ElevatedButton(
+                onPressed: _isSaving ? null : _saveMemory,
+                child: _isSaving
+                    ? const SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                      )
+                    : Text(T.tr('saveResponse')),
               ),
             ),
           ],
