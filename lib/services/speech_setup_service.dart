@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:permission_handler/permission_handler.dart';
@@ -44,6 +45,7 @@ class SpeechSetupService {
   }
 
   Future<bool> requestMicrophonePermission() async {
+    if (kIsWeb) return true; // Web handles permissions via browser
     final status = await Permission.microphone.request();
     return status.isGranted;
   }
@@ -58,12 +60,16 @@ class SpeechSetupService {
 
     try {
       // Step 1: Check microphone permission
-      final micStatus = await Permission.microphone.status;
-      microphoneGranted = micStatus.isGranted;
+      if (kIsWeb) {
+        microphoneGranted = true; // Web handles permissions via browser
+      } else {
+        final micStatus = await Permission.microphone.status;
+        microphoneGranted = micStatus.isGranted;
 
-      if (!microphoneGranted) {
-        final requested = await Permission.microphone.request();
-        microphoneGranted = requested.isGranted;
+        if (!microphoneGranted) {
+          final requested = await Permission.microphone.request();
+          microphoneGranted = requested.isGranted;
+        }
       }
 
       // Step 2: Check speech recognition availability
@@ -116,6 +122,7 @@ class SpeechSetupService {
   }
 
   Future<void> openSpeechSettings() async {
+    if (kIsWeb) return; // Web doesn't need this
     if (Platform.isAndroid) {
       try {
         await MethodChannel('com.myparentsstory/setup').invokeMethod('openSpeechSettings');
@@ -126,6 +133,7 @@ class SpeechSetupService {
   }
 
   Future<void> openLanguagePackSettings() async {
+    if (kIsWeb) return; // Web doesn't need this
     if (Platform.isAndroid) {
       try {
         await MethodChannel('com.myparentsstory/setup').invokeMethod('openLanguagePackSettings');

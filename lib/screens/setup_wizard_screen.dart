@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../design_system/design_system.dart';
@@ -35,11 +36,13 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
     setState(() => _isChecking = true);
 
     // Step 1: Microphone
-    _micGranted = await _speechService.requestMicrophonePermission();
     setState(() => _currentStep = 1);
     await Future.delayed(const Duration(milliseconds: 600));
-
+    _micGranted = await _speechService.requestMicrophonePermission();
+    
     // Step 2: Speech recognition check
+    setState(() => _currentStep = 2);
+    await Future.delayed(const Duration(milliseconds: 600));
     final result = await _speechService.checkDeviceReadiness(
       languageCode: localeProvider.locale.languageCode,
     );
@@ -47,9 +50,6 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
     _onDeviceAvailable = result.onDeviceAvailable;
     _offlineLanguageReady = result.offlineLanguageReady;
     _installedLanguages = result.installedLanguages;
-
-    setState(() => _currentStep = 2);
-    await Future.delayed(const Duration(milliseconds: 600));
 
     // Step 3: Language check
     setState(() => _currentStep = 3);
@@ -71,6 +71,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
   }
 
   void _openSettings() async {
+    if (kIsWeb) return;
     if (Platform.isAndroid) {
       try {
         await const MethodChannel('com.myparentsstory/setup').invokeMethod('openSpeechSettings');
@@ -81,6 +82,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
   }
 
   void _openLanguageDownload() async {
+    if (kIsWeb) return;
     if (Platform.isAndroid) {
       try {
         await const MethodChannel('com.myparentsstory/setup').invokeMethod('openLanguagePackSettings');
@@ -105,88 +107,99 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-          child: Column(
-            children: [
-              const Spacer(flex: 2),
-              // App icon
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.primary.withValues(alpha: 0.08),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
                 ),
-                child: const Icon(
-                  Icons.auto_stories_rounded,
-                  size: 48,
-                  color: AppColors.primary,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.xxl),
-              Text(
-                T.tr('setupTitle'),
-                textAlign: TextAlign.center,
-                style: AppTypography.display,
-              ),
-              const SizedBox(height: AppSpacing.m),
-              Text(
-                T.tr('setupSubtitle'),
-                textAlign: TextAlign.center,
-                style: AppTypography.body.copyWith(color: AppColors.textLight),
-              ),
-              const SizedBox(height: AppSpacing.xxl),
-              // Readiness Check Cards
-              if (_isChecking && _currentStep < 4) ...[
-                _buildCheckingIndicator(),
-              ] else ...[
-                _buildReadinessCards(),
-              ],
-              const Spacer(flex: 2),
-              // Bottom button
-              if (_currentStep == 4 && !_isChecking) ...[
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _finish,
-                    child: Text(T.tr('startMyStory')),
+                child: IntrinsicHeight(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: AppSpacing.xl),
+                        
+                        // Progress indicator
+                        if (_currentStep < 4) ...[
+                          Text(
+                            'Step ${_currentStep == 0 ? 1 : _currentStep} of 4',
+                            style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.primary),
+                          ),
+                          const SizedBox(height: AppSpacing.xs),
+                          Text(
+                            'Preparing your phone',
+                            style: AppTypography.caption.copyWith(color: AppColors.textLight),
+                          ),
+                          const SizedBox(height: AppSpacing.l),
+                        ] else ...[
+                          const SizedBox(height: AppSpacing.xxl),
+                        ],
+
+                        // App icon
+                        Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primary.withValues(alpha: 0.08),
+                          ),
+                          child: const Icon(
+                            Icons.auto_stories_rounded,
+                            size: 40,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.xl),
+                        Text(
+                          T.tr('setupTitle'),
+                          textAlign: TextAlign.center,
+                          style: AppTypography.display,
+                        ),
+                        const SizedBox(height: AppSpacing.m),
+                        Text(
+                          'This usually takes less than 30 seconds.',
+                          textAlign: TextAlign.center,
+                          style: AppTypography.body.copyWith(color: AppColors.textLight),
+                        ),
+                        const SizedBox(height: AppSpacing.xxl),
+                        
+                        // Readiness Check Cards
+                        _buildReadinessCards(),
+                        
+                        const Spacer(),
+                        
+                        // Final Goal & Trust Card when checking
+                        if (_currentStep < 4) ...[
+                          _buildFinalGoalCard(),
+                          const SizedBox(height: AppSpacing.l),
+                          _buildTrustCard(),
+                          const SizedBox(height: AppSpacing.xl),
+                        ],
+
+                        // Bottom button
+                        if (_currentStep == 4 && !_isChecking) ...[
+                          const SizedBox(height: AppSpacing.xl),
+                          _buildTrustCard(),
+                          const SizedBox(height: AppSpacing.xl),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: _finish,
+                              child: Text(T.tr('startMyStory')),
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.xl),
+                        ],
+                      ],
+                    ),
                   ),
                 ),
-                const SizedBox(height: AppSpacing.xl),
-              ],
-            ],
-          ),
+              ),
+            );
+          },
         ),
-      ),
-    );
-  }
-
-  Widget _buildCheckingIndicator() {
-    return Container(
-      padding: const EdgeInsets.all(AppSpacing.l),
-      decoration: BoxDecoration(
-        color: AppColors.card,
-        borderRadius: BorderRadius.circular(AppRadius.l),
-        border: Border.all(color: AppColors.divider),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: 24,
-            height: 24,
-            child: CircularProgressIndicator(
-              strokeWidth: 2.5,
-              color: AppColors.primary,
-            ),
-          ),
-          const SizedBox(width: AppSpacing.m),
-          Text(
-            T.tr('checkingDevice'),
-            style: AppTypography.body,
-          ),
-        ],
       ),
     );
   }
@@ -200,26 +213,35 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
           icon: Icons.mic_rounded,
           label: T.tr('micReady'),
           isReady: _micGranted,
+          isChecking: _isChecking && _currentStep == 1,
+          isPending: _currentStep < 1,
         ),
         const SizedBox(height: AppSpacing.s),
         _buildCheckItem(
           icon: Icons.record_voice_over_rounded,
           label: T.tr('speechAvailable'),
           isReady: _speechAvailable,
+          isChecking: _isChecking && _currentStep == 2,
+          isPending: _currentStep < 2,
         ),
         const SizedBox(height: AppSpacing.s),
         _buildCheckItem(
           icon: Icons.language_rounded,
           label: T.tr('offlineLanguage'),
           isReady: _offlineLanguageReady,
+          isChecking: _isChecking && _currentStep == 3,
+          isPending: _currentStep < 3,
         ),
         const SizedBox(height: AppSpacing.s),
         _buildCheckItem(
           icon: Icons.phone_android_rounded,
           label: T.tr('storageReady'),
           isReady: true,
+          isChecking: false,
+          isPending: false,
         ),
-        if (!allReady) ...[
+        
+        if (!allReady && _currentStep == 4) ...[
           const SizedBox(height: AppSpacing.l),
           _buildRecoveryActions(),
         ],
@@ -231,15 +253,77 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
     required IconData icon,
     required String label,
     required bool isReady,
+    required bool isChecking,
+    required bool isPending,
   }) {
-    return Container(
+    Color stateColor;
+    Widget leadingWidget;
+    String displayLabel = label;
+    Color labelColor = AppColors.text;
+
+    if (isPending) {
+      stateColor = AppColors.divider;
+      labelColor = AppColors.textLight;
+      leadingWidget = Container(
+        width: 24,
+        height: 24,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: AppColors.divider, width: 2),
+        ),
+      );
+    } else if (isChecking) {
+      stateColor = AppColors.primary;
+      displayLabel = 'Checking...';
+      leadingWidget = const SizedBox(
+        width: 24,
+        height: 24,
+        child: CircularProgressIndicator(
+          strokeWidth: 2.5,
+          color: AppColors.primary,
+        ),
+      );
+    } else if (isReady) {
+      stateColor = AppColors.success;
+      leadingWidget = Container(
+        width: 24,
+        height: 24,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.success.withValues(alpha: 0.1),
+        ),
+        child: const Icon(
+          Icons.check_rounded,
+          color: AppColors.success,
+          size: 16,
+        ),
+      );
+    } else {
+      stateColor = AppColors.error;
+      leadingWidget = Container(
+        width: 24,
+        height: 24,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.error.withValues(alpha: 0.1),
+        ),
+        child: const Icon(
+          Icons.close_rounded,
+          color: AppColors.error,
+          size: 16,
+        ),
+      );
+    }
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.m),
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(AppRadius.m),
         border: Border.all(
-          color: isReady
-              ? AppColors.success.withValues(alpha: 0.3)
+          color: (isReady || isChecking) 
+              ? stateColor.withValues(alpha: 0.3)
               : AppColors.divider,
         ),
       ),
@@ -248,24 +332,23 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
           Container(
             width: 40,
             height: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isReady
-                  ? AppColors.success.withValues(alpha: 0.1)
-                  : AppColors.error.withValues(alpha: 0.1),
-            ),
-            child: Icon(
-              isReady ? Icons.check_rounded : Icons.close_rounded,
-              color: isReady ? AppColors.success : AppColors.error,
-              size: 24,
-            ),
+            alignment: Alignment.center,
+            child: leadingWidget,
           ),
           const SizedBox(width: AppSpacing.m),
           Expanded(
-            child: Text(
-              label,
-              style: AppTypography.body.copyWith(
-                color: isReady ? AppColors.text : AppColors.textLight,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 200),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                key: ValueKey(displayLabel),
+                child: Text(
+                  displayLabel,
+                  style: AppTypography.body.copyWith(
+                    color: labelColor,
+                    fontWeight: (isChecking || isReady) ? FontWeight.w500 : FontWeight.normal,
+                  ),
+                ),
               ),
             ),
           ),
@@ -273,6 +356,70 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
             icon,
             color: isReady ? AppColors.success : AppColors.textLight,
             size: AppIcons.m,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFinalGoalCard() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.l),
+      decoration: BoxDecoration(
+        color: AppColors.primary.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(AppRadius.m),
+        border: Border.all(color: AppColors.primary.withValues(alpha: 0.1)),
+      ),
+      child: Column(
+        children: [
+          Text(
+            'Next',
+            style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.primary),
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            'You\'ll record your first family story.',
+            style: AppTypography.body,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTrustCard() {
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.l),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppRadius.m),
+        border: Border.all(color: AppColors.divider),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(
+            Icons.lock_outline_rounded,
+            color: AppColors.textLight,
+            size: 20,
+          ),
+          const SizedBox(width: AppSpacing.m),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Private by Design',
+                  style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.text),
+                ),
+                const SizedBox(height: AppSpacing.xs),
+                Text(
+                  'Your recordings stay on your phone.\nNothing is uploaded unless you choose to share it.',
+                  style: AppTypography.caption.copyWith(color: AppColors.textLight),
+                ),
+              ],
+            ),
           ),
         ],
       ),

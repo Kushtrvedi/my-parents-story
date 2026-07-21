@@ -1,27 +1,13 @@
 ---
 name: Feature Request
-about: Suggest an idea for the app
-title: '[FEATURE] '
+about: Suggest an idea for this project
+title: "[FEATURE] "
 labels: enhancement
-assignees: ''
+assignees: ""
 ---
 
-## Problem Statement
+**Is your feature request related to a problem?**
+A clear and concise description of what the problem is.
 
-A clear description of the problem or limitation you're experiencing.
-
-## Proposed Solution
-
-Describe the solution you'd like.
-
-## Alternatives Considered
-
-Any alternative solutions or features you've considered.
-
-## Use Case
-
-Describe the use case and how this feature would help preserve memories.
-
-## Additional Context
-
-Add any mockups, examples, or context about the feature request.
+**Describe the solution you'd like**
+Clear description of what you want to happen.
