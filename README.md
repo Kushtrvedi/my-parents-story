@@ -3,7 +3,7 @@
   <img src="docs/assets/logo.png" alt="My Parents' Story Logo" width="120" height="120" />
   <br/>
   <h1>My Parents' Story</h1>
-  <p><strong><em>Not an app people download.<br/>A gift people give.</em></strong></p>
+  <p><strong><em>Not an app people download.<br/>A gift families give each other.</em></strong></p>
 </div>
 
 <br/>
@@ -21,7 +21,7 @@
 
 ---
 
-### Every parent carries a library inside them. When they pass, that library burns down.
+> **Every parent carries a library inside them. When they pass, that library burns down.**
 
 We are building a beautiful, entirely free, and privacy-first legacy preservation platform. It is designed to sit beside your parents like a patient grandchild, asking them the right questions, listening to their voices, and transforming their memories into a beautifully formatted digital memoir book.
 
@@ -61,6 +61,7 @@ Your biggest selling point isn't recording—it's the finished book.
 ## 🎯 Who Is This For?
 
 Built for:
+
 - [x] Sons and daughters
 - [x] Parents
 - [x] Grandparents
@@ -97,7 +98,7 @@ Because every family deserves this.
 
 ## 👴 Designed for Parents
 
-This app was built from the ground up for a demographic that technology often leaves behind. 
+This app was built from the ground up for a demographic that technology often leaves behind.
 
 - [x] **Large text** (24px+ primary reading text)
 - [x] **Large buttons** (64x64 minimum touch targets)
@@ -125,7 +126,7 @@ flutter build apk --release # For Android
 
 ---
 
-## 🤝 Join the mission.
+## 🤝 Join the mission
 
 Help us preserve millions of family stories. Whether you write code, design interfaces, or speak a different language, we need your help to make this the global gold standard for open-source legacy preservation.
 
