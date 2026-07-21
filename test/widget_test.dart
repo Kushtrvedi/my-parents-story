@@ -231,14 +231,14 @@ void main() {
   group('Translations', () {
     test('loads English translations', () {
       T.load('en');
-      expect(T.tr('appTitle'), isNot('appTitle'));
       expect(T.tr('tagline'), isNot('tagline'));
+      expect(T.tr('saveResponse'), equals('Save response'));
     });
 
     test('loads Hindi translations', () {
       T.load('hi');
-      expect(T.tr('appTitle'), isNot('appTitle'));
       expect(T.tr('tagline'), isNot('tagline'));
+      expect(T.tr('saveResponse'), equals('जवाब सहेजें'));
     });
 
     test('returns key if translation missing', () {

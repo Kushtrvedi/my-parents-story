@@ -9,29 +9,30 @@
 ### Completed
 
 - Product Constitution v1.0
-- Architecture design
+- Question Constitution v1.0
+- VISION.md, CONTRIBUTING.md, CODE_OF_CONDUCT.md, MIT License
+- Architecture design (offline-first, voice-first, elderly-friendly)
+- Calm elderly-friendly UI (34-38px questions, 72-80px buttons, warm #FAF8F5 palette)
 - Local-first storage (Hive)
-- 300 guided questions across 12 categories
+- 300 guided questions across 20 chapters (15 per chapter)
+- Question metadata (purpose, tone, memory type, duration, difficulty, tags, follow-ups)
 - Voice recording (native speech-to-text)
 - Text-to-speech (reads questions aloud)
-- Elderly-friendly UI (24px+ fonts, 70px buttons)
 - Template-based book generation (no AI required)
 - PDF export with premium typography
-- Multi-language support (EN, HI, GU, ES)
-- Backup/export service
-- GitHub Actions CI/CD
-- Repository documentation
+- Multi-language support (EN, HI, GU, ES) — all keys synced and verified
+- Backup/export/import service
+- 5 collapsible life-stage groups (Childhood, Youth, Family, Journey, Legacy)
+- 26 passing tests (storage, models, translations, question database, template service)
+- GitHub Actions CI/CD (5 workflows)
+- Repository documentation (8 docs in /docs/)
 - Security documentation
-- Contributing guidelines
-- MIT License
 
 ### In Progress
 
-- Meaningful widget tests
-- Screenshot documentation
-- Offline scenario verification
 - Additional language translations (Tamil, Telugu, Kannada, etc.)
 - Photo attachment per memory
+- Widget tests for screens
 
 ### Blocked
 
@@ -41,15 +42,15 @@
 
 ## Next Milestone
 
-**Alpha v0.1.0** — Closed alpha with 20-50 families
+**Beta v0.2.0** — Feature-complete beta with family testing
 
 ### Requirements
 
-1. All governance documents in repository
-2. Automated test coverage for core flows
-3. Offline scenario verification complete
-4. Screenshots and polished documentation
-5. Closed alpha feedback incorporated
+1. All core features stable and tested
+2. Additional languages added
+3. Photo attachment per memory
+4. Offline scenario verification complete
+5. Screenshots and polished documentation
 
 ## Architecture
 
@@ -67,13 +68,12 @@ Offline-First | Voice-First | Elderly-Friendly | Free Forever
 
 | Component | Status |
 |---|---|
-| App startup | Planned |
-| Profile creation | Planned |
-| Response recording | Planned |
-| Auto-save | Planned |
-| PDF generation | Planned |
-| Export/import | Planned |
-| Offline mode | Planned |
+| StorageService | 7/7 passing |
+| QuestionDatabase | 7/7 passing |
+| Translations | 3/3 passing |
+| TemplateBookService | 3/3 passing |
+| Models | 6/6 passing |
+| **Total** | **26/26 passing** |
 
 ## Offline Verification Checklist
 
