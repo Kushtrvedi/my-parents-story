@@ -174,6 +174,17 @@ class T {
 
       // Recording
       'tapToBeginStory': 'अपनी कहानी बताने के लिए एक बार टैप करें',
+
+      // PDF & Share
+      'shareAMemory': 'एक याद साझा करें',
+      'shareThisMoment': 'इस पल को साझा करें',
+      'ok': 'ठीक है',
+      'aLifeStory': 'एक जीवन कथा',
+      'everyParentDeserves': '"हर माता-पिता को अपनी कहानी छोड़ने का अधिकार है।"',
+      'myParentsStory': 'मेरे माता-पिता की कहानी',
+      'chapterPrefix': 'अध्याय ',
+      'whatIHope': 'मैं क्या चाहता हूं कि मेरा परिवार याद रखे',
+      'withLove': 'बहुत प्यार के साथ,\n{name}',
     },
     'gu': {
       'tagline': 'દરેક માતા-પિતાની અંદર એક પુસ્તકાલય છે.',
@@ -256,6 +267,17 @@ class T {
 
       // Recording
       'tapToBeginStory': 'તમારી વાર્તા કહેવા માટે એક વાર ટેપ કરો',
+
+      // PDF & Share
+      'shareAMemory': 'એક યાદ શેર કરો',
+      'shareThisMoment': 'આ પળ શેર કરો',
+      'ok': 'ઠીક છે',
+      'aLifeStory': 'એક જીવન વાર્તા',
+      'everyParentDeserves': '"દરેક માતા-પિતાને પોતાની વાર્તા છોડવાનો અધિકાર છે."',
+      'myParentsStory': 'મારા માતા-પિતાની વાર્તા',
+      'chapterPrefix': 'અધ્યાય ',
+      'whatIHope': 'હું શું ઇચ્છું છું કે મારું કુટુંબ યાદ રાખે',
+      'withLove': 'ઘણા પ્રેમ સાથે,\n{name}',
     },
     'es': {
       'tagline': 'Todo padre lleva una biblioteca dentro.',
@@ -338,6 +360,17 @@ class T {
 
       // Recording
       'tapToBeginStory': 'Toca una vez para comenzar a contar tu historia',
+
+      // PDF & Share
+      'shareAMemory': 'Comparte un recuerdo',
+      'shareThisMoment': 'Comparte este momento',
+      'ok': 'OK',
+      'aLifeStory': 'Una historia de vida',
+      'everyParentDeserves': '"Todo padre merece dejar atrás su historia."',
+      'myParentsStory': 'La historia de mis padres',
+      'chapterPrefix': 'Capítulo ',
+      'whatIHope': 'Lo que espero que mi familia recuerde',
+      'withLove': 'Con todo mi amor,\n{name}',
     },
     'mr': {
       'tagline': 'दर मुलगा-मुलगीच्या आई-बाबांच्या आत एक संपूर्ण कथा असते.',
@@ -411,6 +444,17 @@ class T {
       'finalLetterTitle': 'माझ्या कुटुंबाला मी काय लक्षात ठेवू इच्छितो',
       'chapterLabel': 'अध्याय {number}',
       'tapToBeginStory': 'तुमची कथा सांगण्यासाठी एकदा टॅप करा',
+
+      // PDF & Share
+      'shareAMemory': 'एक आठवण शेअर करा',
+      'shareThisMoment': 'हा क्षण शेअर करा',
+      'ok': 'ठीक आहे',
+      'aLifeStory': 'एक जीवन कथा',
+      'everyParentDeserves': '"दर मुलगा-मुलगीच्या आई-बाबांना आपली कथा सोडून जाण्याचा अधिकार आहे."',
+      'myParentsStory': 'माझ्या आई-बाबांची कथा',
+      'chapterPrefix': 'अध्याय ',
+      'whatIHope': 'माझ्या कुटुंबाला मी काय लक्षात ठेवू इच्छितो',
+      'withLove': 'खूप प्रेमासह,\n{name}',
     },
     'ta': {
       'tagline': 'ஒவ்வொரு பெற்றோருக்குள்ளும் ஒரு கதை உள்ளது.',
@@ -484,6 +528,17 @@ class T {
       'finalLetterTitle': 'என் குடும்பம் நினைவில் கொள்ள வேண்டியது',
       'chapterLabel': 'அத்தியாயம் {number}',
       'tapToBeginStory': 'உங்கள் கதையை சொல்ல ஒருமுறை தொடுங்கள்',
+
+      // PDF & Share
+      'shareAMemory': 'ஒரு நினைவைப் பகிருங்கள்',
+      'shareThisMoment': 'இந்தத் தருணத்தைப் பகிருங்கள்',
+      'ok': 'சரி',
+      'aLifeStory': 'ஒரு வாழ்க்கைக் கதை',
+      'everyParentDeserves': '"ஒவ்வொரு பெற்றோருக்கும் தங்கள் கதையை விட்டுச் செல்லும் உரிமை உண்டு."',
+      'myParentsStory': 'என் பெற்றோரின் கதை',
+      'chapterPrefix': 'அத்தியாயம் ',
+      'whatIHope': 'என் குடும்பம் நினைவில் கொள்ள வேண்டியது',
+      'withLove': 'அதிக அன்புடன்,\n{name}',
     },
     'te': {
       'tagline': 'ప్రతి తల్లిదండ్రుల లోనూ ఒక కథ ఉంది.',
@@ -557,6 +612,17 @@ class T {
       'finalLetterTitle': 'నా కుటుంబం గుర్తుంచుకోవలసినది',
       'chapterLabel': 'అధ్యాయం {number}',
       'tapToBeginStory': 'మీ కథ చెప్పడానికి ఒకసారి టాప్ చేయండి',
+
+      // PDF & Share
+      'shareAMemory': 'ఒక జ్ఞాపకాన్ని షేర్ చేయండి',
+      'shareThisMoment': 'ఈ క్షణాన్ని షేర్ చేయండి',
+      'ok': 'సరే',
+      'aLifeStory': 'ఒక జీవిత కథ',
+      'everyParentDeserves': '"ప్రతి తల్లిదండ్రులకు తమ కథను వదిలి వెళ్ళే హక్కు ఉంది."',
+      'myParentsStory': 'నా తల్లిదండ్రుల కథ',
+      'chapterPrefix': 'అధ్యాయం ',
+      'whatIHope': 'నా కుటుంబం గుర్తుంచుకోవలసినది',
+      'withLove': 'చాలా ప్రేमతో,\n{name}',
     },
     'ml': {
       'tagline': 'എല്ലാ മാതാപിതാക്കൾക്കും അകത്ത് ഒരു കഥയുണ്ട്.',
@@ -630,6 +696,17 @@ class T {
       'finalLetterTitle': 'എന്റെ കുടുംബം ഓർക്കേണ്ടത്',
       'chapterLabel': 'അധ്യായം {number}',
       'tapToBeginStory': 'നിങ്ങളുടെ കഥ പറയാൻ ഒരിക്കൽ ടാപ്പ് ചെയ്യൂ',
+
+      // PDF & Share
+      'shareAMemory': 'ഒരു ഓർമ്മ പങ്കുവെക്കൂ',
+      'shareThisMoment': 'ഈ നിമിഷം പങ്കുവെക്കൂ',
+      'ok': 'ശരി',
+      'aLifeStory': 'ഒരു ജീവിത കഥ',
+      'everyParentDeserves': '"ഓരോ മാതാപിതാക്കൾക്കും അവരുടെ കഥ ബാക്കി വയ്ക്കാനുള്ള അവകാശമുണ്ട്."',
+      'myParentsStory': 'എന്റെ മാതാപിതാക്കളുടെ കഥ',
+      'chapterPrefix': 'അധ്യായം ',
+      'whatIHope': 'എന്റെ കുടുംബം ഓർക്കേണ്ടത്',
+      'withLove': 'വളരെ സ്നേഹത്തോടെ,\n{name}',
     },
     'or': {
       'tagline': 'ପ୍ରତ୍ୟେକ ବାପାମାଙ୍କ ଭିତରେ ଗୋଟିଏ କାହାଣୀ ଅଛି।',
@@ -703,6 +780,17 @@ class T {
       'finalLetterTitle': 'ମୋ ପରିବାର ମନେ ରଖିବା ଉଚିତ୍ ଜିନିଷ',
       'chapterLabel': 'ଅଧ୍ୟାୟ {number}',
       'tapToBeginStory': 'ଆପଣଙ୍କ କାହାଣୀ କହିବାକୁ ଗୋଟିଏ ଥର ଟ୍ୟାପ କରନ୍ତୁ',
+
+      // PDF & Share
+      'shareAMemory': 'ଗୋଟିଏ ସ୍ମୃତି ସେୟାର କରନ୍ତୁ',
+      'shareThisMoment': 'ଏହି ମୁହୂର୍ତ୍ତ ସେୟାର କରନ୍ତୁ',
+      'ok': 'ଠିକ୍ ଅଛି',
+      'aLifeStory': 'ଗୋଟିଏ ଜୀବନ କାହାଣୀ',
+      'everyParentDeserves': '"ପ୍ରତ୍ୟେକ ବାପାମାଙ୍କୁ ସେମାନଙ୍କ କାହାଣୀ ଛାଡ଼ିବାର ଅଧିକାର ଅଛି।"',
+      'myParentsStory': 'ମୋ ବାପାମାଙ୍କ କାହାଣୀ',
+      'chapterPrefix': 'ଅଧ୍ୟାୟ ',
+      'whatIHope': 'ମୋ ପରିବାର ଯାହା ମନେ ରଖିବା ଉଚିତ୍',
+      'withLove': 'ଅନେକ ପ୍ରେମ ସହ,\n{name}',
     },
     'pa': {
       'tagline': 'ਹਰ ਮਾਂ-ਬਾਪ ਦੇ ਅੰਦਰ ਇੱਕ ਕਹਾਣੀ ਹੈ।',
@@ -776,6 +864,17 @@ class T {
       'finalLetterTitle': 'ਮੇਰੇ ਪਰਿਵਾਰ ਨੂੰ ਯਾਦ ਰੱਖਣ ਯੋਗ ਗੱਲ',
       'chapterLabel': 'ਅਧਿਆਇ {number}',
       'tapToBeginStory': 'ਆਪਣੀ ਕਹਾਣੀ ਦੱਸਣ ਲਈ ਇੱਕ ਵਾਰ ਟੈਪ ਕਰੋ',
+
+      // PDF & Share
+      'shareAMemory': 'ਇੱਕ ਯਾਦ ਸਾਂਝੀ ਕਰੋ',
+      'shareThisMoment': 'ਇਸ ਪਲ ਨੂੰ ਸਾਂਝਾ ਕਰੋ',
+      'ok': 'ਠੀਕ ਹੈ',
+      'aLifeStory': 'ਇੱਕ ਜ਼ਿੰਦਗੀ ਦੀ ਕਹਾਣੀ',
+      'everyParentDeserves': '"ਹਰ ਮਾਂ-ਬਾਪ ਨੂੰ ਆਪਣੀ ਕਹਾਣੀ ਛੱਡਣ ਦਾ ਹੱਕ ਹੈ।"',
+      'myParentsStory': 'ਮੇਰੇ ਮਾਂ-ਬਾਪ ਦੀ ਕਹਾਣੀ',
+      'chapterPrefix': 'ਅਧਿਆਇ ',
+      'whatIHope': 'ਮੈਂ ਚਾਹੁੰਦਾ ਹਾਂ ਮੇਰਾ ਪਰਿਵਾਰ ਯਾਦ ਰੱਖੇ',
+      'withLove': 'ਬਹੁਤ ਪਿਆਰ ਨਾਲ,\n{name}',
     },
     'bn': {
       'tagline': 'প্রতিটি বাবা-মায়ের ভেতরে একটি গল্প আছে।',
@@ -849,6 +948,17 @@ class T {
       'finalLetterTitle': 'আমার পরিবার যা মনে রাখুক',
       'chapterLabel': 'অধ্যায় {number}',
       'tapToBeginStory': 'আপনার গল্প বলতে একবার ট্যাপ করুন',
+
+      // PDF & Share
+      'shareAMemory': 'একটি স্মৃতি শেয়ার করুন',
+      'shareThisMoment': 'এই মুহূর্তটি শেয়ার করুন',
+      'ok': 'ঠিক আছে',
+      'aLifeStory': 'একটি জীবনের গল্প',
+      'everyParentDeserves': '"প্রতিটি বাবা-মায়ের তাদের গল্প রেখে যাওয়ার অধিকার রয়েছে।"',
+      'myParentsStory': 'আমার বাবা-মায়ের গল্প',
+      'chapterPrefix': 'অধ্যায় ',
+      'whatIHope': 'আমি চাই আমার পরিবার যা মনে রাখুক',
+      'withLove': 'অনেক ভালোবাসায়,\n{name}',
     },
     'kn': {
       'tagline': 'ಪ್ರತಿ ತಂದೆ-ತಾಯಿಯ ಒಳಗೂ ಒಂದು ಕಥೆ ಇದೆ.',
@@ -922,6 +1032,17 @@ class T {
       'finalLetterTitle': 'ನನ್ನ ಕುಟುಂಬ ನೆನಪಿಟ್ಟುಕೊಳ್ಳಬೇಕಾದ್ದು',
       'chapterLabel': 'ಅಧ್ಯಾಯ {number}',
       'tapToBeginStory': 'ನಿಮ್ಮ ಕಥೆ ಹೇಳಲು ಒಮ್ಮೆ ಟ್ಯಾಪ್ ಮಾಡಿ',
+
+      // PDF & Share
+      'shareAMemory': 'ಒಂದು ನೆನಪನ್ನು ಹಂಚಿಕೊಳ್ಳಿ',
+      'shareThisMoment': 'ಈ ಕ್ಷಣವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ',
+      'ok': 'ಸರಿ',
+      'aLifeStory': 'ಒಂದು ಜೀವನ ಕಥೆ',
+      'everyParentDeserves': '"ಪ್ರತಿ ತಂದೆ-ತಾಯಿಗೂ ತಮ್ಮ ಕಥೆಯನ್ನು ಬಿಟ್ಟುಹೋಗುವ ಹಕ್ಕಿದೆ."',
+      'myParentsStory': 'ನನ್ನ ತಂದೆ-ತಾಯಿಯ ಕಥೆ',
+      'chapterPrefix': 'ಅಧ್ಯಾಯ ',
+      'whatIHope': 'ನನ್ನ ಕುಟುಂಬ ಯಾವುದನ್ನು ನೆನಪಿಟ್ಟುಕೊಳ್ಳಬೇಕು',
+      'withLove': 'ತುಂಬಾ ಪ್ರೀತಿಯಿಂದ,\n{name}',
     },
   };
 
