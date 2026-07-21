@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
+import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
 import '../services/storage_service.dart';
 import 'life_journey_screen.dart';

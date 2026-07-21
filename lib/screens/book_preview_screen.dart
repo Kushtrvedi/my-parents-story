@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import '../config/app_theme.dart';
+import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
 import '../models/generated_chapter.dart';
 import '../models/parent_profile.dart';

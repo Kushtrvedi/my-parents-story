@@ -175,4 +175,17 @@ class StorageService {
     final key = '${profileId}_milestone_$type';
     return LocalStorage.settings.get(key) ?? 0;
   }
+
+  // Generic Settings
+  dynamic getSetting(String key) {
+    return LocalStorage.settings.get(key);
+  }
+
+  void saveSetting(String key, dynamic value) {
+    LocalStorage.settings.put(key, value);
+  }
+
+  void deleteSetting(String key) {
+    LocalStorage.settings.delete(key);
+  }
 }

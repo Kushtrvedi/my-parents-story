@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
+import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
 import '../services/storage_service.dart';
@@ -33,7 +34,7 @@ class _GenerateBookScreenState extends State<GenerateBookScreen> {
       if (mounted) setState(() => _progress = i);
     }
 
-    final responses = _storageService.getResponsesForProfile(widget.profile.id);
+    final responses = _storageService.getMemoriesForProfile(widget.profile.id);
     final book = _templateService.generateBook(widget.profile, responses);
 
     setState(() {

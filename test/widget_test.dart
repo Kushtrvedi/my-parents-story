@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:my_parents_story/services/storage_service.dart';
 import 'package:my_parents_story/services/template_book_service.dart';
 import 'package:my_parents_story/models/parent_profile.dart';
-import 'package:my_parents_story/models/response.dart';
+import 'package:my_parents_story/models/memory.dart';
 import 'package:my_parents_story/models/generated_chapter.dart';
 import 'package:my_parents_story/models/question.dart';
 import 'package:my_parents_story/data/questions.dart';
@@ -75,16 +75,15 @@ void main() {
         parentType: 'mom',
       );
 
-      final response = storageService.saveResponse(
+      final memory = storageService.saveMemory(
         profileId: profile.id,
-        category: 'ch01',
-        questionIndex: 0,
-        question: 'Where does your family come from?',
-        answer: 'I remember playing in the garden.',
+        chapterId: 'ch01',
+        questionId: 'ch01_q01',
+        originalTranscript: 'I remember playing in the garden.',
       );
 
-      expect(response.answer, equals('I remember playing in the garden.'));
-      expect(response.hasAnswer, isTrue);
+      expect(memory.answer, equals('I remember playing in the garden.'));
+      expect(memory.hasAnswer, isTrue);
     });
 
     test('retrieves responses for a chapter', () {
@@ -93,23 +92,21 @@ void main() {
         parentType: 'dad',
       );
 
-      storageService.saveResponse(
+      storageService.saveMemory(
         profileId: profile.id,
-        category: 'ch01',
-        questionIndex: 0,
-        question: 'Question 1',
-        answer: 'Answer 1',
+        chapterId: 'ch01',
+        questionId: 'ch01_q01',
+        originalTranscript: 'Answer 1',
       );
 
-      storageService.saveResponse(
+      storageService.saveMemory(
         profileId: profile.id,
-        category: 'ch01',
-        questionIndex: 1,
-        question: 'Question 2',
-        answer: 'Answer 2',
+        chapterId: 'ch01',
+        questionId: 'ch01_q02',
+        originalTranscript: 'Answer 2',
       );
 
-      final responses = storageService.getResponsesForCategory(
+      final responses = storageService.getMemoriesForChapter(
         profile.id,
         'ch01',
       );
@@ -123,20 +120,18 @@ void main() {
         parentType: 'mom',
       );
 
-      storageService.saveResponse(
+      storageService.saveMemory(
         profileId: profile.id,
-        category: 'ch01',
-        questionIndex: 0,
-        question: 'Q1',
-        answer: 'A1',
+        chapterId: 'ch01',
+        questionId: 'ch01_q01',
+        originalTranscript: 'A1',
       );
 
-      storageService.saveResponse(
+      storageService.saveMemory(
         profileId: profile.id,
-        category: 'ch02',
-        questionIndex: 0,
-        question: 'Q1',
-        answer: 'A1',
+        chapterId: 'ch02',
+        questionId: 'ch02_q01',
+        originalTranscript: 'A1',
       );
 
       final progress = storageService.getCompletionProgress(profile.id);
@@ -150,12 +145,11 @@ void main() {
         parentType: 'mom',
       );
 
-      storageService.saveResponse(
+      storageService.saveMemory(
         profileId: profile.id,
-        category: 'ch01',
-        questionIndex: 0,
-        question: 'Q1',
-        answer: 'A1',
+        chapterId: 'ch01',
+        questionId: 'ch01_q01',
+        originalTranscript: 'A1',
       );
 
       storageService.deleteProfile(profile.id);
@@ -232,13 +226,13 @@ void main() {
     test('loads English translations', () {
       T.load('en');
       expect(T.tr('tagline'), isNot('tagline'));
-      expect(T.tr('saveResponse'), equals('Save response'));
+      expect(T.tr('saveResponse'), equals('Save this memory'));
     });
 
     test('loads Hindi translations', () {
       T.load('hi');
       expect(T.tr('tagline'), isNot('tagline'));
-      expect(T.tr('saveResponse'), equals('जवाब सहेजें'));
+      expect(T.tr('saveResponse'), equals('इस याद को सहेजें'));
     });
 
     test('returns key if translation missing', () {
@@ -254,16 +248,15 @@ void main() {
         parentType: 'mom',
       );
 
-      storageService.saveResponse(
+      storageService.saveMemory(
         profileId: profile.id,
-        category: 'ch01',
-        questionIndex: 0,
-        question: 'Where does your family come from?',
-        answer: 'I remember the garden behind our house.',
+        chapterId: 'ch01',
+        questionId: 'ch01_q01',
+        originalTranscript: 'I remember the garden behind our house.',
       );
 
       final bookService = TemplateBookService(storageService);
-      final responses = storageService.getResponsesForCategory(
+      final responses = storageService.getMemoriesForChapter(
         profile.id,
         'ch01',
       );
@@ -284,16 +277,15 @@ void main() {
         parentType: 'dad',
       );
 
-      storageService.saveResponse(
+      storageService.saveMemory(
         profileId: profile.id,
-        category: 'ch01',
-        questionIndex: 0,
-        question: 'Q1',
-        answer: 'A meaningful answer about my life.',
+        chapterId: 'ch01',
+        questionId: 'ch01_q01',
+        originalTranscript: 'A meaningful answer about my life.',
       );
 
       final bookService = TemplateBookService(storageService);
-      final allResponses = storageService.getResponsesForProfile(profile.id);
+      final allResponses = storageService.getMemoriesForProfile(profile.id);
 
       final letter = bookService.generateFinalLetter(profile, allResponses);
 
@@ -334,22 +326,21 @@ void main() {
       expect(restored.city, equals('Delhi'));
     });
 
-    test('StoryResponse toMap and fromMap', () {
-      final response = StoryResponse(
-        id: 'resp-id',
-        profileId: 'profile-id',
-        category: 'ch01',
-        questionIndex: 5,
-        question: 'Test question?',
-        answer: 'Test answer.',
+    test('Memory toMap and fromMap', () {
+      final memory = Memory(
+        id: 'mem-id',
+        parentId: 'profile-id',
+        chapterId: 'ch01',
+        questionId: 'ch01_q06',
+        originalTranscript: 'Test answer.',
       );
 
-      final map = response.toMap();
-      final restored = StoryResponse.fromMap(map);
+      final map = memory.toMap();
+      final restored = Memory.fromMap(map);
 
       expect(restored.answer, equals('Test answer.'));
-      expect(restored.category, equals('ch01'));
-      expect(restored.questionIndex, equals(5));
+      expect(restored.chapterId, equals('ch01'));
+      expect(restored.questionId, equals('ch01_q06'));
     });
 
     test('GeneratedChapter toMap and fromMap', () {
