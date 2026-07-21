@@ -59,9 +59,10 @@ class _LandingScreenState extends State<LandingScreen> {
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          child: AdaptiveCenteredBox(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
               const SizedBox(height: AppSpacing.xxl),
               // Gentle icon
               Container(
