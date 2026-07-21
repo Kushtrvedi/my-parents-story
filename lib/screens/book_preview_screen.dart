@@ -109,7 +109,11 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
                       if (widget.profile.birthYear.isNotEmpty) ...[
                         const SizedBox(height: 8),
                         Text(
+<<<<<<< HEAD
                           T.tr('bornYear').replaceAll('{year}', widget.profile.birthYear),
+=======
+                          T.tr('bornYear').replaceAll('{year}', widget.profile.birthYear!),
+>>>>>>> 4d48f42dd03d90b3fd0d0f596d65a328fb0ea570
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                 color: Colors.white.withValues(alpha: 0.6),

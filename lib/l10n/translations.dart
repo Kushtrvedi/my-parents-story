@@ -71,6 +71,7 @@ class T {
 
       // Recording
       'tapToBeginStory': 'Tap once to begin telling your story',
+<<<<<<< HEAD
       
       // Phase 4 Legacy Onboarding
       'welcomeMessage': 'Every family has stories that deserve to be remembered.',
@@ -92,6 +93,8 @@ class T {
       'chapterPrefix': 'Chapter ',
       'whatIHope': 'What I Hope My Family Remembers',
       'withLove': 'With love,\n{name}',
+=======
+>>>>>>> 4d48f42dd03d90b3fd0d0f596d65a328fb0ea570
     },
     'hi': {
       'tagline': 'हर माता-पिता के अंदर एक किताबाखाना है।',
@@ -174,6 +177,7 @@ class T {
 
       // Recording
       'tapToBeginStory': 'अपनी कहानी बताने के लिए एक बार टैप करें',
+<<<<<<< HEAD
 
       // PDF & Share
       'shareAMemory': 'एक याद साझा करें',
@@ -185,6 +189,8 @@ class T {
       'chapterPrefix': 'अध्याय ',
       'whatIHope': 'मैं क्या चाहता हूं कि मेरा परिवार याद रखे',
       'withLove': 'बहुत प्यार के साथ,\n{name}',
+=======
+>>>>>>> 4d48f42dd03d90b3fd0d0f596d65a328fb0ea570
     },
     'gu': {
       'tagline': 'દરેક માતા-પિતાની અંદર એક પુસ્તકાલય છે.',
@@ -267,6 +273,7 @@ class T {
 
       // Recording
       'tapToBeginStory': 'તમારી વાર્તા કહેવા માટે એક વાર ટેપ કરો',
+<<<<<<< HEAD
 
       // PDF & Share
       'shareAMemory': 'એક યાદ શેર કરો',
@@ -278,6 +285,8 @@ class T {
       'chapterPrefix': 'અધ્યાય ',
       'whatIHope': 'હું શું ઇચ્છું છું કે મારું કુટુંબ યાદ રાખે',
       'withLove': 'ઘણા પ્રેમ સાથે,\n{name}',
+=======
+>>>>>>> 4d48f42dd03d90b3fd0d0f596d65a328fb0ea570
     },
     'es': {
       'tagline': 'Todo padre lleva una biblioteca dentro.',
@@ -360,6 +369,7 @@ class T {
 
       // Recording
       'tapToBeginStory': 'Toca una vez para comenzar a contar tu historia',
+<<<<<<< HEAD
 
       // PDF & Share
       'shareAMemory': 'Comparte un recuerdo',
@@ -1043,6 +1053,8 @@ class T {
       'chapterPrefix': 'ಅಧ್ಯಾಯ ',
       'whatIHope': 'ನನ್ನ ಕುಟುಂಬ ಯಾವುದನ್ನು ನೆನಪಿಟ್ಟುಕೊಳ್ಳಬೇಕು',
       'withLove': 'ತುಂಬಾ ಪ್ರೀತಿಯಿಂದ,\n{name}',
+=======
+>>>>>>> 4d48f42dd03d90b3fd0d0f596d65a328fb0ea570
     },
   };
 
