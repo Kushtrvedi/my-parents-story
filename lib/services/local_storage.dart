@@ -6,8 +6,12 @@ class LocalStorage {
   static const String chaptersBox = 'chapters';
   static const String settingsBox = 'settings';
 
-  static Future<void> init() async {
-    await Hive.initFlutter();
+  static Future<void> init({String? testPath}) async {
+    if (testPath != null) {
+      Hive.init(testPath);
+    } else {
+      await Hive.initFlutter();
+    }
     await Hive.openBox(profilesBox);
     await Hive.openBox(responsesBox);
     await Hive.openBox(chaptersBox);

@@ -1,6 +1,4 @@
 import '../models/memory.dart';
-import '../core/extensions/string_extensions.dart';
-import '../core/extensions/datetime_extensions.dart';
 import '../core/utils/utils.dart';
 
 class TimelineEntry {

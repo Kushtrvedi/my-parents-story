@@ -1,4 +1,5 @@
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:speech_to_text/speech_recognition_result.dart';
 
 class NativeVoiceService {
   late stt.SpeechToText _speech;
@@ -30,15 +31,19 @@ class NativeVoiceService {
 
     _isListening = true;
     await _speech.listen(
-      onResult: (result) {
+      onResult: (SpeechRecognitionResult result) {
         if (result.recognizedWords.isNotEmpty) {
           onResult(result.recognizedWords);
         }
       },
-      localeId: localeId,
+      listenOptions: stt.SpeechListenOptions(
+        localeId: localeId,
+        listenMode: stt.ListenMode.dictation,
+        cancelOnError: true,
+        partialResults: true,
+      ),
       listenFor: const Duration(minutes: 5),
       pauseFor: const Duration(seconds: 3),
-      cancelOnError: true,
     );
   }
 

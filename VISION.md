@@ -63,3 +63,7 @@ They read his words about what love means.
 They understand, for the first time, the full story of the person who shaped their family.
 
 That is the product we are building.
+
+---
+
+**Detailed product vision:** [docs/product/VISION.md](docs/product/VISION.md)

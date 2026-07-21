@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import '../config/app_theme.dart';
+
 import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
 import '../services/storage_service.dart';
 import '../services/template_book_service.dart';
-import 'book_preview_screen.dart';
+
+import 'legacy_thanks_screen.dart';
 
 class GenerateBookScreen extends StatefulWidget {
   final ParentProfile profile;
@@ -46,7 +47,7 @@ class _GenerateBookScreenState extends State<GenerateBookScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => BookPreviewScreen(profile: widget.profile, book: book),
+          builder: (_) => LegacyThanksScreen(profile: widget.profile, book: book),
         ),
       );
     }

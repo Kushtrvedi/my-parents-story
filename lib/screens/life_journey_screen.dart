@@ -5,6 +5,7 @@ import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
 import '../services/storage_service.dart';
 import 'question_screen.dart';
+import 'pre_question_screen.dart';
 import 'generate_book_screen.dart';
 
 class _LifeStageGroup {
@@ -75,7 +76,7 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.s),
         child: Text(
-          'You\'ve shared $_totalAnswered wonderful memories. Let\'s continue.',
+          T.tr('sharedMemoriesCount').replaceAll('{count}', '$_totalAnswered'),
           textAlign: TextAlign.center,
           style: AppTypography.body.copyWith(
             color: AppColors.text,
@@ -126,10 +127,10 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
                 return Container(
                   margin: const EdgeInsets.only(bottom: AppSpacing.s),
                   decoration: BoxDecoration(
-                    color: isGroupDone ? AppColors.primary.withOpacity(0.06) : AppColors.card,
+                    color: isGroupDone ? AppColors.primary.withValues(alpha: 0.06) : AppColors.card,
                     borderRadius: BorderRadius.circular(AppRadius.l),
                     border: Border.all(
-                      color: isGroupDone ? AppColors.primary.withOpacity(0.3) : AppColors.divider,
+                      color: isGroupDone ? AppColors.primary.withValues(alpha: 0.3) : AppColors.divider,
                       width: 1.5,
                     ),
                   ),
@@ -191,15 +192,21 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
 
                           return GestureDetector(
                             onTap: () async {
+                              final Widget nextScreen = _totalAnswered == 0
+                                  ? PreQuestionScreen(
+                                      profile: widget.profile,
+                                      chapterId: chapter.id,
+                                      chapterIndex: chapterIndex,
+                                    )
+                                  : QuestionScreen(
+                                      profile: widget.profile,
+                                      chapterId: chapter.id,
+                                      chapterIndex: chapterIndex,
+                                    );
+                                    
                               await Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (_) => QuestionScreen(
-                                    profile: widget.profile,
-                                    chapterId: chapter.id,
-                                    chapterIndex: chapterIndex,
-                                  ),
-                                ),
+                                MaterialPageRoute(builder: (_) => nextScreen),
                               );
                               _loadProgress();
                             },
@@ -208,7 +215,7 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
                               padding: const EdgeInsets.all(AppSpacing.m),
                               decoration: BoxDecoration(
                                 color: chapterDone
-                                    ? AppColors.primary.withOpacity(0.04)
+                                    ? AppColors.primary.withValues(alpha: 0.04)
                                     : AppColors.background,
                                 borderRadius: BorderRadius.circular(AppRadius.m),
                               ),
@@ -221,7 +228,7 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
                                       shape: BoxShape.circle,
                                       color: chapterDone
                                           ? AppColors.primary
-                                          : AppColors.primary.withOpacity(0.08),
+                                          : AppColors.primary.withValues(alpha: 0.08),
                                     ),
                                     child: Center(
                                       child: chapterDone
@@ -303,7 +310,7 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
             shape: BoxShape.circle,
             color: isDone ? AppColors.primary : AppColors.divider,
             border: Border.all(
-              color: isDone ? AppColors.primary : AppColors.textLight.withOpacity(0.3),
+              color: isDone ? AppColors.primary : AppColors.textLight.withValues(alpha: 0.3),
               width: 1,
             ),
           ),

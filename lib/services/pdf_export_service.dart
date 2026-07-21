@@ -5,14 +5,22 @@ import 'package:printing/printing.dart';
 import 'package:path_provider/path_provider.dart';
 import '../models/parent_profile.dart';
 import '../models/generated_chapter.dart';
+import '../l10n/translations.dart';
 
 class PdfExportService {
   Future<File> generateBook({
     required ParentProfile profile,
     required List<GeneratedChapter> chapters,
     required String finalLetter,
+    String? originalLanguage,
+    String? generatedLanguage,
   }) async {
-    final pdf = pw.Document();
+    final pdf = pw.Document(
+      title: '${profile.name} Memoir',
+      author: profile.name,
+      creator: "My Parents' Story",
+      subject: 'Language: ${generatedLanguage ?? 'Unknown'} (Original: ${originalLanguage ?? 'Unknown'})',
+    );
 
     pdf.addPage(_buildCoverPage(profile));
     pdf.addPage(_buildTableOfContentsPage(chapters));
@@ -70,7 +78,7 @@ class PdfExportService {
               ),
               pw.SizedBox(height: 16),
               pw.Text(
-                'A Life Story',
+                T.tr('aLifeStory'),
                 style: pw.TextStyle(
                   fontSize: 18,
                   color: PdfColor.fromHex('#666666'),
@@ -80,7 +88,7 @@ class PdfExportService {
               if (profile.birthYear.isNotEmpty) ...[
                 pw.SizedBox(height: 8),
                 pw.Text(
-                  'Born ${profile.birthYear}',
+                  T.tr('bornYear').replaceAll('{year}', profile.birthYear),
                   style: pw.TextStyle(
                     fontSize: 14,
                     color: PdfColor.fromHex('#666666'),
@@ -108,7 +116,7 @@ class PdfExportService {
                   ),
                 ),
                 child: pw.Text(
-                  '"Every parent deserves to leave behind their story."',
+                  T.tr('everyParentDeserves'),
                   textAlign: pw.TextAlign.center,
                   style: pw.TextStyle(
                     fontSize: 14,
@@ -119,7 +127,7 @@ class PdfExportService {
               ),
               pw.SizedBox(height: 40),
               pw.Text(
-                "My Parents' Story",
+                T.tr('myParentsStory'),
                 style: pw.TextStyle(
                   fontSize: 12,
                   color: PdfColor.fromHex('#C9A96E'),
@@ -143,7 +151,7 @@ class PdfExportService {
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
               pw.Text(
-                'Table of Contents',
+                T.tr('tableOfContents'),
                 style: pw.TextStyle(
                   fontSize: 28,
                   fontWeight: pw.FontWeight.bold,
@@ -202,7 +210,7 @@ class PdfExportService {
                     pw.SizedBox(width: 16),
                     pw.Expanded(
                       child: pw.Text(
-                        'What I Hope My Family Remembers',
+                        T.tr('finalLetterTitle'),
                         style: pw.TextStyle(
                           fontSize: 16,
                           color: PdfColor.fromHex('#111111'),
@@ -235,7 +243,7 @@ class PdfExportService {
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
               pw.Text(
-                'Chapter ${chapter.chapterNumber}',
+                '${T.tr("chapterPrefix")}${chapter.chapterNumber}',
                 style: pw.TextStyle(
                   fontSize: 12,
                   color: PdfColor.fromHex('#C9A96E'),
@@ -293,7 +301,7 @@ class PdfExportService {
               pw.SizedBox(height: 30),
               pw.Center(
                 child: pw.Text(
-                  'What I Hope My Family Remembers',
+                  T.tr('whatIHope'),
                   style: pw.TextStyle(
                     fontSize: 24,
                     fontWeight: pw.FontWeight.bold,
@@ -317,7 +325,7 @@ class PdfExportService {
               pw.SizedBox(height: 40),
               pw.Center(
                 child: pw.Text(
-                  'With love,\n$parentName',
+                  T.tr('withLove').replaceAll('{name}', parentName),
                   textAlign: pw.TextAlign.center,
                   style: pw.TextStyle(
                     fontSize: 14,
@@ -329,7 +337,7 @@ class PdfExportService {
               pw.SizedBox(height: 60),
               pw.Center(
                 child: pw.Text(
-                  "My Parents' Story",
+                  T.tr('myParentsStory'),
                   style: pw.TextStyle(
                     fontSize: 10,
                     color: PdfColor.fromHex('#C9A96E'),

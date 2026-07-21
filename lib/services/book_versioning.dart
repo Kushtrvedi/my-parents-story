@@ -1,4 +1,3 @@
-import '../models/generated_chapter.dart';
 import 'storage_service.dart';
 
 class BookVersion {

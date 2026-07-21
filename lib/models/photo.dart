@@ -1,6 +1,8 @@
+import '../utils/path_resolver.dart';
+
 class Photo {
   final String id;
-  final String path;
+  final String path; // Stored as a relative path
   final String caption;
   final DateTime takenDate;
   final List<String> people;
@@ -21,6 +23,11 @@ class Photo {
       'takenDate': takenDate.toIso8601String(),
       'people': people,
     };
+  }
+
+  /// Resolves the absolute path for display
+  Future<String> get absolutePath async {
+    return await PathResolver.toAbsolute(path);
   }
 
   factory Photo.fromMap(Map<String, dynamic> map) {

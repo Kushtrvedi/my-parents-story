@@ -152,6 +152,37 @@ Memory
 
 ---
 
+---
+
+## The Core Principle
+
+My Parents' Story is not an app people download. It's a gift people give.
+
+Every design decision should influence onboarding, sharing, branding, and growth to reflect this core principle. Rather than asking "What do you want to do?", the app asks "Whose story would you never want to lose?".
+
+## Growth & The Gift Loop
+
+Growth comes from love and remembrance, not invitations or referral codes.
+Sharing should never feel like marketing. It should feel like giving.
+
+The Gift Loop:
+- A daughter records her mother.
+- She generates a beautiful memoir.
+- She gifts it to her siblings.
+- They decide to record their father.
+- The extended family begins preserving stories.
+
+The shared content (a beautifully designed quote card, a short audio clip, or a memoir page) should naturally make someone ask "What app is this?"—the story becomes the marketing.
+
+## Measuring Success
+
+Do not measure success by downloads. Measure it by outcomes:
+- Families who completed their first memory.
+- Parents who recorded multiple chapters.
+- Memoirs generated.
+- Memories safely preserved.
+- Families who invited another family because the experience mattered to them.
+
 ## Long-Term Vision
 
 You are not building another app.

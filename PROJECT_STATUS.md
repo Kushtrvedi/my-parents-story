@@ -20,7 +20,11 @@
 - Text-to-speech (reads questions aloud)
 - Template-based book generation (no AI required)
 - PDF export with premium typography
-- Multi-language support (EN, HI, GU, ES) — all keys synced and verified
+- Multi-language support (EN, HI, GU, ES, MR, TA, TE, ML, OR, PA, BN, KN) — 12 languages, all keys synced
+- Trust & Memory Integrity System (memory timeline, search, duplicate detection, autosave, versioning, archive integrity, quality scoring)
+- Core architecture layer (validators, extensions, result types, error hierarchy)
+- Architecture documentation (9 docs in /docs/architecture/)
+- Product vision document (docs/product/VISION.md)
 - Backup/export/import service
 - 5 collapsible life-stage groups (Childhood, Youth, Family, Journey, Legacy)
 - 26 passing tests (storage, models, translations, question database, template service)
@@ -30,7 +34,8 @@
 
 ### In Progress
 
-- Additional language translations (Tamil, Telugu, Kannada, etc.)
+- Accessibility audit (screen reader labels, high contrast, dynamic font scaling, text overflow)
+- Translation validator CI script
 - Photo attachment per memory
 - Widget tests for screens
 

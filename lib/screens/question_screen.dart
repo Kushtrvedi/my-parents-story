@@ -3,9 +3,11 @@ import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
 import '../models/question.dart';
+import '../models/memory.dart';
 import '../services/storage_service.dart';
 import '../services/native_voice_service.dart';
 import '../services/tts_service.dart';
+import 'share_memory_screen.dart';
 
 class QuestionScreen extends StatefulWidget {
   final ParentProfile profile;
@@ -22,7 +24,7 @@ class QuestionScreen extends StatefulWidget {
   State<QuestionScreen> createState() => _QuestionScreenState();
 }
 
-class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProviderStateMixin {
+class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObserver, SingleTickerProviderStateMixin {
   final _storageService = StorageService();
   final _voiceService = NativeVoiceService();
   final _ttsService = TextToSpeechService();
@@ -40,6 +42,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _ttsService.init();
     _loadQuestions();
     _glowController = AnimationController(
@@ -65,10 +68,20 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _voiceService.dispose();
-    _ttsService.stop();
+    _ttsService.dispose();
     _glowController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
+      if (_isRecording) {
+        _toggleRecording();
+      }
+    }
   }
 
   Question? get _currentQuestion =>
@@ -125,7 +138,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
 
     setState(() => _isSaving = true);
 
-    _storageService.saveMemory(
+    final memory = _storageService.saveMemory(
       profileId: widget.profile.id,
       chapterId: widget.chapterId,
       questionId: q.id,
@@ -142,7 +155,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
     }
 
     if (mounted) {
-      _showSavedAndNext();
+      _showSavedAndNext(memory);
     }
   }
 
@@ -164,7 +177,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
               const SizedBox(height: AppSpacing.l),
               ElevatedButton(
                 onPressed: () => Navigator.pop(ctx),
-                child: Text('OK'),
+                child: Text(T.tr('ok')),
               ),
             ],
           ),
@@ -173,7 +186,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
     );
   }
 
-  void _showSavedAndNext() {
+  void _showSavedAndNext(Memory memory) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -191,12 +204,31 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
                 style: AppTypography.heading,
               ),
               const SizedBox(height: AppSpacing.xl),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(ctx);
-                  _goToNextQuestion();
-                },
-                child: Text(T.tr('nextQuestion')),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ShareMemoryScreen(profile: widget.profile, memory: memory),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.ios_share_rounded),
+                  label: Text(T.tr('shareThisMoment')),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.s),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(ctx);
+                    _goToNextQuestion();
+                  },
+                  child: Text(T.tr('nextQuestion')),
+                ),
               ),
             ],
           ),
@@ -334,7 +366,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
               color: AppColors.primary,
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.primary.withOpacity(0.1),
+                  color: AppColors.primary.withValues(alpha: 0.1),
                   blurRadius: 20,
                   offset: const Offset(0, 4),
                 ),
@@ -345,7 +377,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
         ),
         const SizedBox(height: AppSpacing.l),
         Text(
-          'Tap once to begin telling your story',
+          T.tr('tapToBeginStory'),
           style: AppTypography.caption,
         ),
       ],
@@ -370,7 +402,7 @@ class _QuestionScreenState extends State<QuestionScreen> with SingleTickerProvid
                     color: AppColors.primary,
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.primary.withOpacity(0.4),
+                        color: AppColors.primary.withValues(alpha: 0.4),
                         blurRadius: 30 * _glowAnimation.value,
                         spreadRadius: 10 * _glowAnimation.value,
                       ),

@@ -1,0 +1,12 @@
+# Release signing configuration
+# Fill in these values before building for release
+#
+# Generate a keystore:
+# keytool -genkey -v -keystore upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+#
+# Then fill in the paths and passwords below.
+
+storePassword=
+keyPassword=
+keyAlias=
+storeFile=upload-keystore.jks

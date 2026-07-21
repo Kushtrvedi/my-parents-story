@@ -1,6 +1,8 @@
+import '../utils/path_resolver.dart';
+
 class VoiceRecording {
   final String id;
-  final String file;
+  final String file; // Stored as a relative path
   final Duration duration;
   final int? sampleRate;
   final String language;
@@ -24,6 +26,11 @@ class VoiceRecording {
       'language': language,
       'createdAt': createdAt.toIso8601String(),
     };
+  }
+
+  /// Resolves the absolute path for playback or sharing
+  Future<String> get absolutePath async {
+    return await PathResolver.toAbsolute(file);
   }
 
   factory VoiceRecording.fromMap(Map<String, dynamic> map) {
