@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import '../models/parent_profile.dart';
-import '../models/response.dart';
+import '../models/memory.dart';
 import 'storage_service.dart';
 
 class BackupService {
@@ -16,10 +16,10 @@ class BackupService {
       'version': '1.0',
       'exportedAt': DateTime.now().toIso8601String(),
       'profiles': profiles.map((p) {
-        final responses = _storage.getResponsesForProfile(p.id);
+        final memories = _storage.getMemoriesForProfile(p.id);
         return {
           'profile': p.toMap(),
-          'responses': responses.map((r) => r.toMap()).toList(),
+          'memories': memories.map((m) => m.toMap()).toList(),
         };
       }).toList(),
     };
@@ -44,15 +44,16 @@ class BackupService {
         final profile = ParentProfile.fromMap(profileMap);
         _storage.updateProfile(profile);
 
-        if (profileData['responses'] != null) {
-          for (final responseData in profileData['responses']) {
-            final response = StoryResponse.fromMap(Map<String, dynamic>.from(responseData));
-            _storage.saveResponse(
-              profileId: response.profileId,
-              category: response.category,
-              questionIndex: response.questionIndex,
-              question: response.question,
-              answer: response.answer,
+        if (profileData['memories'] != null) {
+          for (final memoryData in profileData['memories']) {
+            final memory = Memory.fromMap(Map<String, dynamic>.from(memoryData));
+            _storage.saveMemory(
+              profileId: memory.parentId,
+              chapterId: memory.chapterId,
+              questionId: memory.questionId,
+              originalTranscript: memory.originalTranscript,
+              originalRecording: memory.originalRecording,
+              memoir: memory.memoir,
             );
           }
         }

@@ -1,5 +1,5 @@
 import '../models/parent_profile.dart';
-import '../models/response.dart';
+import '../models/memory.dart';
 import '../models/generated_chapter.dart';
 import '../models/question.dart';
 import '../data/questions.dart';
@@ -56,7 +56,7 @@ class TemplateBookService {
     'ch20': '',
   };
 
-  String generateChapter(ParentProfile profile, String chapterId, List<StoryResponse> responses) {
+  String generateChapter(ParentProfile profile, String chapterId, List<Memory> responses) {
     final buffer = StringBuffer();
     final validResponses = responses.where((r) => r.hasAnswer).toList();
 
@@ -85,7 +85,7 @@ class TemplateBookService {
     return buffer.toString();
   }
 
-  String generateFinalLetter(ParentProfile profile, List<StoryResponse> allResponses) {
+  String generateFinalLetter(ParentProfile profile, List<Memory> allResponses) {
     final buffer = StringBuffer();
     final validResponses = allResponses.where((r) => r.hasAnswer).toList();
 
@@ -114,7 +114,7 @@ class TemplateBookService {
     return buffer.toString();
   }
 
-  GeneratedBook generateBook(ParentProfile profile, List<StoryResponse> allResponses) {
+  GeneratedBook generateBook(ParentProfile profile, List<Memory> allResponses) {
     final chapters = generateAllChapters(profile);
     final letter = generateFinalLetter(profile, allResponses);
     return GeneratedBook(
@@ -129,9 +129,7 @@ class TemplateBookService {
     final chapters = <GeneratedChapter>[];
 
     for (final chapter in allChapters) {
-      final responses = _storage.getResponsesForProfile(profile.id)
-          .where((r) => r.category == chapter.id)
-          .toList();
+      final responses = _storage.getMemoriesForChapter(profile.id, chapter.id);
 
       final content = generateChapter(profile, chapter.id, responses);
 

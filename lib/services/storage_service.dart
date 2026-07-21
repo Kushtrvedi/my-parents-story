@@ -1,6 +1,8 @@
 import 'package:uuid/uuid.dart';
 import '../models/parent_profile.dart';
-import '../models/response.dart';
+import '../models/memory.dart';
+import '../models/memoir.dart';
+import '../models/voice_recording.dart';
 import '../models/generated_chapter.dart';
 import '../models/question.dart';
 import '../data/questions.dart';
@@ -48,7 +50,7 @@ class StorageService {
 
   void deleteProfile(String id) {
     LocalStorage.profiles.delete(id);
-    final responses = getResponsesForProfile(id);
+    final responses = getMemoriesForProfile(id);
     for (final r in responses) {
       LocalStorage.responses.delete(r.id);
     }
@@ -58,57 +60,65 @@ class StorageService {
     }
   }
 
-  // Response Management
-  StoryResponse saveResponse({
+  // Memory Management
+  Memory saveMemory({
     required String profileId,
-    required String category,
-    required int questionIndex,
-    required String question,
-    String answer = '',
+    required String chapterId,
+    required String questionId,
+    String? originalTranscript,
+    VoiceRecording? originalRecording,
+    Memoir? memoir,
   }) {
-    final id = '${profileId}_${category}_$questionIndex';
-    final response = StoryResponse(
+    final id = '${profileId}_${chapterId}_$questionId';
+    final memory = Memory(
       id: id,
-      profileId: profileId,
-      category: category,
-      questionIndex: questionIndex,
-      question: question,
-      answer: answer,
+      parentId: profileId,
+      chapterId: chapterId,
+      questionId: questionId,
+      originalTranscript: originalTranscript,
+      originalRecording: originalRecording,
+      memoir: memoir,
     );
-    LocalStorage.responses.put(id, response.toMap());
-    return response;
+    LocalStorage.responses.put(id, memory.toMap());
+    return memory;
   }
 
-  StoryResponse? getResponse(String profileId, String category, int questionIndex) {
-    final id = '${profileId}_${category}_$questionIndex';
+  Memory? getMemory(String profileId, String chapterId, String questionId) {
+    final id = '${profileId}_${chapterId}_$questionId';
     final data = LocalStorage.responses.get(id);
     if (data == null) return null;
-    return StoryResponse.fromMap(Map<String, dynamic>.from(data));
+    return Memory.fromMap(Map<String, dynamic>.from(data));
   }
 
-  List<StoryResponse> getResponsesForProfile(String profileId) {
+  List<Memory> getMemoriesForProfile(String profileId) {
     return LocalStorage.responses.values
-        .map((e) => StoryResponse.fromMap(Map<String, dynamic>.from(e)))
-        .where((r) => r.profileId == profileId)
-        .toList()
-      ..sort((a, b) => a.questionIndex.compareTo(b.questionIndex));
+        .map((e) => Memory.fromMap(Map<String, dynamic>.from(e)))
+        .where((m) => m.parentId == profileId)
+        .toList();
   }
 
-  List<StoryResponse> getResponsesForCategory(String profileId, String category) {
-    return getResponsesForProfile(profileId)
-        .where((r) => r.category == category)
+  List<Memory> getMemoriesForChapter(String profileId, String chapterId) {
+    return getMemoriesForProfile(profileId)
+        .where((m) => m.chapterId == chapterId)
         .toList();
   }
 
   Map<String, int> getCompletionProgress(String profileId) {
-    final responses = getResponsesForProfile(profileId);
+    final memories = getMemoriesForProfile(profileId);
     final Map<String, int> progress = {};
-    for (final r in responses) {
-      if (r.hasAnswer) {
-        progress[r.category] = (progress[r.category] ?? 0) + 1;
+    for (final m in memories) {
+      if (m.hasAnswer) {
+        progress[m.chapterId] = (progress[m.chapterId] ?? 0) + 1;
       }
     }
     return progress;
+  }
+
+  void clearAlphaDatabase() {
+    LocalStorage.profiles.clear();
+    LocalStorage.responses.clear();
+    LocalStorage.chapters.clear();
+    LocalStorage.settings.clear();
   }
 
   // Chapter Management
