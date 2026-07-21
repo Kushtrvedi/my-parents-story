@@ -27,6 +27,11 @@ class Memory {
   Map<String, String> translations;
   Map<String, dynamic> metadata;
 
+  // Approval State
+  bool isApproved;
+  DateTime? approvedAt;
+  String? editedTranscript;
+
   Memory({
     required this.id,
     required this.parentId,
@@ -46,11 +51,28 @@ class Memory {
     this.followUps = const [],
     this.translations = const {},
     this.metadata = const {},
+    this.isApproved = false,
+    this.approvedAt,
+    this.editedTranscript,
   }) : createdAt = createdAt ?? DateTime.now();
 
-  bool get hasAnswer => (memoir?.text.trim().isNotEmpty ?? false) || (originalTranscript?.trim().isNotEmpty ?? false);
+  bool get hasAnswer => (memoir?.text.trim().isNotEmpty ?? false) || 
+                        (editedTranscript?.trim().isNotEmpty ?? false) ||
+                        (originalTranscript?.trim().isNotEmpty ?? false);
   
-  String get answer => memoir?.text ?? originalTranscript ?? '';
+  String get answer => editedTranscript ?? memoir?.text ?? originalTranscript ?? '';
+
+  String get displayAnswer {
+    if (editedTranscript != null && editedTranscript!.isNotEmpty) {
+      return editedTranscript!;
+    }
+    if (memoir?.text.isNotEmpty ?? false) {
+      return memoir!.text;
+    }
+    return originalTranscript ?? '';
+  }
+
+  int get wordCount => answer.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
 
   Map<String, dynamic> toMap() {
     return {
@@ -72,6 +94,9 @@ class Memory {
       'followUps': followUps,
       'translations': translations,
       'metadata': metadata,
+      'isApproved': isApproved,
+      'approvedAt': approvedAt?.toIso8601String(),
+      'editedTranscript': editedTranscript,
     };
   }
 
@@ -95,6 +120,9 @@ class Memory {
       followUps: List<String>.from(map['followUps'] ?? []),
       translations: Map<String, String>.from(map['translations'] ?? {}),
       metadata: Map<String, dynamic>.from(map['metadata'] ?? {}),
+      isApproved: map['isApproved'] ?? false,
+      approvedAt: map['approvedAt'] != null ? DateTime.parse(map['approvedAt']) : null,
+      editedTranscript: map['editedTranscript'],
     );
   }
 }

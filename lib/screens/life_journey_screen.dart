@@ -4,6 +4,7 @@ import '../data/questions.dart';
 import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
 import '../services/storage_service.dart';
+import '../services/speech_setup_service.dart';
 import 'question_screen.dart';
 import 'pre_question_screen.dart';
 import 'generate_book_screen.dart';
@@ -34,8 +35,10 @@ class LifeJourneyScreen extends StatefulWidget {
 
 class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
   final _storageService = StorageService();
+  final _speechService = SpeechSetupService();
   Map<String, int> _progress = {};
   final Set<int> _expandedGroups = {0};
+  bool _familyMode = false;
 
   static const _groups = [
     _LifeStageGroup(titleKey: 'groupChildhood', descKey: 'groupChildhoodDesc', emoji: '🌱', startChapter: 0, endChapter: 4),
@@ -48,7 +51,13 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
   @override
   void initState() {
     super.initState();
+    _familyMode = _speechService.isFamilyMode;
     _loadProgress();
+  }
+
+  void _toggleFamilyMode() async {
+    setState(() => _familyMode = !_familyMode);
+    await _speechService.setFamilyMode(_familyMode);
   }
 
   void _loadProgress() {
@@ -97,6 +106,42 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(widget.profile.name),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: AppSpacing.s),
+            child: GestureDetector(
+              onTap: _toggleFamilyMode,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.m, vertical: AppSpacing.xs),
+                decoration: BoxDecoration(
+                  color: _familyMode
+                      ? AppColors.primary.withValues(alpha: 0.1)
+                      : AppColors.card,
+                  borderRadius: BorderRadius.circular(AppRadius.pill),
+                  border: Border.all(color: AppColors.divider),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      _familyMode ? Icons.people_rounded : Icons.person_rounded,
+                      color: AppColors.primary,
+                      size: 20,
+                    ),
+                    const SizedBox(width: AppSpacing.xs),
+                    Text(
+                      _familyMode ? T.tr('familyMode') : T.tr('personalMode'),
+                      style: AppTypography.caption.copyWith(
+                        color: AppColors.primary,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Column(
         children: [

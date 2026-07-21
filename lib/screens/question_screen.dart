@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
@@ -7,17 +8,24 @@ import '../models/memory.dart';
 import '../services/storage_service.dart';
 import '../services/native_voice_service.dart';
 import '../services/tts_service.dart';
+import '../services/speech_setup_service.dart';
+import '../main.dart';
 import 'share_memory_screen.dart';
+import 'celebration_screen.dart';
+import '../services/template_book_service.dart';
 
 class QuestionScreen extends StatefulWidget {
   final ParentProfile profile;
   final String chapterId;
   final int chapterIndex;
+  final bool familyMode;
+
   const QuestionScreen({
     super.key,
     required this.profile,
     required this.chapterId,
     required this.chapterIndex,
+    this.familyMode = false,
   });
 
   @override
@@ -28,6 +36,7 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
   final _storageService = StorageService();
   final _voiceService = NativeVoiceService();
   final _ttsService = TextToSpeechService();
+  final _speechService = SpeechSetupService();
 
   List<Question> _questions = [];
   int _currentQuestionIndex = 0;
@@ -35,15 +44,22 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
   bool _isSaving = false;
   String _recordedText = '';
   bool _hasRecording = false;
+  bool _showMemoryPause = false;
+  bool _showBreakReminder = false;
+  int _questionsAnswered = 0;
+  DateTime? _sessionStartTime;
 
   late AnimationController _glowController;
   late Animation<double> _glowAnimation;
+
+  static const int _breakReminderMinutes = 15;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _ttsService.init();
+    _sessionStartTime = DateTime.now();
     _loadQuestions();
     _glowController = AnimationController(
       vsync: this,
@@ -52,6 +68,10 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
     _glowAnimation = Tween<double>(begin: 1.0, end: 1.08).animate(
       CurvedAnimation(parent: _glowController, curve: Curves.easeInOutSine),
     );
+    // Auto-read question after delay
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) _speakQuestion();
+    });
   }
 
   void _loadQuestions() {
@@ -103,7 +123,6 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
         _hasRecording = _recordedText.trim().isNotEmpty;
       });
       if (!_hasRecording) {
-        // If nothing was recorded, just show the error message.
         _showErrorDialog();
       }
     } else {
@@ -111,6 +130,7 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
         onResult: (text) {
           if (mounted) setState(() => _recordedText = text);
         },
+        localeId: _getLocaleId(),
       );
       _glowController.repeat(reverse: true);
       setState(() {
@@ -121,6 +141,25 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
     }
   }
 
+  String _getLocaleId() {
+    final langCode = localeProvider.locale.languageCode;
+    final localeMap = {
+      'en': 'en_US',
+      'hi': 'hi_IN',
+      'gu': 'gu_IN',
+      'es': 'es_ES',
+      'mr': 'mr_IN',
+      'ta': 'ta_IN',
+      'te': 'te_IN',
+      'ml': 'ml_IN',
+      'or': 'or_IN',
+      'pa': 'pa_IN',
+      'bn': 'bn_IN',
+      'kn': 'kn_IN',
+    };
+    return localeMap[langCode] ?? 'en_US';
+  }
+
   void _retryRecording() {
     setState(() {
       _recordedText = '';
@@ -128,7 +167,7 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
     });
   }
 
-  void _saveMemory() {
+  void _saveMemory() async {
     if (_recordedText.trim().isEmpty) {
       _showErrorDialog();
       return;
@@ -154,9 +193,19 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
       _storageService.incrementMilestone(widget.profile.id, 'sessions');
     }
 
-    if (mounted) {
-      _showSavedAndNext(memory);
+    setState(() => _questionsAnswered++);
+
+    // Check break reminder
+    if (_sessionStartTime != null) {
+      final elapsed = DateTime.now().difference(_sessionStartTime!);
+      if (elapsed.inMinutes >= _breakReminderMinutes) {
+        setState(() => _showBreakReminder = true);
+        return;
+      }
     }
+
+    // Show memory pause
+    setState(() => _showMemoryPause = true);
   }
 
   void _showErrorDialog() {
@@ -175,59 +224,11 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
                 style: AppTypography.body,
               ),
               const SizedBox(height: AppSpacing.l),
-              ElevatedButton(
-                onPressed: () => Navigator.pop(ctx),
-                child: Text(T.tr('ok')),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _showSavedAndNext(Memory memory) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.l)),
-        content: Padding(
-          padding: const EdgeInsets.all(AppSpacing.m),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: AppSpacing.m),
-              Text(
-                T.tr('recordingComplete'),
-                textAlign: TextAlign.center,
-                style: AppTypography.heading,
-              ),
-              const SizedBox(height: AppSpacing.xl),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton.icon(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ShareMemoryScreen(profile: widget.profile, memory: memory),
-                      ),
-                    );
-                  },
-                  icon: const Icon(Icons.ios_share_rounded),
-                  label: Text(T.tr('shareThisMoment')),
-                ),
-              ),
-              const SizedBox(height: AppSpacing.s),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(ctx);
-                    _goToNextQuestion();
-                  },
-                  child: Text(T.tr('nextQuestion')),
+                  onPressed: () => Navigator.pop(ctx),
+                  child: Text(T.tr('ok')),
                 ),
               ),
             ],
@@ -238,15 +239,44 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
   }
 
   void _goToNextQuestion() {
+    setState(() => _showMemoryPause = false);
     if (_currentQuestionIndex < _questions.length - 1) {
       setState(() {
         _currentQuestionIndex++;
         _recordedText = '';
         _hasRecording = false;
       });
+      Future.delayed(const Duration(milliseconds: 500), () {
+        if (mounted) _speakQuestion();
+      });
     } else {
-      Navigator.pop(context);
+      _finishChapter();
     }
+  }
+
+  void _finishChapter() {
+    final responses = _storageService.getMemoriesForProfile(widget.profile.id);
+    final templateService = TemplateBookService(_storageService);
+    final book = templateService.generateBook(widget.profile, responses);
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CelebrationScreen(profile: widget.profile, book: book),
+      ),
+    );
+  }
+
+  void _continueAfterBreak() {
+    setState(() {
+      _showBreakReminder = false;
+      _sessionStartTime = DateTime.now();
+    });
+    _goToNextQuestion();
+  }
+
+  void _takeBreak() {
+    Navigator.pop(context);
   }
 
   Widget _buildProgressIndicator() {
@@ -257,11 +287,11 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
         final isActive = index == _currentQuestionIndex;
         final isPast = index < _currentQuestionIndex;
         return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 6),
-          width: 12,
-          height: 12,
+          margin: const EdgeInsets.symmetric(horizontal: 4),
+          width: isActive ? 24 : 10,
+          height: 10,
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
+            borderRadius: BorderRadius.circular(5),
             color: isActive || isPast ? AppColors.primary : AppColors.divider,
           ),
         );
@@ -274,17 +304,32 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
     final chapter = _storageService.getChapterById(widget.chapterId);
     final chapterTitle = chapter?.title ?? '';
 
+    if (_showBreakReminder) {
+      return _buildBreakReminderScreen();
+    }
+    if (_showMemoryPause) {
+      return _buildMemoryPauseScreen();
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, size: 26),
           onPressed: () => Navigator.pop(context),
         ),
+        actions: [
+          // Voice instructions button
+          IconButton(
+            icon: const Icon(Icons.volume_up_rounded, size: 28),
+            onPressed: _speakQuestion,
+            tooltip: T.tr('readAloud'),
+          ),
+        ],
       ),
       body: _currentQuestion == null
           ? Center(
               child: Text(
-                'No questions available.',
+                T.tr('noQuestionsAvailable'),
                 style: AppTypography.body,
               ),
             )
@@ -293,39 +338,34 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.m),
                 child: Column(
                   children: [
-                    // Chapter Title
+                    // Chapter Title + Progress
                     Text(
                       chapterTitle,
                       textAlign: TextAlign.center,
-                      style: AppTypography.caption.copyWith(fontSize: 22, color: AppColors.textLight),
+                      style: AppTypography.caption.copyWith(fontSize: 20, color: AppColors.textLight),
                     ),
                     const SizedBox(height: AppSpacing.xs),
-                    
-                    // Question Progress
                     Text(
-                      'Question ${_currentQuestionIndex + 1} of ${_questions.length}',
+                      '${T.tr('question')} ${_currentQuestionIndex + 1} ${T.tr('of')} ${_questions.length}',
                       textAlign: TextAlign.center,
                       style: AppTypography.caption,
                     ),
                     const SizedBox(height: AppSpacing.s),
                     _buildProgressIndicator(),
-                    const SizedBox(height: AppSpacing.xl),
+                    const SizedBox(height: AppSpacing.xxl),
 
-                    // Question Text
+                    // Question Text - one task per screen
                     Expanded(
                       child: Center(
-                        child: GestureDetector(
-                          onTap: _speakQuestion,
-                          child: Text(
-                            _currentQuestion!.question,
-                            textAlign: TextAlign.center,
-                            style: AppTypography.question,
-                          ),
+                        child: Text(
+                          _currentQuestion!.question,
+                          textAlign: TextAlign.center,
+                          style: AppTypography.question.copyWith(fontSize: 32),
                         ),
                       ),
                     ),
 
-                    // Microphone Area
+                    // Microphone Area - large touch target
                     if (_isRecording)
                       _buildRecordingState()
                     else if (_hasRecording)
@@ -335,15 +375,18 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
 
                     const SizedBox(height: AppSpacing.xl),
 
-                    // Continue Later
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        minimumSize: const Size(double.infinity, AppTouchTargets.min),
-                      ),
-                      onPressed: () => Navigator.pop(context),
-                      child: Text(
-                        'Continue Later',
-                        style: AppTypography.button.copyWith(color: AppColors.textLight),
+                    // Continue Later - always visible
+                    SizedBox(
+                      width: double.infinity,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          minimumSize: const Size(double.infinity, AppTouchTargets.min),
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                        child: Text(
+                          T.tr('continueLater'),
+                          style: AppTypography.button.copyWith(color: AppColors.textLight),
+                        ),
                       ),
                     ),
                   ],
@@ -359,8 +402,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
         GestureDetector(
           onTap: _toggleRecording,
           child: Container(
-            width: 120,
-            height: 120,
+            width: AppTouchTargets.large,
+            height: AppTouchTargets.large,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.primary,
@@ -372,10 +415,15 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
                 ),
               ],
             ),
-            child: const Icon(Icons.mic, color: Colors.white, size: AppIcons.xl),
+            child: const Icon(Icons.mic_rounded, color: Colors.white, size: AppIcons.xl),
           ),
         ),
-        const SizedBox(height: AppSpacing.l),
+        const SizedBox(height: AppSpacing.m),
+        Text(
+          T.tr('recordLabel'),
+          style: AppTypography.body.copyWith(fontWeight: FontWeight.w600),
+        ),
+        const SizedBox(height: AppSpacing.xs),
         Text(
           T.tr('tapToBeginStory'),
           style: AppTypography.caption,
@@ -395,14 +443,14 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
               child: GestureDetector(
                 onTap: _toggleRecording,
                 child: Container(
-                  width: 120,
-                  height: 120,
+                  width: AppTouchTargets.large,
+                  height: AppTouchTargets.large,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.primary,
+                    color: AppColors.error,
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.primary.withValues(alpha: 0.4),
+                        color: AppColors.error.withValues(alpha: 0.4),
                         blurRadius: 30 * _glowAnimation.value,
                         spreadRadius: 10 * _glowAnimation.value,
                       ),
@@ -414,11 +462,33 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
             );
           },
         ),
-        const SizedBox(height: AppSpacing.l),
+        const SizedBox(height: AppSpacing.m),
+        Text(
+          T.tr('recordingLabel'),
+          style: AppTypography.body.copyWith(fontWeight: FontWeight.w600, color: AppColors.error),
+        ),
+        const SizedBox(height: AppSpacing.xs),
         Text(
           T.tr('listening'),
-          style: AppTypography.body,
+          style: AppTypography.caption,
         ),
+        if (_recordedText.isNotEmpty) ...[
+          const SizedBox(height: AppSpacing.m),
+          Container(
+            padding: const EdgeInsets.all(AppSpacing.m),
+            decoration: BoxDecoration(
+              color: AppColors.card,
+              borderRadius: BorderRadius.circular(AppRadius.m),
+              border: Border.all(color: AppColors.divider),
+            ),
+            child: Text(
+              _recordedText,
+              style: AppTypography.body.copyWith(fontSize: 20),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
       ],
     );
   }
@@ -426,30 +496,161 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
   Widget _buildReviewState() {
     return Column(
       children: [
+        // Transcript preview
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(AppSpacing.l),
+          decoration: BoxDecoration(
+            color: AppColors.card,
+            borderRadius: BorderRadius.circular(AppRadius.l),
+            border: Border.all(color: AppColors.divider),
+          ),
+          child: Text(
+            _recordedText,
+            style: AppTypography.body.copyWith(fontSize: 20),
+          ),
+        ),
+        const SizedBox(height: AppSpacing.l),
         Row(
           children: [
             Expanded(
-              child: OutlinedButton(
+              child: OutlinedButton.icon(
                 onPressed: _retryRecording,
-                child: Text(T.tr('tryAgain')),
+                icon: const Icon(Icons.refresh_rounded, size: 24),
+                label: Text(T.tr('tryAgain')),
+                style: OutlinedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.m),
+                ),
               ),
             ),
             const SizedBox(width: AppSpacing.s),
             Expanded(
-              child: ElevatedButton(
+              child: ElevatedButton.icon(
                 onPressed: _isSaving ? null : _saveMemory,
-                child: _isSaving
+                icon: _isSaving
                     ? const SizedBox(
                         width: 24,
                         height: 24,
                         child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                       )
-                    : Text(T.tr('saveResponse')),
+                    : const Icon(Icons.check_rounded, size: 24),
+                label: Text(T.tr('saveResponse')),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.m),
+                ),
               ),
             ),
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildMemoryPauseScreen() {
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+          child: Column(
+            children: [
+              const Spacer(flex: 2),
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.accent.withValues(alpha: 0.15),
+                ),
+                child: const Icon(
+                  Icons.favorite_rounded,
+                  color: AppColors.accent,
+                  size: 40,
+                ),
+              ),
+              const SizedBox(height: AppSpacing.xxl),
+              Text(
+                T.tr('thankYouMemory'),
+                textAlign: TextAlign.center,
+                style: AppTypography.display.copyWith(height: 1.3),
+              ),
+              const SizedBox(height: AppSpacing.m),
+              Text(
+                T.tr('memorySavedCount').replaceAll('{count}', '$_questionsAnswered'),
+                textAlign: TextAlign.center,
+                style: AppTypography.body.copyWith(color: AppColors.textLight),
+              ),
+              const Spacer(flex: 2),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _goToNextQuestion,
+                  child: Text(T.tr('nextQuestion')),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.xl),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBreakReminderScreen() {
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+          child: Column(
+            children: [
+              const Spacer(flex: 2),
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.primary.withValues(alpha: 0.1),
+                ),
+                child: const Icon(
+                  Icons.coffee_rounded,
+                  color: AppColors.primary,
+                  size: 40,
+                ),
+              ),
+              const SizedBox(height: AppSpacing.xxl),
+              Text(
+                T.tr('breakTitle'),
+                textAlign: TextAlign.center,
+                style: AppTypography.display.copyWith(height: 1.3),
+              ),
+              const SizedBox(height: AppSpacing.m),
+              Text(
+                T.tr('breakSubtitle'),
+                textAlign: TextAlign.center,
+                style: AppTypography.body.copyWith(color: AppColors.textLight),
+              ),
+              const Spacer(flex: 2),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _continueAfterBreak,
+                  child: Text(T.tr('continueRecording')),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.m),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: _takeBreak,
+                  child: Text(T.tr('takeBreak')),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.xl),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
