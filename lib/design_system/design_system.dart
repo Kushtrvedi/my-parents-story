@@ -16,3 +16,6 @@ export 'responsive/adaptive_typography.dart';
 export 'navigation/adaptive_navigation.dart';
 export 'navigation/keyboard_navigation.dart';
 export 'navigation/focus_manager.dart';
+
+export 'components/memoir_card.dart';
+export 'components/voice_waveform_widget.dart';

@@ -42,7 +42,7 @@ void main() {
         parentType: 'dad',
       );
 
-      final memory = storageService.saveMemory(
+      storageService.saveMemory(
         profileId: profile.id,
         chapterId: 'childhood',
         questionId: 'q_1',

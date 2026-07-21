@@ -58,7 +58,7 @@ class PdfExportService {
                 child: pw.Center(
                   child: pw.Text(
                     profile.name.isNotEmpty ? profile.name[0].toUpperCase() : '?',
-                    style: pw.TextStyle(
+                    style: const pw.TextStyle(
                       fontSize: 48,
                       color: PdfColors.white,
                       fontWeight: pw.FontWeight.bold,
@@ -110,8 +110,8 @@ class PdfExportService {
                 padding: const pw.EdgeInsets.all(20),
                 decoration: pw.BoxDecoration(
                   border: pw.Border(
-                    top: pw.BorderSide(color: PdfColor.fromHex('#C9A96E'), width: 1),
-                    bottom: pw.BorderSide(color: PdfColor.fromHex('#C9A96E'), width: 1),
+                    top: pw.BorderSide(color: PdfColor.fromHex('#C9A96E')),
+                    bottom: pw.BorderSide(color: PdfColor.fromHex('#C9A96E')),
                   ),
                 ),
                 child: pw.Text(

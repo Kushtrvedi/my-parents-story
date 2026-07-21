@@ -22,9 +22,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
 
   bool _micGranted = false;
   bool _speechAvailable = false;
-  bool _onDeviceAvailable = false;
   bool _offlineLanguageReady = false;
-  List<String> _installedLanguages = [];
 
   @override
   void initState() {
@@ -47,9 +45,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
       languageCode: localeProvider.locale.languageCode,
     );
     _speechAvailable = result.speechAvailable;
-    _onDeviceAvailable = result.onDeviceAvailable;
     _offlineLanguageReady = result.offlineLanguageReady;
-    _installedLanguages = result.installedLanguages;
 
     // Step 3: Language check
     setState(() => _currentStep = 3);
@@ -107,98 +103,94 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: constraints.maxHeight,
-                ),
-                child: IntrinsicHeight(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: AppSpacing.xl),
-                        
-                        // Progress indicator
-                        if (_currentStep < 4) ...[
-                          Text(
-                            'Step ${_currentStep == 0 ? 1 : _currentStep} of 4',
-                            style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.primary),
-                          ),
-                          const SizedBox(height: AppSpacing.xs),
-                          Text(
-                            'Preparing your phone',
-                            style: AppTypography.caption.copyWith(color: AppColors.textLight),
-                          ),
-                          const SizedBox(height: AppSpacing.l),
-                        ] else ...[
-                          const SizedBox(height: AppSpacing.xxl),
-                        ],
+        child: AdaptiveCenteredBox(
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                  child: Column(
+                        children: [
+                          const SizedBox(height: AppSpacing.xl),
+                          
+                          // Progress indicator
+                          if (_currentStep < 4) ...[
+                            Text(
+                              'Step ${_currentStep == 0 ? 1 : _currentStep} of 4',
+                              style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.primary),
+                            ),
+                            const SizedBox(height: AppSpacing.xs),
+                            Text(
+                              'Preparing your phone',
+                              style: AppTypography.caption.copyWith(color: AppColors.textLight),
+                            ),
+                            const SizedBox(height: AppSpacing.l),
+                          ] else ...[
+                            const SizedBox(height: AppSpacing.xxl),
+                          ],
 
-                        // App icon
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.primary.withValues(alpha: 0.08),
-                          ),
-                          child: const Icon(
-                            Icons.auto_stories_rounded,
-                            size: 40,
-                            color: AppColors.primary,
-                          ),
-                        ),
-                        const SizedBox(height: AppSpacing.xl),
-                        Text(
-                          T.tr('setupTitle'),
-                          textAlign: TextAlign.center,
-                          style: AppTypography.display,
-                        ),
-                        const SizedBox(height: AppSpacing.m),
-                        Text(
-                          'This usually takes less than 30 seconds.',
-                          textAlign: TextAlign.center,
-                          style: AppTypography.body.copyWith(color: AppColors.textLight),
-                        ),
-                        const SizedBox(height: AppSpacing.xxl),
-                        
-                        // Readiness Check Cards
-                        _buildReadinessCards(),
-                        
-                        const Spacer(),
-                        
-                        // Final Goal & Trust Card when checking
-                        if (_currentStep < 4) ...[
-                          _buildFinalGoalCard(),
-                          const SizedBox(height: AppSpacing.l),
-                          _buildTrustCard(),
-                          const SizedBox(height: AppSpacing.xl),
-                        ],
-
-                        // Bottom button
-                        if (_currentStep == 4 && !_isChecking) ...[
-                          const SizedBox(height: AppSpacing.xl),
-                          _buildTrustCard(),
-                          const SizedBox(height: AppSpacing.xl),
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: _finish,
-                              child: Text(T.tr('startMyStory')),
+                          // App icon
+                          Container(
+                            width: 80,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.primary.withValues(alpha: 0.08),
+                            ),
+                            child: const Icon(
+                              Icons.auto_stories_rounded,
+                              size: 40,
+                              color: AppColors.primary,
                             ),
                           ),
                           const SizedBox(height: AppSpacing.xl),
+                          Text(
+                            T.tr('setupTitle'),
+                            textAlign: TextAlign.center,
+                            style: AppTypography.display,
+                          ),
+                          const SizedBox(height: AppSpacing.m),
+                          Text(
+                            'This usually takes less than 30 seconds.',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.body.copyWith(color: AppColors.textLight),
+                          ),
+                          const SizedBox(height: AppSpacing.xxl),
+                          
+                          // Readiness Check Cards
+                          _buildReadinessCards(),
+                          
+                          const Spacer(),
+                          
+                          // Final Goal & Trust Card when checking
+                          if (_currentStep < 4) ...[
+                            _buildFinalGoalCard(),
+                            const SizedBox(height: AppSpacing.l),
+                            _buildTrustCard(),
+                            const SizedBox(height: AppSpacing.xl),
+                          ],
+
+                          // Bottom button
+                          if (_currentStep == 4 && !_isChecking) ...[
+                            const SizedBox(height: AppSpacing.xl),
+                            _buildTrustCard(),
+                            const SizedBox(height: AppSpacing.xl),
+                            SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                onPressed: _finish,
+                                child: Text(T.tr('startMyStory')),
+                              ),
+                            ),
+                            const SizedBox(height: AppSpacing.xl),
+                          ],
                         ],
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            );
-          },
         ),
       ),
     );
@@ -392,7 +384,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
     return Container(
       padding: const EdgeInsets.all(AppSpacing.l),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: AppColors.card,
         borderRadius: BorderRadius.circular(AppRadius.m),
         border: Border.all(color: AppColors.divider),
       ),

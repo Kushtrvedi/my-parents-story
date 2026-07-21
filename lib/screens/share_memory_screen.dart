@@ -35,49 +35,65 @@ class ShareMemoryScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Beautiful Quote Card
-              Container(
-                padding: const EdgeInsets.all(AppSpacing.xxl),
-                decoration: BoxDecoration(
-                  color: AppColors.card,
-                  borderRadius: BorderRadius.circular(AppRadius.l),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primary.withValues(alpha: 0.08),
-                      blurRadius: 40,
-                      offset: const Offset(0, 20),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    const Icon(Icons.format_quote_rounded, size: AppIcons.xl, color: AppColors.accent),
-                    const SizedBox(height: AppSpacing.l),
-                    Text(
-                      '"${memory.answer}"',
-                      textAlign: TextAlign.center,
-                      style: AppTypography.heading.copyWith(fontStyle: FontStyle.italic),
-                    ),
-                    const SizedBox(height: AppSpacing.xl),
-                    Text(
-                      '— ${profile.name}',
-                      style: AppTypography.body.copyWith(fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: AppSpacing.xxl),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  icon: const Icon(Icons.ios_share_rounded),
-                  label: Text(T.tr('shareThisMoment')),
-                  onPressed: () => _shareQuote(context),
+        child: AdaptiveCenteredBox(
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.m),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Beautiful Quote Card
+                      Container(
+                        padding: const EdgeInsets.all(AppSpacing.xxl),
+                        decoration: BoxDecoration(
+                          color: AppColors.card,
+                          borderRadius: BorderRadius.circular(AppRadius.l),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.primary.withValues(alpha: 0.08),
+                              blurRadius: 40,
+                              offset: const Offset(0, 20),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            const Icon(Icons.format_quote_rounded, size: AppIcons.xl, color: AppColors.accent),
+                            const SizedBox(height: AppSpacing.l),
+                            Text(
+                              '"${memory.answer}"',
+                              textAlign: TextAlign.center,
+                              style: AppTypography.display.copyWith(
+                                color: AppColors.text,
+                                height: 1.4,
+                              ),
+                            ),
+                            const SizedBox(height: AppSpacing.xl),
+                            Text(
+                              '— ${profile.name}',
+                              style: AppTypography.body.copyWith(
+                                color: AppColors.textLight,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.xxl),
+                      // Actions
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton.icon(
+                          icon: const Icon(Icons.ios_share_rounded),
+                          label: Text(T.tr('shareThisMoment')),
+                          onPressed: () => _shareQuote(context),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

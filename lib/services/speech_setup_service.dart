@@ -125,7 +125,7 @@ class SpeechSetupService {
     if (kIsWeb) return; // Web doesn't need this
     if (Platform.isAndroid) {
       try {
-        await MethodChannel('com.myparentsstory/setup').invokeMethod('openSpeechSettings');
+        await const MethodChannel('com.myparentsstory/setup').invokeMethod('openSpeechSettings');
       } catch (_) {
         // Fallback: guide user manually
       }
@@ -136,7 +136,7 @@ class SpeechSetupService {
     if (kIsWeb) return; // Web doesn't need this
     if (Platform.isAndroid) {
       try {
-        await MethodChannel('com.myparentsstory/setup').invokeMethod('openLanguagePackSettings');
+        await const MethodChannel('com.myparentsstory/setup').invokeMethod('openLanguagePackSettings');
       } catch (_) {
         // Fallback: guide user manually
       }

@@ -157,10 +157,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['grandparents', 'family history', 'earliest memory', 'stories'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Who told you that story?',
         'How did that story make you feel?',
@@ -183,8 +179,6 @@ class QuestionDatabase {
       searchTags: ['parents home', 'childhood home', 'growing up', 'house'],
       people: ['parents'],
       places: ['family home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How many rooms did it have?',
         'What colour was the outside?',
@@ -206,10 +200,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['town', 'village', 'birthplace', 'origin', 'hometown'],
-      people: [],
       places: ['hometown', 'village'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What was that town known for?',
         'How big was it � did everyone know each other?',
@@ -230,9 +221,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['surname', 'family name', 'ancestry', 'origin', 'heritage'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Has the name changed over the generations?',
@@ -255,9 +243,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['grandmother', 'maternal', 'grandma', 'nan'],
       people: ['grandmother'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What was she like as a person?',
         'What did she look like?',
@@ -280,9 +265,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['grandfather', 'paternal', 'grandpa'],
       people: ['grandfather'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What kind of work did he do?',
         'What was his personality like?',
@@ -305,9 +287,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['parents met', 'how they met', 'love story', 'romance'],
       people: ['mother', 'father'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How old were they when they met?',
         'Who liked who first?',
@@ -330,8 +309,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['traditions', 'customs', 'grandparents', 'family habits'],
       people: ['grandparents'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What time of year did that tradition happen?',
@@ -355,7 +332,6 @@ class QuestionDatabase {
       searchTags: ['wedding', 'parents', 'marriage', 'celebration'],
       people: ['mother', 'father'],
       places: ['wedding venue'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did your mother wear?',
@@ -379,7 +355,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['challenges', 'hard times', 'difficulties', 'family struggles'],
       people: ['family'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -402,9 +377,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['neighbourhood', 'community', 'area', 'street'],
-      people: [],
       places: ['neighbourhood', 'street'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Were there other children nearby to play with?',
@@ -426,10 +399,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['first home', 'childhood home', 'house', 'apartment'],
-      people: [],
       places: ['childhood home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What colour were the walls?',
         'Did you have your own bedroom?',
@@ -452,7 +422,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['hardships', 'challenges', 'difficulties', 'family life'],
       people: ['family'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -476,8 +445,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['funny', 'humour', 'laughter', 'family moment'],
       people: ['family'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.optional,
       followUps: [
         'Who was involved in that moment?',
@@ -500,9 +467,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['legacy', 'roots', 'family', 'grandchildren', 'wisdom'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why is that so important to you?',
         'How would you like them to remember your family?',
@@ -526,8 +490,6 @@ class QuestionDatabase {
       searchTags: ['birth', 'born', 'day I was born', 'birth story'],
       people: ['mother', 'father'],
       places: ['hospital', 'birthplace'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Where were you born?',
         'Who was there when you arrived?',
@@ -549,8 +511,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['mother', 'new mother', 'baby', 'early days'],
       people: ['mother'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Was she nervous or confident?',
@@ -571,10 +531,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['earliest memory', 'first memory', 'baby', 'toddler'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How old do you think you were?',
         'What could you see in that memory?',
@@ -595,9 +551,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['toy', 'comfort object', 'teddy', 'blanket', 'childhood'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did it look like?',
@@ -621,7 +574,6 @@ class QuestionDatabase {
       searchTags: ['food', 'meal', 'eating', 'childhood', 'cooking'],
       people: ['family'],
       places: ['kitchen', 'dining table'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Who cooked that meal?',
@@ -643,9 +595,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['sound', 'noise', 'childhood', 'memory', 'sensory'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where were you when you heard that sound?',
@@ -667,8 +616,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['first friend', 'close person', 'bond', 'childhood'],
       people: ['friend', 'relative'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How did you meet them?',
@@ -689,9 +636,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['smell', 'scent', 'memory', 'childhood', 'sensory'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where were you when you smelled that?',
@@ -714,7 +658,6 @@ class QuestionDatabase {
       searchTags: ['nursery', 'babysitter', 'childcare', 'first time', 'away from home'],
       people: ['babysitter', 'carer'],
       places: ['nursery', 'childcare'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How old were you?',
@@ -736,10 +679,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['happiest moment', 'joy', 'childhood', 'peak memory'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How old were you in that memory?',
         'Who was there with you?',
@@ -760,8 +699,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['story', 'book', 'bedtime', 'reading', 'childhood'],
       people: ['parent', 'carer'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Who read it to you?',
@@ -783,9 +720,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['games', 'play', 'activities', 'childhood', 'fun'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Did you play alone or with others?',
@@ -807,7 +741,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['scared', 'fear', 'unsafe', 'childhood', 'dark'],
       people: ['parent'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -829,9 +762,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['proud', 'achievement', 'milestone', 'childhood'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How old were you when that happened?',
@@ -852,10 +782,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.hopeful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['wish', 'childhood', 'go back', 'memory', 'reflect'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Who would you want to be with?',
         'Where would you go?',
@@ -876,10 +802,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['house', 'home', 'exterior', 'childhood'],
-      people: [],
       places: ['childhood home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What colour was it?',
         'How many windows did it have?',
@@ -899,9 +822,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['bedroom', 'room', 'childhood', 'personal space'],
-      people: [],
       places: ['bedroom'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What colour were the walls?',
@@ -923,9 +844,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['play', 'outside', 'outdoors', 'favourite place'],
-      people: [],
       places: ['garden', 'park', 'street'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Who did you play with there?',
@@ -948,7 +867,6 @@ class QuestionDatabase {
       searchTags: ['kitchen', 'cooking', 'meals', 'home'],
       people: ['family'],
       places: ['kitchen'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did it smell like when food was being cooked?',
@@ -972,7 +890,6 @@ class QuestionDatabase {
       searchTags: ['neighbours', 'community', 'people', 'street'],
       people: ['neighbours'],
       places: ['neighbourhood'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Did you know them by name?',
@@ -996,7 +913,6 @@ class QuestionDatabase {
       searchTags: ['shop', 'market', 'store', 'buying', 'childhood'],
       people: ['shopkeeper'],
       places: ['shop', 'market'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did the shop look like?',
@@ -1018,9 +934,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['sounds', 'noise', 'neighbourhood', 'atmosphere'],
-      people: [],
       places: ['neighbourhood'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Were there birds singing in the morning?',
@@ -1041,9 +955,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['garden', 'outdoor', 'nature', 'plants', 'yard'],
-      people: [],
       places: ['garden', 'yard'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What plants or trees grew there?',
@@ -1065,9 +977,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['weather', 'climate', 'seasons', 'daily life'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What season did you enjoy most?',
@@ -1088,7 +997,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['lonely', 'different', 'isolated', 'neighbourhood'],
-      people: [],
       places: ['neighbourhood'],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
@@ -1111,9 +1019,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['exciting', 'adventure', 'neighbourhood', 'place'],
-      people: [],
       places: ['park', 'woods', 'playground'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What made it so exciting?',
@@ -1134,9 +1040,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['pets', 'animals', 'dog', 'cat', 'childhood'],
-      people: [],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What kind of animal was it?',
@@ -1160,7 +1064,6 @@ class QuestionDatabase {
       searchTags: ['warning', 'stay away', 'danger', 'neighbourhood'],
       people: ['parent'],
       places: ['neighbourhood'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.optional,
       followUps: [
         'What was it � a building, a field, or something else?',
@@ -1181,10 +1084,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['happiest', 'home', 'memory', 'joy'],
-      people: [],
       places: ['childhood home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What were you doing at the time?',
         'Who was there with you?',
@@ -1204,10 +1104,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['neighbourhood', 'describe', 'three words', 'essence'],
-      people: [],
       places: ['neighbourhood'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why did you choose those words?',
         'What do those words mean to you now?',
@@ -1230,8 +1127,6 @@ class QuestionDatabase {
       searchTags: ['first day', 'school', 'start', 'beginning'],
       people: ['teacher', 'parent'],
       places: ['school'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How old were you?',
         'Who took you to school that day?',
@@ -1255,8 +1150,6 @@ class QuestionDatabase {
       searchTags: ['favourite subject', 'school', 'learning', 'class'],
       people: ['teacher'],
       places: ['school'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What did you love about it?',
         'Who was the teacher for that subject?',
@@ -1278,8 +1171,6 @@ class QuestionDatabase {
       searchTags: ['teacher', 'mentor', 'inspiration', 'school'],
       people: ['teacher'],
       places: ['school'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What was their name?',
         'What subject did they teach?',
@@ -1300,9 +1191,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['school building', 'classroom', 'playground', 'appearance'],
-      people: [],
       places: ['school'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What colour was the building?',
@@ -1326,7 +1215,6 @@ class QuestionDatabase {
       searchTags: ['games', 'break time', 'playground', 'recess'],
       people: ['friends'],
       places: ['playground'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Did you play the same games every day?',
@@ -1349,7 +1237,6 @@ class QuestionDatabase {
       searchTags: ['lunch', 'food', 'canteen', 'dining', 'school'],
       people: ['friends'],
       places: ['canteen', 'playground'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Did you bring lunch from home or buy it at school?',
@@ -1396,7 +1283,6 @@ class QuestionDatabase {
       searchTags: ['school play', 'concert', 'sports day', 'performance'],
       people: ['friends', 'teachers'],
       places: ['school hall', 'field'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was your role in the play or concert?',
@@ -1418,9 +1304,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['uniform', 'school clothes', 'clothing', 'appearance'],
-      people: [],
       places: ['school'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What colours was it?',
@@ -1441,10 +1325,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['proud', 'achievement', 'school', 'success'],
-      people: [],
       places: ['school'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What did you achieve?',
         'How did others react?',
@@ -1464,9 +1345,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['schoolbag', 'bag', 'pencil case', 'books'],
-      people: [],
       places: ['school'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.optional,
       followUps: [
         'What colour was your bag?',
@@ -1489,7 +1368,6 @@ class QuestionDatabase {
       searchTags: ['school trip', 'outing', 'excursion', 'adventure'],
       people: ['friends', 'teachers'],
       places: ['museum', 'park', 'countryside'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did you go?',
@@ -1513,7 +1391,6 @@ class QuestionDatabase {
       searchTags: ['trouble', 'mischief', 'punishment', 'school'],
       people: ['teacher', 'headmaster'],
       places: ['school'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.optional,
       followUps: [
         'What did you do?',
@@ -1535,7 +1412,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['hardest', 'difficult', 'challenge', 'school'],
-      people: [],
       places: ['school'],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
@@ -1558,10 +1434,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['happiest', 'school', 'memory', 'joy'],
-      people: [],
       places: ['school'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What made that moment so special?',
         'Who was there with you?',
@@ -1584,8 +1457,6 @@ class QuestionDatabase {
       searchTags: ['first best friend', 'childhood friend', 'meeting'],
       people: ['best friend'],
       places: ['school', 'neighbourhood'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How old were you when you met?',
         'What did you like about them?',
@@ -1608,7 +1479,6 @@ class QuestionDatabase {
       searchTags: ['friends', 'fun', 'activities', 'childhood', 'play'],
       people: ['friends'],
       places: ['outdoors', 'homes'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did you usually meet up?',
@@ -1630,8 +1500,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['laugh', 'funny', 'friend', 'humour', 'joy'],
       people: ['friend'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What happened?',
@@ -1653,7 +1521,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['disagreement', 'fell out', 'argument', 'friend'],
       people: ['friend'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -1677,7 +1544,6 @@ class QuestionDatabase {
       searchTags: ['friends homes', 'visiting', 'different', 'childhood'],
       people: ['friends', 'friends families'],
       places: ['friends homes'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was different about their home?',
@@ -1699,8 +1565,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['role model', 'looked up to', 'admiration', 'growing up'],
       people: ['role model'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did you admire about them?',
@@ -1721,8 +1585,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['secret', 'childhood', 'hidden', 'confession'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.optional,
       followUps: [
@@ -1745,8 +1607,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['helped', 'trouble', 'friend', 'loyalty', 'kindness'],
       people: ['friend'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What kind of trouble were they in?',
@@ -1767,10 +1627,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.hopeful,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['dream', 'grow up', 'career', 'future', 'aspiration'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How old were you when you first had that dream?',
         'What made you want that?',
@@ -1791,10 +1647,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['growing up', 'realisation', 'moment', 'change'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'How old were you?',
         'What happened to make you realise it?',
@@ -1814,9 +1667,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['hiding place', 'secret spot', 'childhood', 'privacy'],
-      people: [],
       places: ['garden', 'park', 'bedroom'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where was it?',
@@ -1837,9 +1688,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['book', 'story', 'reading', 'moved', 'emotion'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was it about?',
@@ -1883,9 +1731,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['believed', 'not true', 'childhood', 'discovery'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.optional,
       followUps: [
         'How did you find out it was not true?',
@@ -1907,9 +1752,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['friendships', 'growing up', 'best thing', 'gratitude'],
       people: ['friends'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How have those friendships shaped who you are?',
         'Are any of those friends still in your life?',
@@ -1930,10 +1772,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['teenager', 'typical day', 'youth', 'adolescence'],
-      people: [],
       places: ['school', 'home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What time did you wake up?',
         'What did you do after school?',
@@ -1953,9 +1792,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['music', 'songs', 'teenager', 'youth', 'listening'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What songs remind you of that time?',
@@ -1999,10 +1835,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.hopeful,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['dreams', 'aspirations', 'teenager', 'future', 'hopes'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Did those dreams involve a career or a way of life?',
         'Did anyone encourage those dreams?',
@@ -2022,8 +1854,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['rebellious', 'rebellion', 'teenager', 'breaking rules'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.optional,
       followUps: [
@@ -2047,7 +1877,6 @@ class QuestionDatabase {
       searchTags: ['teenage friend', 'friendship', 'youth', 'remember'],
       people: ['friend'],
       places: ['school'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What made them so special?',
@@ -2068,9 +1897,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['movie', 'book', 'TV show', 'impact', 'youth'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was it about?',
@@ -2091,8 +1917,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['hardest', 'teenager', 'struggle', 'difficult'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -2115,8 +1939,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['teenager', 'personality', 'friends', 'describe'],
       people: ['friends'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Were you shy or outgoing?',
@@ -2139,7 +1961,6 @@ class QuestionDatabase {
       searchTags: ['part-time job', 'earning money', 'teenager', 'work'],
       people: ['employer', 'colleague'],
       places: ['workplace'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was the job?',
@@ -2185,8 +2006,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['risk', 'new', 'adventure', 'teenager', 'brave'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -2209,9 +2028,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['exciting', 'moment', 'teenager', 'youth', 'peak'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How old were you?',
@@ -2232,8 +2048,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['wish', 'known', 'younger', 'wisdom', 'advice'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -2255,10 +2069,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['fondest', 'memory', 'teenager', 'youth', 'happy'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What made that moment so special?',
         'Who was there with you?',
@@ -2279,10 +2089,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['education', 'study', 'college', 'university', 'after school'],
-      people: [],
       places: ['college', 'university'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why did you choose that path?',
         'How old were you?',
@@ -2304,8 +2111,6 @@ class QuestionDatabase {
       searchTags: ['teacher', 'professor', 'inspired', 'learning', 'education'],
       people: ['teacher', 'professor'],
       places: ['school', 'college'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What was their name?',
         'What subject did they teach?',
@@ -2325,9 +2130,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['interesting', 'fascinated', 'learned', 'knowledge'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did you learn it?',
@@ -2348,9 +2150,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['skills', 'practical', 'cooking', 'fixing', 'hands-on'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Who taught you those skills?',
@@ -2371,9 +2170,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['book', 'reading', 'changed', 'thinking', 'impact'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was the book about?',
@@ -2395,8 +2191,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['give up', 'sacrifice', 'learning', 'dedication'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -2418,8 +2212,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['giving up', 'perseverance', 'education', 'resilience'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -2441,7 +2233,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['exam', 'test', 'difficult', 'challenge', 'study'],
-      people: [],
       places: ['school', 'college'],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
@@ -2465,8 +2256,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['parents', 'education', 'importance', 'family'],
       people: ['mother', 'father'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Did they push you to study hard?',
@@ -2487,7 +2276,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['travel', 'move', 'education', 'away from home', 'new place'],
-      people: [],
       places: ['college', 'university', 'new city'],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
@@ -2511,9 +2299,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['skill', 'useful', 'practical', 'learning', 'life'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did you learn it?',
@@ -2535,8 +2320,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['teaching', 'sharing', 'knowledge', 'helping'],
       people: ['student', 'child'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Who did you teach?',
@@ -2557,8 +2340,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['wanted to learn', 'never', 'opportunity', 'regret'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -2580,8 +2361,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['lesson', 'life', 'outside school', 'experience', 'wisdom'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -2604,9 +2383,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['advice', 'young person', 'learning', 'value', 'wisdom'],
       people: ['young people'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why is learning so important to you?',
         'What has learning given you in your life?',
@@ -2629,8 +2405,6 @@ class QuestionDatabase {
       searchTags: ['first job', 'work', 'career', 'beginning'],
       people: ['employer', 'colleague'],
       places: ['workplace'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How old were you?',
         'How did you find that job?',
@@ -2651,9 +2425,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['earn money', 'first time', 'independence', 'pay'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did you do with your first paycheck?',
@@ -2676,7 +2447,6 @@ class QuestionDatabase {
       searchTags: ['boss', 'manager', 'leader', 'great', 'workplace'],
       people: ['boss', 'manager'],
       places: ['workplace'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was their name?',
@@ -2698,7 +2468,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['hardest job', 'tough', 'difficult', 'work'],
-      people: [],
       places: ['workplace'],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
@@ -2721,10 +2490,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['proud', 'work', 'achievement', 'accomplishment'],
-      people: [],
       places: ['workplace'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What did you accomplish?',
         'How did others react?',
@@ -2746,7 +2512,6 @@ class QuestionDatabase {
       searchTags: ['colleague', 'coworker', 'friend', 'workplace'],
       people: ['colleague', 'friend'],
       places: ['workplace'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How did you become friends?',
@@ -2767,7 +2532,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['problem', 'impossible', 'work', 'solution'],
-      people: [],
       places: ['workplace'],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
@@ -2790,8 +2554,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['career', 'self-discovery', 'lesson', 'work'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -2813,9 +2575,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['unexpected', 'career', 'journey', 'surprise'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did your career take you?',
@@ -2836,10 +2595,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['meaningful', 'matter', 'purpose', 'work', 'impact'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'What made that work so meaningful?',
         'How did it affect other people?',
@@ -2859,7 +2615,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['mistake', 'error', 'work', 'accountability'],
-      people: [],
       places: ['workplace'],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
@@ -2884,7 +2639,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['work', 'family', 'balance', 'time'],
       people: ['family'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -2908,7 +2662,6 @@ class QuestionDatabase {
       searchTags: ['fun', 'enjoyment', 'work', 'happy'],
       people: ['colleagues'],
       places: ['workplace'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What made it so fun?',
@@ -2930,9 +2683,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['advice', 'first job', 'career', 'wisdom'],
       people: ['young people'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What do you wish someone had told you?',
         'What is the most important quality to have at work?',
@@ -2952,10 +2702,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['working life', 'smile', 'gratitude', 'happy'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What memories come to mind first?',
         'What are you most proud of?',
@@ -2977,9 +2723,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['met', 'spouse', 'partner', 'meeting', 'first time'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Where were you when you met?',
         'How old were you both?',
@@ -3001,9 +2744,7 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['falling in love', 'real', 'love', 'romance'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'How long did it take to fall in love?',
         'Were you nervous or certain?',
@@ -3026,8 +2767,6 @@ class QuestionDatabase {
       searchTags: ['first date', 'romance', 'going out', 'together'],
       people: ['spouse', 'partner'],
       places: ['restaurant', 'cinema', 'park'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Where did you go?',
         'What did you wear?',
@@ -3049,8 +2788,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['romantic', 'partner', 'love', 'gesture'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was the occasion?',
@@ -3072,7 +2809,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['challenges', 'obstacles', 'relationship', 'difficulties'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3095,8 +2831,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['admire', 'qualities', 'partner', 'love', 'attraction'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was the first thing you noticed about them?',
@@ -3118,7 +2852,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['doubts', 'commitment', 'sure', 'certain'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3141,7 +2874,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['hardest', 'tell', 'honest', 'vulnerable', 'partner'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.sensitive,
       priority: QuestionPriority.important,
       followUps: [
@@ -3164,9 +2896,7 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['knew', 'spend life', 'commitment', 'together'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'What were you doing at that moment?',
         'How did it feel to know that?',
@@ -3187,9 +2917,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['secret', 'long relationship', 'happy', 'wisdom'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How did you learn that secret?',
         'What is the most important quality in a partner?',
@@ -3210,8 +2937,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['surprise', 'committed', 'relationship', 'unexpected'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What surprised you most?',
@@ -3233,7 +2958,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['families', 'supportive', 'relationship', 'approval'],
       people: ['families', 'parents'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3256,8 +2980,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['laugh', 'together', 'joy', 'funny', 'happy'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was so funny?',
@@ -3279,7 +3001,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['partner', 'taught', 'self', 'discovery', 'growth'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3302,9 +3023,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['partner', 'mean', 'love', 'express', 'words'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why is that so important to say?',
         'How long have you felt that way?',
@@ -3326,9 +3044,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['proposal', 'marriage', 'engagement', 'married'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Where were you when it happened?',
         'How did you feel in that moment?',
@@ -3351,8 +3066,6 @@ class QuestionDatabase {
       searchTags: ['wedding', 'day', 'ceremony', 'celebration'],
       people: ['spouse', 'partner', 'family'],
       places: ['wedding venue', 'church'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What were you feeling when you woke up?',
         'What did you wear?',
@@ -3376,7 +3089,6 @@ class QuestionDatabase {
       searchTags: ['first thing', 'married', 'couple', 'beginning'],
       people: ['spouse', 'partner'],
       places: ['home', 'honeymoon'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did you go after the wedding?',
@@ -3398,7 +3110,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['challenging', 'first year', 'marriage', 'adjustment'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3422,7 +3133,6 @@ class QuestionDatabase {
       searchTags: ['home', 'first home', 'together', 'shared'],
       people: ['spouse', 'partner'],
       places: ['first home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did it look like?',
@@ -3445,8 +3155,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['enjoy', 'together', 'activities', 'early years'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was your favourite thing to do as a couple?',
@@ -3468,7 +3176,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['money', 'finances', 'budget', 'early days'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3491,7 +3198,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['disagreement', 'conflict', 'fix', 'marriage'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3514,7 +3220,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['in-laws', 'family', 'relationship', 'marriage'],
       people: ['in-laws'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3537,8 +3242,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['anniversary', 'celebration', 'milestone', 'special'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Which anniversary was it?',
@@ -3560,9 +3263,7 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['strong', 'marriage', 'kept together', 'enduring'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'Was there ever a time you thought it might end?',
         'What pulled you back together?',
@@ -3584,7 +3285,6 @@ class QuestionDatabase {
       searchTags: ['trip', 'holiday', 'travel', 'together', 'memory'],
       people: ['spouse', 'partner'],
       places: ['holiday destination'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did you go?',
@@ -3607,7 +3307,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['grow', 'change', 'together', 'decades', 'evolution'],
       people: ['spouse', 'partner'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3630,8 +3329,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['gift', 'marriage', 'greatest', 'reward'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How has that gift shaped your life?',
@@ -3653,9 +3350,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['grandchildren', 'love', 'marriage', 'wisdom', 'advice'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What has your marriage taught you about love?',
         'What qualities make a relationship last?',
@@ -3677,9 +3371,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['parenthood', 'expecting', 'pregnancy', 'first time'],
       people: ['spouse', 'partner'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How did you find out?',
         'Were you happy or scared?',
@@ -3701,8 +3392,6 @@ class QuestionDatabase {
       searchTags: ['birth', 'first child', 'born', 'baby', 'parenthood'],
       people: ['child', 'spouse'],
       places: ['hospital', 'home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Where were you when it happened?',
         'How did you feel when you first held them?',
@@ -3747,8 +3436,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['first word', 'baby', 'milestone', 'speaking'],
       people: ['child'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did they say?',
@@ -3770,9 +3457,7 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['changed', 'person', 'parenthood', 'transformation'],
       people: ['child'],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'What changed most about you?',
         'Did your priorities shift?',
@@ -3793,8 +3478,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['laugh', 'child', 'funny', 'joy', 'humour'],
       people: ['child'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How old was your child?',
@@ -3816,7 +3499,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['worried', 'child', 'concern', 'parental fear'],
       people: ['child'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3839,9 +3521,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['rewarding', 'raising', 'children', 'joy', 'fulfillment'],
       people: ['children'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why was that so rewarding?',
         'How did it make you feel as a parent?',
@@ -3862,7 +3541,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['divide', 'responsibilities', 'parenting', 'teamwork'],
       people: ['spouse', 'partner', 'children'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3886,7 +3564,6 @@ class QuestionDatabase {
       searchTags: ['tradition', 'routine', 'children', 'family', 'ritual'],
       people: ['children'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How often did you do it?',
@@ -3931,9 +3608,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['values', 'children', 'pass on', 'teaching', 'legacy'],
       people: ['children'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How did you teach those values?',
         'Did your children learn them?',
@@ -3954,7 +3628,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['hardest', 'decision', 'parent', 'difficult'],
       people: ['child'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -3977,9 +3650,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['proudest', 'parent', 'achievement', 'moment'],
       people: ['child'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How old was your child?',
         'What did they do?',
@@ -4000,9 +3670,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['children', 'love', 'message', 'parent', 'know'],
       people: ['children'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How do you show that love every day?',
         'What has that love cost you?',
@@ -4025,8 +3692,6 @@ class QuestionDatabase {
       searchTags: ['morning', 'typical', 'family home', 'routine'],
       people: ['children', 'spouse'],
       places: ['home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What time did everyone wake up?',
         'What did you eat for breakfast?',
@@ -4048,8 +3713,6 @@ class QuestionDatabase {
       searchTags: ['home', 'family', 'raised', 'special', 'house'],
       people: ['family'],
       places: ['family home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What did it look like?',
         'What was your favourite room?',
@@ -4071,7 +3734,6 @@ class QuestionDatabase {
       searchTags: ['children', 'activities', 'home', 'favourite', 'play'],
       people: ['children'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did they like to play?',
@@ -4094,7 +3756,6 @@ class QuestionDatabase {
       searchTags: ['chaotic', 'messy', 'family', 'funny', 'real'],
       people: ['children'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.optional,
       followUps: [
         'What happened?',
@@ -4118,7 +3779,6 @@ class QuestionDatabase {
       searchTags: ['evenings', 'children', 'bed', 'partner', 'quiet'],
       people: ['spouse', 'partner'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Did you watch TV together?',
@@ -4141,7 +3801,6 @@ class QuestionDatabase {
       searchTags: ['rule', 'household', 'values', 'family', 'important'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Why was that rule so important?',
@@ -4164,7 +3823,6 @@ class QuestionDatabase {
       searchTags: ['garden', 'outdoor', 'children', 'play', 'nature'],
       people: ['children'],
       places: ['garden', 'backyard'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was in the garden?',
@@ -4188,7 +3846,6 @@ class QuestionDatabase {
       searchTags: ['meal', 'cook', 'together', 'family', 'food'],
       people: ['children', 'spouse'],
       places: ['kitchen'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did you cook?',
@@ -4212,7 +3869,6 @@ class QuestionDatabase {
       searchTags: ['home', 'warm', 'welcoming', 'family', 'comfort'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did you do to make it feel special?',
@@ -4233,9 +3889,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['room', 'spot', 'personal', 'space', 'home'],
-      people: [],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where was it?',
@@ -4281,7 +3935,6 @@ class QuestionDatabase {
       searchTags: ['sounds', 'home', 'family', 'memories', 'sensory'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did the house sound like in the morning?',
@@ -4304,8 +3957,6 @@ class QuestionDatabase {
       searchTags: ['perfect', 'together', 'family', 'harmony', 'moment'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What were you doing?',
         'Where were you?',
@@ -4327,7 +3978,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['lesson', 'family', 'life', 'wisdom', 'important'],
       people: ['family'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -4351,8 +4001,6 @@ class QuestionDatabase {
       searchTags: ['happiest', 'family', 'home', 'memory', 'joy'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What made that moment so special?',
         'Who was there?',
@@ -4375,8 +4023,6 @@ class QuestionDatabase {
       searchTags: ['festival', 'celebration', 'favourite', 'childhood', 'happy'],
       people: ['family'],
       places: ['home', 'celebration venue'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What did you do to celebrate?',
         'What did you wear?',
@@ -4399,8 +4045,6 @@ class QuestionDatabase {
       searchTags: ['dish', 'food', 'celebration', 'recipe', 'family'],
       people: ['mother', 'grandmother'],
       places: ['kitchen'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Who usually cooked it?',
         'What ingredients did it use?',
@@ -4423,7 +4067,6 @@ class QuestionDatabase {
       searchTags: ['recipe', 'taste', 'childhood', 'miss', 'food'],
       people: ['mother', 'grandmother'],
       places: ['kitchen'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Who made it?',
@@ -4447,7 +4090,6 @@ class QuestionDatabase {
       searchTags: ['prepare', 'excitement', 'special occasion', 'celebration'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did you do to get ready?',
@@ -4470,7 +4112,6 @@ class QuestionDatabase {
       searchTags: ['tradition', 'unique', 'unusual', 'family', 'custom'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How did that tradition start?',
@@ -4493,7 +4134,6 @@ class QuestionDatabase {
       searchTags: ['smell', 'holiday', 'special', 'home', 'scent'],
       people: ['family'],
       places: ['home', 'kitchen'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What created that smell?',
@@ -4516,7 +4156,6 @@ class QuestionDatabase {
       searchTags: ['cook', 'best', 'signature', 'dish', 'family'],
       people: ['mother', 'grandmother', 'aunt'],
       places: ['kitchen'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was their name?',
@@ -4540,7 +4179,6 @@ class QuestionDatabase {
       searchTags: ['celebration', 'not planned', 'funny', 'unexpected'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.optional,
       followUps: [
         'What went wrong?',
@@ -4562,9 +4200,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['food', 'childhood', 'still eat', 'today', 'enjoy'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How does it taste compared to then?',
@@ -4587,7 +4222,6 @@ class QuestionDatabase {
       searchTags: ['birthday', 'celebrate', 'childhood', 'adult'],
       people: ['family', 'friends'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was the best birthday you ever had?',
@@ -4610,7 +4244,6 @@ class QuestionDatabase {
       searchTags: ['holiday', 'vacation', 'family', 'travel', 'memorable'],
       people: ['family'],
       places: ['holiday destination'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did you go?',
@@ -4635,7 +4268,6 @@ class QuestionDatabase {
       searchTags: ['songs', 'music', 'happy', 'family', 'memory'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What songs remind you of your family?',
@@ -4658,7 +4290,6 @@ class QuestionDatabase {
       searchTags: ['new year', 'celebrate', 'tradition', 'family'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did you do at midnight?',
@@ -4682,7 +4313,6 @@ class QuestionDatabase {
       searchTags: ['tradition', 'kept alive', 'generations', 'family'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How did you adapt it for your own family?',
@@ -4705,8 +4335,6 @@ class QuestionDatabase {
       searchTags: ['favourite', 'family', 'food', 'celebration', 'memory'],
       people: ['family'],
       places: ['home'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What made that memory so special?',
         'Who was there?',
@@ -4728,10 +4356,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['biggest', 'challenge', 'early adult', 'difficulty'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'How old were you?',
         'What made it so difficult?',
@@ -4752,8 +4377,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['low', 'difficult', 'recovery', 'dark time', 'struggle'],
-      people: [],
-      places: [],
       difficulty: Difficulty.sensitive,
       priority: QuestionPriority.important,
       followUps: [
@@ -4777,7 +4400,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['lost', 'grief', 'death', 'someone important', 'coping'],
       people: ['loved one'],
-      places: [],
       difficulty: Difficulty.sensitive,
       priority: QuestionPriority.important,
       followUps: [
@@ -4801,7 +4423,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['financial', 'money', 'difficulty', 'struggle', 'lesson'],
       people: ['family'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -4824,8 +4445,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['difficult', 'decision', 'choice', 'hard', 'struggle'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -4849,7 +4468,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['family', 'support', 'hard times', 'together', 'resilience'],
       people: ['family'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -4872,7 +4490,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['betrayed', 'let down', 'trust', 'disappointed'],
       people: ['friend', 'colleague'],
-      places: [],
       difficulty: Difficulty.sensitive,
       priority: QuestionPriority.important,
       followUps: [
@@ -4895,8 +4512,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['independence', 'loss', 'cope', 'change', 'adapt'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -4942,8 +4557,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['could not go on', 'pull through', 'strength', 'dark moment'],
-      people: [],
-      places: [],
       difficulty: Difficulty.sensitive,
       priority: QuestionPriority.important,
       followUps: [
@@ -4966,8 +4579,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['criticism', 'unfair', 'treated', 'handle', 'injustice'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -4990,8 +4601,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['lonely', 'loneliness', 'isolation', 'alone', 'struggle'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5014,8 +4623,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['rebuild', 'setback', 'failure', 'start over', 'resilience'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5038,8 +4645,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['forgive', 'forgiveness', 'hardest', 'healing', 'let go'],
-      people: [],
-      places: [],
       difficulty: Difficulty.sensitive,
       priority: QuestionPriority.important,
       followUps: [
@@ -5062,10 +4667,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.hopeful,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['hardest', 'growth', 'meaning', 'hope', 'strength'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'What did those hard times teach you?',
         'How are you stronger because of them?',
@@ -5087,10 +4689,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['first', 'success', 'achievement', 'proud', 'milestone'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How old were you?',
         'What did you achieve?',
@@ -5110,10 +4708,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['turning point', 'changed', 'moment', 'life', 'pivotal'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'What happened?',
         'How did you feel before it?',
@@ -5134,8 +4729,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['risk', 'biggest', 'bold', 'worth it', 'courage'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5158,10 +4751,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['achieve', 'hard work', 'long time', 'success', 'satisfaction'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What had you been working towards?',
         'How long did it take?',
@@ -5183,8 +4772,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['helped', 'achieve', 'support', 'success', 'gratitude'],
       people: ['mentor', 'friend', 'family'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Who was that person?',
@@ -5206,10 +4793,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['happiest', 'day', 'perfect', 'joy', 'best day'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What happened that day?',
         'Who was with you?',
@@ -5230,9 +4813,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['surprised', 'capability', 'achievement', 'unexpected'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What did you do?',
@@ -5254,8 +4834,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['celebrate', 'achievement', 'success', 'honour'],
       people: ['family', 'friends'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How did you celebrate?',
@@ -5276,9 +4854,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['small victory', 'achievement', 'meaningful', 'personal'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What was the small victory?',
@@ -5300,7 +4875,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['success', 'relationships', 'others', 'impact', 'change'],
       people: ['family', 'friends'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5322,9 +4896,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['blessed', 'grateful', 'gratitude', 'moment', 'thankful'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What happened?',
@@ -5345,10 +4916,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['proudest', 'entire life', 'peak', 'achievement'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What happened?',
         'How old were you?',
@@ -5369,8 +4936,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['success', 'humble', 'change', 'stay grounded', 'values'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5392,10 +4957,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['grateful', 'matters', 'achievement', 'meaningful', 'important'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'What makes it so meaningful?',
         'How has it shaped your life?',
@@ -5416,9 +4978,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['success', 'story', 'grandchildren', 'legacy', 'important'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why is that story so important?',
         'What lesson does it teach?',
@@ -5440,9 +4999,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['family', 'values', 'beliefs', 'upbringing', 'guided'],
       people: ['family'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What values were most important?',
         'How were they taught to you?',
@@ -5464,7 +5020,6 @@ class QuestionDatabase {
       searchTags: ['religion', 'spiritual', 'practice', 'faith', 'grew up'],
       people: ['family'],
       places: ['place of worship'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What practices did you follow?',
@@ -5485,10 +5040,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['value', 'important', 'live by', 'principle', 'guide'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How did you come to value that?',
         'How has it guided your decisions?',
@@ -5509,8 +5060,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['moral', 'ethical', 'person', 'values', 'role model'],
       people: ['role model'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Who was that person?',
@@ -5531,8 +5080,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['beliefs', 'change', 'grow older', 'evolution', 'belief'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5554,8 +5101,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['believe', 'disagree', 'unique', 'unconventional', 'opinion'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5578,8 +5123,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['teach', 'children', 'right', 'wrong', 'moral'],
       people: ['children'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What methods did you use?',
@@ -5600,8 +5143,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['values', 'tested', 'moral', 'courage', 'respond'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5623,9 +5164,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['kindness', 'kind', 'difference', 'compassion', 'meaning'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What does kindness mean to you?',
@@ -5646,8 +5184,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['peace', 'uncertain', 'scary', 'cope', 'inner strength'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5669,8 +5205,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['forgiveness', 'forgive', 'role', 'healing', 'peace'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5692,8 +5226,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['after death', 'believe', 'spiritual', 'afterlife', 'meaning'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5715,10 +5247,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['lesson', 'good person', 'moral', 'wisdom', 'life'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'How did life teach you that lesson?',
         'Was it through experience or observation?',
@@ -5738,10 +5267,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['remembered', 'life', 'legacy', 'character', 'way of living'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What qualities do you want to be remembered for?',
         'How have you lived those qualities?',
@@ -5762,9 +5287,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['wisdom', 'faith', 'values', 'beliefs', 'pass on', 'legacy'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why is this wisdom so important?',
         'How can they apply it to their lives?',
@@ -5785,10 +5307,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['first', 'travel', 'new place', 'journey', 'adventure'],
-      people: [],
       places: ['new destination'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How old were you?',
         'Where did you go?',
@@ -5809,10 +5328,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['place', 'beautiful', 'breathtaking', 'awe', 'visit'],
-      people: [],
       places: ['beautiful destination'],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Where was it?',
         'What did it look like?',
@@ -5833,9 +5349,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['adventurous', 'trip', 'exciting', 'bold', 'daring'],
-      people: [],
       places: ['adventure destination'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did you go?',
@@ -5857,8 +5371,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['travel', 'change', 'see the world', 'perspective', 'growth'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5880,9 +5392,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['funny', 'travel', 'humour', 'unexpected', 'laugh'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where were you?',
@@ -5904,9 +5413,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['meal', 'food', 'travelling', 'taste', 'remember'],
-      people: [],
       places: ['restaurant', 'local market'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where were you?',
@@ -5929,8 +5436,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['interesting', 'person', 'met', 'travel', 'stranger'],
       people: ['stranger'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did you meet them?',
@@ -5951,9 +5456,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['natural', 'landscape', 'beautiful', 'nature', 'scenery'],
-      people: [],
       places: ['mountain', 'beach', 'forest', 'countryside'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where was it?',
@@ -5975,9 +5478,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['lost', 'travel', 'adventure', 'unexpected', 'found'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where were you?',
@@ -5999,8 +5499,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['emotional', 'impact', 'place', 'deep', 'meaningful'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -6023,9 +5521,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['prepare', 'excitement', 'trip', 'anticipation', 'packing'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How did you prepare?',
@@ -6048,7 +5543,6 @@ class QuestionDatabase {
       searchTags: ['family', 'trip', 'best', 'travel', 'together'],
       people: ['family'],
       places: ['holiday destination'],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where did you go?',
@@ -6070,9 +5564,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['dreamed', 'visit', 'never', 'travel', 'wish'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Why did you want to go there?',
@@ -6093,8 +5584,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['bring back', 'ideas', 'memories', 'lessons', 'travel'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -6116,10 +5605,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['favourite', 'travel', 'memory', 'cherished', 'return'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Where were you?',
         'What made it so special?',
@@ -6141,10 +5626,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['important', 'lesson', 'life', 'taught', 'wisdom'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How did you learn that lesson?',
         'Was it through experience or observation?',
@@ -6164,10 +5645,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['advice', 'younger self', 'wisdom', 'life lesson'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What would you say first?',
         'What mistakes would you warn them about?',
@@ -6187,10 +5664,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['happiness', 'meaning', 'find', 'joy', 'contentment'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How has your definition of happiness changed?',
         'Where do you find it most often?',
@@ -6210,8 +5683,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['regret', 'handle', 'forgive', 'peace', 'let go'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -6233,9 +5704,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['important', 'quality', 'person', 'character', 'value'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Why is that quality so important?',
@@ -6256,9 +5724,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['hard work', 'success', 'effort', 'achievement', 'lesson'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Has hard work always paid off?',
@@ -6279,8 +5744,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['disappointment', 'deal', 'keep going', 'resilience', 'hope'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -6302,9 +5765,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['best way', 'spend time', 'precious', 'life', 'priority'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'How did you come to that conclusion?',
@@ -6325,8 +5785,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['worry', 'anxiety', 'calm', 'peace', 'cope'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -6348,10 +5806,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['lesson', 'relationships', 'connection', 'people', 'wisdom'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How did you learn that lesson?',
         'How has it shaped your relationships?',
@@ -6371,9 +5825,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['meaning', 'everyday', 'purpose', 'ordinary', 'life'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Where do you find meaning?',
@@ -6394,8 +5845,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['growing older', 'ageing', 'wisdom', 'hidden', 'important'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -6417,9 +5866,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['grateful', 'gratitude', 'practice', 'hard times', 'thankful'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What are you most grateful for?',
@@ -6440,10 +5886,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['live well', 'good life', 'meaning', 'purpose', 'definition'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How did you come to that definition?',
         'Have you lived well by your own measure?',
@@ -6464,9 +5906,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['next generation', 'important', 'life', 'understand', 'wisdom'],
       people: ['next generation'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why is that so important?',
         'How can they learn it without making the same mistakes?',
@@ -6488,9 +5927,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['grandchildren', 'remember', 'legacy', 'first', 'important'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why is that so important to you?',
         'How have you shown that in your life?',
@@ -6511,9 +5947,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['stories', 'family', 'grandchildren', 'always', 'know'],
       people: ['grandchildren', 'family'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why are those stories so important?',
         'How can they keep those stories alive?',
@@ -6534,9 +5967,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['qualities', 'inherit', 'grandchildren', 'character', 'pass on'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why are those qualities important?',
         'How have you shown those qualities in your life?',
@@ -6557,9 +5987,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['values', 'hope', 'grandchildren', 'future', 'carry'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why are those values important?',
         'How did you learn them?',
@@ -6580,7 +6007,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.long,
       searchTags: ['times', 'lived through', 'history', 'grandchildren', 'know'],
       people: ['grandchildren'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -6602,10 +6028,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['love', 'learned', 'important', 'truth', 'wisdom'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How did you learn that truth?',
         'How has it shaped your relationships?',
@@ -6626,8 +6048,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['hard work', 'perseverance', 'grandchildren', 'value', 'effort'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What has hard work given you?',
@@ -6649,7 +6069,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['mistake', 'learn', 'grandchildren', 'failure', 'lesson'],
       people: ['grandchildren'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -6672,8 +6091,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['treat', 'people', 'kindness', 'respect', 'grandchildren'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Why is that important to you?',
@@ -6695,8 +6112,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['traditions', 'continue', 'grandchildren', 'family', 'custom'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'Why are those traditions important?',
@@ -6718,9 +6133,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['message', 'future', 'grandchild', 'born', 'leave'],
       people: ['future grandchild'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What would you say to them?',
         'How do you want them to feel when they read your words?',
@@ -6741,9 +6153,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['remembered', 'family', 'sentence', 'legacy', 'one thing'],
       people: ['family'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why is that sentence so important?',
         'How have you lived by those words?',
@@ -6764,8 +6173,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['courage', 'bravery', 'grandchildren', 'fear', 'strength'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
       priority: QuestionPriority.important,
       followUps: [
         'What is courage to you?',
@@ -6787,7 +6194,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['celebration', 'life', 'grandchildren', 'say', 'honour'],
       people: ['grandchildren'],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -6810,9 +6216,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['greatest', 'gift', 'grandchildren', 'non-material', 'legacy'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why is that gift so valuable?',
         'How have you given that gift?',
@@ -6833,10 +6236,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['look back', 'life', 'whole', 'first', 'overview'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why does that come to mind first?',
         'How does it feel to look back?',
@@ -6856,10 +6255,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['grateful', 'gratitude', 'life', 'thankful', 'appreciate'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What comes to mind first?',
         'Why are you most grateful for that?',
@@ -6879,10 +6274,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['best decision', 'shaped', 'life', 'choice', 'turning point'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'What was the decision?',
         'Why was it the best?',
@@ -6902,10 +6294,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
       searchTags: ['joy', 'happiness', 'right now', 'present', 'contentment'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why does that bring you joy?',
         'How often do you experience it?',
@@ -6925,10 +6313,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.hopeful,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['years ahead', 'matters', 'priorities', 'future', 'hope'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What matters most to you now?',
         'How has that changed from when you were younger?',
@@ -6948,10 +6332,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['know', 'life', 'story', 'lived', 'understand'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What is the most important thing about your story?',
         'What would surprise people?',
@@ -6971,10 +6351,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['relive', 'moment', 'precious', 'again', 'favourite'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What happened in that moment?',
         'Who was there?',
@@ -6995,8 +6371,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['success', 'definition', 'changed', 'evolved', 'years'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -7018,10 +6392,7 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['proud', 'become', 'who you are', 'character', 'identity'],
-      people: [],
-      places: [],
       difficulty: Difficulty.moderate,
-      priority: QuestionPriority.core,
       followUps: [
         'How did you become that person?',
         'What challenges shaped you?',
@@ -7042,9 +6413,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['remember', 'family', 'hearts', 'legacy', 'love'],
       people: ['family'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How do you want them to feel when they think of you?',
         'What memories do you want them to hold onto?',
@@ -7064,10 +6432,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['truly matters', 'life', 'important', 'truth', 'wisdom'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'How did you come to that understanding?',
         'How has it changed how you live?',
@@ -7088,9 +6452,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['hope', 'future', 'optimism', 'forward', 'looking'],
       people: ['grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What gives you hope?',
         'How do you stay hopeful during hard times?',
@@ -7110,10 +6471,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['beautiful', 'life', 'lived', 'grace', 'beauty'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'What makes it beautiful?',
         'How has that beauty shown itself?',
@@ -7133,10 +6490,6 @@ class QuestionDatabase {
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['not said', 'say', 'record', 'final', 'voice'],
-      people: [],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Who is this message for?',
         'Why is it important to say it now?',
@@ -7157,9 +6510,6 @@ class QuestionDatabase {
       estimatedDuration: EstimatedDuration.medium,
       searchTags: ['final word', 'heart', 'message', 'everyone', 'know'],
       people: ['family', 'grandchildren'],
-      places: [],
-      difficulty: Difficulty.easy,
-      priority: QuestionPriority.core,
       followUps: [
         'Why is this your final word?',
         'How does it capture who you are?',

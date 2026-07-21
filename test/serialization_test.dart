@@ -64,7 +64,7 @@ void main() {
     });
 
     test('Photo serialization and deserialization', () {
-      final date = DateTime(2023, 1, 1);
+      final date = DateTime(2023);
       final photo = Photo(
         id: 'photo_1',
         path: 'photos/photo_1.jpg',

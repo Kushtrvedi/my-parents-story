@@ -28,6 +28,6 @@ class AppError {
 class ValidationError extends AppError {
   final String field;
 
-  const ValidationError({required this.field, required String message})
-      : super(code: 'VALIDATION_$field', message: message);
+  const ValidationError({required this.field, required super.message})
+      : super(code: 'VALIDATION_$field');
 }

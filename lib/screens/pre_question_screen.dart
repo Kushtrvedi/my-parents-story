@@ -88,12 +88,17 @@ class _PreQuestionScreenState extends State<PreQuestionScreen> {
         ],
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
+        child: AdaptiveCenteredBox(
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: AppSpacing.xxl),
               const Icon(Icons.favorite_rounded, color: AppColors.accent, size: AppIcons.xxl),
               const SizedBox(height: AppSpacing.xxl),
               Text(
@@ -121,7 +126,7 @@ class _PreQuestionScreenState extends State<PreQuestionScreen> {
                   ),
                 ),
               ],
-              const Spacer(),
+              const SizedBox(height: AppSpacing.xxl),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -144,9 +149,13 @@ class _PreQuestionScreenState extends State<PreQuestionScreen> {
                     );
                   },
                   child: Text(T.tr('beginStory')),
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.xl),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(height: AppSpacing.xl),
             ],
           ),
         ),

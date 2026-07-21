@@ -362,7 +362,7 @@ void main() {
     });
 
     test('Question model toMap and fromMap', () {
-      final question = Question(
+      const question = Question(
         id: 'ch01_q01',
         chapterId: 'ch01',
         chapterNumber: 1,
@@ -375,8 +375,6 @@ void main() {
         searchTags: ['family', 'origins'],
         people: ['parents'],
         places: ['hometown'],
-        difficulty: Difficulty.easy,
-        priority: QuestionPriority.core,
         followUps: ['Can you tell me more?', 'What do you remember?'],
       );
 
@@ -390,7 +388,7 @@ void main() {
     });
 
     test('Chapter model toMap and fromMap', () {
-      final chapter = Chapter(
+      const chapter = Chapter(
         number: 1,
         id: 'ch01',
         title: 'Roots and Family Origins',

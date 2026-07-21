@@ -7,28 +7,28 @@ sealed class Result<T> {
   bool get isFailure => this is Failure<T>;
 
   T? get value => switch (this) {
-    Success<T> s => s.value,
+    final Success<T> s => s.value,
     Failure<T> _ => null,
   };
 
   AppError? get error => switch (this) {
     Success<T> _ => null,
-    Failure<T> f => f.error,
+    final Failure<T> f => f.error,
   };
 
   Result<R> map<R>(R Function(T) transform) => switch (this) {
-    Success<T> s => Success(transform(s.value)),
-    Failure<T> f => Failure(f.error),
+    final Success<T> s => Success(transform(s.value)),
+    final Failure<T> f => Failure(f.error),
   };
 
   Result<T> orElse(T Function() fallback) => switch (this) {
-    Success<T> s => s,
+    final Success<T> s => s,
     Failure<T> _ => Success(fallback()),
   };
 
   T unwrap() => switch (this) {
-    Success<T> s => s.value,
-    Failure<T> f => throw StateError('Called unwrap() on Failure: ${f.error.message}'),
+    final Success<T> s => s.value,
+    final Failure<T> f => throw StateError('Called unwrap() on Failure: ${f.error.message}'),
   };
 }
 

@@ -17,6 +17,7 @@ class ProfileTypeScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
+        child: AdaptiveCenteredBox(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
           child: Column(
@@ -40,6 +41,7 @@ class ProfileTypeScreen extends StatelessWidget {
               const SizedBox(height: AppSpacing.xxl),
             ],
           ),
+        ),
         ),
       ),
     );

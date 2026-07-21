@@ -40,10 +40,9 @@ class NativeVoiceService {
         localeId: localeId,
         listenMode: stt.ListenMode.dictation,
         cancelOnError: true,
-        partialResults: true,
+        listenFor: const Duration(minutes: 5),
+        pauseFor: const Duration(seconds: 3),
       ),
-      listenFor: const Duration(minutes: 5),
-      pauseFor: const Duration(seconds: 3),
     );
   }
 
@@ -53,6 +52,8 @@ class NativeVoiceService {
   }
 
   void dispose() {
-    _speech.cancel();
+    if (_isInitialized) {
+      _speech.cancel();
+    }
   }
 }

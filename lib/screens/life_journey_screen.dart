@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../design_system/design_system.dart';
 import '../data/questions.dart';
 import '../l10n/translations.dart';
+import '../l10n/question_l10n.dart';
+import '../main.dart';
 import '../models/parent_profile.dart';
 import '../services/storage_service.dart';
 import '../services/speech_setup_service.dart';
@@ -97,7 +99,7 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final chapters = QuestionDatabase.chapters;
+    const chapters = QuestionDatabase.chapters;
 
     return Scaffold(
       appBar: AppBar(
@@ -143,25 +145,32 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: AppSpacing.s),
-          _buildEmptyStateOrProgress(),
-          const SizedBox(height: AppSpacing.l),
-          Expanded(
-            child: ListView.builder(
+      body: AdaptiveCenteredBox(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  const SizedBox(height: AppSpacing.s),
+                  _buildEmptyStateOrProgress(),
+                  const SizedBox(height: AppSpacing.l),
+                ],
+              ),
+            ),
+            SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: AppSpacing.m),
-              itemCount: _groups.length,
-              itemBuilder: (context, groupIndex) {
-                final group = _groups[groupIndex];
-                final isExpanded = _expandedGroups.contains(groupIndex);
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, groupIndex) {
+                    final group = _groups[groupIndex];
+                    final isExpanded = _expandedGroups.contains(groupIndex);
 
-                // Stage Progress via Dots
-                final totalChaptersInGroup = group.endChapter - group.startChapter + 1;
-                int fullyCompletedChapters = 0;
-                for (int i = group.startChapter; i <= group.endChapter; i++) {
-                  if (i >= chapters.length) continue;
-                  final ch = chapters[i];
+                    // Stage Progress via Dots
+                    final totalChaptersInGroup = group.endChapter - group.startChapter + 1;
+                    int fullyCompletedChapters = 0;
+                    for (int i = group.startChapter; i <= group.endChapter; i++) {
+                      if (i >= chapters.length) continue;
+                      final ch = chapters[i];
                   final completed = _progress[ch.id] ?? 0;
                   if (completed >= ch.questionCount && ch.questionCount > 0) {
                     fullyCompletedChapters++;
@@ -296,7 +305,7 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          chapter.title,
+                                          chapter.getLocalizedTitle(localeProvider.locale.languageCode),
                                           style: AppTypography.body,
                                         ),
                                         if (completed > 0) ...[
@@ -323,22 +332,27 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
                   ),
                 );
               },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(AppSpacing.l, AppSpacing.s, AppSpacing.l, AppSpacing.xl),
-            child: ElevatedButton.icon(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => GenerateBookScreen(profile: widget.profile),
+                  childCount: _groups.length,
                 ),
               ),
-              icon: const Icon(Icons.menu_book_outlined, size: AppIcons.l),
-              label: Text(T.tr('generateBook')),
             ),
-          ),
-        ],
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(AppSpacing.l, AppSpacing.s, AppSpacing.l, AppSpacing.xl),
+                child: ElevatedButton.icon(
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => GenerateBookScreen(profile: widget.profile),
+                    ),
+                  ),
+                  icon: const Icon(Icons.menu_book_outlined, size: AppIcons.l),
+                  label: Text(T.tr('generateBook')),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -356,7 +370,6 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
             color: isDone ? AppColors.primary : AppColors.divider,
             border: Border.all(
               color: isDone ? AppColors.primary : AppColors.textLight.withValues(alpha: 0.3),
-              width: 1,
             ),
           ),
         );

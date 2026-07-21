@@ -64,9 +64,14 @@ class _GenerateBookScreenState extends State<GenerateBookScreen> {
         title: Text(T.tr('generateBook')),
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
+        child: AdaptiveCenteredBox(
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (_isGenerating) ...[
@@ -117,7 +122,7 @@ class _GenerateBookScreenState extends State<GenerateBookScreen> {
                       ),
                 ),
               ] else if (_isDone) ...[
-                Icon(
+                const Icon(
                   Icons.check_circle,
                   size: 80,
                   color: AppColors.success,
@@ -164,6 +169,10 @@ class _GenerateBookScreenState extends State<GenerateBookScreen> {
                   ),
                 ),
               ],
+            ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

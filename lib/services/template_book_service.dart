@@ -108,7 +108,7 @@ class TemplateBookService {
     buffer.writeln('Remember me not just for what I did, but for what I believed in. Carry these stories forward, and know that love is the thread that connects every page of this book.');
     buffer.writeln();
     buffer.writeln('With all my love,');
-    buffer.writeln('${profile.name}');
+    buffer.writeln(profile.name);
 
     return buffer.toString();
   }
@@ -124,7 +124,7 @@ class TemplateBookService {
   }
 
   List<GeneratedChapter> generateAllChapters(ParentProfile profile) {
-    final allChapters = QuestionDatabase.chapters;
+    const allChapters = QuestionDatabase.chapters;
     final chapters = <GeneratedChapter>[];
 
     for (final chapter in allChapters) {

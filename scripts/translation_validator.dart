@@ -59,13 +59,7 @@ void main() {
       hasErrors = true;
     }
 
-    // Check for placeholder mismatch
-    final RegExp placeholderPattern = RegExp(r'\{[^}]+\}');
-    for (final key in enKeys.intersection(keys)) {
-      final enStringMatch = RegExp("'$key':\\s*'([^']+)'|'$key':\\s*\"([^\"]+)\"").firstMatch(content);
-      // It's a bit hard to properly extract strings with regex this way, but we'll approximate.
-      // We will parse the actual dart map via a safer regex or just accept simple matches.
-    }
+
   }
 
   if (hasErrors) {

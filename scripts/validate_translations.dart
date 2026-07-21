@@ -1,7 +1,7 @@
 #!/usr/bin/env dart
 
-/// Translation validator — ensures all languages have identical keys.
-/// Run: dart run scripts/validate_translations.dart
+// Translation validator — ensures all languages have identical keys.
+// Run: dart run scripts/validate_translations.dart
 
 import 'dart:io';
 
@@ -67,7 +67,7 @@ Set<String> _extractKeys(String content, String langMarker) {
   if (startIdx == -1) return keys;
 
   // Find the opening brace
-  var braceStart = content.indexOf('{', startIdx);
+  final braceStart = content.indexOf('{', startIdx);
   if (braceStart == -1) return keys;
 
   // Find the closing brace by counting

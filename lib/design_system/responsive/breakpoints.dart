@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class AppBreakpoints {
   static const double compact = 600;
