@@ -15,4 +15,8 @@ echo "=== Building Flutter Web ==="
 # Building with base-href to support the /myparentsapp subpath deployment
 flutter build web --release --base-href /myparentsapp/
 
+echo "=== Restructuring for Vercel ==="
+mkdir -p build/vercel_output/myparentsapp
+cp -r build/web/* build/vercel_output/myparentsapp/
+
 echo "=== Build Complete ==="
