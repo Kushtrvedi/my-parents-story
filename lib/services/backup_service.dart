@@ -3,11 +3,13 @@ import 'package:flutter/foundation.dart';
 import '../models/parent_profile.dart';
 import '../models/memory.dart';
 import 'storage_service.dart';
+import 'google_drive_service.dart';
 
 class BackupService {
   final StorageService _storage;
+  final GoogleDriveService driveService;
 
-  BackupService(this._storage);
+  BackupService(this._storage, this.driveService);
 
   Future<String> exportToJson() async {
     final profiles = _storage.getAllProfiles();
@@ -22,7 +24,14 @@ class BackupService {
         };
       }).toList(),
     };
-    return jsonEncode(data);
+    final jsonString = jsonEncode(data);
+    
+    // Automatically backup to Google Drive if signed in
+    if (driveService.isSignedIn) {
+      await driveService.backupData(jsonString);
+    }
+    
+    return jsonString;
   }
 
   Future<bool> importFromJson(String jsonString) async {
@@ -53,5 +62,16 @@ class BackupService {
     } catch (e) {
       return false;
     }
+  }
+  }
+
+  Future<bool> restoreFromDrive() async {
+    if (!driveService.isSignedIn) return false;
+    
+    final jsonString = await driveService.restoreData();
+    if (jsonString != null) {
+      return await importFromJson(jsonString);
+    }
+    return false;
   }
 }

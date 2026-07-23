@@ -5,6 +5,7 @@ import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
 import '../services/speech_setup_service.dart';
 import '../main.dart';
+import '../services/google_drive_service.dart';
 import 'landing_screen.dart';
 import '../design_system/navigation/page_turn_route.dart';
 
@@ -23,6 +24,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
   bool _micGranted = false;
   bool _speechAvailable = false;
   bool _offlineLanguageReady = false;
+  final _driveService = GoogleDriveService();
 
   @override
   void initState() {
@@ -203,7 +205,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
                           // Bottom button
                           if (_currentStep == 4 && !_isChecking) ...[
                             const SizedBox(height: AppSpacing.xl),
-                            _buildTrustCard(),
+                            _buildDriveCard(),
                             const SizedBox(height: AppSpacing.xl),
                             SizedBox(
                               width: double.infinity,
@@ -442,6 +444,65 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
               ],
             ),
           ),
+        ],
+      ),
+      ),
+    );
+  }
+
+  Widget _buildDriveCard() {
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.l),
+      decoration: BoxDecoration(
+        color: AppColors.card,
+        borderRadius: BorderRadius.circular(AppRadius.m),
+        border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Icons.cloud_sync_rounded,
+                color: AppColors.primary,
+                size: 20,
+              ),
+              const SizedBox(width: AppSpacing.m),
+              Text(
+                'Secure Your Memories',
+                style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.text),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.s),
+          Text(
+            'Link your Google Drive so your recordings are never lost, even if you lose this device.',
+            style: AppTypography.caption.copyWith(color: AppColors.textLight),
+          ),
+          const SizedBox(height: AppSpacing.m),
+          if (_driveService.isSignedIn)
+            Row(
+              children: [
+                const Icon(Icons.check_circle_rounded, color: AppColors.success, size: 16),
+                const SizedBox(width: 8),
+                Text('Google Drive Linked', style: AppTypography.caption.copyWith(color: AppColors.success, fontWeight: FontWeight.bold)),
+              ],
+            )
+          else
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                icon: const Icon(Icons.login_rounded, size: 18),
+                label: const Text('Sign in with Google'),
+                onPressed: () async {
+                  final success = await _driveService.signIn();
+                  if (success && mounted) {
+                    setState(() {});
+                  }
+                },
+              ),
+            ),
         ],
       ),
     );
