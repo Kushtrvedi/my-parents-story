@@ -118,3 +118,4 @@ fastlane/test_output
 
 # CI
 .github/workflows/.env
+.vercel

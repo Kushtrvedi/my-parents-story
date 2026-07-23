@@ -2,11 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
+import 'dart:html' as html;
 import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
 import '../models/generated_chapter.dart';
 import '../models/parent_profile.dart';
-import '../services/pdf_export_service.dart';
+import '../services/legacy_composer_service.dart';
 
 class BookPreviewScreen extends StatefulWidget {
   final ParentProfile profile;
@@ -24,17 +25,18 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
     setState(() => _isExporting = true);
 
     try {
-      final service = PdfExportService();
-      final bytes = await service.generateBookBytes(
+      final service = LegacyComposerService();
+      final htmlContent = service.generateHtmlBook(
         profile: widget.profile,
         chapters: widget.book.chapters,
         finalLetter: widget.book.finalLetter,
       );
 
-      if (!mounted) return;
-      await Share.shareXFiles([
-        XFile.fromData(bytes, name: '${widget.profile.name}_memoir.pdf', mimeType: 'application/pdf')
-      ], text: T.tr('sharePdf'));
+      final blob = html.Blob([htmlContent], 'text/html');
+      final url = html.Url.createObjectUrlFromBlob(blob);
+      html.window.open(url, '_blank');
+      // Intentionally not revoking the URL immediately so the tab can load it.
+      
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
