@@ -41,7 +41,11 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
   bool _isRecording = false;
   bool _isSaving = false;
   String _recordedText = '';
+  late TextEditingController _textController;
   bool _hasRecording = false;
+  String _saveStatus = '';
+  Timer? _debounce;
+  bool _showImproveStory = false;
   bool _showMemoryPause = false;
   bool _showBreakReminder = false;
   int _questionsAnswered = 0;
@@ -55,6 +59,7 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
   @override
   void initState() {
     super.initState();
+    _textController = TextEditingController();
     WidgetsBinding.instance.addObserver(this);
     _ttsService.init();
     _sessionStartTime = DateTime.now();
@@ -87,6 +92,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _textController.dispose();
+    _debounce?.cancel();
     _voiceService.dispose();
     _ttsService.dispose();
     _glowController.dispose();
@@ -121,14 +128,28 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
       setState(() {
         _isRecording = false;
         _hasRecording = _recordedText.trim().isNotEmpty;
+        _saveStatus = '';
+        _showImproveStory = false;
       });
       if (!_hasRecording) {
         _showErrorDialog();
+      } else {
+        _storageService.saveMemory(
+          profileId: widget.profile.id,
+          chapterId: widget.chapterId,
+          questionId: _currentQuestion!.id,
+          originalTranscript: _recordedText.trim(),
+        );
       }
     } else {
       await _voiceService.startListening(
         onResult: (text) {
-          if (mounted) setState(() => _recordedText = text);
+          if (mounted) {
+            setState(() {
+              _recordedText = text;
+              _textController.text = text;
+            });
+          }
         },
         localeId: _getLocaleId(),
       );
@@ -144,30 +165,51 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
   String _getLocaleId() {
     final langCode = localeProvider.locale.languageCode;
     final localeMap = {
-      'en': 'en_US',
-      'hi': 'hi_IN',
-      'gu': 'gu_IN',
-      'es': 'es_ES',
-      'mr': 'mr_IN',
-      'ta': 'ta_IN',
-      'te': 'te_IN',
-      'ml': 'ml_IN',
-      'or': 'or_IN',
-      'pa': 'pa_IN',
-      'bn': 'bn_IN',
-      'kn': 'kn_IN',
+      'en': 'en-US',
+      'hi': 'hi-IN',
+      'gu': 'gu-IN',
+      'es': 'es-ES',
+      'mr': 'mr-IN',
+      'ta': 'ta-IN',
+      'te': 'te-IN',
+      'ml': 'ml-IN',
+      'or': 'or-IN',
+      'pa': 'pa-IN',
+      'bn': 'bn-IN',
+      'kn': 'kn-IN',
     };
-    return localeMap[langCode] ?? 'en_US';
+    return localeMap[langCode] ?? 'en-US';
   }
 
   void _retryRecording() {
     setState(() {
       _recordedText = '';
       _hasRecording = false;
+      _saveStatus = '';
+      _showImproveStory = false;
     });
   }
 
-  void _saveMemory() async {
+  void _onTextChanged(String val) {
+    setState(() {
+      _recordedText = val;
+      _saveStatus = 'Saving...';
+    });
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    _debounce = Timer(const Duration(milliseconds: 1000), () {
+      if (!mounted) return;
+      _storageService.saveMemory(
+        profileId: widget.profile.id,
+        chapterId: widget.chapterId,
+        questionId: _currentQuestion!.id,
+        editedTranscript: val,
+        lastEdited: DateTime.now(),
+      );
+      setState(() => _saveStatus = '✓ Saved');
+    });
+  }
+
+  void _approveMemory() async {
     if (_recordedText.trim().isEmpty) {
       _showErrorDialog();
       return;
@@ -176,12 +218,17 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
     if (q == null) return;
 
     setState(() => _isSaving = true);
+    
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
 
     _storageService.saveMemory(
       profileId: widget.profile.id,
       chapterId: widget.chapterId,
       questionId: q.id,
-      originalTranscript: _recordedText.trim(),
+      editedTranscript: _recordedText.trim(),
+      lastEdited: DateTime.now(),
+      isApproved: true,
+      approvedAt: DateTime.now(),
     );
 
     setState(() => _isSaving = false);
@@ -405,47 +452,23 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
             _buildContinueLaterButton(),
           ],
         ),
-        rightChild: Container(
-          padding: const EdgeInsets.all(AppSpacing.xl),
-          decoration: BoxDecoration(
-            color: AppColors.card,
-            borderRadius: BorderRadius.circular(AppRadius.l),
-            border: Border.all(color: AppColors.divider),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        rightChild: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (_hasRecording) ...[
               Text(
-                T.tr('transcriptTitle'),
-                style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.textLight),
+                'This is exactly how it will appear in your memoir.',
+                style: AppTypography.caption.copyWith(fontStyle: FontStyle.italic),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: AppSpacing.l),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        _recordedText.isEmpty ? T.tr('listening') : _recordedText,
-                        style: AppTypography.body.copyWith(
-                          fontSize: 22,
-                          color: _recordedText.isEmpty ? AppColors.textLight : AppColors.text,
-                        ),
-                      ),
-                      if (_recordedText.isNotEmpty) ...[
-                        const SizedBox(height: 16),
-                        MemoirCard(
-                          title: _currentQuestion?.question ?? 'Memory Preserved',
-                          text: _recordedText,
-                          parentName: widget.profile.name,
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-              ),
             ],
-          ),
+            MemoirCard(
+              title: _currentQuestion?.question ?? 'Memory Preserved',
+              text: _recordedText.isNotEmpty ? _recordedText : '...',
+              parentName: widget.profile.name,
+            ),
+          ],
         ),
       ),
     );
@@ -523,6 +546,26 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
           T.tr('tapToBeginStory'),
           style: AppTypography.caption,
         ),
+        const SizedBox(height: AppSpacing.l),
+        Container(
+          padding: const EdgeInsets.all(AppSpacing.m),
+          decoration: BoxDecoration(
+            color: AppColors.primary.withValues(alpha: 0.05),
+            borderRadius: BorderRadius.circular(AppRadius.m),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.privacy_tip_outlined, color: AppColors.primary, size: 20),
+              const SizedBox(width: AppSpacing.s),
+              Expanded(
+                child: Text(
+                  'Your phone may use its built-in speech service for transcription. Your recordings remain stored only on your device unless you choose to share them.',
+                  style: AppTypography.caption.copyWith(color: AppColors.primary, fontSize: 12),
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -592,24 +635,172 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
 
   Widget _buildReviewState({required bool compact}) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        // Reassurance UI
+        Container(
+          padding: const EdgeInsets.all(AppSpacing.m),
+          decoration: BoxDecoration(
+            color: Colors.green.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(AppRadius.m),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Icon(Icons.check_circle_rounded, color: Colors.green, size: 20),
+                  const SizedBox(width: AppSpacing.s),
+                  Text(
+                    'Voice recorded',
+                    style: AppTypography.body.copyWith(fontWeight: FontWeight.w600, color: Colors.green),
+                  ),
+                ],
+              ),
+              const SizedBox(height: AppSpacing.xs),
+              Text(
+                'Transcript generated',
+                style: AppTypography.caption.copyWith(color: Colors.green),
+              ),
+              const SizedBox(height: AppSpacing.xs),
+              Text(
+                'You can edit anything before saving.',
+                style: AppTypography.caption.copyWith(color: Colors.green),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: AppSpacing.m),
+        
+        // Editable Transcript
+        Container(
+          padding: const EdgeInsets.all(AppSpacing.m),
+          decoration: BoxDecoration(
+            color: AppColors.card,
+            borderRadius: BorderRadius.circular(AppRadius.m),
+            border: Border.all(color: AppColors.divider),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                controller: _textController,
+                onChanged: _onTextChanged,
+                maxLines: null,
+                style: AppTypography.body.copyWith(fontSize: 18),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                ),
+              ),
+              if (_saveStatus.isNotEmpty) ...[
+                const SizedBox(height: AppSpacing.xs),
+                Text(
+                  _saveStatus,
+                  style: AppTypography.caption.copyWith(
+                    color: _saveStatus == '✓ Saved' ? Colors.green : AppColors.textLight,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(height: AppSpacing.m),
+
+        // Improve My Story Helper
+        Container(
+          padding: const EdgeInsets.all(AppSpacing.m),
+          decoration: BoxDecoration(
+            color: AppColors.card,
+            borderRadius: BorderRadius.circular(AppRadius.m),
+            border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Would you like to add more detail?',
+                    style: AppTypography.body.copyWith(fontWeight: FontWeight.w500),
+                  ),
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () => setState(() => _showImproveStory = true),
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s),
+                          minimumSize: Size.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        child: Text(
+                          'Yes',
+                          style: AppTypography.button.copyWith(
+                            color: _showImproveStory ? AppColors.primary : AppColors.textLight,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () => setState(() => _showImproveStory = false),
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s),
+                          minimumSize: Size.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        child: Text(
+                          'No',
+                          style: AppTypography.button.copyWith(
+                            color: !_showImproveStory ? AppColors.primary : AppColors.textLight,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              if (_showImproveStory && (_currentQuestion?.followUps.isNotEmpty ?? false)) ...[
+                const SizedBox(height: AppSpacing.s),
+                const Divider(),
+                const SizedBox(height: AppSpacing.s),
+                ..._currentQuestion!.followUps.map((p) => Padding(
+                  padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('• ', style: TextStyle(color: AppColors.primary, fontSize: 16)),
+                      Expanded(
+                        child: Text(
+                          p,
+                          style: AppTypography.caption.copyWith(color: AppColors.primary, fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(height: AppSpacing.l),
+
+        // Live Memoir Preview (Compact only)
         if (compact) ...[
-          // Transcript preview for compact only
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(AppSpacing.l),
-            decoration: BoxDecoration(
-              color: AppColors.card,
-              borderRadius: BorderRadius.circular(AppRadius.l),
-              border: Border.all(color: AppColors.divider),
-            ),
-            child: Text(
-              _recordedText,
-              style: AppTypography.body.copyWith(fontSize: 20),
-            ),
+          Text(
+            'This is exactly how it will appear in your memoir.',
+            style: AppTypography.caption.copyWith(fontStyle: FontStyle.italic),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: AppSpacing.s),
+          MemoirCard(
+            title: _currentQuestion?.question ?? 'Memory Preserved',
+            text: _recordedText.isNotEmpty ? _recordedText : '...',
+            parentName: widget.profile.name,
           ),
           const SizedBox(height: AppSpacing.l),
         ],
+
         Row(
           children: [
             Expanded(
@@ -625,15 +816,15 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
             const SizedBox(width: AppSpacing.s),
             Expanded(
               child: ElevatedButton.icon(
-                onPressed: _isSaving ? null : _saveMemory,
+                onPressed: _isSaving ? null : _approveMemory,
                 icon: _isSaving
                     ? const SizedBox(
                         width: 24,
                         height: 24,
                         child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                       )
-                    : const Icon(Icons.check_rounded, size: 24),
-                label: Text(T.tr('saveResponse')),
+                    : const Icon(Icons.check_circle_rounded, size: 24),
+                label: const Text('Approve & Continue'),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: AppSpacing.m),
                 ),

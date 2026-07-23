@@ -31,6 +31,7 @@ class Memory {
   bool isApproved;
   DateTime? approvedAt;
   String? editedTranscript;
+  DateTime? lastEdited;
 
   Memory({
     required this.id,
@@ -54,6 +55,7 @@ class Memory {
     this.isApproved = false,
     this.approvedAt,
     this.editedTranscript,
+    this.lastEdited,
   }) : createdAt = createdAt ?? DateTime.now();
 
   bool get hasAnswer => (memoir?.text.trim().isNotEmpty ?? false) || 
@@ -97,6 +99,7 @@ class Memory {
       'isApproved': isApproved,
       'approvedAt': approvedAt?.toIso8601String(),
       'editedTranscript': editedTranscript,
+      'lastEdited': lastEdited?.toIso8601String(),
     };
   }
 
@@ -123,6 +126,7 @@ class Memory {
       isApproved: map['isApproved'] ?? false,
       approvedAt: map['approvedAt'] != null ? DateTime.parse(map['approvedAt']) : null,
       editedTranscript: map['editedTranscript'],
+      lastEdited: map['lastEdited'] != null ? DateTime.parse(map['lastEdited']) : null,
     );
   }
 }

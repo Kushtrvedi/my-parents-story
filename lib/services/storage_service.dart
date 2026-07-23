@@ -66,19 +66,48 @@ class StorageService {
     required String chapterId,
     required String questionId,
     String? originalTranscript,
+    String? editedTranscript,
+    DateTime? lastEdited,
     VoiceRecording? originalRecording,
     Memoir? memoir,
+    bool? isApproved,
+    DateTime? approvedAt,
   }) {
     final id = '${profileId}_${chapterId}_$questionId';
-    final memory = Memory(
-      id: id,
-      parentId: profileId,
-      chapterId: chapterId,
-      questionId: questionId,
-      originalTranscript: originalTranscript,
-      originalRecording: originalRecording,
-      memoir: memoir,
-    );
+    final existingData = LocalStorage.responses.get(id);
+    Memory memory;
+
+    if (existingData != null) {
+      final existing = Memory.fromMap(Map<String, dynamic>.from(existingData));
+      memory = Memory(
+        id: id,
+        parentId: profileId,
+        chapterId: chapterId,
+        questionId: questionId,
+        originalTranscript: originalTranscript ?? existing.originalTranscript,
+        editedTranscript: editedTranscript ?? existing.editedTranscript,
+        lastEdited: lastEdited ?? existing.lastEdited,
+        originalRecording: originalRecording ?? existing.originalRecording,
+        memoir: memoir ?? existing.memoir,
+        isApproved: isApproved ?? existing.isApproved,
+        approvedAt: approvedAt ?? existing.approvedAt,
+        createdAt: existing.createdAt,
+      );
+    } else {
+      memory = Memory(
+        id: id,
+        parentId: profileId,
+        chapterId: chapterId,
+        questionId: questionId,
+        originalTranscript: originalTranscript,
+        editedTranscript: editedTranscript,
+        lastEdited: lastEdited,
+        originalRecording: originalRecording,
+        memoir: memoir,
+        isApproved: isApproved ?? false,
+        approvedAt: approvedAt,
+      );
+    }
     LocalStorage.responses.put(id, memory.toMap());
     return memory;
   }
