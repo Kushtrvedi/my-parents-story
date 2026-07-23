@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -123,7 +122,7 @@ class SpeechSetupService {
 
   Future<void> openSpeechSettings() async {
     if (kIsWeb) return; // Web doesn't need this
-    if (Platform.isAndroid) {
+    if (defaultTargetPlatform == TargetPlatform.android) {
       try {
         await const MethodChannel('com.myparentsstory/setup').invokeMethod('openSpeechSettings');
       } catch (_) {
@@ -134,7 +133,7 @@ class SpeechSetupService {
 
   Future<void> openLanguagePackSettings() async {
     if (kIsWeb) return; // Web doesn't need this
-    if (Platform.isAndroid) {
+    if (defaultTargetPlatform == TargetPlatform.android) {
       try {
         await const MethodChannel('com.myparentsstory/setup').invokeMethod('openLanguagePackSettings');
       } catch (_) {

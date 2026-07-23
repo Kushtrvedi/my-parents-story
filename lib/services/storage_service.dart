@@ -72,6 +72,7 @@ class StorageService {
     Memoir? memoir,
     bool? isApproved,
     DateTime? approvedAt,
+
     String? emotionalTone,
     String? storyImportance,
     String? lifeStage,
@@ -82,6 +83,9 @@ class StorageService {
     List<String>? historicalEvents,
     List<String>? objects,
     List<String>? familyRelationships,
+    MemoryType? memoryType,
+    String? decade,
+    bool? isUnfinished,
   }) {
     final id = '${profileId}_${chapterId}_$questionId';
     final existingData = LocalStorage.responses.get(id);
@@ -112,6 +116,9 @@ class StorageService {
         historicalEvents: historicalEvents ?? existing.historicalEvents,
         objects: objects ?? existing.objects,
         familyRelationships: familyRelationships ?? existing.familyRelationships,
+        memoryType: memoryType ?? existing.memoryType,
+        decade: decade ?? existing.decade,
+        isUnfinished: isUnfinished ?? existing.isUnfinished,
       );
     } else {
       memory = Memory(
@@ -136,6 +143,9 @@ class StorageService {
         historicalEvents: historicalEvents ?? const [],
         objects: objects ?? const [],
         familyRelationships: familyRelationships ?? const [],
+        memoryType: memoryType ?? MemoryType.unknown,
+        decade: decade,
+        isUnfinished: isUnfinished ?? false,
       );
     }
     LocalStorage.responses.put(id, memory.toMap());

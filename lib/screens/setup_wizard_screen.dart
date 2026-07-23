@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -69,7 +68,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
 
   void _openSettings() async {
     if (kIsWeb) return;
-    if (Platform.isAndroid) {
+    if (defaultTargetPlatform == TargetPlatform.android) {
       try {
         await const MethodChannel('com.myparentsstory/setup').invokeMethod('openSpeechSettings');
       } catch (_) {
@@ -80,7 +79,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
 
   void _openLanguageDownload() async {
     if (kIsWeb) return;
-    if (Platform.isAndroid) {
+    if (defaultTargetPlatform == TargetPlatform.android) {
       try {
         await const MethodChannel('com.myparentsstory/setup').invokeMethod('openLanguagePackSettings');
       } catch (_) {

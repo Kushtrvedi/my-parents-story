@@ -21,16 +21,30 @@ class CloudConversationEngine implements ConversationEngine {
   String get modeName => 'Enhanced';
 
   @override
-  Future<String> generateFollowUpQuestion(List<Memory> history, String currentTranscript) async {
+  Future<String> generateFollowUpQuestion(
+    List<Memory> history, 
+    String currentTranscript, {
+    String? unfinishedTopic,
+    String? timelineGap,
+  }) async {
     if (_model == null) return 'Could you tell me more about that?';
 
-    final recentContext = history.take(3).map((m) => m.editedTranscript ?? m.originalTranscript).join("\n");
+    final recentContext = history.take(3).map((m) => m.displayAnswer).join("\n");
+    
+    String contextInstruction = 'Ask one gentle, open-ended follow-up question to help them elaborate on the current memory.';
+    if (unfinishedTopic != null) {
+      contextInstruction = 'The current memory seems complete. Gently ask them about this unfinished topic they mentioned previously: "$unfinishedTopic". Transition naturally.';
+    } else if (timelineGap != null) {
+      contextInstruction = 'The current memory seems complete. We are missing stories from the $timelineGap. Gently ask them if they have any memories from that time.';
+    }
 
     final prompt = '''
 You are a warm, empathetic family historian helping a parent record their life story. 
 They just shared this memory: "$currentTranscript".
 Past conversation context: "$recentContext".
-Ask one gentle, open-ended follow-up question to help them elaborate. Keep it conversational and brief. Do not act like a robot.
+
+$contextInstruction
+Keep it brief and conversational. Do not ask multiple questions.
 ''';
 
     try {
@@ -62,6 +76,9 @@ Ask one gentle, open-ended follow-up question to help them elaborate. Keep it co
     final prompt = '''
 Analyze this story: "$transcript".
 Extract the following metadata in valid JSON format:
+- memoryType (string: "story", "advice", "lifeLesson", "tradition", "recipe", "historicalEvent", "funnyMemory", "regret", "dream", "achievement", "loss", "unknown")
+- decade (string, e.g., "1970s", "1980s", or "unknown" if unclear)
+- isUnfinished (boolean, true if the story feels abruptly ended or implies more to tell)
 - emotionalTone (string, e.g., nostalgic, joyful, proud, sorrowful)
 - storyImportance (string: "LOW", "MEDIUM", "HIGH", or "LEGACY")
 - lifeStage (string, e.g., Childhood, Career, Marriage, Unknown)

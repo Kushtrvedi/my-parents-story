@@ -5,6 +5,7 @@ import '../l10n/translations.dart';
 import '../l10n/question_l10n.dart';
 import '../models/parent_profile.dart';
 import '../models/question.dart';
+import '../models/memory.dart';
 import '../services/storage_service.dart';
 import '../services/native_voice_service.dart';
 import '../services/tts_service.dart';
@@ -276,6 +277,9 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
       storyImportance: seeds['storyImportance'],
       lifeStage: seeds['lifeStage'],
       summary: seeds['summary'],
+      memoryType: _parseMemoryType(seeds['memoryType']),
+      decade: seeds['decade'],
+      isUnfinished: seeds['isUnfinished'] == true,
       lifeThemes: List<String>.from(seeds['lifeThemes'] ?? []),
       peopleMentioned: List<String>.from(seeds['people'] ?? []),
       placesMentioned: List<String>.from(seeds['places'] ?? []),
@@ -297,6 +301,14 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
         _questions.insert(_currentQuestionIndex + 1, dynamicQuestion);
       });
     }
+  }
+
+  MemoryType _parseMemoryType(String? type) {
+    if (type == null) return MemoryType.unknown;
+    return MemoryType.values.firstWhere(
+      (e) => e.name.toLowerCase() == type.toLowerCase(),
+      orElse: () => MemoryType.unknown,
+    );
   }
 
   void _showErrorDialog() {

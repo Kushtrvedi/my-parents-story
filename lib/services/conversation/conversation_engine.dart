@@ -8,7 +8,12 @@ abstract class ConversationEngine {
   String get modeName;
 
   /// Generates a follow-up question based on the conversation history.
-  Future<String> generateFollowUpQuestion(List<Memory> history, String currentTranscript);
+  Future<String> generateFollowUpQuestion(
+    List<Memory> history, 
+    String currentTranscript, {
+    String? unfinishedTopic,
+    String? timelineGap,
+  });
 
   /// Extracts story seeds (emotions, themes, people, places, summary) from the transcript.
   Future<Map<String, dynamic>> generateStorySeeds(String transcript);

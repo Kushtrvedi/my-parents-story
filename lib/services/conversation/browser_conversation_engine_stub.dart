@@ -9,7 +9,14 @@ class BrowserConversationEngine implements ConversationEngine {
   String get modeName => 'Enhanced';
 
   @override
-  Future<String> generateFollowUpQuestion(List<Memory> history, String currentTranscript) async {
+  Future<String> generateFollowUpQuestion(
+    List<Memory> history, 
+    String currentTranscript, {
+    String? unfinishedTopic,
+    String? timelineGap,
+  }) async {
+    if (unfinishedTopic != null) return 'Could you tell me more about $unfinishedTopic?';
+    if (timelineGap != null) return 'Do you have any memories from the $timelineGap?';
     return 'Could you tell me more about that?';
   }
 

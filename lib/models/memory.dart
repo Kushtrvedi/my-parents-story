@@ -2,6 +2,8 @@ import 'voice_recording.dart';
 import 'photo.dart';
 import 'memoir.dart';
 
+enum MemoryType { story, advice, lifeLesson, tradition, recipe, historicalEvent, funnyMemory, regret, dream, achievement, loss, unknown }
+
 class Memory {
   // Immutable Data
   final String id;
@@ -34,6 +36,9 @@ class Memory {
   String? lifeStage;
   String? summary;
   Map<String, dynamic> metadata;
+  MemoryType memoryType;
+  String? decade;
+  bool isUnfinished;
 
   // Approval State
   bool isApproved;
@@ -68,6 +73,9 @@ class Memory {
     this.lifeStage,
     this.summary,
     this.metadata = const {},
+    this.memoryType = MemoryType.unknown,
+    this.decade,
+    this.isUnfinished = false,
     this.isApproved = false,
     this.approvedAt,
     this.editedTranscript,
@@ -120,6 +128,9 @@ class Memory {
       'lifeStage': lifeStage,
       'summary': summary,
       'metadata': metadata,
+      'memoryType': memoryType.name,
+      'decade': decade,
+      'isUnfinished': isUnfinished,
       'isApproved': isApproved,
       'approvedAt': approvedAt?.toIso8601String(),
       'editedTranscript': editedTranscript,
@@ -155,6 +166,12 @@ class Memory {
       lifeStage: map['lifeStage'],
       summary: map['summary'],
       metadata: Map<String, dynamic>.from(map['metadata'] ?? {}),
+      memoryType: MemoryType.values.firstWhere(
+        (e) => e.name == map['memoryType'],
+        orElse: () => MemoryType.unknown,
+      ),
+      decade: map['decade'],
+      isUnfinished: map['isUnfinished'] ?? false,
       isApproved: map['isApproved'] ?? false,
       approvedAt: map['approvedAt'] != null ? DateTime.parse(map['approvedAt']) : null,
       editedTranscript: map['editedTranscript'],
