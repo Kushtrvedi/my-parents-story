@@ -72,7 +72,6 @@ class StorageService {
     Memoir? memoir,
     bool? isApproved,
     DateTime? approvedAt,
-
     String? emotionalTone,
     String? storyImportance,
     String? lifeStage,

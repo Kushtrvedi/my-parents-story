@@ -112,6 +112,7 @@ graph TD
 2. **Expand Data Models:** Add `MemoryType`, `decade`/`year`, and `isUnfinished` to the `Memory` model.
 3. **Update Generation Prompts:** Modify `BrowserConversationEngine` and `CloudConversationEngine` prompts to extract these new fields.
 4. **Timeline Logic:** Implement chronological gap detection in the Life Context Engine.
+<<<<<<< HEAD
 
 ---
 
