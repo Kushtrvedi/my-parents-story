@@ -154,7 +154,7 @@ class _GenerateBookScreenState extends State<GenerateBookScreen> {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  '${widget.profile.name}\'s story will become a beautiful PDF book.',
+                  '${widget.profile.name}\'s story will become a beautiful legacy book.',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: AppColors.textLight,
