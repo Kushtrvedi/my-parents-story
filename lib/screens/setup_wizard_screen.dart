@@ -114,6 +114,35 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
                         children: [
                           const SizedBox(height: AppSpacing.xl),
                           
+                          // App Brand Badge
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: AppColors.primary.withValues(alpha: 0.2)),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.auto_stories_rounded, size: 16, color: AppColors.primary),
+                                const SizedBox(width: 8),
+                                Flexible(
+                                  child: Text(
+                                    "REYOU - MY PARENTS' STORY",
+                                    style: AppTypography.caption.copyWith(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700,
+                                      letterSpacing: 1.2,
+                                      color: AppColors.primary,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.l),
+                          
                           // Progress indicator
                           if (_currentStep < 4) ...[
                             Text(

@@ -73,7 +73,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
-                        "MY PARENTS' STORY",
+                        "REYOU - MY PARENTS' STORY",
                         style: AppTypography.caption.copyWith(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
