@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'dart:html' as html;
-import 'dart:ui' as ui;
+import 'dart:ui_web' as ui_web;
 import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
 import '../models/generated_chapter.dart';
@@ -37,7 +37,7 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
     );
 
     // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(_viewId, (int viewId) {
+    ui_web.platformViewRegistry.registerViewFactory(_viewId, (int viewId) {
       final iframe = html.IFrameElement()
         ..style.width = '100%'
         ..style.height = '100%'
