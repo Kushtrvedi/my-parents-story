@@ -7,6 +7,7 @@ import '../services/storage_service.dart';
 import '../services/template_book_service.dart';
 
 import 'legacy_thanks_screen.dart';
+import '../design_system/navigation/page_turn_route.dart';
 
 class GenerateBookScreen extends StatefulWidget {
   final ParentProfile profile;
@@ -46,8 +47,8 @@ class _GenerateBookScreenState extends State<GenerateBookScreen> {
     if (mounted) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (_) => LegacyThanksScreen(profile: widget.profile, book: book),
+        PageTurnRoute(
+          page: LegacyThanksScreen(profile: widget.profile, book: book),
         ),
       );
     }

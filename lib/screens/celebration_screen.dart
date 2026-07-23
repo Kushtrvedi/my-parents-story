@@ -4,6 +4,7 @@ import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
 import '../models/generated_chapter.dart';
 import 'book_preview_screen.dart';
+import '../design_system/navigation/page_turn_route.dart';
 
 class CelebrationScreen extends StatelessWidget {
   final ParentProfile profile;
@@ -155,8 +156,8 @@ class CelebrationScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => BookPreviewScreen(profile: profile, book: book),
+                        PageTurnRoute(
+                          page: BookPreviewScreen(profile: profile, book: book),
                         ),
                       );
                     },

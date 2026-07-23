@@ -7,8 +7,9 @@ import '../main.dart';
 import '../models/parent_profile.dart';
 import '../services/storage_service.dart';
 import '../services/speech_setup_service.dart';
-import 'question_screen.dart';
 import 'pre_question_screen.dart';
+import 'question_screen.dart';
+import '../design_system/navigation/page_turn_route.dart';
 import 'generate_book_screen.dart';
 
 class _LifeStageGroup {
@@ -260,7 +261,7 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
                                     
                               await Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (_) => nextScreen),
+                                PageTurnRoute(page: nextScreen),
                               );
                               _loadProgress();
                             },
@@ -342,8 +343,8 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
                 child: ElevatedButton.icon(
                   onPressed: () => Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => GenerateBookScreen(profile: widget.profile),
+                    PageTurnRoute(
+                      page: GenerateBookScreen(profile: widget.profile),
                     ),
                   ),
                   icon: const Icon(Icons.menu_book_outlined, size: AppIcons.l),

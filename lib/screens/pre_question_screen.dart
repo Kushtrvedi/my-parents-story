@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../design_system/design_system.dart';
+import '../design_system/navigation/page_turn_route.dart';
 import '../l10n/translations.dart';
 import '../models/parent_profile.dart';
 import '../services/speech_setup_service.dart';
@@ -138,8 +139,8 @@ class _PreQuestionScreenState extends State<PreQuestionScreen> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => QuestionScreen(
+                      PageTurnRoute(
+                        page: QuestionScreen(
                           profile: widget.profile,
                           chapterId: widget.chapterId,
                           chapterIndex: widget.chapterIndex,

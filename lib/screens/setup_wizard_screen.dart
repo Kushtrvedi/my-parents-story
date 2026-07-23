@@ -7,6 +7,7 @@ import '../l10n/translations.dart';
 import '../services/speech_setup_service.dart';
 import '../main.dart';
 import 'landing_screen.dart';
+import '../design_system/navigation/page_turn_route.dart';
 
 class SetupWizardScreen extends StatefulWidget {
   const SetupWizardScreen({super.key});
@@ -93,7 +94,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
     if (mounted) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const LandingScreen()),
+        PageTurnRoute(page: const LandingScreen()),
       );
     }
   }

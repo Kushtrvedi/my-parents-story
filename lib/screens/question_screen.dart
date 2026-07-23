@@ -10,6 +10,7 @@ import '../services/native_voice_service.dart';
 import '../services/tts_service.dart';
 import '../main.dart';
 import 'celebration_screen.dart';
+import '../design_system/navigation/page_turn_route.dart';
 import '../services/template_book_service.dart';
 
 class QuestionScreen extends StatefulWidget {
@@ -260,8 +261,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-        builder: (_) => CelebrationScreen(profile: widget.profile, book: book),
+      PageTurnRoute(
+        page: CelebrationScreen(profile: widget.profile, book: book),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../design_system/design_system.dart';
 import '../l10n/translations.dart';
 import 'profile_screen.dart';
+import '../design_system/navigation/page_turn_route.dart';
 
 class ProfileTypeScreen extends StatelessWidget {
   const ProfileTypeScreen({super.key});
@@ -57,9 +58,7 @@ class ProfileTypeScreen extends StatelessWidget {
         ),
         onPressed: () => Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (_) => ProfileScreen(parentType: type),
-          ),
+          PageTurnRoute(page: ProfileScreen(parentType: type)),
         ),
         child: Text(label),
       ),

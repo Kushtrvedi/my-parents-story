@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../design_system/design_system.dart';
+import '../design_system/navigation/page_turn_route.dart';
+import '../models/parent_profile.dart';
 import '../l10n/translations.dart';
 import '../services/storage_service.dart';
 import 'life_journey_screen.dart';
@@ -45,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (mounted) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => LifeJourneyScreen(profile: profile)),
+        PageTurnRoute(page: LifeJourneyScreen(profile: profile)),
       );
     }
   }

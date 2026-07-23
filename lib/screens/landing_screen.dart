@@ -7,6 +7,7 @@ import '../models/parent_profile.dart';
 import '../services/storage_service.dart';
 import 'profile_type_screen.dart';
 import 'life_journey_screen.dart';
+import '../design_system/navigation/page_turn_route.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
@@ -34,8 +35,8 @@ class _LandingScreenState extends State<LandingScreen> {
   void _continueProfile(ParentProfile profile) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => LifeJourneyScreen(profile: profile),
+      PageTurnRoute(
+        page: LifeJourneyScreen(profile: profile),
       ),
     ).then((_) => _loadProfiles());
   }
@@ -43,7 +44,7 @@ class _LandingScreenState extends State<LandingScreen> {
   void _startNew() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const ProfileTypeScreen()),
+      PageTurnRoute(page: const ProfileTypeScreen()),
     ).then((_) => _loadProfiles());
   }
 
