@@ -72,6 +72,16 @@ class StorageService {
     Memoir? memoir,
     bool? isApproved,
     DateTime? approvedAt,
+    String? emotionalTone,
+    String? storyImportance,
+    String? lifeStage,
+    String? summary,
+    List<String>? lifeThemes,
+    List<String>? peopleMentioned,
+    List<String>? placesMentioned,
+    List<String>? historicalEvents,
+    List<String>? objects,
+    List<String>? familyRelationships,
   }) {
     final id = '${profileId}_${chapterId}_$questionId';
     final existingData = LocalStorage.responses.get(id);
@@ -92,6 +102,16 @@ class StorageService {
         isApproved: isApproved ?? existing.isApproved,
         approvedAt: approvedAt ?? existing.approvedAt,
         createdAt: existing.createdAt,
+        emotionalTone: emotionalTone ?? existing.emotionalTone,
+        storyImportance: storyImportance ?? existing.storyImportance,
+        lifeStage: lifeStage ?? existing.lifeStage,
+        summary: summary ?? existing.summary,
+        lifeThemes: lifeThemes ?? existing.lifeThemes,
+        people: peopleMentioned ?? existing.people,
+        places: placesMentioned ?? existing.places,
+        historicalEvents: historicalEvents ?? existing.historicalEvents,
+        objects: objects ?? existing.objects,
+        familyRelationships: familyRelationships ?? existing.familyRelationships,
       );
     } else {
       memory = Memory(
@@ -106,6 +126,16 @@ class StorageService {
         memoir: memoir,
         isApproved: isApproved ?? false,
         approvedAt: approvedAt,
+        emotionalTone: emotionalTone,
+        storyImportance: storyImportance,
+        lifeStage: lifeStage,
+        summary: summary,
+        lifeThemes: lifeThemes ?? const [],
+        people: peopleMentioned ?? const [],
+        places: placesMentioned ?? const [],
+        historicalEvents: historicalEvents ?? const [],
+        objects: objects ?? const [],
+        familyRelationships: familyRelationships ?? const [],
       );
     }
     LocalStorage.responses.put(id, memory.toMap());

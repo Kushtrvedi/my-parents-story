@@ -5,8 +5,17 @@ import 'setup_wizard_screen.dart';
 import 'landing_screen.dart';
 import '../services/speech_setup_service.dart';
 
-class BetaWelcomeScreen extends StatelessWidget {
+import 'developer_options_screen.dart';
+
+class BetaWelcomeScreen extends StatefulWidget {
   const BetaWelcomeScreen({super.key});
+
+  @override
+  State<BetaWelcomeScreen> createState() => _BetaWelcomeScreenState();
+}
+
+class _BetaWelcomeScreenState extends State<BetaWelcomeScreen> {
+  int _tapCount = 0;
 
   void _startStory(BuildContext context) {
     final speechService = SpeechSetupService();
@@ -17,6 +26,16 @@ class BetaWelcomeScreen extends StatelessWidget {
         builder: (context) => showSetup ? const SetupWizardScreen() : const LandingScreen(),
       ),
     );
+  }
+
+  void _handleLogoTap() {
+    _tapCount++;
+    if (_tapCount >= 5) {
+      _tapCount = 0;
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const DeveloperOptionsScreen()),
+      );
+    }
   }
 
   @override
@@ -34,17 +53,20 @@ class BetaWelcomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Spacer(),
-              Container(
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.primary.withValues(alpha: 0.1),
-                ),
-                child: const Icon(
-                  Icons.favorite_rounded,
-                  size: 60,
-                  color: AppColors.primary,
+              GestureDetector(
+                onTap: _handleLogoTap,
+                child: Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.primary.withValues(alpha: 0.1),
+                  ),
+                  child: const Icon(
+                    Icons.favorite_rounded,
+                    size: 60,
+                    color: AppColors.primary,
+                  ),
                 ),
               ),
               const SizedBox(height: AppSpacing.xl),

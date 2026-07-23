@@ -25,6 +25,14 @@ class Memory {
   List<String> places;
   List<String> followUps;
   Map<String, String> translations;
+  List<String> lifeThemes;
+  List<String> historicalEvents;
+  List<String> objects;
+  List<String> familyRelationships;
+  String? emotionalTone;
+  String? storyImportance;
+  String? lifeStage;
+  String? summary;
   Map<String, dynamic> metadata;
 
   // Approval State
@@ -51,6 +59,14 @@ class Memory {
     this.places = const [],
     this.followUps = const [],
     this.translations = const {},
+    this.lifeThemes = const [],
+    this.historicalEvents = const [],
+    this.objects = const [],
+    this.familyRelationships = const [],
+    this.emotionalTone,
+    this.storyImportance,
+    this.lifeStage,
+    this.summary,
     this.metadata = const {},
     this.isApproved = false,
     this.approvedAt,
@@ -95,6 +111,14 @@ class Memory {
       'places': places,
       'followUps': followUps,
       'translations': translations,
+      'lifeThemes': lifeThemes,
+      'historicalEvents': historicalEvents,
+      'objects': objects,
+      'familyRelationships': familyRelationships,
+      'emotionalTone': emotionalTone,
+      'storyImportance': storyImportance,
+      'lifeStage': lifeStage,
+      'summary': summary,
       'metadata': metadata,
       'isApproved': isApproved,
       'approvedAt': approvedAt?.toIso8601String(),
@@ -122,6 +146,14 @@ class Memory {
       places: List<String>.from(map['places'] ?? []),
       followUps: List<String>.from(map['followUps'] ?? []),
       translations: Map<String, String>.from(map['translations'] ?? {}),
+      lifeThemes: List<String>.from(map['lifeThemes'] ?? []),
+      historicalEvents: List<String>.from(map['historicalEvents'] ?? []),
+      objects: List<String>.from(map['objects'] ?? []),
+      familyRelationships: List<String>.from(map['familyRelationships'] ?? []),
+      emotionalTone: map['emotionalTone'],
+      storyImportance: map['storyImportance'],
+      lifeStage: map['lifeStage'],
+      summary: map['summary'],
       metadata: Map<String, dynamic>.from(map['metadata'] ?? {}),
       isApproved: map['isApproved'] ?? false,
       approvedAt: map['approvedAt'] != null ? DateTime.parse(map['approvedAt']) : null,

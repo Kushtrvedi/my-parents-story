@@ -176,6 +176,25 @@ class Question {
     };
   }
 
+  factory Question.dynamicFollowUp({
+    required String chapterId,
+    required int chapterNumber,
+    required int questionNumber,
+    required String questionText,
+  }) {
+    return Question(
+      id: 'dynamic_${DateTime.now().millisecondsSinceEpoch}',
+      chapterId: chapterId,
+      chapterNumber: chapterNumber,
+      questionNumber: questionNumber,
+      question: questionText,
+      purpose: 'AI Follow-up',
+      expectedMemoryType: ExpectedMemoryType.narrative,
+      emotionalTone: EmotionalTone.warm,
+      estimatedDuration: EstimatedDuration.medium,
+    );
+  }
+
   factory Question.fromMap(Map<String, dynamic> map) {
     return Question(
       id: map['id'] ?? '',

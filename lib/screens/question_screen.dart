@@ -12,6 +12,7 @@ import '../main.dart';
 import 'celebration_screen.dart';
 import '../design_system/navigation/page_turn_route.dart';
 import '../services/template_book_service.dart';
+import '../services/conversation_coordinator.dart';
 
 class QuestionScreen extends StatefulWidget {
   final ParentProfile profile;
@@ -35,6 +36,7 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
   final _storageService = StorageService();
   final _voiceService = NativeVoiceService();
   final _ttsService = TextToSpeechService();
+  final _coordinator = ConversationCoordinator();
 
   List<Question> _questions = [];
   int _currentQuestionIndex = 0;
@@ -62,6 +64,7 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
     _textController = TextEditingController();
     WidgetsBinding.instance.addObserver(this);
     _ttsService.init();
+    _coordinator.init(_storageService);
     _sessionStartTime = DateTime.now();
     _loadQuestions();
     _glowController = AnimationController(
@@ -231,6 +234,9 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
       approvedAt: DateTime.now(),
     );
 
+    // Asynchronously generate story seeds and dynamic follow up
+    _generateStorySeedsAndFollowUp(_recordedText.trim(), q);
+
     setState(() => _isSaving = false);
 
     if (_recordedText.trim().length >= 50) {
@@ -253,6 +259,44 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
 
     // Show memory pause
     setState(() => _showMemoryPause = true);
+  }
+
+  Future<void> _generateStorySeedsAndFollowUp(String transcript, Question originalQuestion) async {
+    // Generate Story Seeds
+    final seeds = await _coordinator.generateStorySeeds(transcript);
+    
+    // Save seeds back to memory
+    _storageService.saveMemory(
+      profileId: widget.profile.id,
+      chapterId: widget.chapterId,
+      questionId: originalQuestion.id,
+      editedTranscript: transcript, // retain
+      isApproved: true,
+      emotionalTone: seeds['emotionalTone'],
+      storyImportance: seeds['storyImportance'],
+      lifeStage: seeds['lifeStage'],
+      summary: seeds['summary'],
+      lifeThemes: List<String>.from(seeds['lifeThemes'] ?? []),
+      peopleMentioned: List<String>.from(seeds['people'] ?? []),
+      placesMentioned: List<String>.from(seeds['places'] ?? []),
+      historicalEvents: List<String>.from(seeds['historicalEvents'] ?? []),
+      objects: List<String>.from(seeds['objects'] ?? []),
+      familyRelationships: List<String>.from(seeds['familyRelationships'] ?? []),
+    );
+
+    // Generate Dynamic Follow Up
+    final followUpText = await _coordinator.generateFollowUpQuestion(widget.profile.id, transcript);
+    if (followUpText.isNotEmpty) {
+      final dynamicQuestion = Question.dynamicFollowUp(
+        chapterId: widget.chapterId,
+        chapterNumber: originalQuestion.chapterNumber,
+        questionNumber: originalQuestion.questionNumber + 1,
+        questionText: followUpText,
+      );
+      setState(() {
+        _questions.insert(_currentQuestionIndex + 1, dynamicQuestion);
+      });
+    }
   }
 
   void _showErrorDialog() {
