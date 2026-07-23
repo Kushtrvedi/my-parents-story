@@ -1,13 +1,12 @@
-import 'dart:io';
+import 'dart:typed_data';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:path_provider/path_provider.dart';
 import '../models/parent_profile.dart';
 import '../models/generated_chapter.dart';
 import '../l10n/translations.dart';
 
 class PdfExportService {
-  Future<File> generateBook({
+  Future<Uint8List> generateBookBytes({
     required ParentProfile profile,
     required List<GeneratedChapter> chapters,
     required String finalLetter,
@@ -32,10 +31,7 @@ class PdfExportService {
 
     pdf.addPage(_buildFinalLetterPage(finalLetter, profile.name));
 
-    final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/${profile.name}_memoir.pdf');
-    await file.writeAsBytes(await pdf.save());
-    return file;
+    return await pdf.save();
   }
 
   pw.Page _buildCoverPage(ParentProfile profile) {

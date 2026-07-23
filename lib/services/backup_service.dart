@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import '../models/parent_profile.dart';
 import '../models/memory.dart';
@@ -26,7 +27,10 @@ class BackupService {
     return jsonEncode(data);
   }
 
-  Future<File> saveExportToFile(String jsonData) async {
+  Future<File?> saveExportToFile(String jsonData) async {
+    if (kIsWeb) {
+      return null;
+    }
     final directory = await getApplicationDocumentsDirectory();
     final timestamp = DateTime.now().millisecondsSinceEpoch;
     final file = File('${directory.path}/my_parents_story_backup_$timestamp.json');

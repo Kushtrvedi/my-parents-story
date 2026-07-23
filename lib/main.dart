@@ -6,6 +6,7 @@ import 'services/locale_provider.dart';
 import 'services/speech_setup_service.dart';
 import 'screens/landing_screen.dart';
 import 'screens/setup_wizard_screen.dart';
+import 'screens/beta_welcome_screen.dart';
 
 final localeProvider = LocaleProvider();
 
@@ -38,7 +39,7 @@ class MyParentsStoryApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          home: showSetup ? const SetupWizardScreen() : const LandingScreen(),
+          home: const BetaWelcomeScreen(),
         );
       },
     );

@@ -25,14 +25,16 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
 
     try {
       final service = PdfExportService();
-      final file = await service.generateBook(
+      final bytes = await service.generateBookBytes(
         profile: widget.profile,
         chapters: widget.book.chapters,
         finalLetter: widget.book.finalLetter,
       );
 
       if (!mounted) return;
-      await Share.shareXFiles([XFile(file.path)], text: T.tr('sharePdf'));
+      await Share.shareXFiles([
+        XFile.fromData(bytes, name: '${widget.profile.name}_memoir.pdf', mimeType: 'application/pdf')
+      ], text: T.tr('sharePdf'));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

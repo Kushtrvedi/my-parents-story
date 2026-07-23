@@ -51,24 +51,20 @@ void main() {
           content: 'This is the story of my early years.',
         ),
       ];
-
-      final file1 = await service.generateBook(
+      final bytes1 = await service.generateBookBytes(
         profile: profile,
         chapters: chapters,
         finalLetter: 'With love.',
       );
 
-      final file2 = await service.generateBook(
+      final bytes2 = await service.generateBookBytes(
         profile: profile,
         chapters: chapters,
         finalLetter: 'With love.',
       );
 
-      expect(file1.existsSync(), true);
-      expect(file2.existsSync(), true);
-
-      final bytes1 = await file1.readAsBytes();
-      final bytes2 = await file2.readAsBytes();
+      expect(bytes1.isNotEmpty, true);
+      expect(bytes2.isNotEmpty, true);
 
       // Since PDF generation includes timestamps/creation dates in metadata, 
       // exact byte-for-byte matching might fail. However, we can assert 
