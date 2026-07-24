@@ -223,6 +223,16 @@ class _LandingScreenState extends State<LandingScreen> {
               const SizedBox(height: AppSpacing.xl),
 
               // Language selector
+              Text(
+                'Change Language',
+                style: AppTypography.caption.copyWith(
+                  color: AppColors.textLight,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                  letterSpacing: 0.5,
+                ),
+              ),
+              const SizedBox(height: AppSpacing.s),
               GestureDetector(
                 onTap: () => _showLanguagePicker(context),
                 child: Container(
