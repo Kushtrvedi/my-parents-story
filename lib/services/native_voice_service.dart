@@ -9,13 +9,19 @@ class NativeVoiceService {
   bool get isListening => _isListening;
   bool get isAvailable => _isInitialized;
 
-  Future<bool> initialize() async {
+  Function(String)? _externalStatusListener;
+
+  Future<bool> initialize({Function(String)? onStatus}) async {
+    _externalStatusListener = onStatus;
     _speech = stt.SpeechToText();
     _isInitialized = await _speech.initialize(
       onError: (_) => _isListening = false,
       onStatus: (status) {
         if (status == 'done' || status == 'notListening') {
           _isListening = false;
+        }
+        if (_externalStatusListener != null) {
+          _externalStatusListener!(status);
         }
       },
     );
@@ -40,8 +46,8 @@ class NativeVoiceService {
         localeId: localeId,
         listenMode: stt.ListenMode.dictation,
         cancelOnError: true,
-        listenFor: const Duration(minutes: 5),
-        pauseFor: const Duration(seconds: 3),
+        listenFor: const Duration(minutes: 30),
+        pauseFor: const Duration(minutes: 5), // Extremely long pause allowed for elderly users
       ),
     );
   }
