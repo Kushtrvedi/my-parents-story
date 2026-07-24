@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -Eeuo pipefail
 # Vercel Build Script for Flutter Web
 
 echo "=== Cloning Flutter SDK ==="
@@ -14,6 +15,12 @@ flutter pub get
 echo "=== Building Flutter Web ==="
 # Building with base-href to support the /myparents subpath deployment
 flutter build web --release --base-href /myparents/
+
+echo "=== Verifying Build Artifacts ==="
+if [ ! -f build/web/main.dart.js ]; then
+    echo "ERROR: Build failed - main.dart.js missing!"
+    exit 1
+fi
 
 echo "=== Restructuring for Vercel ==="
 mkdir -p build/vercel_output/myparents
