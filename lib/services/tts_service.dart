@@ -9,7 +9,7 @@ class TextToSpeechService {
 
   Future<void> init() async {
     double rate = 1.0;
-    if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS) {
+    if (!kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS)) {
       rate = 0.5;
     }
     await _tts.setSpeechRate(rate); // Natural conversational human pace
