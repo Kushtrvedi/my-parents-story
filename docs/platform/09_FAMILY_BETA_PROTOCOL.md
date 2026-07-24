@@ -49,6 +49,7 @@ Do not ask generic questions like "Did you like it?". Instead, use the following
 3.  *Did you feel like you were being interviewed or listened to?*
 4.  *Would you recommend this to another family?*
 5.  *Would you continue using it after today?*
+6.  *If this book disappeared tomorrow, would you want it back?*
 
 These answers will shape the product far more than another architectural improvement.
 
