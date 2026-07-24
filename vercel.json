@@ -1,16 +1,7 @@
 {
   "buildCommand": "bash build.sh",
   "outputDirectory": "build/vercel_output",
-  "rewrites": [
-    {
-      "source": "/myparents/(.*)",
-      "destination": "/myparents/index.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/myparents/index.html"
-    }
-  ],
+  "cleanUrls": true,
   "headers": [
     {
       "source": "/(.*)",
