@@ -42,13 +42,11 @@ class NativeVoiceService {
           onResult(result.recognizedWords);
         }
       },
-      listenOptions: stt.SpeechListenOptions(
-        localeId: localeId,
-        listenMode: stt.ListenMode.dictation,
-        cancelOnError: true,
-        listenFor: const Duration(minutes: 30),
-        pauseFor: const Duration(minutes: 5), // Extremely long pause allowed for elderly users
-      ),
+      localeId: localeId,
+      listenMode: stt.ListenMode.dictation,
+      cancelOnError: true,
+      listenFor: const Duration(minutes: 30),
+      pauseFor: const Duration(minutes: 5), // Extremely long pause allowed for elderly users
     );
   }
 
