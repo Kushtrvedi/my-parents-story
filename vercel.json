@@ -3,12 +3,12 @@
   "outputDirectory": "build/vercel_output",
   "rewrites": [
     {
-      "source": "/myparentsapp/(.*)",
-      "destination": "/myparentsapp/index.html"
+      "source": "/myparents/(.*)",
+      "destination": "/myparents/index.html"
     },
     {
       "source": "/(.*)",
-      "destination": "/myparentsapp/index.html"
+      "destination": "/myparents/index.html"
     }
   ],
   "headers": [

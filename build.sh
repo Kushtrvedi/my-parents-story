@@ -12,11 +12,11 @@ flutter precache
 flutter pub get
 
 echo "=== Building Flutter Web ==="
-# Building with base-href to support the /myparentsapp subpath deployment
-flutter build web --release --base-href /myparentsapp/
+# Building with base-href to support the /myparents subpath deployment
+flutter build web --release --base-href /myparents/
 
 echo "=== Restructuring for Vercel ==="
-mkdir -p build/vercel_output/myparentsapp
-cp -r build/web/* build/vercel_output/myparentsapp/
+mkdir -p build/vercel_output/myparents
+cp -r build/web/* build/vercel_output/myparents/
 
 echo "=== Build Complete ==="
