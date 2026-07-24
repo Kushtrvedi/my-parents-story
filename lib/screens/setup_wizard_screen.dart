@@ -69,7 +69,13 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
   }
 
   void _openSettings() async {
-    if (kIsWeb) return;
+    if (kIsWeb) {
+      _showWebInstructionsDialog(
+        title: 'Speech Recognition Not Enabled',
+        message: 'Speech recognition requires microphone permissions and browser support. Please ensure you are using a modern browser like Chrome, Edge, or Safari, and that you have granted microphone access to this site in your browser settings.',
+      );
+      return;
+    }
     if (defaultTargetPlatform == TargetPlatform.android) {
       try {
         await const MethodChannel('com.myparentsstory/setup').invokeMethod('openSpeechSettings');
@@ -80,7 +86,13 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
   }
 
   void _openLanguageDownload() async {
-    if (kIsWeb) return;
+    if (kIsWeb) {
+      _showWebInstructionsDialog(
+        title: 'Language Pack Missing',
+        message: 'Your browser cannot find offline speech recognition for this language. \n\nIf you are on a phone, try opening your device Settings > System > Languages & Input > On-device Speech Recognition and download the language pack.\n\nAlternatively, ensure you are connected to the internet so the browser can use cloud speech recognition.',
+      );
+      return;
+    }
     if (defaultTargetPlatform == TargetPlatform.android) {
       try {
         await const MethodChannel('com.myparentsstory/setup').invokeMethod('openLanguagePackSettings');
@@ -88,6 +100,23 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
         // Fallback
       }
     }
+  }
+
+  void _showWebInstructionsDialog({required String title, required String message}) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.card,
+        title: Text(title, style: AppTypography.heading3),
+        content: Text(message, style: AppTypography.body),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(T.tr('ok'), style: AppTypography.button.copyWith(color: AppColors.primary)),
+          ),
+        ],
+      ),
+    );
   }
 
   void _finish() async {

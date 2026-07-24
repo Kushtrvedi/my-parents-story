@@ -80,35 +80,30 @@ class SpeechSetupService {
 
       // Step 3: Check on-device recognition (if available on platform)
       if (speechAvailable) {
-        if (kIsWeb) {
-          onDeviceAvailable = true;
-          offlineLanguageReady = true;
+        try {
+          // isOnDeviceRecognitionAvailable may not be available in all versions
+          // Use locales as a proxy for on-device capability
+          final locales = await _speech.locales();
+          onDeviceAvailable = locales.isNotEmpty;
+        } catch (_) {
+          onDeviceAvailable = false;
+        }
+
+        // Step 4: Get installed languages
+        try {
+          final locales = await _speech.locales();
+          installedLanguages = locales.map((l) => l.localeId).toList();
+        } catch (_) {
+          installedLanguages = [];
+        }
+
+        // Step 5: Check if requested language is available
+        if (languageCode != null && languageCode.isNotEmpty) {
+          offlineLanguageReady = installedLanguages.any(
+            (l) => l.toLowerCase().startsWith(languageCode.toLowerCase()),
+          );
         } else {
-          try {
-            // isOnDeviceRecognitionAvailable may not be available in all versions
-            // Use locales as a proxy for on-device capability
-            final locales = await _speech.locales();
-            onDeviceAvailable = locales.isNotEmpty;
-          } catch (_) {
-            onDeviceAvailable = false;
-          }
-
-          // Step 4: Get installed languages
-          try {
-            final locales = await _speech.locales();
-            installedLanguages = locales.map((l) => l.localeId).toList();
-          } catch (_) {
-            installedLanguages = [];
-          }
-
-          // Step 5: Check if requested language is available
-          if (languageCode != null && languageCode.isNotEmpty) {
-            offlineLanguageReady = installedLanguages.any(
-              (l) => l.toLowerCase().startsWith(languageCode.toLowerCase()),
-            );
-          } else {
-            offlineLanguageReady = installedLanguages.isNotEmpty;
-          }
+          offlineLanguageReady = installedLanguages.isNotEmpty;
         }
       }
     } catch (e) {
