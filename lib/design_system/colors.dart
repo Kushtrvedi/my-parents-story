@@ -5,6 +5,7 @@ class AppColors {
   static const card = Color(0xFFFDF4DB);
   static const primary = Color(0xFFDA9B49);
   static const accent = Color(0xFFDFAB58);
+  static const amberGold = Color(0xFFD9A05B);
   static const secondaryMed = Color(0xFFEBCC75);
   static const parchment = Color(0xFFFDF4DB);
   static const parchmentBorder = Color(0xFFEBCC75);
