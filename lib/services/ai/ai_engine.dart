@@ -6,7 +6,8 @@ abstract class AIEngine {
   String get name;
 
   /// Generates a follow-up question based on the context and current transcript.
-  Future<String> generateFollowUpQuestion(String context, String currentTranscript);
+  Future<String> generateFollowUpQuestion(
+      String context, String currentTranscript);
 
   /// Infers the chapter title based on the transcript.
   Future<String> inferChapterTitle(String transcript);

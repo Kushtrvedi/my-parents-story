@@ -54,23 +54,27 @@ class _LandingScreenState extends State<LandingScreen> {
 
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.l),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xl, vertical: AppSpacing.l),
         child: AdaptiveCenteredBox(
           child: Column(
             children: [
               const SizedBox(height: AppSpacing.xl),
               // App Brand Badge
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                 decoration: BoxDecoration(
                   color: AppColors.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppColors.primary.withValues(alpha: 0.2)),
+                  border: Border.all(
+                      color: AppColors.primary.withValues(alpha: 0.2)),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.auto_stories_rounded, size: 16, color: AppColors.primary),
+                    const Icon(Icons.auto_stories_rounded,
+                        size: 16, color: AppColors.primary),
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
@@ -91,7 +95,8 @@ class _LandingScreenState extends State<LandingScreen> {
               Text(
                 hasProfiles ? T.tr('welcomeBack') : T.tr('welcomeMessage'),
                 textAlign: TextAlign.center,
-                style: AppTypography.display.copyWith(fontSize: 34, height: 1.3),
+                style:
+                    AppTypography.display.copyWith(fontSize: 34, height: 1.3),
               ),
               const SizedBox(height: AppSpacing.s),
               Text(
@@ -112,7 +117,9 @@ class _LandingScreenState extends State<LandingScreen> {
                 decoration: BoxDecoration(
                   color: AppColors.parchment,
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppColors.amberGold.withValues(alpha: 0.4), width: 1.5),
+                  border: Border.all(
+                      color: AppColors.amberGold.withValues(alpha: 0.4),
+                      width: 1.5),
                   boxShadow: const [
                     BoxShadow(
                       color: AppColors.shadow,
@@ -126,7 +133,8 @@ class _LandingScreenState extends State<LandingScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.star_rounded, color: AppColors.amberGold, size: 18),
+                        const Icon(Icons.star_rounded,
+                            color: AppColors.amberGold, size: 18),
                         const SizedBox(width: 6),
                         Flexible(
                           child: Text(
@@ -141,7 +149,8 @@ class _LandingScreenState extends State<LandingScreen> {
                           ),
                         ),
                         const SizedBox(width: 6),
-                        const Icon(Icons.star_rounded, color: AppColors.amberGold, size: 18),
+                        const Icon(Icons.star_rounded,
+                            color: AppColors.amberGold, size: 18),
                       ],
                     ),
                     const SizedBox(height: 12),
@@ -158,7 +167,8 @@ class _LandingScreenState extends State<LandingScreen> {
                     const SizedBox(height: 8),
                     Text(
                       '— Chapter 1: Early Childhood Memories',
-                      style: AppTypography.caption.copyWith(fontSize: 13, color: AppColors.textLight),
+                      style: AppTypography.caption
+                          .copyWith(fontSize: 13, color: AppColors.textLight),
                     ),
                   ],
                 ),
@@ -174,7 +184,8 @@ class _LandingScreenState extends State<LandingScreen> {
                 children: [
                   _buildTrustChip(Icons.lock_outline_rounded, '100% Private'),
                   _buildTrustChip(Icons.wifi_off_rounded, 'Works Offline'),
-                  _buildTrustChip(Icons.volunteer_activism_rounded, 'Built for Families'),
+                  _buildTrustChip(
+                      Icons.volunteer_activism_rounded, 'Built for Families'),
                 ],
               ),
 
@@ -183,27 +194,32 @@ class _LandingScreenState extends State<LandingScreen> {
               // Existing profiles (continue)
               if (hasProfiles) ...[
                 ..._existingProfiles.map((profile) => Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.m),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton.icon(
-                      onPressed: () => _continueProfile(profile),
-                      icon: const Icon(Icons.play_arrow_rounded, size: AppIcons.l, color: AppColors.primary),
-                      label: Text(
-                        '${T.tr('continueStory')} — ${profile.name}',
-                        style: AppTypography.body.copyWith(fontWeight: FontWeight.w600),
+                      padding: const EdgeInsets.only(bottom: AppSpacing.m),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: OutlinedButton.icon(
+                          onPressed: () => _continueProfile(profile),
+                          icon: const Icon(Icons.play_arrow_rounded,
+                              size: AppIcons.l, color: AppColors.primary),
+                          label: Text(
+                            '${T.tr('continueStory')} — ${profile.name}',
+                            style: AppTypography.body
+                                .copyWith(fontWeight: FontWeight.w600),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: AppSpacing.l,
+                                horizontal: AppSpacing.l),
+                            alignment: Alignment.centerLeft,
+                          ),
+                        ),
                       ),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.l, horizontal: AppSpacing.l),
-                        alignment: Alignment.centerLeft,
-                      ),
-                    ),
-                  ),
-                )),
+                    )),
                 const SizedBox(height: AppSpacing.m),
                 Text(
                   T.tr('or'),
-                  style: AppTypography.caption.copyWith(color: AppColors.textLight),
+                  style: AppTypography.caption
+                      .copyWith(color: AppColors.textLight),
                 ),
                 const SizedBox(height: AppSpacing.m),
               ],
@@ -236,7 +252,8 @@ class _LandingScreenState extends State<LandingScreen> {
               GestureDetector(
                 onTap: () => _showLanguagePicker(context),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.m, vertical: AppSpacing.s),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.m, vertical: AppSpacing.s),
                   decoration: BoxDecoration(
                     color: AppColors.card,
                     borderRadius: BorderRadius.circular(AppRadius.m),
@@ -245,12 +262,16 @@ class _LandingScreenState extends State<LandingScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.language_rounded, size: 20, color: AppColors.primary),
+                      const Icon(Icons.language_rounded,
+                          size: 20, color: AppColors.primary),
                       const SizedBox(width: AppSpacing.xs),
                       Flexible(
                         child: Text(
-                          localeProvider.getLanguageName(localeProvider.locale.languageCode),
-                          style: AppTypography.caption.copyWith(color: AppColors.primary, fontWeight: FontWeight.w600),
+                          localeProvider.getLanguageName(
+                              localeProvider.locale.languageCode),
+                          style: AppTypography.caption.copyWith(
+                              color: AppColors.primary,
+                              fontWeight: FontWeight.w600),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -282,7 +303,10 @@ class _LandingScreenState extends State<LandingScreen> {
           Flexible(
             child: Text(
               label,
-              style: AppTypography.caption.copyWith(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.text),
+              style: AppTypography.caption.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.text),
             ),
           ),
         ],
@@ -313,7 +337,8 @@ class _LandingScreenState extends State<LandingScreen> {
             Text(T.tr('switchLang'), style: AppTypography.heading),
             const SizedBox(height: AppSpacing.l),
             ...localeProvider.availableLanguages.map((lang) {
-              final isSelected = localeProvider.locale.languageCode == lang['code'];
+              final isSelected =
+                  localeProvider.locale.languageCode == lang['code'];
               return ListTile(
                 onTap: () {
                   localeProvider.setLocale(Locale(lang['code']!));
@@ -327,9 +352,11 @@ class _LandingScreenState extends State<LandingScreen> {
                   ),
                 ),
                 trailing: isSelected
-                    ? const Icon(Icons.check_circle, color: AppColors.primary, size: AppIcons.m)
+                    ? const Icon(Icons.check_circle,
+                        color: AppColors.primary, size: AppIcons.m)
                     : null,
-                contentPadding: const EdgeInsets.symmetric(vertical: AppSpacing.s),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: AppSpacing.s),
               );
             }),
             const SizedBox(height: AppSpacing.m),

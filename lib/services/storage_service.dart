@@ -114,7 +114,8 @@ class StorageService {
         places: placesMentioned ?? existing.places,
         historicalEvents: historicalEvents ?? existing.historicalEvents,
         objects: objects ?? existing.objects,
-        familyRelationships: familyRelationships ?? existing.familyRelationships,
+        familyRelationships:
+            familyRelationships ?? existing.familyRelationships,
         memoryType: memoryType ?? existing.memoryType,
         decade: decade ?? existing.decade,
         isUnfinished: isUnfinished ?? existing.isUnfinished,

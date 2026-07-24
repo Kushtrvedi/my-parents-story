@@ -1,5 +1,4 @@
 #!/usr/bin/env dart
-
 // Translation validator — ensures all languages have identical keys.
 // Run: dart run scripts/validate_translations.dart
 
@@ -26,7 +25,8 @@ void main() {
   // Find all language codes
   final langPattern = RegExp(r"    '(\w+)': \{");
   final matches = langPattern.allMatches(content);
-  final languages = matches.map((m) => m.group(1)!).where((l) => l != 'en').toList();
+  final languages =
+      matches.map((m) => m.group(1)!).where((l) => l != 'en').toList();
 
   print('Languages found: ${languages.join(', ')}');
   print('');
@@ -57,7 +57,8 @@ void main() {
     print('VALIDATION FAILED — some languages are missing keys');
     exit(1);
   } else {
-    print('ALL LANGUAGES VALID — ${languages.length + 1} languages, ${enKeys.length} keys each');
+    print(
+        'ALL LANGUAGES VALID — ${languages.length + 1} languages, ${enKeys.length} keys each');
   }
 }
 

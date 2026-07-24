@@ -38,7 +38,7 @@ class GoogleDriveService {
 
   Future<void> backupData(String jsonString) async {
     if (!isSignedIn) return;
-    
+
     final api = await _getDriveApi();
     if (api == null) return;
 
@@ -78,7 +78,7 @@ class GoogleDriveService {
 
   Future<String?> restoreData() async {
     if (!isSignedIn) return null;
-    
+
     final api = await _getDriveApi();
     if (api == null) return null;
 
@@ -95,7 +95,8 @@ class GoogleDriveService {
           downloadOptions: drive.DownloadOptions.fullMedia,
         ) as drive.Media;
 
-        final bytes = await response.stream.expand((element) => element).toList();
+        final bytes =
+            await response.stream.expand((element) => element).toList();
         return utf8.decode(bytes);
       }
       return null; // No backup found

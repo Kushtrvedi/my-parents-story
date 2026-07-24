@@ -39,7 +39,8 @@ class StoryResponse {
       questionIndex: map['questionIndex'] ?? 0,
       question: map['question'] ?? '',
       answer: map['answer'] ?? '',
-      updatedAt: map['updatedAt'] != null ? DateTime.parse(map['updatedAt']) : null,
+      updatedAt:
+          map['updatedAt'] != null ? DateTime.parse(map['updatedAt']) : null,
     );
   }
 }

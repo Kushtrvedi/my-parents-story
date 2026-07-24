@@ -48,7 +48,8 @@ class MemoirCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   color: AppColors.amberGold.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(20),
@@ -56,7 +57,8 @@ class MemoirCard extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.menu_book_rounded, size: 14, color: AppColors.amberGold),
+                    const Icon(Icons.menu_book_rounded,
+                        size: 14, color: AppColors.amberGold),
                     const SizedBox(width: 6),
                     Text(
                       'MEMOIR EXCERPT',
@@ -73,7 +75,8 @@ class MemoirCard extends StatelessWidget {
               const Spacer(),
               if (onPlayAudio != null)
                 IconButton(
-                  icon: const Icon(Icons.play_circle_fill_rounded, color: AppColors.primary, size: 32),
+                  icon: const Icon(Icons.play_circle_fill_rounded,
+                      color: AppColors.primary, size: 32),
                   onPressed: onPlayAudio,
                   tooltip: 'Listen to Voice Memory',
                 ),

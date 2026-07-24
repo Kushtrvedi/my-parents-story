@@ -68,9 +68,8 @@ class _VoiceWaveformWidgetState extends State<VoiceWaveformWidget>
                 width: 4,
                 height: widget.height * animValue,
                 decoration: BoxDecoration(
-                  color: widget.isRecording
-                      ? AppColors.accent
-                      : AppColors.divider,
+                  color:
+                      widget.isRecording ? AppColors.accent : AppColors.divider,
                   borderRadius: BorderRadius.circular(2),
                 ),
               );

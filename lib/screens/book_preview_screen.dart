@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -13,7 +12,8 @@ import '../services/legacy_composer_service.dart';
 class BookPreviewScreen extends StatefulWidget {
   final ParentProfile profile;
   final GeneratedBook book;
-  const BookPreviewScreen({super.key, required this.profile, required this.book});
+  const BookPreviewScreen(
+      {super.key, required this.profile, required this.book});
 
   @override
   State<BookPreviewScreen> createState() => _BookPreviewScreenState();
@@ -27,8 +27,9 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
   @override
   void initState() {
     super.initState();
-    _viewId = 'book-preview-${widget.profile.id}-${DateTime.now().millisecondsSinceEpoch}';
-    
+    _viewId =
+        'book-preview-${widget.profile.id}-${DateTime.now().millisecondsSinceEpoch}';
+
     final service = LegacyComposerService();
     _htmlContent = service.generateHtmlBook(
       profile: widget.profile,
@@ -56,7 +57,6 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
       final url = html.Url.createObjectUrlFromBlob(blob);
       html.window.open(url, '_blank');
       // Intentionally not revoking the URL immediately so the tab can load it.
-      
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -121,7 +121,10 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: const [
-                    BoxShadow(color: Colors.black12, blurRadius: 20, offset: Offset(0, 10))
+                    BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 20,
+                        offset: Offset(0, 10))
                   ],
                 ),
                 child: ClipRRect(
@@ -137,26 +140,26 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
     );
   }
 
-
-
   Widget _buildExportButton() {
     return Padding(
-            padding: const EdgeInsets.fromLTRB(28, 0, 28, 32),
-            child: SizedBox(
-              width: double.infinity,
-              height: 76,
-              child: ElevatedButton.icon(
-                onPressed: _isExporting ? null : _exportPdf,
-                icon: _isExporting
-                    ? const SizedBox(
-                        width: 22,
-                        height: 22,
-                        child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
-                      )
-                    : const Icon(Icons.download_outlined, size: 24),
-                label: Text(_isExporting ? T.tr('generatingBook') : T.tr('exportPdf')),
-              ),
-            ),
-          );
+      padding: const EdgeInsets.fromLTRB(28, 0, 28, 32),
+      child: SizedBox(
+        width: double.infinity,
+        height: 76,
+        child: ElevatedButton.icon(
+          onPressed: _isExporting ? null : _exportPdf,
+          icon: _isExporting
+              ? const SizedBox(
+                  width: 22,
+                  height: 22,
+                  child: CircularProgressIndicator(
+                      color: Colors.white, strokeWidth: 2),
+                )
+              : const Icon(Icons.download_outlined, size: 24),
+          label:
+              Text(_isExporting ? T.tr('generatingBook') : T.tr('exportPdf')),
+        ),
+      ),
+    );
   }
 }

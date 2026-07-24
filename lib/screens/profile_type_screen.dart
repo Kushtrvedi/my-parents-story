@@ -19,30 +19,30 @@ class ProfileTypeScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: AdaptiveCenteredBox(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: AppSpacing.xl),
-              Text(
-                T.tr('whoToPreserve'),
-                style: AppTypography.display,
-              ),
-              const SizedBox(height: AppSpacing.xxl),
-              _buildOption(context, T.tr('parentMom'), 'mom'),
-              const SizedBox(height: AppSpacing.m),
-              _buildOption(context, T.tr('parentDad'), 'dad'),
-              const SizedBox(height: AppSpacing.m),
-              _buildOption(context, T.tr('parentGrandma'), 'grandma'),
-              const SizedBox(height: AppSpacing.m),
-              _buildOption(context, T.tr('parentGrandpa'), 'grandpa'),
-              const SizedBox(height: AppSpacing.m),
-              _buildOption(context, T.tr('parentSpecial'), 'special'),
-              const SizedBox(height: AppSpacing.xxl),
-            ],
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: AppSpacing.xl),
+                Text(
+                  T.tr('whoToPreserve'),
+                  style: AppTypography.display,
+                ),
+                const SizedBox(height: AppSpacing.xxl),
+                _buildOption(context, T.tr('parentMom'), 'mom'),
+                const SizedBox(height: AppSpacing.m),
+                _buildOption(context, T.tr('parentDad'), 'dad'),
+                const SizedBox(height: AppSpacing.m),
+                _buildOption(context, T.tr('parentGrandma'), 'grandma'),
+                const SizedBox(height: AppSpacing.m),
+                _buildOption(context, T.tr('parentGrandpa'), 'grandpa'),
+                const SizedBox(height: AppSpacing.m),
+                _buildOption(context, T.tr('parentSpecial'), 'special'),
+                const SizedBox(height: AppSpacing.xxl),
+              ],
+            ),
           ),
-        ),
         ),
       ),
     );

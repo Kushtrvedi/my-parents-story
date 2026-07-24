@@ -24,7 +24,8 @@ class CelebrationScreen extends StatelessWidget {
       backgroundColor: AppColors.primary,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.xl),
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.xl, vertical: AppSpacing.xl),
           child: AdaptiveCenteredBox(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -93,7 +94,8 @@ class CelebrationScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.stars_rounded, color: AppColors.amberGold, size: 20),
+                          const Icon(Icons.stars_rounded,
+                              color: AppColors.amberGold, size: 20),
                           const SizedBox(width: 8),
                           Flexible(
                             child: Text(
@@ -121,7 +123,8 @@ class CelebrationScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 6),
                         decoration: BoxDecoration(
                           color: AppColors.primary.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(20),
@@ -163,7 +166,8 @@ class CelebrationScreen extends StatelessWidget {
                     },
                     child: Text(
                       T.tr('generateMyBook'),
-                      style: AppTypography.button.copyWith(color: AppColors.primary),
+                      style: AppTypography.button
+                          .copyWith(color: AppColors.primary),
                     ),
                   ),
                 ),

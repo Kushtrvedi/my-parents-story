@@ -39,12 +39,14 @@ class T {
       'insight': 'What a beautiful memory.',
       'nextQuestion': 'Next question',
       'switchLang': 'Choose your language',
-      
+
       // Phase 3 Warm Strings
       'recordingComplete': 'Your story has been safely saved.',
       'transcriptGenerated': "We've written down your story.",
-      'emptyMemories': "Every family story begins with a single memory.\nLet's start with yours.",
-      'recordingFailed': "We couldn't save that recording this time.\nNothing else has been lost.\nPlease try again.",
+      'emptyMemories':
+          "Every family story begins with a single memory.\nLet's start with yours.",
+      'recordingFailed':
+          "We couldn't save that recording this time.\nNothing else has been lost.\nPlease try again.",
 
       // Life Stages
       'groupChildhood': 'Childhood',
@@ -62,7 +64,8 @@ class T {
       'enterName': 'Please enter a name',
       'errorOccurred': 'Something went wrong',
       'bornYear': 'Born {year}',
-      'sharedMemoriesCount': 'You\'ve shared {count} wonderful memories. Let\'s continue.',
+      'sharedMemoriesCount':
+          'You\'ve shared {count} wonderful memories. Let\'s continue.',
 
       // PDF & Book
       'tableOfContents': 'Table of Contents',
@@ -71,23 +74,28 @@ class T {
 
       // Recording
       'tapToBeginStory': 'Tap once to begin telling your story',
-      
+
       // Phase 4 Legacy Onboarding
-      'welcomeMessage': 'Every family has stories that deserve to be remembered.',
+      'welcomeMessage':
+          'Every family has stories that deserve to be remembered.',
       'whoToPreserve': 'Who would you like to preserve today?',
       'parentMom': 'Mother',
       'parentDad': 'Father',
       'parentGrandma': 'Grandmother',
       'parentGrandpa': 'Grandfather',
       'parentSpecial': 'Someone special',
-      'preQuestionMessage': 'There are no right or wrong answers. Just tell your story, one memory at a time.',
-      'legacyThanks': 'Today you\'ve preserved something that can never be recreated once it\'s gone.\n\nThank you for protecting your family\'s story.',
-      'privacyTrust': 'Your recordings belong to you. Nothing is shared without your permission.',
+      'preQuestionMessage':
+          'There are no right or wrong answers. Just tell your story, one memory at a time.',
+      'legacyThanks':
+          'Today you\'ve preserved something that can never be recreated once it\'s gone.\n\nThank you for protecting your family\'s story.',
+      'privacyTrust':
+          'Your recordings belong to you. Nothing is shared without your permission.',
       'shareAMemory': 'Share a Memory',
       'shareThisMoment': 'Share this moment',
       'ok': 'OK',
       'aLifeStory': 'A Life Story',
-      'everyParentDeserves': '"Every parent deserves to leave behind their story."',
+      'everyParentDeserves':
+          '"Every parent deserves to leave behind their story."',
       'myParentsStory': "My Parents' Story",
       'chapterPrefix': 'Chapter ',
       'whatIHope': 'What I Hope My Family Remembers',
@@ -95,7 +103,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'Let\'s get everything ready',
-      'setupSubtitle': 'We\'ll check your phone\'s voice features. This takes just a moment.',
+      'setupSubtitle':
+          'We\'ll check your phone\'s voice features. This takes just a moment.',
       'checkingDevice': 'Checking your device...',
       'micReady': 'Microphone ready',
       'speechAvailable': 'Speech recognition available',
@@ -119,8 +128,10 @@ class T {
       // Family Assistant Mode
       'familyMode': 'Helping My Parent',
       'personalMode': 'Personal',
-      'familyModeMessage': 'You\'re in Family Assistant Mode.\n\nYour parent only needs to speak.\nYou handle the rest.',
-      'familyModeHint': 'Tap the mic when they\'re ready to talk.\nTap Next when they\'re done.',
+      'familyModeMessage':
+          'You\'re in Family Assistant Mode.\n\nYour parent only needs to speak.\nYou handle the rest.',
+      'familyModeHint':
+          'Tap the mic when they\'re ready to talk.\nTap Next when they\'re done.',
 
       // Voice Instructions
       'readAloud': 'Read this question aloud',
@@ -144,7 +155,8 @@ class T {
 
       // Celebration
       'celebrationTitle': 'Today, you preserved a lifetime.',
-      'celebrationSubtitle': 'Your stories are now part of your family\'s history forever.',
+      'celebrationSubtitle':
+          'Your stories are now part of your family\'s history forever.',
       'generateMyBook': 'Generate My Book',
     },
     'hi': {
@@ -184,12 +196,14 @@ class T {
       'insight': 'कितनी सुंदर याद है।',
       'nextQuestion': 'अगला सवाल',
       'switchLang': 'भाषा चुनें',
-      
+
       // Phase 3 Warm Strings
       'recordingComplete': 'आपकी कहानी सुरक्षित रूप से सहेजी गई है।',
       'transcriptGenerated': 'हमने आपकी कहानी लिख ली है।',
-      'emptyMemories': 'हर पारिवारिक कहानी एक याद से शुरू होती है।\nआइए आपकी कहानी से शुरू करें।',
-      'recordingFailed': 'हम इस बार रिकॉर्डिंग को सहेज नहीं सके।\nबाकी सब कुछ सुरक्षित है।\nकृपया पुनः प्रयास करें।',
+      'emptyMemories':
+          'हर पारिवारिक कहानी एक याद से शुरू होती है।\nआइए आपकी कहानी से शुरू करें।',
+      'recordingFailed':
+          'हम इस बार रिकॉर्डिंग को सहेज नहीं सके।\nबाकी सब कुछ सुरक्षित है।\nकृपया पुनः प्रयास करें।',
 
       // Welcome & Relationship
       'welcomeMessage': 'हर परिवार की कहानियाँ हैं जो याद रखने योग्य हैं।',
@@ -199,9 +213,12 @@ class T {
       'parentGrandma': 'दादी',
       'parentGrandpa': 'दादा',
       'parentSpecial': 'कोई खास',
-      'preQuestionMessage': 'कोई सही या गलत जवाब नहीं है। बस अपनी कहानी बताइए, एक-एक याद करके।',
-      'legacyThanks': 'आज आपने कुछ ऐसा सहेजा है जो एक बार चला गया तो कभी वापस नहीं आ सकता।\n\nअपने परिवार की कहानी को सुरक्षित रखने के लिए धन्यवाद।',
-      'privacyTrust': 'आपकी रिकॉर्डिंग आपकी है। आपकी अनुमति के बिना कुछ भी साझा नहीं किया जाता।',
+      'preQuestionMessage':
+          'कोई सही या गलत जवाब नहीं है। बस अपनी कहानी बताइए, एक-एक याद करके।',
+      'legacyThanks':
+          'आज आपने कुछ ऐसा सहेजा है जो एक बार चला गया तो कभी वापस नहीं आ सकता।\n\nअपने परिवार की कहानी को सुरक्षित रखने के लिए धन्यवाद।',
+      'privacyTrust':
+          'आपकी रिकॉर्डिंग आपकी है। आपकी अनुमति के बिना कुछ भी साझा नहीं किया जाता।',
 
       // Life Stages
       'groupChildhood': 'बचपन',
@@ -219,7 +236,8 @@ class T {
       'enterName': 'कृपया नाम दर्ज करें',
       'errorOccurred': 'कुछ गलत हो गया',
       'bornYear': '{year} में पैदा हुए',
-      'sharedMemoriesCount': 'आपने {count} अद्भुत यादें साझा की हैं। चलिए आगे बढ़ते हैं।',
+      'sharedMemoriesCount':
+          'आपने {count} अद्भुत यादें साझा की हैं। चलिए आगे बढ़ते हैं।',
 
       // PDF & Book
       'tableOfContents': 'विषय सूची',
@@ -234,7 +252,8 @@ class T {
       'shareThisMoment': 'इस पल को साझा करें',
       'ok': 'ठीक है',
       'aLifeStory': 'एक जीवन कथा',
-      'everyParentDeserves': '"हर माता-पिता को अपनी कहानी छोड़ने का अधिकार है।"',
+      'everyParentDeserves':
+          '"हर माता-पिता को अपनी कहानी छोड़ने का अधिकार है।"',
       'myParentsStory': 'मेरे माता-पिता की कहानी',
       'chapterPrefix': 'अध्याय ',
       'whatIHope': 'मैं क्या चाहता हूं कि मेरा परिवार याद रखे',
@@ -242,7 +261,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'आइए सब कुछ तैयार करें',
-      'setupSubtitle': 'हम आपके फ़ोन की आवाज़ सुविधाओं की जाँच करेंगे। इसमें बस एक पल लगेगा।',
+      'setupSubtitle':
+          'हम आपके फ़ोन की आवाज़ सुविधाओं की जाँच करेंगे। इसमें बस एक पल लगेगा।',
       'checkingDevice': 'आपका डिवाइस जाँच रहे हैं...',
       'micReady': 'माइक्रोफ़ोन तैयार',
       'speechAvailable': 'वाणी पहचान उपलब्ध',
@@ -258,7 +278,8 @@ class T {
 
       // Welcome Back
       'welcomeBack': 'वापसी पर स्वागत है।',
-      'continueWhereLeftOff': 'क्या आप जहाँ छोड़ा था वहीं से जारी रखना चाहेंगे?',
+      'continueWhereLeftOff':
+          'क्या आप जहाँ छोड़ा था वहीं से जारी रखना चाहेंगे?',
       'continueStory': 'जारी रखें',
       'startNewStory': 'नई कहानी शुरू करें',
       'or': 'या',
@@ -266,8 +287,10 @@ class T {
       // Family Assistant Mode
       'familyMode': 'माता-पिता की सहायता',
       'personalMode': 'व्यक्तिगत',
-      'familyModeMessage': 'आप परिवार सहायक मोड में हैं।\n\nआपके माता-पिता को बस बोलना है।\nआप बाकी संभालें।',
-      'familyModeHint': 'जब वे बोलने के लिए तैयार हों तो माइक दबाएं।\nजब हो जाए तो अगला दबाएं।',
+      'familyModeMessage':
+          'आप परिवार सहायक मोड में हैं।\n\nआपके माता-पिता को बस बोलना है।\nआप बाकी संभालें।',
+      'familyModeHint':
+          'जब वे बोलने के लिए तैयार हों तो माइक दबाएं।\nजब हो जाए तो अगला दबाएं।',
 
       // Voice Instructions
       'readAloud': 'यह सवाल ज़ोर से पढ़ें',
@@ -291,7 +314,8 @@ class T {
 
       // Celebration
       'celebrationTitle': 'आज आपने एक पूरी ज़िंदगी संजो ली।',
-      'celebrationSubtitle': 'आपकी कहानियाँ अब हमेशा के लिए आपके परिवार का हिस्सा हैं।',
+      'celebrationSubtitle':
+          'आपकी कहानियाँ अब हमेशा के लिए आपके परिवार का हिस्सा हैं।',
       'generateMyBook': 'मेरी किताब बनाएं',
     },
     'gu': {
@@ -331,12 +355,14 @@ class T {
       'insight': 'કેટલી સુંદર યાદ છે.',
       'nextQuestion': 'આગળનો સવાલ',
       'switchLang': 'ભાષા પસંદ કરો',
-      
+
       // Phase 3 Warm Strings
       'recordingComplete': 'તમારી વાર્તા સુરક્ષિત રીતે સાચવવામાં આવી છે.',
       'transcriptGenerated': 'અમે તમારી વાર્તા લખી લીધી છે.',
-      'emptyMemories': 'દરેક કુટુંબની વાર્તા એક યાદથી શરૂ થાય છે.\nઆવો તમારી વાર્તાથી શરૂ કરીએ.',
-      'recordingFailed': 'અમે આ વખતે રેકોર્ડિંગ સાચવી શક્યા નથી.\nબીજું બધું સુરક્ષિત છે.\nકૃપા કરીને ફરીથી પ્રયાસ કરો.',
+      'emptyMemories':
+          'દરેક કુટુંબની વાર્તા એક યાદથી શરૂ થાય છે.\nઆવો તમારી વાર્તાથી શરૂ કરીએ.',
+      'recordingFailed':
+          'અમે આ વખતે રેકોર્ડિંગ સાચવી શક્યા નથી.\nબીજું બધું સુરક્ષિત છે.\nકૃપા કરીને ફરીથી પ્રયાસ કરો.',
 
       // Welcome & Relationship
       'welcomeMessage': 'દરેક કુટુંબની વાર્તાઓ છે જે યાદ રાખવા લાયક છે.',
@@ -346,9 +372,12 @@ class T {
       'parentGrandma': 'દાદી',
       'parentGrandpa': 'દાદા',
       'parentSpecial': 'કોઈ ખાસ',
-      'preQuestionMessage': 'કોઈ સાચો કે ખોટો જવાબ નથી. ફક્ત તમારી વાર્તા કહો, એક-એક યાદ કરીને.',
-      'legacyThanks': 'આજે તમે કંઈક એવું સાચવ્યું છે જે એક વાર ગયું તો ક્યારેય પાછું ન આવી શકે.\n\nતમારા કુટુંબની વાર્તા સુરક્ષિત રાખવા બદલ આભાર.',
-      'privacyTrust': 'તમારી રેકોર્ડિંગ તમારી છે. તમારી મંજૂરી વિના કંઈ પણ શેર થતું નથી.',
+      'preQuestionMessage':
+          'કોઈ સાચો કે ખોટો જવાબ નથી. ફક્ત તમારી વાર્તા કહો, એક-એક યાદ કરીને.',
+      'legacyThanks':
+          'આજે તમે કંઈક એવું સાચવ્યું છે જે એક વાર ગયું તો ક્યારેય પાછું ન આવી શકે.\n\nતમારા કુટુંબની વાર્તા સુરક્ષિત રાખવા બદલ આભાર.',
+      'privacyTrust':
+          'તમારી રેકોર્ડિંગ તમારી છે. તમારી મંજૂરી વિના કંઈ પણ શેર થતું નથી.',
 
       // Life Stages
       'groupChildhood': 'બાળપણ',
@@ -366,7 +395,8 @@ class T {
       'enterName': 'કૃપા કરીને નામ દાખલ કરો',
       'errorOccurred': 'કંઈક ખોટું થયું',
       'bornYear': '{year} માં જન્મ્યા',
-      'sharedMemoriesCount': 'તમે {count} અદ્ભુત યાદો શેર કરી છે. ચાલો આગળ વધીએ.',
+      'sharedMemoriesCount':
+          'તમે {count} અદ્ભુત યાદો શેર કરી છે. ચાલો આગળ વધીએ.',
 
       // PDF & Book
       'tableOfContents': 'વિષય સૂચિ',
@@ -381,7 +411,8 @@ class T {
       'shareThisMoment': 'આ પળ શેર કરો',
       'ok': 'ઠીક છે',
       'aLifeStory': 'એક જીવન વાર્તા',
-      'everyParentDeserves': '"દરેક માતા-પિતાને પોતાની વાર્તા છોડવાનો અધિકાર છે."',
+      'everyParentDeserves':
+          '"દરેક માતા-પિતાને પોતાની વાર્તા છોડવાનો અધિકાર છે."',
       'myParentsStory': 'મારા માતા-પિતાની વાર્તા',
       'chapterPrefix': 'અધ્યાય ',
       'whatIHope': 'હું શું ઇચ્છું છું કે મારું કુટુંબ યાદ રાખે',
@@ -389,7 +420,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'ચાલો બધું તૈયાર કરીએ',
-      'setupSubtitle': 'અમે તમારા ફોનની અવાજ સુવિધાઓ તપાસીશું. આમાં ફક્ત એક ક્ષણ લાગશે.',
+      'setupSubtitle':
+          'અમે તમારા ફોનની અવાજ સુવિધાઓ તપાસીશું. આમાં ફક્ત એક ક્ષણ લાગશે.',
       'checkingDevice': 'તમારું ઉપકરણ તપાસી રહ્યા છીએ...',
       'micReady': 'માઈક્રોફોન તૈયાર',
       'speechAvailable': 'અવાજ ઓળખ ઉપલબ્ધ',
@@ -405,7 +437,8 @@ class T {
 
       // Welcome Back
       'welcomeBack': 'પાછા આવવા બદલ આભાર.',
-      'continueWhereLeftOff': 'શું તમે જ્યાં છોડ્યું હતું ત્યાંથી ચાલુ રાખવા માગો છો?',
+      'continueWhereLeftOff':
+          'શું તમે જ્યાં છોડ્યું હતું ત્યાંથી ચાલુ રાખવા માગો છો?',
       'continueStory': 'ચાલુ રાખો',
       'startNewStory': 'નવી વાર્તા શરૂ કરો',
       'or': 'અથવા',
@@ -413,8 +446,10 @@ class T {
       // Family Assistant Mode
       'familyMode': 'માતા-પિતાની સહાય',
       'personalMode': 'વ્યક્તિગત',
-      'familyModeMessage': 'તમે કુટુંબ સહાયક મોડમાં છો.\n\nતમારા માતા-પિતાએ ફક્ત બોલવાનું છે.\nતમે બાકી સંભાળો.',
-      'familyModeHint': 'જ્યારે તેઓ બોલવા માટે તૈયાર હોય ત્યારે માઈક દબાવો.\nજ્યારે થઈ જાય ત્યારે આગળ દબાવો.',
+      'familyModeMessage':
+          'તમે કુટુંબ સહાયક મોડમાં છો.\n\nતમારા માતા-પિતાએ ફક્ત બોલવાનું છે.\nતમે બાકી સંભાળો.',
+      'familyModeHint':
+          'જ્યારે તેઓ બોલવા માટે તૈયાર હોય ત્યારે માઈક દબાવો.\nજ્યારે થઈ જાય ત્યારે આગળ દબાવો.',
 
       // Voice Instructions
       'readAloud': 'આ સવાલ જોરથી વાંચો',
@@ -438,7 +473,8 @@ class T {
 
       // Celebration
       'celebrationTitle': 'આજે તમે આખું જીવન સાચવી લીધું.',
-      'celebrationSubtitle': 'તમારી વાર્તાઓ હવે કાયમ માટે તમારા કુટુંબનો ભાગ છે.',
+      'celebrationSubtitle':
+          'તમારી વાર્તાઓ હવે કાયમ માટે તમારા કુટુંબનો ભાગ છે.',
       'generateMyBook': 'મારી પુસ્તક બનાવો',
     },
     'es': {
@@ -478,24 +514,30 @@ class T {
       'insight': 'Qué hermoso recuerdo.',
       'nextQuestion': 'Siguiente pregunta',
       'switchLang': 'Elige tu idioma',
-      
+
       // Phase 3 Warm Strings
       'recordingComplete': 'Tu historia se ha guardado de forma segura.',
       'transcriptGenerated': 'Hemos escrito tu historia.',
-      'emptyMemories': 'Toda historia familiar comienza con un recuerdo.\nEmpecemos con el tuyo.',
-      'recordingFailed': 'No pudimos guardar esa grabación esta vez.\nNo se ha perdido nada más.\nPor favor, inténtalo de nuevo.',
+      'emptyMemories':
+          'Toda historia familiar comienza con un recuerdo.\nEmpecemos con el tuyo.',
+      'recordingFailed':
+          'No pudimos guardar esa grabación esta vez.\nNo se ha perdido nada más.\nPor favor, inténtalo de nuevo.',
 
       // Welcome & Relationship
-      'welcomeMessage': 'Toda familia tiene historias que merecen ser recordadas.',
+      'welcomeMessage':
+          'Toda familia tiene historias que merecen ser recordadas.',
       'whoToPreserve': '¿De quién te gustaría preservar la historia hoy?',
       'parentMom': 'Madre',
       'parentDad': 'Padre',
       'parentGrandma': 'Abuela',
       'parentGrandpa': 'Abuelo',
       'parentSpecial': 'Alguien especial',
-      'preQuestionMessage': 'No hay respuestas correctas o incorrectas. Solo cuenta tu historia, un recuerdo a la vez.',
-      'legacyThanks': 'Hoy has preservado algo que nunca podrá recrearse una vez que se pierde.\n\nGracias por proteger la historia de tu familia.',
-      'privacyTrust': 'Tus grabaciones son tuyas. Nada se comparte sin tu permiso.',
+      'preQuestionMessage':
+          'No hay respuestas correctas o incorrectas. Solo cuenta tu historia, un recuerdo a la vez.',
+      'legacyThanks':
+          'Hoy has preservado algo que nunca podrá recrearse una vez que se pierde.\n\nGracias por proteger la historia de tu familia.',
+      'privacyTrust':
+          'Tus grabaciones son tuyas. Nada se comparte sin tu permiso.',
 
       // Life Stages
       'groupChildhood': 'Infancia',
@@ -513,7 +555,8 @@ class T {
       'enterName': 'Por favor, ingresa un nombre',
       'errorOccurred': 'Algo salió mal',
       'bornYear': 'Nacido en {year}',
-      'sharedMemoriesCount': 'Has compartido {count} recuerdos maravillosos. Sigamos.',
+      'sharedMemoriesCount':
+          'Has compartido {count} recuerdos maravillosos. Sigamos.',
 
       // PDF & Book
       'tableOfContents': 'Contenido',
@@ -536,7 +579,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'Preparemos todo',
-      'setupSubtitle': 'Verificaremos las funciones de voz de tu teléfono. Solo tomará un momento.',
+      'setupSubtitle':
+          'Verificaremos las funciones de voz de tu teléfono. Solo tomará un momento.',
       'checkingDevice': 'Verificando tu dispositivo...',
       'micReady': 'Micrófono listo',
       'speechAvailable': 'Reconocimiento de voz disponible',
@@ -560,8 +604,10 @@ class T {
       // Family Assistant Mode
       'familyMode': 'Ayudando a Mi Padre/Madre',
       'personalMode': 'Personal',
-      'familyModeMessage': 'Estás en Modo Asistente Familiar.\n\nTu padre/madre solo necesita hablar.\nTú encargas del resto.',
-      'familyModeHint': 'Toca el micrófono cuando estén listos para hablar.\nToca Siguiente cuando terminen.',
+      'familyModeMessage':
+          'Estás en Modo Asistente Familiar.\n\nTu padre/madre solo necesita hablar.\nTú encargas del resto.',
+      'familyModeHint':
+          'Toca el micrófono cuando estén listos para hablar.\nToca Siguiente cuando terminen.',
 
       // Voice Instructions
       'readAloud': 'Leer esta pregunta en voz alta',
@@ -585,7 +631,8 @@ class T {
 
       // Celebration
       'celebrationTitle': 'Hoy preservaste toda una vida.',
-      'celebrationSubtitle': 'Tus historias ahora son parte de la historia de tu familia para siempre.',
+      'celebrationSubtitle':
+          'Tus historias ahora son parte de la historia de tu familia para siempre.',
       'generateMyBook': 'Generar Mi Libro',
     },
     'mr': {
@@ -627,20 +674,26 @@ class T {
       'switchLang': 'भाषा निवडा',
       'recordingComplete': 'तुमची कथा सुरक्षितपणे साठवली आहे.',
       'transcriptGenerated': 'आम्ही तुमची कथा लिहिली आहे.',
-      'emptyMemories': 'प्रत्येक कुटुंबाची कथा एका आठवणीपासून सुरू होते.\nचला तुमच्यापासून सुरू करूया.',
-      'recordingFailed': 'आम्ही यावेळी रेकॉर्डिंग साठवू शकलो नाही.\nबाकी सर्व काही सुरक्षित आहे.\nकृपया पुन्हा प्रयत्न करा.',
+      'emptyMemories':
+          'प्रत्येक कुटुंबाची कथा एका आठवणीपासून सुरू होते.\nचला तुमच्यापासून सुरू करूया.',
+      'recordingFailed':
+          'आम्ही यावेळी रेकॉर्डिंग साठवू शकलो नाही.\nबाकी सर्व काही सुरक्षित आहे.\nकृपया पुन्हा प्रयत्न करा.',
 
       // Welcome & Relationship
-      'welcomeMessage': 'दर कुटुंबाच्या कथा आहेत ज्या लक्षात ठेवण्यासारख्या आहेत.',
+      'welcomeMessage':
+          'दर कुटुंबाच्या कथा आहेत ज्या लक्षात ठेवण्यासारख्या आहेत.',
       'whoToPreserve': 'आज तुम्ही कोणाची कथा साठवू इच्छिता?',
       'parentMom': 'आई',
       'parentDad': 'बाबा',
       'parentGrandma': 'आजी',
       'parentGrandpa': 'आजोबा',
       'parentSpecial': 'कोणी खास',
-      'preQuestionMessage': 'कोणताही अचूक किंवा चुकीचा उत्तर नाही. फक्त तुमची कथा सांगा, एक-एक आठवण करून.',
-      'legacyThanks': 'आज तुम्ही काहीतरी असे साठवले आहे जे एकदा गेले तर पुन्हा कधी परत येणार नाही.\n\nतुमच्या कुटुंबाची कथा सुरक्षित ठेवल्याबद्दल धन्यवाद.',
-      'privacyTrust': 'तुमच्या रेकॉर्डिंग तुमच्या आहेत. तुमच्या परवानगीशिवाय काहीही शेअर केले जात नाही.',
+      'preQuestionMessage':
+          'कोणताही अचूक किंवा चुकीचा उत्तर नाही. फक्त तुमची कथा सांगा, एक-एक आठवण करून.',
+      'legacyThanks':
+          'आज तुम्ही काहीतरी असे साठवले आहे जे एकदा गेले तर पुन्हा कधी परत येणार नाही.\n\nतुमच्या कुटुंबाची कथा सुरक्षित ठेवल्याबद्दल धन्यवाद.',
+      'privacyTrust':
+          'तुमच्या रेकॉर्डिंग तुमच्या आहेत. तुमच्या परवानगीशिवाय काहीही शेअर केले जात नाही.',
 
       'groupChildhood': 'बालपण',
       'groupChildhoodDesc': 'तुम्ही कुठून आलात, तुमच्या पहिल्या दिवस',
@@ -655,7 +708,8 @@ class T {
       'enterName': 'कृपया नाव टाइप करा',
       'errorOccurred': 'काहीतरी चूक झाली',
       'bornYear': '{year} मध्ये जन्मले',
-      'sharedMemoriesCount': 'तुम्ही {count} अप्रतिम आठवणी सामायिक केल्या आहेत. चला पुढे जाऊया.',
+      'sharedMemoriesCount':
+          'तुम्ही {count} अप्रतिम आठवणी सामायिक केल्या आहेत. चला पुढे जाऊया.',
       'tableOfContents': 'विषय सूची',
       'finalLetterTitle': 'माझ्या कुटुंबाला मी काय लक्षात ठेवू इच्छितो',
       'chapterLabel': 'अध्याय {number}',
@@ -666,7 +720,8 @@ class T {
       'shareThisMoment': 'हा क्षण शेअर करा',
       'ok': 'ठीक आहे',
       'aLifeStory': 'एक जीवन कथा',
-      'everyParentDeserves': '"दर मुलगा-मुलगीच्या आई-बाबांना आपली कथा सोडून जाण्याचा अधिकार आहे."',
+      'everyParentDeserves':
+          '"दर मुलगा-मुलगीच्या आई-बाबांना आपली कथा सोडून जाण्याचा अधिकार आहे."',
       'myParentsStory': 'माझ्या आई-बाबांची कथा',
       'chapterPrefix': 'अध्याय ',
       'whatIHope': 'माझ्या कुटुंबाला मी काय लक्षात ठेवू इच्छितो',
@@ -674,7 +729,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'चला सर्व काही तयार करूया',
-      'setupSubtitle': 'आम्ही तुमच्या फोनच्या आवाज वैशिष्ट्ये तपासू. यासाठी फक्त एक क्षण लागेल.',
+      'setupSubtitle':
+          'आम्ही तुमच्या फोनच्या आवाज वैशिष्ट्ये तपासू. यासाठी फक्त एक क्षण लागेल.',
       'checkingDevice': 'तुमचे उपकरण तपासत आहोत...',
       'micReady': 'मायक्रोफोन तयार',
       'speechAvailable': 'आवाज ओळख उपलब्ध',
@@ -698,8 +754,10 @@ class T {
       // Family Assistant Mode
       'familyMode': 'आई-बाबांची मदत',
       'personalMode': 'वैयक्तिक',
-      'familyModeMessage': 'तुम्ही कुटुंब सहाय्यक मोडमध्ये आहात.\n\nतुमच्या आई-बाबांना फक्त बोलायचे आहे.\nतुम्ही उर्वरित काळजी घ्या.',
-      'familyModeHint': 'जेव्हा ते बोलायला तयार असतील तेव्हा मायक दाबा.\nजेव्हा झाले तेव्हा पुढे दाबा.',
+      'familyModeMessage':
+          'तुम्ही कुटुंब सहाय्यक मोडमध्ये आहात.\n\nतुमच्या आई-बाबांना फक्त बोलायचे आहे.\nतुम्ही उर्वरित काळजी घ्या.',
+      'familyModeHint':
+          'जेव्हा ते बोलायला तयार असतील तेव्हा मायक दाबा.\nजेव्हा झाले तेव्हा पुढे दाबा.',
 
       // Voice Instructions
       'readAloud': 'हा प्रश्न जोरात वाचा',
@@ -723,7 +781,8 @@ class T {
 
       // Celebration
       'celebrationTitle': 'आज तुम्ही संपूर्ण आयुष्य साठवले.',
-      'celebrationSubtitle': 'तुमच्या कथा आता कायमस्वरूपी तुमच्या कुटुंबाचा भाग आहेत.',
+      'celebrationSubtitle':
+          'तुमच्या कथा आता कायमस्वरूपी तुमच्या कुटुंबाचा भाग आहेत.',
       'generateMyBook': 'माझी पुस्तक बनवा',
     },
     'ta': {
@@ -765,8 +824,10 @@ class T {
       'switchLang': 'மொழியைத் தேர்ந்தெடுக்கவும்',
       'recordingComplete': 'உங்கள் கதை பாதுகாப்பாக சேமிக்கப்பட்டது.',
       'transcriptGenerated': 'உங்கள் கதையை எழுதிவிட்டோம்.',
-      'emptyMemories': 'ஒவ்வொரு குடும்ப கதையும் ஒரு நினைவிலிருந்து தொடங்குகிறது.\nஉங்கள் கதையிலிருந்து தொடங்குவோம்.',
-      'recordingFailed': 'இந்த முறை பதிவை சேமிக்க முடியவில்லை.\nமற்ற எல்லாம் பாதுகாப்பாக உள்ளது.\nமீண்டும் முயற்சிக்கவும்.',
+      'emptyMemories':
+          'ஒவ்வொரு குடும்ப கதையும் ஒரு நினைவிலிருந்து தொடங்குகிறது.\nஉங்கள் கதையிலிருந்து தொடங்குவோம்.',
+      'recordingFailed':
+          'இந்த முறை பதிவை சேமிக்க முடியவில்லை.\nமற்ற எல்லாம் பாதுகாப்பாக உள்ளது.\nமீண்டும் முயற்சிக்கவும்.',
 
       // Welcome & Relationship
       'welcomeMessage': 'ஒவ்வொரு குடும்பத்திற்கும் நினைவுக்குரிய கதைகள் உள்ளன.',
@@ -776,12 +837,16 @@ class T {
       'parentGrandma': 'பாட்டி',
       'parentGrandpa': 'தாத்தா',
       'parentSpecial': 'யாரோ சிறப்பானவர்',
-      'preQuestionMessage': 'சரி அல்லது தவறான பதில் இல்லை. உங்கள் கதையை சொல்லுங்கள், ஒரு நினைவு ஒரு முறை.',
-      'legacyThanks': 'இன்று நீங்கள் ஒருமுறை போனால் மீண்டும் உருவாக்க முடியாத ஒன்றை பாதுகாத்துள்ளீர்கள்.\n\nஉங்கள் குடும்பத்தின் கதையை பாதுகாத்ததற்கு நன்றி.',
-      'privacyTrust': 'உங்கள் பதிவுகள் உங்களுடையவை. உங்கள் அனுமதியின்றி எதுவும் பகிரப்படாது.',
+      'preQuestionMessage':
+          'சரி அல்லது தவறான பதில் இல்லை. உங்கள் கதையை சொல்லுங்கள், ஒரு நினைவு ஒரு முறை.',
+      'legacyThanks':
+          'இன்று நீங்கள் ஒருமுறை போனால் மீண்டும் உருவாக்க முடியாத ஒன்றை பாதுகாத்துள்ளீர்கள்.\n\nஉங்கள் குடும்பத்தின் கதையை பாதுகாத்ததற்கு நன்றி.',
+      'privacyTrust':
+          'உங்கள் பதிவுகள் உங்களுடையவை. உங்கள் அனுமதியின்றி எதுவும் பகிரப்படாது.',
 
       'groupChildhood': 'குழந்தை பருவம்',
-      'groupChildhoodDesc': 'நீங்கள் எங்கிருந்து வந்தீர்கள், உங்கள் முதல் நாட்கள்',
+      'groupChildhoodDesc':
+          'நீங்கள் எங்கிருந்து வந்தீர்கள், உங்கள் முதல் நாட்கள்',
       'groupYouth': 'இளமை',
       'groupYouthDesc': 'வளர்தல், கற்றல், உங்கள் வழியை கண்டறிதல்',
       'groupFamily': 'குடும்ப வாழ்க்கை',
@@ -793,7 +858,8 @@ class T {
       'enterName': 'தயவுசெய்து பெயரை உள்ளிடவும்',
       'errorOccurred': 'ஏதோ தவறு நடந்தது',
       'bornYear': '{year} இல் பிறந்தார்',
-      'sharedMemoriesCount': 'நீங்கள் {count} அற்புதமான நினைவுகளை பகிர்ந்துள்ளீர்கள். தொடர்வோம்.',
+      'sharedMemoriesCount':
+          'நீங்கள் {count} அற்புதமான நினைவுகளை பகிர்ந்துள்ளீர்கள். தொடர்வோம்.',
       'tableOfContents': 'உள்ளடக்கம்',
       'finalLetterTitle': 'என் குடும்பம் நினைவில் கொள்ள வேண்டியது',
       'chapterLabel': 'அத்தியாயம் {number}',
@@ -804,7 +870,8 @@ class T {
       'shareThisMoment': 'இந்தத் தருணத்தைப் பகிருங்கள்',
       'ok': 'சரி',
       'aLifeStory': 'ஒரு வாழ்க்கைக் கதை',
-      'everyParentDeserves': '"ஒவ்வொரு பெற்றோருக்கும் தங்கள் கதையை விட்டுச் செல்லும் உரிமை உண்டு."',
+      'everyParentDeserves':
+          '"ஒவ்வொரு பெற்றோருக்கும் தங்கள் கதையை விட்டுச் செல்லும் உரிமை உண்டு."',
       'myParentsStory': 'என் பெற்றோரின் கதை',
       'chapterPrefix': 'அத்தியாயம் ',
       'whatIHope': 'என் குடும்பம் நினைவில் கொள்ள வேண்டியது',
@@ -812,7 +879,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'எல்லாவற்றையும் தயார் செய்வோம்',
-      'setupSubtitle': 'உங்கள் தொலைபேசியின் குரல் அம்சங்களை சரிபார்க்கிறோம். இது ஒரு கணம் மட்டுமே.',
+      'setupSubtitle':
+          'உங்கள் தொலைபேசியின் குரல் அம்சங்களை சரிபார்க்கிறோம். இது ஒரு கணம் மட்டுமே.',
       'checkingDevice': 'உங்கள் சாதனத்தை சரிபார்க்கிறது...',
       'micReady': 'மைக்ரோஃபோன் தயார்',
       'speechAvailable': 'குரல் அடையாளம் கிடைக்கிறது',
@@ -826,14 +894,17 @@ class T {
       'everythingReady': 'எல்லாம் தயாராக உள்ளது.',
       'readyMessage': 'இப்போது உங்கள் குடும்ப கதைகளை பாதுகாக்கலாம்.',
       'welcomeBack': 'மீண்டும் வரவேற்கிறோம்.',
-      'continueWhereLeftOff': 'நீங்கள் நிறுத்திய இடத்திலிருந்து தொடர விரும்புகிறீர்களா?',
+      'continueWhereLeftOff':
+          'நீங்கள் நிறுத்திய இடத்திலிருந்து தொடர விரும்புகிறீர்களா?',
       'continueStory': 'தொடர',
       'startNewStory': 'புதிய கதையை தொடங்கு',
       'or': 'அல்லது',
       'familyMode': 'பெற்றோருக்கு உதவி',
       'personalMode': 'தனிப்பட்ட',
-      'familyModeMessage': 'குடும்ப உதவியாளர் பயன்முறையில் உள்ளீர்கள்.\n\nஉங்கள் பெற்றோர் பேச வேண்டும்.\nமீதி நீங்கள் பார்த்துக்கொள்ளுங்கள்.',
-      'familyModeHint': 'அவர்கள் பேச தயாராக இருக்கும்போது மைக்கை அழுத்துங்கள்.\nமுடிந்ததும் அடுத்து அழுத்துங்கள்.',
+      'familyModeMessage':
+          'குடும்ப உதவியாளர் பயன்முறையில் உள்ளீர்கள்.\n\nஉங்கள் பெற்றோர் பேச வேண்டும்.\nமீதி நீங்கள் பார்த்துக்கொள்ளுங்கள்.',
+      'familyModeHint':
+          'அவர்கள் பேச தயாராக இருக்கும்போது மைக்கை அழுத்துங்கள்.\nமுடிந்ததும் அடுத்து அழுத்துங்கள்.',
       'readAloud': 'இந்த கேள்வியை சத்தமாக படியுங்கள்',
       'recordLabel': 'பதிவு செய்',
       'recordingLabel': 'பதிவாகிறது...',
@@ -847,7 +918,8 @@ class T {
       'continueRecording': 'தொடர',
       'takeBreak': 'இடைவேளை எடு',
       'celebrationTitle': 'இன்று ஒரு வாழ்நாளை பாதுகாத்தீர்கள்.',
-      'celebrationSubtitle': 'உங்கள் கதைகள் இப்போது உங்கள் குடும்ப வரலாற்றின் ஒரு பகுதி.',
+      'celebrationSubtitle':
+          'உங்கள் கதைகள் இப்போது உங்கள் குடும்ப வரலாற்றின் ஒரு பகுதி.',
       'generateMyBook': 'என் புத்தகத்தை உருவாக்கு',
     },
     'te': {
@@ -889,8 +961,10 @@ class T {
       'switchLang': 'భాష ఎంచుకోండి',
       'recordingComplete': 'మీ కథ సురక్షితంగా సేవ్ చేయబడింది.',
       'transcriptGenerated': 'మీ కథను రాశాము.',
-      'emptyMemories': 'ప్రతి కుటుంబ కథ ఒక జ్ఞాపకం నుండి మొదలవుతుంది.\nమీ కథ నుండి మొదలుపెడదాం.',
-      'recordingFailed': 'ఈసారి రికార్డింగ్ సేవ్ చేయలేకపోయాము.\nమిగిలినవన్నీ సురక్షితంగా ఉన్నాయి.\nదయచేసి మళ్ళీ ప్రయత్నించండి.',
+      'emptyMemories':
+          'ప్రతి కుటుంబ కథ ఒక జ్ఞాపకం నుండి మొదలవుతుంది.\nమీ కథ నుండి మొదలుపెడదాం.',
+      'recordingFailed':
+          'ఈసారి రికార్డింగ్ సేవ్ చేయలేకపోయాము.\nమిగిలినవన్నీ సురక్షితంగా ఉన్నాయి.\nదయచేసి మళ్ళీ ప్రయత్నించండి.',
 
       // Welcome & Relationship
       'welcomeMessage': 'ప్రతి కుటుంబానికి గుర్తుంచుకోదగిన కథలు ఉన్నాయి.',
@@ -900,9 +974,12 @@ class T {
       'parentGrandma': 'అమ్మమ్మ',
       'parentGrandpa': 'తాత',
       'parentSpecial': 'ఎవరో ప్రత్యేకం',
-      'preQuestionMessage': 'సరైన లేదా తప్పు సమాధానం లేదు. మీ కథ చెప్పండి, ఒక జ్ఞాపకం ఒకసారి.',
-      'legacyThanks': 'ఈ రోజు మీరు ఒకసారి పోతే మళ్ళీ సృష్టించలేనిదాన్ని సంరక్షించారు.\n\nమీ కుటుంబ కథను రక్షించినందుకు ధన్యవాదాలు.',
-      'privacyTrust': 'మీ రికార్డింగ్‌లు మీవి. మీ అనుమతి లేకుండా ఏదీ షేర్ చేయబడదు.',
+      'preQuestionMessage':
+          'సరైన లేదా తప్పు సమాధానం లేదు. మీ కథ చెప్పండి, ఒక జ్ఞాపకం ఒకసారి.',
+      'legacyThanks':
+          'ఈ రోజు మీరు ఒకసారి పోతే మళ్ళీ సృష్టించలేనిదాన్ని సంరక్షించారు.\n\nమీ కుటుంబ కథను రక్షించినందుకు ధన్యవాదాలు.',
+      'privacyTrust':
+          'మీ రికార్డింగ్‌లు మీవి. మీ అనుమతి లేకుండా ఏదీ షేర్ చేయబడదు.',
 
       'groupChildhood': 'బాల్యం',
       'groupChildhoodDesc': 'మీరు ఎక్కడి నుండి వచ్చారు, మీ మొదటి రోజులు',
@@ -917,7 +994,8 @@ class T {
       'enterName': 'దయచేసి పేరు నమోదు చేయండి',
       'errorOccurred': 'ఏదో తప్పు జరిగింది',
       'bornYear': '{year} లో పుట్టారు',
-      'sharedMemoriesCount': 'మీరు {count} అద్భుతమైన జ్ఞాపకాలను పంచుకున్నారు. కొనసాగిద్దాం.',
+      'sharedMemoriesCount':
+          'మీరు {count} అద్భుతమైన జ్ఞాపకాలను పంచుకున్నారు. కొనసాగిద్దాం.',
       'tableOfContents': 'విషయ సూచిక',
       'finalLetterTitle': 'నా కుటుంబం గుర్తుంచుకోవలసినది',
       'chapterLabel': 'అధ్యాయం {number}',
@@ -928,7 +1006,8 @@ class T {
       'shareThisMoment': 'ఈ క్షణాన్ని షేర్ చేయండి',
       'ok': 'సరే',
       'aLifeStory': 'ఒక జీవిత కథ',
-      'everyParentDeserves': '"ప్రతి తల్లిదండ్రులకు తమ కథను వదిలి వెళ్ళే హక్కు ఉంది."',
+      'everyParentDeserves':
+          '"ప్రతి తల్లిదండ్రులకు తమ కథను వదిలి వెళ్ళే హక్కు ఉంది."',
       'myParentsStory': 'నా తల్లిదండ్రుల కథ',
       'chapterPrefix': 'అధ్యాయం ',
       'whatIHope': 'నా కుటుంబం గుర్తుంచుకోవలసినది',
@@ -936,7 +1015,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'అన్నీ సిద్ధం చేద్దాం',
-      'setupSubtitle': 'మీ ఫోన్ వాయిస్ ఫీచర్లను చెక్ చేస్తాము. ఇది కొద్దిసేపు మాత్రమే.',
+      'setupSubtitle':
+          'మీ ఫోన్ వాయిస్ ఫీచర్లను చెక్ చేస్తాము. ఇది కొద్దిసేపు మాత్రమే.',
       'checkingDevice': 'మీ డివైజ్ చెక్ చేస్తోంది...',
       'micReady': 'మైక్రోఫోన్ సిద్ధం',
       'speechAvailable': 'వాయిస్ రికగ్నిషన్ అందుబాటులో ఉంది',
@@ -956,8 +1036,10 @@ class T {
       'or': 'లేదా',
       'familyMode': 'తల్లిదండ్రులకు సహాయం',
       'personalMode': 'వ్యక్తిగత',
-      'familyModeMessage': 'మీరు కుటుంబ సహాయక మోడ్‌లో ఉన్నారు.\n\nమీ తల్లిదండ్రులు మాట్లాడాలి.\nమిగిలినది మీరు చూసుకోండి.',
-      'familyModeHint': 'వారు మాట్లాడటానికి సిద్ధంగా ఉన్నప్పుడు మైక్ నొక్కండి.\nపూర్తయిన తర్వాత తదుపరి నొక్కండి.',
+      'familyModeMessage':
+          'మీరు కుటుంబ సహాయక మోడ్‌లో ఉన్నారు.\n\nమీ తల్లిదండ్రులు మాట్లాడాలి.\nమిగిలినది మీరు చూసుకోండి.',
+      'familyModeHint':
+          'వారు మాట్లాడటానికి సిద్ధంగా ఉన్నప్పుడు మైక్ నొక్కండి.\nపూర్తయిన తర్వాత తదుపరి నొక్కండి.',
       'readAloud': 'ఈ ప్రశ్నను బిగ్గరా చదవండి',
       'recordLabel': 'రికార్డ్',
       'recordingLabel': 'రికార్డ్ అవుతోంది...',
@@ -1013,8 +1095,10 @@ class T {
       'switchLang': 'ഭാഷ തിരഞ്ഞെടുക്കൂ',
       'recordingComplete': 'നിങ്ങളുടെ കഥ സുരക്ഷിതമായി സേവ് ചെയ്തു.',
       'transcriptGenerated': 'നിങ്ങളുടെ കഥ എഴുതി.',
-      'emptyMemories': 'ഓരോ കുടുംബ കഥയും ഒരു ഓർമ്മയിൽ നിന്ന് ആരംഭിക്കുന്നു.\nനിങ്ങളുടെ കഥയിൽ നിന്ന് തുടങ്ങാം.',
-      'recordingFailed': 'ഈ തവണ റെക്കോർഡിംഗ് സേവ് ചെയ്യാൻ കഴിഞ്ഞില്ല.\nബാക്കി എല്ലാം സുരക്ഷിതമാണ്.\nദയവായി വീണ്ടും ശ്രമിക്കൂ.',
+      'emptyMemories':
+          'ഓരോ കുടുംബ കഥയും ഒരു ഓർമ്മയിൽ നിന്ന് ആരംഭിക്കുന്നു.\nനിങ്ങളുടെ കഥയിൽ നിന്ന് തുടങ്ങാം.',
+      'recordingFailed':
+          'ഈ തവണ റെക്കോർഡിംഗ് സേവ് ചെയ്യാൻ കഴിഞ്ഞില്ല.\nബാക്കി എല്ലാം സുരക്ഷിതമാണ്.\nദയവായി വീണ്ടും ശ്രമിക്കൂ.',
 
       // Welcome & Relationship
       'welcomeMessage': 'ഓരോ കുടുംബത്തിനും ഓർക്കാൻ യോഗ്യമായ കഥകൾ ഉണ്ട്.',
@@ -1024,12 +1108,16 @@ class T {
       'parentGrandma': 'അമ്മൂമ്മ',
       'parentGrandpa': 'ബാപ്പ',
       'parentSpecial': 'ആരോ പ്രത്യേകൻ',
-      'preQuestionMessage': 'ശരിയോ തെറ്റോ ഉത്തരം ഇല്ല. നിങ്ങളുടെ കഥ പറയൂ, ഒരു ഓർമ്മ ഒരു തവണ.',
-      'legacyThanks': 'ഇന്ന് നിങ്ങൾ ഒരിക്കൽ പോയാൽ വീണ്ടും സൃഷ്ടിക്കാൻ കഴിയാത്തത് സംരക്ഷിച്ചു.\n\nനിങ്ങളുടെ കുടുംബ കഥ സംരക്ഷിച്ചതിന് നന്ദി.',
-      'privacyTrust': 'നിങ്ങളുടെ റെക്കോർഡിംഗുകൾ നിങ്ങളുടേതാണ്. നിങ്ങളുടെ അനുമതിയില്ലാതെ ഒന്നും പങ്കുവെക്കപ്പെടുന്നില്ല.',
+      'preQuestionMessage':
+          'ശരിയോ തെറ്റോ ഉത്തരം ഇല്ല. നിങ്ങളുടെ കഥ പറയൂ, ഒരു ഓർമ്മ ഒരു തവണ.',
+      'legacyThanks':
+          'ഇന്ന് നിങ്ങൾ ഒരിക്കൽ പോയാൽ വീണ്ടും സൃഷ്ടിക്കാൻ കഴിയാത്തത് സംരക്ഷിച്ചു.\n\nനിങ്ങളുടെ കുടുംബ കഥ സംരക്ഷിച്ചതിന് നന്ദി.',
+      'privacyTrust':
+          'നിങ്ങളുടെ റെക്കോർഡിംഗുകൾ നിങ്ങളുടേതാണ്. നിങ്ങളുടെ അനുമതിയില്ലാതെ ഒന്നും പങ്കുവെക്കപ്പെടുന്നില്ല.',
 
       'groupChildhood': 'ബാല്യം',
-      'groupChildhoodDesc': 'നിങ്ങൾ എവിടെ നിന്ന് വന്നു, നിങ്ങളുടെ ആദ്യ ദിവസങ്ങൾ',
+      'groupChildhoodDesc':
+          'നിങ്ങൾ എവിടെ നിന്ന് വന്നു, നിങ്ങളുടെ ആദ്യ ദിവസങ്ങൾ',
       'groupYouth': 'യൗവ്വനം',
       'groupYouthDesc': 'വളരുക, പഠിക്കുക, നിങ്ങളുടെ വഴി കണ്ടെത്തുക',
       'groupFamily': 'കുടുംബ ജീവിതം',
@@ -1041,7 +1129,8 @@ class T {
       'enterName': 'ദയവായി പേര് നൽകൂ',
       'errorOccurred': 'എന്തോ തെറ്റ് സംഭവിച്ചു',
       'bornYear': '{year} ൽ ജനിച്ചു',
-      'sharedMemoriesCount': 'നിങ്ങൾ {count} അടിപൊളി ഓർമ്മകൾ പങ്കുവെച്ചു. തുടരാം.',
+      'sharedMemoriesCount':
+          'നിങ്ങൾ {count} അടിപൊളി ഓർമ്മകൾ പങ്കുവെച്ചു. തുടരാം.',
       'tableOfContents': 'ഉള്ളടക്കം',
       'finalLetterTitle': 'എന്റെ കുടുംബം ഓർക്കേണ്ടത്',
       'chapterLabel': 'അധ്യായം {number}',
@@ -1052,7 +1141,8 @@ class T {
       'shareThisMoment': 'ഈ നിമിഷം പങ്കുവെക്കൂ',
       'ok': 'ശരി',
       'aLifeStory': 'ഒരു ജീവിത കഥ',
-      'everyParentDeserves': '"ഓരോ മാതാപിതാക്കൾക്കും അവരുടെ കഥ ബാക്കി വയ്ക്കാനുള്ള അവകാശമുണ്ട്."',
+      'everyParentDeserves':
+          '"ഓരോ മാതാപിതാക്കൾക്കും അവരുടെ കഥ ബാക്കി വയ്ക്കാനുള്ള അവകാശമുണ്ട്."',
       'myParentsStory': 'എന്റെ മാതാപിതാക്കളുടെ കഥ',
       'chapterPrefix': 'അധ്യായം ',
       'whatIHope': 'എന്റെ കുടുംബം ഓർക്കേണ്ടത്',
@@ -1060,7 +1150,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'എല്ലാം തയ്യാറാക്കാം',
-      'setupSubtitle': 'നിങ്ങളുടെ ഫോണിന്റെ വോയിസ് ഫീച്ചറുകൾ പരിശോധിക്കും. ഇതിന് ഒരു നിമിഷം മാത്രമേ എടുക്കൂ.',
+      'setupSubtitle':
+          'നിങ്ങളുടെ ഫോണിന്റെ വോയിസ് ഫീച്ചറുകൾ പരിശോധിക്കും. ഇതിന് ഒരു നിമിഷം മാത്രമേ എടുക്കൂ.',
       'checkingDevice': 'നിങ്ങളുടെ ഉപകരണം പരിശോധിക്കുന്നു...',
       'micReady': 'മൈക്രോഫോൺ തയ്യാർ',
       'speechAvailable': 'സംഭാഷണ തിരിച്ചറിവ് ലഭ്യമാണ്',
@@ -1074,14 +1165,17 @@ class T {
       'everythingReady': 'എല്ലാം തയ്യാറാണ്.',
       'readyMessage': 'ഇപ്പോൾ നിങ്ങൾക്ക് കുടുംബ കഥകൾ സംരക്ഷിക്കാം.',
       'welcomeBack': 'തിരികെ സ്വാഗതം.',
-      'continueWhereLeftOff': 'നിങ്ങൾ നിർത്തിയ ഇടത്ത് നിന്ന് തുടരാൻ ആഗ്രഹിക്കുന്നോ?',
+      'continueWhereLeftOff':
+          'നിങ്ങൾ നിർത്തിയ ഇടത്ത് നിന്ന് തുടരാൻ ആഗ്രഹിക്കുന്നോ?',
       'continueStory': 'തുടരുക',
       'startNewStory': 'പുതിയ കഥ ആരംഭിക്കുക',
       'or': 'അല്ലെങ്കിൽ',
       'familyMode': 'മാതാപിതാക്കളെ സഹായിക്കുന്നു',
       'personalMode': 'വ്യക്തിഗത',
-      'familyModeMessage': 'നിങ്ങൾ കുടുംബ സഹായക മോഡിലാണ്.\n\nനിങ്ങളുടെ മാതാപിതാക്കൾ സംസാരിക്കണം.\nബാക്കി നിങ്ങൾ നോക്കിക്കൊള്ളൂ.',
-      'familyModeHint': 'അവർ സംസാരിക്കാൻ തയ്യാറാകുമ്പോൾ മൈക്ക് അമർത്തുക.\nകഴിഞ്ഞാൽ അടുത്തത് അമർത്തുക.',
+      'familyModeMessage':
+          'നിങ്ങൾ കുടുംബ സഹായക മോഡിലാണ്.\n\nനിങ്ങളുടെ മാതാപിതാക്കൾ സംസാരിക്കണം.\nബാക്കി നിങ്ങൾ നോക്കിക്കൊള്ളൂ.',
+      'familyModeHint':
+          'അവർ സംസാരിക്കാൻ തയ്യാറാകുമ്പോൾ മൈക്ക് അമർത്തുക.\nകഴിഞ്ഞാൽ അടുത്തത് അമർത്തുക.',
       'readAloud': 'ഈ ചോദ്യം ഉച്ചത്തിൽ വായിക്കുക',
       'recordLabel': 'റെക്കോർഡ് ചെയ്യുക',
       'recordingLabel': 'റെക്കോർഡ് ചെയ്യുന്നു...',
@@ -1095,7 +1189,8 @@ class T {
       'continueRecording': 'തുടരുക',
       'takeBreak': 'ഇടവേള എടുക്കുക',
       'celebrationTitle': 'ഇന്ന് നിങ്ങൾ ഒരു ജീവിതം സംരക്ഷിച്ചു.',
-      'celebrationSubtitle': 'നിങ്ങളുടെ കഥകൾ ഇനി നിങ്ങളുടെ കുടുംബ ചരിത്രത്തിന്റെ ഭാഗം.',
+      'celebrationSubtitle':
+          'നിങ്ങളുടെ കഥകൾ ഇനി നിങ്ങളുടെ കുടുംബ ചരിത്രത്തിന്റെ ഭാഗം.',
       'generateMyBook': 'എന്റെ പുസ്തകം സൃഷ്ടിക്കുക',
     },
     'or': {
@@ -1137,8 +1232,10 @@ class T {
       'switchLang': 'ଭାଷା ବାଛନ୍ତୁ',
       'recordingComplete': 'ଆପଣଙ୍କ କାହାଣୀ ସୁରକ୍ଷିତ ଭାବରେ ସେଭ ହୋଇଛି।',
       'transcriptGenerated': 'ଆମେ ଆପଣଙ୍କ କାହାଣୀ ଲେଖିଛୁ।',
-      'emptyMemories': 'ପ୍ରତ୍ୟେକ ପରିବାର କାହାଣୀ ଗୋଟିଏ ସ୍ମୃତିରୁ ଆରମ୍ଭ ହୁଏ।\nଆସନ୍ତୁ ଆପଣଙ୍କ କାହାଣୀରୁ ଆରମ୍ଭ କରିବା।',
-      'recordingFailed': 'ଆମେ ଏଥର ରେକର୍ଡିଂ ସେଭ କରିପାରିଲୁ ନାହିଁ।\nବାକି ସବୁ ସୁରକ୍ଷିତ ଅଛି।\nଦୟାକରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
+      'emptyMemories':
+          'ପ୍ରତ୍ୟେକ ପରିବାର କାହାଣୀ ଗୋଟିଏ ସ୍ମୃତିରୁ ଆରମ୍ଭ ହୁଏ।\nଆସନ୍ତୁ ଆପଣଙ୍କ କାହାଣୀରୁ ଆରମ୍ଭ କରିବା।',
+      'recordingFailed':
+          'ଆମେ ଏଥର ରେକର୍ଡିଂ ସେଭ କରିପାରିଲୁ ନାହିଁ।\nବାକି ସବୁ ସୁରକ୍ଷିତ ଅଛି।\nଦୟାକରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
 
       // Welcome & Relationship
       'welcomeMessage': 'ପ୍ରତ୍ୟେକ ପରିବାରର ସ୍ମୃତି ଅଛି ଯାହା ମନେ ରଖିବା ଯୋଗ୍ୟ।',
@@ -1148,9 +1245,12 @@ class T {
       'parentGrandma': 'ଦାଦୀ',
       'parentGrandpa': 'ଦାଦା',
       'parentSpecial': 'କେହି ବିଶେଷ',
-      'preQuestionMessage': 'କୌଣସି ସଠିକ୍ କିମ୍ବା ଭୁଲ୍ ଉତ୍ତର ନାହିଁ। ବସ୍ ଆପଣଙ୍କ କାହାଣୀ କୁହନ୍ତୁ, ଗୋଟିଏ ସ୍ମୃତି ଗୋଟିଏ ଥର।',
-      'legacyThanks': 'ଆଜି ଆପଣ କିଛି ଏପରି ସୁରକ୍ଷିତ କରିଛନ୍ତି ଯାହା ଗୋଟିଏ ଥର ଗଲେ ଆଉ କେବେ ସୃଷ୍ଟି ହୋଇପାରିବ ନାହିଁ।\n\nଆପଣଙ୍କ ପରିବାର କାହାଣୀ ସୁରକ୍ଷିତ କରିଥିବାରୁ ଧନ୍ୟବାଦ।',
-      'privacyTrust': 'ଆପଣଙ୍କ ରେକର୍ଡିଂ ଆପଣଙ୍କର। ଆପଣଙ୍କ ଅନୁମତି ବିନା କିଛି ବି ସେୟାର ହୁଏ ନାହିଁ।',
+      'preQuestionMessage':
+          'କୌଣସି ସଠିକ୍ କିମ୍ବା ଭୁଲ୍ ଉତ୍ତର ନାହିଁ। ବସ୍ ଆପଣଙ୍କ କାହାଣୀ କୁହନ୍ତୁ, ଗୋଟିଏ ସ୍ମୃତି ଗୋଟିଏ ଥର।',
+      'legacyThanks':
+          'ଆଜି ଆପଣ କିଛି ଏପରି ସୁରକ୍ଷିତ କରିଛନ୍ତି ଯାହା ଗୋଟିଏ ଥର ଗଲେ ଆଉ କେବେ ସୃଷ୍ଟି ହୋଇପାରିବ ନାହିଁ।\n\nଆପଣଙ୍କ ପରିବାର କାହାଣୀ ସୁରକ୍ଷିତ କରିଥିବାରୁ ଧନ୍ୟବାଦ।',
+      'privacyTrust':
+          'ଆପଣଙ୍କ ରେକର୍ଡିଂ ଆପଣଙ୍କର। ଆପଣଙ୍କ ଅନୁମତି ବିନା କିଛି ବି ସେୟାର ହୁଏ ନାହିଁ।',
 
       'groupChildhood': 'ବାଲ୍ୟକାଳ',
       'groupChildhoodDesc': 'ଆପଣ କେଉଁଠୁ ଆସିଛନ୍ତି, ଆପଣଙ୍କ ପ୍ରଥମ ଦିନ',
@@ -1165,7 +1265,8 @@ class T {
       'enterName': 'ଦୟାକରି ନାମ ଲେଖନ୍ତୁ',
       'errorOccurred': 'କିଛି ଭୁଲ ହେଲା',
       'bornYear': '{year} ରେ ଜନ୍ମ ହୋଇଥିଲେ',
-      'sharedMemoriesCount': 'ଆପଣ {count} ଅଦ୍ଭୁତ ସ୍ମୃତି ଶେୟାର କରିଛନ୍ତି। ଆସନ୍ତୁ ଆଗକୁ ବଢ଼ିବା।',
+      'sharedMemoriesCount':
+          'ଆପଣ {count} ଅଦ୍ଭୁତ ସ୍ମୃତି ଶେୟାର କରିଛନ୍ତି। ଆସନ୍ତୁ ଆଗକୁ ବଢ଼ିବା।',
       'tableOfContents': 'ବିଷୟ ସୂଚୀ',
       'finalLetterTitle': 'ମୋ ପରିବାର ମନେ ରଖିବା ଉଚିତ୍ ଜିନିଷ',
       'chapterLabel': 'ଅଧ୍ୟାୟ {number}',
@@ -1176,7 +1277,8 @@ class T {
       'shareThisMoment': 'ଏହି ମୁହୂର୍ତ୍ତ ସେୟାର କରନ୍ତୁ',
       'ok': 'ଠିକ୍ ଅଛି',
       'aLifeStory': 'ଗୋଟିଏ ଜୀବନ କାହାଣୀ',
-      'everyParentDeserves': '"ପ୍ରତ୍ୟେକ ବାପାମାଙ୍କୁ ସେମାନଙ୍କ କାହାଣୀ ଛାଡ଼ିବାର ଅଧିକାର ଅଛି।"',
+      'everyParentDeserves':
+          '"ପ୍ରତ୍ୟେକ ବାପାମାଙ୍କୁ ସେମାନଙ୍କ କାହାଣୀ ଛାଡ଼ିବାର ଅଧିକାର ଅଛି।"',
       'myParentsStory': 'ମୋ ବାପାମାଙ୍କ କାହାଣୀ',
       'chapterPrefix': 'ଅଧ୍ୟାୟ ',
       'whatIHope': 'ମୋ ପରିବାର ଯାହା ମନେ ରଖିବା ଉଚିତ୍',
@@ -1184,7 +1286,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'ସବୁ କିଛି ପ୍ରସ୍ତୁତ କରିବା',
-      'setupSubtitle': 'ଆମେ ଆପଣଙ୍କ ଫୋନର ଭଏସ୍ ବୈଶିଷ୍ଟ୍ୟ ଯାଞ୍ଚ କରିବା। ଏହା କେବଳ ଏକ ମୁହୂର୍ତ୍ତ ଲାଗିବ।',
+      'setupSubtitle':
+          'ଆମେ ଆପଣଙ୍କ ଫୋନର ଭଏସ୍ ବୈଶିଷ୍ଟ୍ୟ ଯାଞ୍ଚ କରିବା। ଏହା କେବଳ ଏକ ମୁହୂର୍ତ୍ତ ଲାଗିବ।',
       'checkingDevice': 'ଆପଣଙ୍କ ଡିଭାଇସ୍ ଯାଞ୍ଚ କରୁଛି...',
       'micReady': 'ମାଇକ୍ରୋଫୋନ୍ ପ୍ରସ୍ତୁତ',
       'speechAvailable': 'ବାଣୀ ଚିହ୍ନଟ ଉପଲବ୍ଧ',
@@ -1198,14 +1301,17 @@ class T {
       'everythingReady': 'ସବୁ କିଛି ପ୍ରସ୍ତୁତ ଅଛି।',
       'readyMessage': 'ଏବେ ଆପଣ ପରିବାର କାହାଣୀ ସୁରକ୍ଷିତ କରିପାରିବେ।',
       'welcomeBack': 'ପୁଣି ସ୍ୱାଗତ।',
-      'continueWhereLeftOff': 'ଆପଣ ଯେଉଁଠି ଛାଡ଼ିଥିଲେ ସେଠୁ ଆଗକୁ ବଢ଼ିବାକୁ ଚାହୁଁଛନ୍ତି କି?',
+      'continueWhereLeftOff':
+          'ଆପଣ ଯେଉଁଠି ଛାଡ଼ିଥିଲେ ସେଠୁ ଆଗକୁ ବଢ଼ିବାକୁ ଚାହୁଁଛନ୍ତି କି?',
       'continueStory': 'ଆଗକୁ ବଢ଼ନ୍ତୁ',
       'startNewStory': 'ନୂଆ କାହାଣୀ ଆରମ୍ଭ କରନ୍ତୁ',
       'or': 'କିମ୍ବା',
       'familyMode': 'ବାପାମାଙ୍କୁ ସାହାଯ୍ୟ',
       'personalMode': 'ବ୍ୟକ୍ତିଗତ',
-      'familyModeMessage': 'ଆପଣ ପରିବାର ସହାୟକ ମୋଡରେ ଅଛନ୍ତି।\n\nଆପଣଙ୍କ ବାପାମାଙ୍କୁ କେବଳ କହିବାକୁ ହେବ।\nବାକି ଆପଣ ଦେଖିନିଅନ୍ତୁ।',
-      'familyModeHint': 'ସେମାନେ କହିବାକୁ ପ୍ରସ୍ତୁତ ଥିବା ବେଳେ ମାଇକ୍ ଦବାନ୍ତୁ।\nହୋଇଗଲେ ପରବର୍ତ୍ତୀ ଦବାନ୍ତୁ।',
+      'familyModeMessage':
+          'ଆପଣ ପରିବାର ସହାୟକ ମୋଡରେ ଅଛନ୍ତି।\n\nଆପଣଙ୍କ ବାପାମାଙ୍କୁ କେବଳ କହିବାକୁ ହେବ।\nବାକି ଆପଣ ଦେଖିନିଅନ୍ତୁ।',
+      'familyModeHint':
+          'ସେମାନେ କହିବାକୁ ପ୍ରସ୍ତୁତ ଥିବା ବେଳେ ମାଇକ୍ ଦବାନ୍ତୁ।\nହୋଇଗଲେ ପରବର୍ତ୍ତୀ ଦବାନ୍ତୁ।',
       'readAloud': 'ଏହି ପ୍ରଶ୍ନ ଜୋରରେ ପଢ଼ନ୍ତୁ',
       'recordLabel': 'ରେକର୍ଡ କରନ୍ତୁ',
       'recordingLabel': 'ରେକର୍ଡ ହେଉଛି...',
@@ -1219,7 +1325,8 @@ class T {
       'continueRecording': 'ଆଗକୁ ବଢ଼ନ୍ତୁ',
       'takeBreak': 'ବିରାମ ନିଅନ୍ତୁ',
       'celebrationTitle': 'ଆଜି ଆପଣ ଗୋଟିଏ ସମ୍ପୂର୍ଣ୍ଣ ଜୀବନ ସୁରକ୍ଷିତ କଲେ।',
-      'celebrationSubtitle': 'ଆପଣଙ୍କ କାହାଣୀ ଏବେ ସବୁଦିନ ପାଇଁ ଆପଣଙ୍କ ପରିବାର ଇତିହାସର ଅଂଶ।',
+      'celebrationSubtitle':
+          'ଆପଣଙ୍କ କାହାଣୀ ଏବେ ସବୁଦିନ ପାଇଁ ଆପଣଙ୍କ ପରିବାର ଇତିହାସର ଅଂଶ।',
       'generateMyBook': 'ମୋ ପୁସ୍ତକ ସୃଷ୍ଟି କରନ୍ତୁ',
     },
     'pa': {
@@ -1261,8 +1368,10 @@ class T {
       'switchLang': 'ਭਾਸ਼ਾ ਚੁਣੋ',
       'recordingComplete': 'ਤੁਹਾਡੀ ਕਹਾਣੀ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਸੇਵ ਹੋ ਗਈ ਹੈ।',
       'transcriptGenerated': 'ਅਸੀਂ ਤੁਹਾਡੀ ਕਹਾਣੀ ਲਿਖ ਲਈ ਹੈ।',
-      'emptyMemories': 'ਹਰ ਪਰਿਵਾਰ ਦੀ ਕਹਾਣੀ ਇੱਕ ਯਾਦ ਤੋਂ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ।\nਆਓ ਤੁਹਾਡੀ ਕਹਾਣੀ ਤੋਂ ਸ਼ੁਰੂ ਕਰੀਏ।',
-      'recordingFailed': 'ਅਸੀਂ ਇਸ ਵਾਰ ਰਿਕਾਰਡਿੰਗ ਸੇਵ ਨਹੀਂ ਕਰ ਸਕੇ।\nਬਾਕੀ ਸਭ ਕੁਝ ਸੁਰੱਖਿਅਤ ਹੈ।\nਕਿਰਪਾ ਕਰਕੇ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+      'emptyMemories':
+          'ਹਰ ਪਰਿਵਾਰ ਦੀ ਕਹਾਣੀ ਇੱਕ ਯਾਦ ਤੋਂ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ।\nਆਓ ਤੁਹਾਡੀ ਕਹਾਣੀ ਤੋਂ ਸ਼ੁਰੂ ਕਰੀਏ।',
+      'recordingFailed':
+          'ਅਸੀਂ ਇਸ ਵਾਰ ਰਿਕਾਰਡਿੰਗ ਸੇਵ ਨਹੀਂ ਕਰ ਸਕੇ।\nਬਾਕੀ ਸਭ ਕੁਝ ਸੁਰੱਖਿਅਤ ਹੈ।\nਕਿਰਪਾ ਕਰਕੇ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
 
       // Welcome & Relationship
       'welcomeMessage': 'ਹਰ ਪਰਿਵਾਰ ਦੀਆਂ ਕਹਾਣੀਆਂ ਹਨ ਜੋ ਯਾਦ ਰੱਖਣ ਯੋਗ ਹਨ।',
@@ -1272,9 +1381,12 @@ class T {
       'parentGrandma': 'ਦਾਦੀ',
       'parentGrandpa': 'ਦਾਦਾ',
       'parentSpecial': 'ਕੋਈ ਖਾਸ',
-      'preQuestionMessage': 'ਕੋਈ ਸਹੀ ਜਾਂ ਗਲਤ ਜਵਾਬ ਨਹੀਂ ਹੈ। ਬੱਸ ਆਪਣੀ ਕਹਾਣੀ ਦੱਸੋ, ਇੱਕ ਯਾਦ ਇੱਕ ਵਾਰ।',
-      'legacyThanks': 'ਅੱਜ ਤੁਸੀਂ ਕੁਝ ਅਜਿਹਾ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਹੈ ਜੋ ਇੱਕ ਵਾਰ ਗਿਆ ਤਾਂ ਕਦੇ ਵਾਪਸ ਨਹੀਂ ਆ ਸਕਦਾ।\n\nਆਪਣੇ ਪਰਿਵਾਰ ਦੀ ਕਹਾਣੀ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਲਈ ਧੰਨਵਾਦ।',
-      'privacyTrust': 'ਤੁਹਾਡੀਆਂ ਰਿਕਾਰਡਿੰਗਾਂ ਤੁਹਾਡੀਆਂ ਹਨ। ਤੁਹਾਡੀ ਇਜਾਜ਼ਤ ਤੋਂ ਬਿਨਾਂ ਕੁਝ ਵੀ ਸਾਂਝਾ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ।',
+      'preQuestionMessage':
+          'ਕੋਈ ਸਹੀ ਜਾਂ ਗਲਤ ਜਵਾਬ ਨਹੀਂ ਹੈ। ਬੱਸ ਆਪਣੀ ਕਹਾਣੀ ਦੱਸੋ, ਇੱਕ ਯਾਦ ਇੱਕ ਵਾਰ।',
+      'legacyThanks':
+          'ਅੱਜ ਤੁਸੀਂ ਕੁਝ ਅਜਿਹਾ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਹੈ ਜੋ ਇੱਕ ਵਾਰ ਗਿਆ ਤਾਂ ਕਦੇ ਵਾਪਸ ਨਹੀਂ ਆ ਸਕਦਾ।\n\nਆਪਣੇ ਪਰਿਵਾਰ ਦੀ ਕਹਾਣੀ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਲਈ ਧੰਨਵਾਦ।',
+      'privacyTrust':
+          'ਤੁਹਾਡੀਆਂ ਰਿਕਾਰਡਿੰਗਾਂ ਤੁਹਾਡੀਆਂ ਹਨ। ਤੁਹਾਡੀ ਇਜਾਜ਼ਤ ਤੋਂ ਬਿਨਾਂ ਕੁਝ ਵੀ ਸਾਂਝਾ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ।',
 
       'groupChildhood': 'ਬਚਪਣ',
       'groupChildhoodDesc': 'ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ, ਤੁਹਾਡੇ ਪਹਿਲੇ ਦਿਨ',
@@ -1289,7 +1401,8 @@ class T {
       'enterName': 'ਕਿਰਪਾ ਕਰਕੇ ਨਾਂ ਲਿਖੋ',
       'errorOccurred': 'ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ',
       'bornYear': '{year} ਵਿੱਚ ਪੈਦਾ ਹੋਏ',
-      'sharedMemoriesCount': 'ਤੁਸੀਂ {count} ਸ਼ਾਨਦਾਰ ਯਾਦਾਂ ਸਾਂਝੀਆਂ ਕੀਤੀਆਂ ਹਨ। ਚੱਲੋ ਅੱਗੇ ਵਧੀਏ।',
+      'sharedMemoriesCount':
+          'ਤੁਸੀਂ {count} ਸ਼ਾਨਦਾਰ ਯਾਦਾਂ ਸਾਂਝੀਆਂ ਕੀਤੀਆਂ ਹਨ। ਚੱਲੋ ਅੱਗੇ ਵਧੀਏ।',
       'tableOfContents': 'ਸਮੱਗਰੀ',
       'finalLetterTitle': 'ਮੇਰੇ ਪਰਿਵਾਰ ਨੂੰ ਯਾਦ ਰੱਖਣ ਯੋਗ ਗੱਲ',
       'chapterLabel': 'ਅਧਿਆਇ {number}',
@@ -1308,7 +1421,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'ਆਓ ਸਭ ਕੁਝ ਤਿਆਰ ਕਰੀਏ',
-      'setupSubtitle': 'ਅਸੀਂ ਤੁਹਾਡੇ ਫੋਨ ਦੀਆਂ ਵੌਇਸ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਜਾਂਚੀਏ। ਇਸ ਨੂੰ ਕੇਵਲ ਇੱਕ ਪਲ ਲੱਗੇਗਾ।',
+      'setupSubtitle':
+          'ਅਸੀਂ ਤੁਹਾਡੇ ਫੋਨ ਦੀਆਂ ਵੌਇਸ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਜਾਂਚੀਏ। ਇਸ ਨੂੰ ਕੇਵਲ ਇੱਕ ਪਲ ਲੱਗੇਗਾ।',
       'checkingDevice': 'ਤੁਹਾਡਾ ਡਿਵਾਈਸ ਜਾਂਚ ਰਿਹਾ ਹੈ...',
       'micReady': 'ਮਾਈਕ੍ਰੋਫੋਨ ਤਿਆਰ',
       'speechAvailable': 'ਵੌਇਸ ਪਛਾਣ ਉਪਲਬਧ',
@@ -1322,14 +1436,17 @@ class T {
       'everythingReady': 'ਸਭ ਕੁਝ ਤਿਆਰ ਹੈ।',
       'readyMessage': 'ਹੁਣ ਤੁਸੀਂ ਪਰਿਵਾਰ ਦੀਆਂ ਕਹਾਣੀਆਂ ਸੁਰੱਖਿਅਤ ਕਰ ਸਕਦੇ ਹੋ।',
       'welcomeBack': 'ਵਾਪਸੀ ਤੇ ਜੀ ਆਇਆਂ ਨੂੰ।',
-      'continueWhereLeftOff': 'ਕੀ ਤੁਸੀਂ ਜਿੱਥੇ ਛੱਡਿਆ ਸੀ ਉੱਥੋਂ ਜਾਰੀ ਰੱਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?',
+      'continueWhereLeftOff':
+          'ਕੀ ਤੁਸੀਂ ਜਿੱਥੇ ਛੱਡਿਆ ਸੀ ਉੱਥੋਂ ਜਾਰੀ ਰੱਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?',
       'continueStory': 'ਜਾਰੀ ਰੱਖੋ',
       'startNewStory': 'ਨਵੀਂ ਕਹਾਣੀ ਸ਼ੁਰੂ ਕਰੋ',
       'or': 'ਜਾਂ',
       'familyMode': 'ਮਾਂ-ਬਾਪ ਦੀ ਮਦਦ',
       'personalMode': 'ਨਿੱਜੀ',
-      'familyModeMessage': 'ਤੁਸੀਂ ਪਰਿਵਾਰ ਸਹਾਇਕ ਮੋਡ ਵਿੱਚ ਹੋ।\n\nਤੁਹਾਡੇ ਮਾਂ-ਬਾਪ ਨੂੰ ਬੱਸ ਬੋਲਣਾ ਹੈ।\nਬਾਕੀ ਤੁਸੀਂ ਸੰਭਾਲੋ।',
-      'familyModeHint': 'ਜਦੋਂ ਉਹ ਬੋਲਣ ਲਈ ਤਿਆਰ ਹੋਣ ਤਾਂ ਮਾਈਕ ਦਬਾਓ।\nਹੋ ਜਾਣ ਤੇ ਅਗਲਾ ਦਬਾਓ।',
+      'familyModeMessage':
+          'ਤੁਸੀਂ ਪਰਿਵਾਰ ਸਹਾਇਕ ਮੋਡ ਵਿੱਚ ਹੋ।\n\nਤੁਹਾਡੇ ਮਾਂ-ਬਾਪ ਨੂੰ ਬੱਸ ਬੋਲਣਾ ਹੈ।\nਬਾਕੀ ਤੁਸੀਂ ਸੰਭਾਲੋ।',
+      'familyModeHint':
+          'ਜਦੋਂ ਉਹ ਬੋਲਣ ਲਈ ਤਿਆਰ ਹੋਣ ਤਾਂ ਮਾਈਕ ਦਬਾਓ।\nਹੋ ਜਾਣ ਤੇ ਅਗਲਾ ਦਬਾਓ।',
       'readAloud': 'ਇਹ ਸਵਾਲ ਜ਼ੋਰ ਨਾਲ ਪੜ੍ਹੋ',
       'recordLabel': 'ਰਿਕਾਰਡ ਕਰੋ',
       'recordingLabel': 'ਰਿਕਾਰਡ ਹੋ ਰਿਹਾ ਹੈ...',
@@ -1343,7 +1460,8 @@ class T {
       'continueRecording': 'ਜਾਰੀ ਰੱਖੋ',
       'takeBreak': 'ਵਿਰਾਮ ਲਓ',
       'celebrationTitle': 'ਅੱਜ ਤੁਸੀਂ ਪੂਰੀ ਜ਼ਿੰਦਗੀ ਸੁਰੱਖਿਅਤ ਕੀਤੀ।',
-      'celebrationSubtitle': 'ਤੁਹਾਡੀਆਂ ਕਹਾਣੀਆਂ ਹੁਣ ਹਮੇਸ਼ਾ ਲਈ ਤੁਹਾਡੇ ਪਰਿਵਾਰ ਦੇ ਇਤਿਹਾਸ ਦਾ ਹਿੱਸਾ ਹਨ।',
+      'celebrationSubtitle':
+          'ਤੁਹਾਡੀਆਂ ਕਹਾਣੀਆਂ ਹੁਣ ਹਮੇਸ਼ਾ ਲਈ ਤੁਹਾਡੇ ਪਰਿਵਾਰ ਦੇ ਇਤਿਹਾਸ ਦਾ ਹਿੱਸਾ ਹਨ।',
       'generateMyBook': 'ਮੇਰੀ ਕਿਤਾਬ ਬਣਾਓ',
     },
     'bn': {
@@ -1385,8 +1503,10 @@ class T {
       'switchLang': 'ভাষা নির্বাচন করুন',
       'recordingComplete': 'আপনার গল্প নিরাপদে সংরক্ষিত হয়েছে।',
       'transcriptGenerated': 'আমরা আপনার গল্প লিখে ফেলেছি।',
-      'emptyMemories': 'প্রতিটি পরিবারের গল্প একটি স্মৃতি থেকে শুরু হয়।\nআসুন আপনার গল্প দিয়ে শুরু করি।',
-      'recordingFailed': 'আমরা এইবার রেকর্ডিং সংরক্ষণ করতে পারিনি।\nবাকি সবকিছু নিরাপদ।\nঅনুগ্রহ করে আবার চেষ্টা করুন।',
+      'emptyMemories':
+          'প্রতিটি পরিবারের গল্প একটি স্মৃতি থেকে শুরু হয়।\nআসুন আপনার গল্প দিয়ে শুরু করি।',
+      'recordingFailed':
+          'আমরা এইবার রেকর্ডিং সংরক্ষণ করতে পারিনি।\nবাকি সবকিছু নিরাপদ।\nঅনুগ্রহ করে আবার চেষ্টা করুন।',
 
       // Welcome & Relationship
       'welcomeMessage': 'প্রতিটি পরিবারের স্মরণযোগ্য গল্প আছে।',
@@ -1396,9 +1516,12 @@ class T {
       'parentGrandma': 'দাদি',
       'parentGrandpa': 'দাদা',
       'parentSpecial': 'কেউ বিশেষ',
-      'preQuestionMessage': 'কোনো সঠিক বা ভুল উত্তর নেই। শুধু আপনার গল্প বলুন, একটি স্মৃতি একবার।',
-      'legacyThanks': 'আজ আপনি এমন কিছু সংরক্ষণ করেছেন যা একবার গেলে আর কখনো তৈরি করা যায় না।\n\nআপনার পরিবারের গল্প রক্ষা করার জন্য ধন্যবাদ।',
-      'privacyTrust': 'আপনার রেকর্ডিং আপনার। আপনার অনুমতি ছাড়া কিছুই শেয়ার করা হয় না।',
+      'preQuestionMessage':
+          'কোনো সঠিক বা ভুল উত্তর নেই। শুধু আপনার গল্প বলুন, একটি স্মৃতি একবার।',
+      'legacyThanks':
+          'আজ আপনি এমন কিছু সংরক্ষণ করেছেন যা একবার গেলে আর কখনো তৈরি করা যায় না।\n\nআপনার পরিবারের গল্প রক্ষা করার জন্য ধন্যবাদ।',
+      'privacyTrust':
+          'আপনার রেকর্ডিং আপনার। আপনার অনুমতি ছাড়া কিছুই শেয়ার করা হয় না।',
 
       'groupChildhood': 'শৈশব',
       'groupChildhoodDesc': 'আপনি কোথা থেকে এসেছেন, আপনার প্রথম দিন',
@@ -1413,7 +1536,8 @@ class T {
       'enterName': 'অনুগ্রহ করে নাম লিখুন',
       'errorOccurred': 'কিছু ভুল হয়েছে',
       'bornYear': '{year} সালে জন্মগ্রহণ করেছেন',
-      'sharedMemoriesCount': 'আপনি {count} অসাধারণ স্মৃতি ভাগ করেছেন। চলুন এগিয়ে যাই।',
+      'sharedMemoriesCount':
+          'আপনি {count} অসাধারণ স্মৃতি ভাগ করেছেন। চলুন এগিয়ে যাই।',
       'tableOfContents': 'সূচিপত্র',
       'finalLetterTitle': 'আমার পরিবার যা মনে রাখুক',
       'chapterLabel': 'অধ্যায় {number}',
@@ -1424,7 +1548,8 @@ class T {
       'shareThisMoment': 'এই মুহূর্তটি শেয়ার করুন',
       'ok': 'ঠিক আছে',
       'aLifeStory': 'একটি জীবনের গল্প',
-      'everyParentDeserves': '"প্রতিটি বাবা-মায়ের তাদের গল্প রেখে যাওয়ার অধিকার রয়েছে।"',
+      'everyParentDeserves':
+          '"প্রতিটি বাবা-মায়ের তাদের গল্প রেখে যাওয়ার অধিকার রয়েছে।"',
       'myParentsStory': 'আমার বাবা-মায়ের গল্প',
       'chapterPrefix': 'অধ্যায় ',
       'whatIHope': 'আমি চাই আমার পরিবার যা মনে রাখুক',
@@ -1432,7 +1557,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'সবকিছু প্রস্তুত করি',
-      'setupSubtitle': 'আমরা আপনার ফোনের ভয়েস বৈশিষ্ট্য পরীক্ষা করব। এটি মাত্র একটি মুহূর্ত লাগবে।',
+      'setupSubtitle':
+          'আমরা আপনার ফোনের ভয়েস বৈশিষ্ট্য পরীক্ষা করব। এটি মাত্র একটি মুহূর্ত লাগবে।',
       'checkingDevice': 'আপনার ডিভাইস পরীক্ষা করছে...',
       'micReady': 'মাইক্রোফোন প্রস্তুত',
       'speechAvailable': 'কথা চেনার বৈশিষ্ট্য পাওয়া যাচ্ছে',
@@ -1446,14 +1572,17 @@ class T {
       'everythingReady': 'সবকিছু প্রস্তুত।',
       'readyMessage': 'এখন আপনি আপনার পরিবারের গল্প সংরক্ষণ করতে পারবেন।',
       'welcomeBack': 'আবার স্বাগতম।',
-      'continueWhereLeftOff': 'আপনি যেখানে ছেড়েছিলেন সেখান থেকে চালিয়ে যেতে চান?',
+      'continueWhereLeftOff':
+          'আপনি যেখানে ছেড়েছিলেন সেখান থেকে চালিয়ে যেতে চান?',
       'continueStory': 'চালিয়ে যান',
       'startNewStory': 'নতুন গল্প শুরু করুন',
       'or': 'অথবা',
       'familyMode': 'বাবা-মায়ের সাহায্য',
       'personalMode': 'ব্যক্তিগত',
-      'familyModeMessage': 'আপনি পরিবার সহাযক মোডে আছেন।\n\nআপনার বাবা-মাকে শুধু বলতে হবে।\nবাকিটা আপনি দেখুন।',
-      'familyModeHint': 'তারা বলতে প্রস্তুত হলে মাইক চাপুন।\nশেষ হলে পরবর্তী চাপুন।',
+      'familyModeMessage':
+          'আপনি পরিবার সহাযক মোডে আছেন।\n\nআপনার বাবা-মাকে শুধু বলতে হবে।\nবাকিটা আপনি দেখুন।',
+      'familyModeHint':
+          'তারা বলতে প্রস্তুত হলে মাইক চাপুন।\nশেষ হলে পরবর্তী চাপুন।',
       'readAloud': 'এই প্রশ্নটি জোরালো পড়ুন',
       'recordLabel': 'রেকর্ড করুন',
       'recordingLabel': 'রেকর্ড হচ্ছে...',
@@ -1467,7 +1596,8 @@ class T {
       'continueRecording': 'চালিয়ে যান',
       'takeBreak': 'বিরতি নিন',
       'celebrationTitle': 'আজ আপনি একটি সম্পূর্ণ জীবন সংরক্ষণ করেছেন।',
-      'celebrationSubtitle': 'আপনার গল্পগুলো এখন সবসময়ের জন্য আপনার পরিবারের ইতিহাসের অংশ।',
+      'celebrationSubtitle':
+          'আপনার গল্পগুলো এখন সবসময়ের জন্য আপনার পরিবারের ইতিহাসের অংশ।',
       'generateMyBook': 'আমার বই তৈরি করুন',
     },
     'kn': {
@@ -1509,8 +1639,10 @@ class T {
       'switchLang': 'ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ',
       'recordingComplete': 'ನಿಮ್ಮ ಕಥೆ ಸುರಕ್ಷಿತವಾಗಿ ಉಳಿಸಲಾಗಿದೆ.',
       'transcriptGenerated': 'ನಿಮ್ಮ ಕಥೆಯನ್ನು ಬರೆದಿದ್ದೇವೆ.',
-      'emptyMemories': 'ಪ್ರತಿ ಕುಟುಂಬದ ಕಥೆಯೂ ಒಂದು ನೆನಪಿನಿಂದ ಶುರುವಾಗುತ್ತದೆ.\nನಿಮ್ಮ ಕಥೆಯಿಂದಲೇ ಶುರುಮಾಡೋಣ.',
-      'recordingFailed': 'ನಾವು ಈ ಬಾರಿ ರೆಕಾರ್ಡಿಂಗ್ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.\nಉಳಿದೆಲ್ಲವೂ ಸುರಕ್ಷಿತ.\nದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+      'emptyMemories':
+          'ಪ್ರತಿ ಕುಟುಂಬದ ಕಥೆಯೂ ಒಂದು ನೆನಪಿನಿಂದ ಶುರುವಾಗುತ್ತದೆ.\nನಿಮ್ಮ ಕಥೆಯಿಂದಲೇ ಶುರುಮಾಡೋಣ.',
+      'recordingFailed':
+          'ನಾವು ಈ ಬಾರಿ ರೆಕಾರ್ಡಿಂಗ್ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.\nಉಳಿದೆಲ್ಲವೂ ಸುರಕ್ಷಿತ.\nದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
 
       // Welcome & Relationship
       'welcomeMessage': 'ಪ್ರತಿ ಕುಟುಂಬಕ್ಕೂ ನೆನಪಿಡಬೇಕಾದ ಕಥೆಗಳಿವೆ.',
@@ -1520,9 +1652,12 @@ class T {
       'parentGrandma': 'ಅಜ್ಜಿ',
       'parentGrandpa': 'ತಾತ',
       'parentSpecial': 'ಯಾರೋ ವಿಶೇಷ',
-      'preQuestionMessage': 'ಸರಿಯಾದ ಅಥವಾ ತಪ್ಪು ಉತ್ತರ ಇಲ್ಲ. ನಿಮ್ಮ ಕಥೆ ಹೇಳಿ, ಒಂದು ನೆನಪು ಒಂದು ಬಾರಿ.',
-      'legacyThanks': 'ಇಂದು ನೀವು ಒಮ್ಮೆ ಹೋದರೆ ಮತ್ತೆಎಂದೂ ಸೃಷ್ಟಿಸಲಾಗದ ಕೆಲಸ ಮಾಡಿದ್ದೀರಿ.\n\nನಿಮ್ಮ ಕುಟುಂಬ ಕಥೆ ರಕ್ಷಿಸಿದ್ದಕ್ಕೆ ಧನ್ಯವಾದ.',
-      'privacyTrust': 'ನಿಮ್ಮ ರೆಕಾರ್ಡಿಂಗ್‌ಗಳು ನಿಮ್ಮವೇ. ನಿಮ್ಮ ಅನುಮತಿ ಇಲ್ಲದೆ ಏನನ್ನೂ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ.',
+      'preQuestionMessage':
+          'ಸರಿಯಾದ ಅಥವಾ ತಪ್ಪು ಉತ್ತರ ಇಲ್ಲ. ನಿಮ್ಮ ಕಥೆ ಹೇಳಿ, ಒಂದು ನೆನಪು ಒಂದು ಬಾರಿ.',
+      'legacyThanks':
+          'ಇಂದು ನೀವು ಒಮ್ಮೆ ಹೋದರೆ ಮತ್ತೆಎಂದೂ ಸೃಷ್ಟಿಸಲಾಗದ ಕೆಲಸ ಮಾಡಿದ್ದೀರಿ.\n\nನಿಮ್ಮ ಕುಟುಂಬ ಕಥೆ ರಕ್ಷಿಸಿದ್ದಕ್ಕೆ ಧನ್ಯವಾದ.',
+      'privacyTrust':
+          'ನಿಮ್ಮ ರೆಕಾರ್ಡಿಂಗ್‌ಗಳು ನಿಮ್ಮವೇ. ನಿಮ್ಮ ಅನುಮತಿ ಇಲ್ಲದೆ ಏನನ್ನೂ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ.',
 
       'groupChildhood': 'ಬಾಲ್ಯ',
       'groupChildhoodDesc': 'ನೀವು ಎಲ್ಲಿಂದ ಬಂದಿರಿ, ನಿಮ್ಮ ಮೊದಲ ದಿನಗಳು',
@@ -1537,7 +1672,8 @@ class T {
       'enterName': 'ದಯವಿಟ್ಟು ಹೆಸರು ನಮೂದಿಸಿ',
       'errorOccurred': 'ಏನೋ ತಪ್ಪಾಗಿದೆ',
       'bornYear': '{year} ರಲ್ಲಿ ಹುಟ್ಟಿದರು',
-      'sharedMemoriesCount': 'ನೀವು {count} ಅದ್ಭುತ ನೆನಪುಗಳನ್ನು ಹಂಚಿಕೊಂಡಿದ್ದೀರಿ. ಮುಂದುವರಿಯೋಣ.',
+      'sharedMemoriesCount':
+          'ನೀವು {count} ಅದ್ಭುತ ನೆನಪುಗಳನ್ನು ಹಂಚಿಕೊಂಡಿದ್ದೀರಿ. ಮುಂದುವರಿಯೋಣ.',
       'tableOfContents': 'ವಿಷಯ ಸೂಚಿ',
       'finalLetterTitle': 'ನನ್ನ ಕುಟುಂಬ ನೆನಪಿಟ್ಟುಕೊಳ್ಳಬೇಕಾದ್ದು',
       'chapterLabel': 'ಅಧ್ಯಾಯ {number}',
@@ -1548,7 +1684,8 @@ class T {
       'shareThisMoment': 'ಈ ಕ್ಷಣವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ',
       'ok': 'ಸರಿ',
       'aLifeStory': 'ಒಂದು ಜೀವನ ಕಥೆ',
-      'everyParentDeserves': '"ಪ್ರತಿ ತಂದೆ-ತಾಯಿಗೂ ತಮ್ಮ ಕಥೆಯನ್ನು ಬಿಟ್ಟುಹೋಗುವ ಹಕ್ಕಿದೆ."',
+      'everyParentDeserves':
+          '"ಪ್ರತಿ ತಂದೆ-ತಾಯಿಗೂ ತಮ್ಮ ಕಥೆಯನ್ನು ಬಿಟ್ಟುಹೋಗುವ ಹಕ್ಕಿದೆ."',
       'myParentsStory': 'ನನ್ನ ತಂದೆ-ತಾಯಿಯ ಕಥೆ',
       'chapterPrefix': 'ಅಧ್ಯಾಯ ',
       'whatIHope': 'ನನ್ನ ಕುಟುಂಬ ಯಾವುದನ್ನು ನೆನಪಿಟ್ಟುಕೊಳ್ಳಬೇಕು',
@@ -1556,7 +1693,8 @@ class T {
 
       // Setup Wizard
       'setupTitle': 'ಎಲ್ಲವನ್ನೂ ಸಿದ್ಧಪಡಿಸೋಣ',
-      'setupSubtitle': 'ನಿಮ್ಮ ಫೋನ್‌ನ ಧ್ವನಿ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಪರಿಶೀಲಿಸುತ್ತೇವೆ. ಇದಕ್ಕೆ ಕೇವಲ ಒಂದು ಕ್ಷಣ ಮಾತ್ರ ಬೇಕು.',
+      'setupSubtitle':
+          'ನಿಮ್ಮ ಫೋನ್‌ನ ಧ್ವನಿ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಪರಿಶೀಲಿಸುತ್ತೇವೆ. ಇದಕ್ಕೆ ಕೇವಲ ಒಂದು ಕ್ಷಣ ಮಾತ್ರ ಬೇಕು.',
       'checkingDevice': 'ನಿಮ್ಮ ಸಾಧನವನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...',
       'micReady': 'ಮೈಕ್ರೋಫೋನ್ ಸಿದ್ಧ',
       'speechAvailable': 'ಧ್ವನಿ ಗುರುತಿಸುವಿಕೆ ಲಭ್ಯ',
@@ -1576,8 +1714,10 @@ class T {
       'or': 'ಅಥವಾ',
       'familyMode': 'ತಂದೆ-ತಾಯಿಗೆ ಸಹಾಯ',
       'personalMode': 'ವೈಯಕ್ತಿಕ',
-      'familyModeMessage': 'ನೀವು ಕುಟುಂಬ ಸಹಾಯಕ ಮೋಡ್‌ನಲ್ಲಿದ್ದೀರಿ.\n\nನಿಮ್ಮ ತಂದೆ-ತಾಯಿ ಕೇವಲ ಮಾತನಾಡಬೇಕು.\nಉಳಿದದ್ದನ್ನು ನೀವು ನೋಡಿಕೊಳ್ಳಿ.',
-      'familyModeHint': 'ಅವರು ಮಾತನಾಡಲು ಸಿದ್ಧರಾದಾಗ ಮೈಕ್ ಒತ್ತಿ.\nಮುಗಿದ ನಂತರ ಮುಂದಿನದನ್ನು ಒತ್ತಿ.',
+      'familyModeMessage':
+          'ನೀವು ಕುಟುಂಬ ಸಹಾಯಕ ಮೋಡ್‌ನಲ್ಲಿದ್ದೀರಿ.\n\nನಿಮ್ಮ ತಂದೆ-ತಾಯಿ ಕೇವಲ ಮಾತನಾಡಬೇಕು.\nಉಳಿದದ್ದನ್ನು ನೀವು ನೋಡಿಕೊಳ್ಳಿ.',
+      'familyModeHint':
+          'ಅವರು ಮಾತನಾಡಲು ಸಿದ್ಧರಾದಾಗ ಮೈಕ್ ಒತ್ತಿ.\nಮುಗಿದ ನಂತರ ಮುಂದಿನದನ್ನು ಒತ್ತಿ.',
       'readAloud': 'ಈ ಪ್ರಶ್ನೆಯನ್ನು ಜೋರಾಗಿ ಓದಿ',
       'recordLabel': 'ರೆಕಾರ್ಡ್ ಮಾಡಿ',
       'recordingLabel': 'ರೆಕಾರ್ಡ್ ಆಗುತ್ತಿದೆ...',
@@ -1591,7 +1731,8 @@ class T {
       'continueRecording': 'ಮುಂದುವರಿಸಿ',
       'takeBreak': 'ವಿರಾಮ ತೆಗೆದುಕೊಳ್ಳಿ',
       'celebrationTitle': 'ಇಂದು ನೀವು ಒಂದು ಜೀವನವನ್ನು ಸಂರಕ್ಷಿಸಿದ್ದೀರಿ.',
-      'celebrationSubtitle': 'ನಿಮ್ಮ ಕಥೆಗಳು ಈಗ ಯಾವಾಗಲೂ ನಿಮ್ಮ ಕುಟುಂಬದ ಇತಿಹಾಸದ ಭಾಗ.',
+      'celebrationSubtitle':
+          'ನಿಮ್ಮ ಕಥೆಗಳು ಈಗ ಯಾವಾಗಲೂ ನಿಮ್ಮ ಕುಟುಂಬದ ಇತಿಹಾಸದ ಭಾಗ.',
       'generateMyBook': 'ನನ್ನ ಪುಸ್ತಕ ರಚಿಸಿ',
     },
   };

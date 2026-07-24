@@ -27,7 +27,8 @@ mixin KeyboardNavigation<T extends StatefulWidget> on State<T> {
       autofocus: true,
       onKeyEvent: (node, event) {
         if (event is KeyDownEvent) {
-          if (event.logicalKey == LogicalKeyboardKey.escape && onEscape != null) {
+          if (event.logicalKey == LogicalKeyboardKey.escape &&
+              onEscape != null) {
             onEscape();
             return KeyEventResult.handled;
           }
@@ -35,7 +36,8 @@ mixin KeyboardNavigation<T extends StatefulWidget> on State<T> {
             onEnter();
             return KeyEventResult.handled;
           }
-          if (customHandlers != null && customHandlers.containsKey(event.logicalKey)) {
+          if (customHandlers != null &&
+              customHandlers.containsKey(event.logicalKey)) {
             customHandlers[event.logicalKey]!();
             return KeyEventResult.handled;
           }

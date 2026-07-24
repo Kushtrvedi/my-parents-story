@@ -46,7 +46,8 @@ class NativeVoiceService {
       listenMode: stt.ListenMode.dictation,
       cancelOnError: true,
       listenFor: const Duration(minutes: 30),
-      pauseFor: const Duration(minutes: 5), // Extremely long pause allowed for elderly users
+      pauseFor: const Duration(
+          minutes: 5), // Extremely long pause allowed for elderly users
     );
   }
 

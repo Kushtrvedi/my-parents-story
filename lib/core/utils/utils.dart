@@ -6,10 +6,11 @@ class IdGenerator {
 
   static String generate() {
     final bytes = List<int>.generate(16, (_) => _random.nextInt(256));
-    return base64Url.encode(bytes).replaceAll( '=', '').substring(0, 20);
+    return base64Url.encode(bytes).replaceAll('=', '').substring(0, 20);
   }
 
-  static String generateForMemory(String profileId, String chapterId, String questionId) {
+  static String generateForMemory(
+      String profileId, String chapterId, String questionId) {
     return '${profileId}_${chapterId}_$questionId';
   }
 }
@@ -52,7 +53,8 @@ class DateExtractor {
   }
 
   static int? extractAge(String text, {int? referenceYear}) {
-    final agePattern = RegExp(r'\b(\d{1,3})\s*(?:years?\s*old|saal|varsh)\b', caseSensitive: false);
+    final agePattern = RegExp(r'\b(\d{1,3})\s*(?:years?\s*old|saal|varsh)\b',
+        caseSensitive: false);
     final match = agePattern.firstMatch(text);
     if (match != null) {
       final age = int.tryParse(match.group(1) ?? '');

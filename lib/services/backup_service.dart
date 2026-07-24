@@ -25,12 +25,12 @@ class BackupService {
       }).toList(),
     };
     final jsonString = jsonEncode(data);
-    
+
     // Automatically backup to Google Drive if signed in
     if (driveService.isSignedIn) {
       await driveService.backupData(jsonString);
     }
-    
+
     return jsonString;
   }
 
@@ -46,7 +46,8 @@ class BackupService {
 
         if (profileData['memories'] != null) {
           for (final memoryData in profileData['memories']) {
-            final memory = Memory.fromMap(Map<String, dynamic>.from(memoryData));
+            final memory =
+                Memory.fromMap(Map<String, dynamic>.from(memoryData));
             _storage.saveMemory(
               profileId: memory.parentId,
               chapterId: memory.chapterId,
@@ -63,11 +64,10 @@ class BackupService {
       return false;
     }
   }
-  }
 
   Future<bool> restoreFromDrive() async {
     if (!driveService.isSignedIn) return false;
-    
+
     final jsonString = await driveService.restoreData();
     if (jsonString != null) {
       return await importFromJson(jsonString);

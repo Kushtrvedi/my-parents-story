@@ -28,12 +28,14 @@ class LegacyThanksScreen extends StatelessWidget {
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const SizedBox(height: AppSpacing.xxl),
-                      const Icon(Icons.stars_rounded, color: AppColors.accent, size: 80),
+                      const Icon(Icons.stars_rounded,
+                          color: AppColors.accent, size: 80),
                       const SizedBox(height: AppSpacing.xxl),
                       Text(
                         T.tr('legacyThanks'),
@@ -55,7 +57,8 @@ class LegacyThanksScreen extends StatelessWidget {
                             Navigator.pushReplacement(
                               context,
                               PageTurnRoute(
-                                page: BookPreviewScreen(profile: profile, book: book),
+                                page: BookPreviewScreen(
+                                    profile: profile, book: book),
                               ),
                             );
                           },

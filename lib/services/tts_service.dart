@@ -9,7 +9,9 @@ class TextToSpeechService {
 
   Future<void> init() async {
     double rate = 1.0;
-    if (!kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS)) {
+    if (!kIsWeb &&
+        (defaultTargetPlatform == TargetPlatform.iOS ||
+            defaultTargetPlatform == TargetPlatform.macOS)) {
       rate = 0.5;
     }
     await _tts.setSpeechRate(rate); // Natural conversational human pace
@@ -44,7 +46,7 @@ class TextToSpeechService {
 
   Future<void> setLocale(String localeCode) async {
     final formattedLocale = _getFormattedLocale(localeCode);
-    
+
     // Try multiple locale string representations for cross-platform Web/Mobile compatibility
     try {
       await _tts.setLanguage(formattedLocale);
@@ -53,7 +55,7 @@ class TextToSpeechService {
         await _tts.setLanguage(localeCode);
       } catch (_) {}
     }
-    
+
     // Select best matching human voice for the target locale
     try {
       final List<dynamic>? voices = await _tts.getVoices;
@@ -69,7 +71,8 @@ class TextToSpeechService {
             final lowerLocale = locale.toLowerCase().replaceAll('_', '-');
             final targetCode = localeCode.toLowerCase();
 
-            if (lowerLocale.contains(targetCode) || lowerLocale.contains(formattedLocale.toLowerCase())) {
+            if (lowerLocale.contains(targetCode) ||
+                lowerLocale.contains(formattedLocale.toLowerCase())) {
               fallbackMatch ??= {'name': name, 'locale': locale};
               if (lowerName.contains('natural') ||
                   lowerName.contains('neural') ||

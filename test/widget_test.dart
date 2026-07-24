@@ -181,14 +181,16 @@ void main() {
 
     test('questions are not empty strings', () {
       for (final question in QuestionDatabase.questions) {
-        expect(question.question.isNotEmpty, isTrue, reason: 'Question should not be empty');
+        expect(question.question.isNotEmpty, isTrue,
+            reason: 'Question should not be empty');
       }
     });
 
     test('all question IDs are unique', () {
       final ids = QuestionDatabase.questions.map((q) => q.id).toList();
       final uniqueIds = ids.toSet();
-      expect(ids.length, equals(uniqueIds.length), reason: 'All question IDs must be unique');
+      expect(ids.length, equals(uniqueIds.length),
+          reason: 'All question IDs must be unique');
     });
 
     test('all question IDs follow format ch##_##', () {
@@ -203,20 +205,43 @@ void main() {
     });
 
     test('chapters have valid IDs', () {
-      final validIds = ['ch01', 'ch02', 'ch03', 'ch04', 'ch05', 'ch06', 'ch07', 'ch08', 'ch09', 'ch10',
-        'ch11', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch19', 'ch20'];
+      final validIds = [
+        'ch01',
+        'ch02',
+        'ch03',
+        'ch04',
+        'ch05',
+        'ch06',
+        'ch07',
+        'ch08',
+        'ch09',
+        'ch10',
+        'ch11',
+        'ch12',
+        'ch13',
+        'ch14',
+        'ch15',
+        'ch16',
+        'ch17',
+        'ch18',
+        'ch19',
+        'ch20'
+      ];
       for (final chapter in QuestionDatabase.chapters) {
-        expect(validIds.contains(chapter.id), isTrue, reason: 'Chapter ID ${chapter.id} is not valid');
+        expect(validIds.contains(chapter.id), isTrue,
+            reason: 'Chapter ID ${chapter.id} is not valid');
       }
     });
 
     test('questions reference valid chapter IDs', () {
-      final validChapterIds = QuestionDatabase.chapters.map((c) => c.id).toSet();
+      final validChapterIds =
+          QuestionDatabase.chapters.map((c) => c.id).toSet();
       for (final question in QuestionDatabase.questions) {
         expect(
           validChapterIds.contains(question.chapterId),
           isTrue,
-          reason: 'Question ${question.id} references invalid chapter ${question.chapterId}',
+          reason:
+              'Question ${question.id} references invalid chapter ${question.chapterId}',
         );
       }
     });

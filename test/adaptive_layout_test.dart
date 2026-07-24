@@ -68,30 +68,38 @@ void main() {
     );
   }
 
-  final dummyProfile = ParentProfile(id: '1', name: 'John Doe', parentType: 'father');
+  final dummyProfile =
+      ParentProfile(id: '1', name: 'John Doe', parentType: 'father');
 
   final dummyMemory = Memory(
-    id: '1', 
-    questionId: '1', 
+    id: '1',
+    questionId: '1',
     chapterId: '1',
     parentId: '1',
   );
-  
-  final dummyBook = GeneratedBook(profileId: '1', chapters: [], finalLetter: '');
+
+  final dummyBook =
+      GeneratedBook(profileId: '1', chapters: [], finalLetter: '');
 
   final Map<String, Widget Function()> screens = {
     'LandingScreen': () => const LandingScreen(),
     'SetupWizardScreen': () => const SetupWizardScreen(),
     'ProfileTypeScreen': () => const ProfileTypeScreen(),
     'ProfileScreen': () => const ProfileScreen(parentType: 'father'),
-    'PreQuestionScreen': () => PreQuestionScreen(profile: dummyProfile, chapterId: '1', chapterIndex: 0),
-    'QuestionScreen': () => QuestionScreen(profile: dummyProfile, chapterId: '1', chapterIndex: 0),
+    'PreQuestionScreen': () => PreQuestionScreen(
+        profile: dummyProfile, chapterId: '1', chapterIndex: 0),
+    'QuestionScreen': () =>
+        QuestionScreen(profile: dummyProfile, chapterId: '1', chapterIndex: 0),
     'LifeJourneyScreen': () => LifeJourneyScreen(profile: dummyProfile),
-    'BookPreviewScreen': () => BookPreviewScreen(profile: dummyProfile, book: dummyBook),
+    'BookPreviewScreen': () =>
+        BookPreviewScreen(profile: dummyProfile, book: dummyBook),
     'GenerateBookScreen': () => GenerateBookScreen(profile: dummyProfile),
-    'CelebrationScreen': () => CelebrationScreen(profile: dummyProfile, book: dummyBook),
-    'ShareMemoryScreen': () => ShareMemoryScreen(profile: dummyProfile, memory: dummyMemory),
-    'LegacyThanksScreen': () => LegacyThanksScreen(profile: dummyProfile, book: dummyBook),
+    'CelebrationScreen': () =>
+        CelebrationScreen(profile: dummyProfile, book: dummyBook),
+    'ShareMemoryScreen': () =>
+        ShareMemoryScreen(profile: dummyProfile, memory: dummyMemory),
+    'LegacyThanksScreen': () =>
+        LegacyThanksScreen(profile: dummyProfile, book: dummyBook),
   };
 
   group('Adaptive Architecture Validation:', () {
@@ -101,7 +109,8 @@ void main() {
 
       group(screenName, () {
         for (final size in testSizes) {
-          testWidgets('Portrait - ${size.width}x${size.height}', (tester) async {
+          testWidgets('Portrait - ${size.width}x${size.height}',
+              (tester) async {
             tester.view.physicalSize = size;
             tester.view.devicePixelRatio = 1.0;
 
@@ -112,11 +121,12 @@ void main() {
             await tester.pump(const Duration(seconds: 5));
 
             expect(tester.takeException(), isNull);
-            
+
             addTearDown(tester.view.resetPhysicalSize);
           });
 
-          testWidgets('Landscape - ${size.height}x${size.width}', (tester) async {
+          testWidgets('Landscape - ${size.height}x${size.width}',
+              (tester) async {
             final landscapeSize = Size(size.height, size.width);
             tester.view.physicalSize = landscapeSize;
             tester.view.devicePixelRatio = 1.0;
@@ -128,11 +138,13 @@ void main() {
             await tester.pump(const Duration(seconds: 5));
 
             expect(tester.takeException(), isNull);
-            
+
             addTearDown(tester.view.resetPhysicalSize);
           });
 
-          testWidgets('Accessibility (200% Text, High Contrast) - ${size.width}x${size.height}', (tester) async {
+          testWidgets(
+              'Accessibility (200% Text, High Contrast) - ${size.width}x${size.height}',
+              (tester) async {
             tester.view.physicalSize = size;
             tester.view.devicePixelRatio = 1.0;
 
@@ -145,7 +157,7 @@ void main() {
             await tester.pump(const Duration(seconds: 5));
 
             expect(tester.takeException(), isNull);
-            
+
             addTearDown(tester.view.resetPhysicalSize);
           });
         }

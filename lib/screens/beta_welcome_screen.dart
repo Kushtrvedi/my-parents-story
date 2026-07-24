@@ -23,7 +23,8 @@ class _BetaWelcomeScreenState extends State<BetaWelcomeScreen> {
 
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => showSetup ? const SetupWizardScreen() : const LandingScreen(),
+        builder: (context) =>
+            showSetup ? const SetupWizardScreen() : const LandingScreen(),
       ),
     );
   }

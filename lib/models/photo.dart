@@ -35,7 +35,9 @@ class Photo {
       id: map['id'] ?? '',
       path: map['path'] ?? '',
       caption: map['caption'] ?? '',
-      takenDate: map['takenDate'] != null ? DateTime.parse(map['takenDate']) : DateTime.now(),
+      takenDate: map['takenDate'] != null
+          ? DateTime.parse(map['takenDate'])
+          : DateTime.now(),
       people: List<String>.from(map['people'] ?? []),
     );
   }

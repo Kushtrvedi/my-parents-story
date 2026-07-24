@@ -2,7 +2,20 @@ import 'voice_recording.dart';
 import 'photo.dart';
 import 'memoir.dart';
 
-enum MemoryType { story, advice, lifeLesson, tradition, recipe, historicalEvent, funnyMemory, regret, dream, achievement, loss, unknown }
+enum MemoryType {
+  story,
+  advice,
+  lifeLesson,
+  tradition,
+  recipe,
+  historicalEvent,
+  funnyMemory,
+  regret,
+  dream,
+  achievement,
+  loss,
+  unknown
+}
 
 class Memory {
   // Immutable Data
@@ -14,7 +27,7 @@ class Memory {
   final String? originalTranscript;
   final DateTime createdAt;
   final String language;
-  
+
   // Schema version for migrations
   final String schemaVersion;
 
@@ -82,11 +95,13 @@ class Memory {
     this.lastEdited,
   }) : createdAt = createdAt ?? DateTime.now();
 
-  bool get hasAnswer => (memoir?.text.trim().isNotEmpty ?? false) || 
-                        (editedTranscript?.trim().isNotEmpty ?? false) ||
-                        (originalTranscript?.trim().isNotEmpty ?? false);
-  
-  String get answer => editedTranscript ?? memoir?.text ?? originalTranscript ?? '';
+  bool get hasAnswer =>
+      (memoir?.text.trim().isNotEmpty ?? false) ||
+      (editedTranscript?.trim().isNotEmpty ?? false) ||
+      (originalTranscript?.trim().isNotEmpty ?? false);
+
+  String get answer =>
+      editedTranscript ?? memoir?.text ?? originalTranscript ?? '';
 
   String get displayAnswer {
     if (editedTranscript != null && editedTranscript!.isNotEmpty) {
@@ -98,7 +113,8 @@ class Memory {
     return originalTranscript ?? '';
   }
 
-  int get wordCount => answer.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
+  int get wordCount =>
+      answer.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
 
   Map<String, dynamic> toMap() {
     return {
@@ -144,15 +160,25 @@ class Memory {
       parentId: map['parentId'] ?? '',
       chapterId: map['chapterId'] ?? '',
       questionId: map['questionId'] ?? '',
-      originalRecording: map['originalRecording'] != null ? VoiceRecording.fromMap(Map<String, dynamic>.from(map['originalRecording'])) : null,
+      originalRecording: map['originalRecording'] != null
+          ? VoiceRecording.fromMap(
+              Map<String, dynamic>.from(map['originalRecording']))
+          : null,
       originalTranscript: map['originalTranscript'],
-      createdAt: map['createdAt'] != null ? DateTime.parse(map['createdAt']) : DateTime.now(),
+      createdAt: map['createdAt'] != null
+          ? DateTime.parse(map['createdAt'])
+          : DateTime.now(),
       language: map['language'] ?? 'en',
       schemaVersion: map['schemaVersion'] ?? '1.0.0',
       version: map['version'] ?? 1,
-      memoir: map['memoir'] != null ? Memoir.fromMap(Map<String, dynamic>.from(map['memoir'])) : null,
+      memoir: map['memoir'] != null
+          ? Memoir.fromMap(Map<String, dynamic>.from(map['memoir']))
+          : null,
       tags: List<String>.from(map['tags'] ?? []),
-      photos: (map['photos'] as List?)?.map((p) => Photo.fromMap(Map<String, dynamic>.from(p))).toList() ?? [],
+      photos: (map['photos'] as List?)
+              ?.map((p) => Photo.fromMap(Map<String, dynamic>.from(p)))
+              .toList() ??
+          [],
       people: List<String>.from(map['people'] ?? []),
       places: List<String>.from(map['places'] ?? []),
       followUps: List<String>.from(map['followUps'] ?? []),
@@ -173,9 +199,11 @@ class Memory {
       decade: map['decade'],
       isUnfinished: map['isUnfinished'] ?? false,
       isApproved: map['isApproved'] ?? false,
-      approvedAt: map['approvedAt'] != null ? DateTime.parse(map['approvedAt']) : null,
+      approvedAt:
+          map['approvedAt'] != null ? DateTime.parse(map['approvedAt']) : null,
       editedTranscript: map['editedTranscript'],
-      lastEdited: map['lastEdited'] != null ? DateTime.parse(map['lastEdited']) : null,
+      lastEdited:
+          map['lastEdited'] != null ? DateTime.parse(map['lastEdited']) : null,
     );
   }
 }

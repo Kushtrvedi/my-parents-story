@@ -10,7 +10,20 @@ class AppConstants {
   static const int maxBookVersions = 10;
   static const int searchMinQueryLength = 2;
 
-  static const List<String> supportedLanguages = ['en', 'hi', 'gu', 'es', 'mr', 'ta', 'te', 'ml', 'or', 'pa', 'bn', 'kn'];
+  static const List<String> supportedLanguages = [
+    'en',
+    'hi',
+    'gu',
+    'es',
+    'mr',
+    'ta',
+    'te',
+    'ml',
+    'or',
+    'pa',
+    'bn',
+    'kn'
+  ];
   static const String defaultLanguage = 'en';
 
   static const String exportFormatVersion = '1.0';

@@ -22,7 +22,8 @@ class ResponsiveBuilder extends StatelessWidget {
         if (size == ScreenSize.expanded && expanded != null) {
           return expanded!(context);
         }
-        if ((size == ScreenSize.medium || size == ScreenSize.expanded) && medium != null) {
+        if ((size == ScreenSize.medium || size == ScreenSize.expanded) &&
+            medium != null) {
           return medium!(context);
         }
         return compact(context);

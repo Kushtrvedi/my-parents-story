@@ -31,7 +31,8 @@ class _DeveloperOptionsScreenState extends State<DeveloperOptionsScreen> {
     _coordinator.setCloudApiKey(_apiKeyController.text.trim());
     _checkActiveEngine();
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('API Key saved. Conversation Engine re-evaluated.')),
+      const SnackBar(
+          content: Text('API Key saved. Conversation Engine re-evaluated.')),
     );
   }
 
@@ -54,18 +55,22 @@ class _DeveloperOptionsScreenState extends State<DeveloperOptionsScreen> {
               decoration: BoxDecoration(
                 color: AppColors.card,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+                border:
+                    Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.engineering, color: AppColors.primary, size: 32),
+                  const Icon(Icons.engineering,
+                      color: AppColors.primary, size: 32),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Active Conversation Engine', style: TextStyle(fontWeight: FontWeight.bold)),
-                        Text(_activeEngineName, style: const TextStyle(color: AppColors.textLight)),
+                        const Text('Active Conversation Engine',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text(_activeEngineName,
+                            style: const TextStyle(color: AppColors.textLight)),
                       ],
                     ),
                   ),
@@ -73,7 +78,8 @@ class _DeveloperOptionsScreenState extends State<DeveloperOptionsScreen> {
               ),
             ),
             const SizedBox(height: 32),
-            Text('Cloud Fallback (Gemini)', style: AppTypography.heading.copyWith(fontSize: 20)),
+            Text('Cloud Fallback (Gemini)',
+                style: AppTypography.heading.copyWith(fontSize: 20)),
             const SizedBox(height: 8),
             const Text(
               'Input a Gemini API Key to enable the CloudConversationEngine on unsupported devices.',

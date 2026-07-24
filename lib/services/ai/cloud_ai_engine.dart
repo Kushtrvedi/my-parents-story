@@ -20,7 +20,8 @@ class CloudAIEngine implements AIEngine {
   String get name => 'Cloud AI (Gemini)';
 
   @override
-  Future<String> generateFollowUpQuestion(String context, String currentTranscript) async {
+  Future<String> generateFollowUpQuestion(
+      String context, String currentTranscript) async {
     if (_model == null) return 'Could you tell me more about that?';
 
     final prompt = '''
@@ -53,7 +54,15 @@ Childhood, Education, Career, Marriage, Parenthood, Lessons Learned, Life Journe
       final content = [Content.text(prompt)];
       final response = await _model!.generateContent(content);
       final raw = response.text?.trim() ?? '';
-      const allowed = ['Childhood', 'Education', 'Career', 'Marriage', 'Parenthood', 'Lessons Learned', 'Life Journey'];
+      const allowed = [
+        'Childhood',
+        'Education',
+        'Career',
+        'Marriage',
+        'Parenthood',
+        'Lessons Learned',
+        'Life Journey'
+      ];
       for (var a in allowed) {
         if (raw.toLowerCase().contains(a.toLowerCase())) return a;
       }

@@ -40,7 +40,9 @@ class VoiceRecording {
       duration: Duration(milliseconds: map['durationMs'] ?? 0),
       sampleRate: map['sampleRate'],
       language: map['language'] ?? 'en',
-      createdAt: map['createdAt'] != null ? DateTime.parse(map['createdAt']) : DateTime.now(),
+      createdAt: map['createdAt'] != null
+          ? DateTime.parse(map['createdAt'])
+          : DateTime.now(),
     );
   }
 }

@@ -7,7 +7,8 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('End-to-End App Test', () {
-    testWidgets('Complete user flow from launch to export', (WidgetTester tester) async {
+    testWidgets('Complete user flow from launch to export',
+        (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle(const Duration(seconds: 2));
 
@@ -24,14 +25,17 @@ void main() {
         }
 
         await tester.pumpAndSettle(const Duration(seconds: 3));
-        
-        while (find.text('Continue').evaluate().isNotEmpty || find.text('Finish Setup').evaluate().isNotEmpty) {
-          final btn = find.text('Finish Setup').evaluate().isNotEmpty ? find.text('Finish Setup') : find.text('Continue');
+
+        while (find.text('Continue').evaluate().isNotEmpty ||
+            find.text('Finish Setup').evaluate().isNotEmpty) {
+          final btn = find.text('Finish Setup').evaluate().isNotEmpty
+              ? find.text('Finish Setup')
+              : find.text('Continue');
           await tester.tap(btn);
           await tester.pumpAndSettle();
         }
       }
-      
+
       // If we don't have mock data for voice, we can just assert up to Landing screen or Profile setup
       expect(find.byType(ElevatedButton), findsWidgets);
     });

@@ -37,7 +37,8 @@ class AppTheme {
             borderRadius: BorderRadius.circular(AppRadius.l),
           ),
           elevation: 0,
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.m),
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.l, vertical: AppSpacing.m),
           textStyle: AppTypography.button,
         ),
       ),
@@ -67,7 +68,8 @@ class AppTheme {
           borderRadius: BorderRadius.circular(AppRadius.m),
           borderSide: const BorderSide(color: AppColors.primary, width: 2.5),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.m),
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.l, vertical: AppSpacing.m),
         hintStyle: AppTypography.caption.copyWith(fontSize: 22),
       ),
       iconButtonTheme: IconButtonThemeData(

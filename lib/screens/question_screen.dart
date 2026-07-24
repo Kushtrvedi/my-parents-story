@@ -33,7 +33,8 @@ class QuestionScreen extends StatefulWidget {
   State<QuestionScreen> createState() => _QuestionScreenState();
 }
 
-class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObserver, SingleTickerProviderStateMixin {
+class _QuestionScreenState extends State<QuestionScreen>
+    with WidgetsBindingObserver, SingleTickerProviderStateMixin {
   final _storageService = StorageService();
   final _voiceService = NativeVoiceService();
   final _ttsService = TextToSpeechService();
@@ -106,7 +107,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive) {
       if (_isRecording) {
         _toggleRecording();
       }
@@ -222,7 +224,7 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
     if (q == null) return;
 
     setState(() => _isSaving = true);
-    
+
     if (_debounce?.isActive ?? false) _debounce!.cancel();
 
     _storageService.saveMemory(
@@ -262,10 +264,11 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
     setState(() => _showMemoryPause = true);
   }
 
-  Future<void> _generateStorySeedsAndFollowUp(String transcript, Question originalQuestion) async {
+  Future<void> _generateStorySeedsAndFollowUp(
+      String transcript, Question originalQuestion) async {
     // Generate Story Seeds
     final seeds = await _coordinator.generateStorySeeds(transcript);
-    
+
     // Save seeds back to memory
     _storageService.saveMemory(
       profileId: widget.profile.id,
@@ -285,11 +288,13 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
       placesMentioned: List<String>.from(seeds['places'] ?? []),
       historicalEvents: List<String>.from(seeds['historicalEvents'] ?? []),
       objects: List<String>.from(seeds['objects'] ?? []),
-      familyRelationships: List<String>.from(seeds['familyRelationships'] ?? []),
+      familyRelationships:
+          List<String>.from(seeds['familyRelationships'] ?? []),
     );
 
     // Generate Dynamic Follow Up
-    final followUpText = await _coordinator.generateFollowUpQuestion(widget.profile.id, transcript);
+    final followUpText = await _coordinator.generateFollowUpQuestion(
+        widget.profile.id, transcript);
     if (followUpText.isNotEmpty) {
       final dynamicQuestion = Question.dynamicFollowUp(
         chapterId: widget.chapterId,
@@ -315,7 +320,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.l)),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.l)),
         content: Padding(
           padding: const EdgeInsets.all(AppSpacing.m),
           child: Column(
@@ -404,7 +410,6 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
 
   @override
   Widget build(BuildContext context) {
-
     if (_showBreakReminder) {
       return _buildBreakReminderScreen();
     }
@@ -449,7 +454,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
         SliverFillRemaining(
           hasScrollBody: false,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.m),
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.xl, vertical: AppSpacing.m),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -457,7 +463,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
                 const SizedBox(height: AppSpacing.xxl),
                 const SizedBox(height: AppSpacing.xxl),
                 Text(
-                  _currentQuestion!.getLocalizedQuestion(localeProvider.locale.languageCode),
+                  _currentQuestion!
+                      .getLocalizedQuestion(localeProvider.locale.languageCode),
                   textAlign: TextAlign.center,
                   style: AppTypography.question.copyWith(fontSize: 32),
                 ),
@@ -493,7 +500,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
             _buildHeader(),
             const Spacer(),
             Text(
-              _currentQuestion!.getLocalizedQuestion(localeProvider.locale.languageCode),
+              _currentQuestion!
+                  .getLocalizedQuestion(localeProvider.locale.languageCode),
               textAlign: TextAlign.left,
               style: AppTypography.question.copyWith(fontSize: 36),
             ),
@@ -514,7 +522,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
             if (_hasRecording) ...[
               Text(
                 'This is exactly how it will appear in your memoir.',
-                style: AppTypography.caption.copyWith(fontStyle: FontStyle.italic),
+                style:
+                    AppTypography.caption.copyWith(fontStyle: FontStyle.italic),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: AppSpacing.l),
@@ -540,7 +549,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
         Text(
           chapterTitle,
           textAlign: TextAlign.center,
-          style: AppTypography.caption.copyWith(fontSize: 20, color: AppColors.textLight),
+          style: AppTypography.caption
+              .copyWith(fontSize: 20, color: AppColors.textLight),
         ),
         const SizedBox(height: AppSpacing.xs),
         Text(
@@ -589,7 +599,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
                 ),
               ],
             ),
-            child: const Icon(Icons.mic_rounded, color: Colors.white, size: AppIcons.xl),
+            child: const Icon(Icons.mic_rounded,
+                color: Colors.white, size: AppIcons.xl),
           ),
         ),
         const SizedBox(height: AppSpacing.m),
@@ -611,12 +622,14 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
           ),
           child: Row(
             children: [
-              const Icon(Icons.privacy_tip_outlined, color: AppColors.primary, size: 20),
+              const Icon(Icons.privacy_tip_outlined,
+                  color: AppColors.primary, size: 20),
               const SizedBox(width: AppSpacing.s),
               Expanded(
                 child: Text(
                   'Your phone may use its built-in speech service for transcription. Your recordings remain stored only on your device unless you choose to share them.',
-                  style: AppTypography.caption.copyWith(color: AppColors.primary, fontSize: 12),
+                  style: AppTypography.caption
+                      .copyWith(color: AppColors.primary, fontSize: 12),
                 ),
               ),
             ],
@@ -650,7 +663,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
                       ),
                     ],
                   ),
-                  child: const Icon(Icons.stop_rounded, color: Colors.white, size: AppIcons.xl),
+                  child: const Icon(Icons.stop_rounded,
+                      color: Colors.white, size: AppIcons.xl),
                 ),
               ),
             );
@@ -661,7 +675,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
         const SizedBox(height: AppSpacing.m),
         Text(
           T.tr('recordingLabel'),
-          style: AppTypography.body.copyWith(fontWeight: FontWeight.w600, color: AppColors.error),
+          style: AppTypography.body
+              .copyWith(fontWeight: FontWeight.w600, color: AppColors.error),
         ),
         const SizedBox(height: AppSpacing.xs),
         Text(
@@ -705,11 +720,13 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
             children: [
               Row(
                 children: [
-                  const Icon(Icons.check_circle_rounded, color: Colors.green, size: 20),
+                  const Icon(Icons.check_circle_rounded,
+                      color: Colors.green, size: 20),
                   const SizedBox(width: AppSpacing.s),
                   Text(
                     'Voice recorded',
-                    style: AppTypography.body.copyWith(fontWeight: FontWeight.w600, color: Colors.green),
+                    style: AppTypography.body.copyWith(
+                        fontWeight: FontWeight.w600, color: Colors.green),
                   ),
                 ],
               ),
@@ -727,7 +744,7 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
           ),
         ),
         const SizedBox(height: AppSpacing.m),
-        
+
         // Editable Transcript
         Container(
           padding: const EdgeInsets.all(AppSpacing.m),
@@ -754,7 +771,9 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
                 Text(
                   _saveStatus,
                   style: AppTypography.caption.copyWith(
-                    color: _saveStatus == '✓ Saved' ? Colors.green : AppColors.textLight,
+                    color: _saveStatus == '✓ Saved'
+                        ? Colors.green
+                        : AppColors.textLight,
                     fontSize: 12,
                   ),
                 ),
@@ -780,35 +799,44 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
                 children: [
                   Text(
                     'Would you like to add more detail?',
-                    style: AppTypography.body.copyWith(fontWeight: FontWeight.w500),
+                    style: AppTypography.body
+                        .copyWith(fontWeight: FontWeight.w500),
                   ),
                   Row(
                     children: [
                       TextButton(
-                        onPressed: () => setState(() => _showImproveStory = true),
+                        onPressed: () =>
+                            setState(() => _showImproveStory = true),
                         style: TextButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: AppSpacing.s),
                           minimumSize: Size.zero,
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
                         child: Text(
                           'Yes',
                           style: AppTypography.button.copyWith(
-                            color: _showImproveStory ? AppColors.primary : AppColors.textLight,
+                            color: _showImproveStory
+                                ? AppColors.primary
+                                : AppColors.textLight,
                           ),
                         ),
                       ),
                       TextButton(
-                        onPressed: () => setState(() => _showImproveStory = false),
+                        onPressed: () =>
+                            setState(() => _showImproveStory = false),
                         style: TextButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.s),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: AppSpacing.s),
                           minimumSize: Size.zero,
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
                         child: Text(
                           'No',
                           style: AppTypography.button.copyWith(
-                            color: !_showImproveStory ? AppColors.primary : AppColors.textLight,
+                            color: !_showImproveStory
+                                ? AppColors.primary
+                                : AppColors.textLight,
                           ),
                         ),
                       ),
@@ -816,25 +844,29 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
                   ),
                 ],
               ),
-              if (_showImproveStory && (_currentQuestion?.followUps.isNotEmpty ?? false)) ...[
+              if (_showImproveStory &&
+                  (_currentQuestion?.followUps.isNotEmpty ?? false)) ...[
                 const SizedBox(height: AppSpacing.s),
                 const Divider(),
                 const SizedBox(height: AppSpacing.s),
                 ..._currentQuestion!.followUps.map((p) => Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.xs),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('• ', style: TextStyle(color: AppColors.primary, fontSize: 16)),
-                      Expanded(
-                        child: Text(
-                          p,
-                          style: AppTypography.caption.copyWith(color: AppColors.primary, fontSize: 16),
-                        ),
+                      padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('• ',
+                              style: TextStyle(
+                                  color: AppColors.primary, fontSize: 16)),
+                          Expanded(
+                            child: Text(
+                              p,
+                              style: AppTypography.caption.copyWith(
+                                  color: AppColors.primary, fontSize: 16),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                )),
+                    )),
               ],
             ],
           ),
@@ -877,7 +909,8 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
                     ? const SizedBox(
                         width: 24,
                         height: 24,
-                        child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                        child: CircularProgressIndicator(
+                            color: Colors.white, strokeWidth: 2),
                       )
                     : const Icon(Icons.check_circle_rounded, size: 24),
                 label: const Text('Approve & Continue'),
@@ -902,45 +935,49 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const SizedBox(height: AppSpacing.xxl),
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.accent.withValues(alpha: 0.15),
-                  ),
-                  child: const Icon(
-                    Icons.favorite_rounded,
-                    color: AppColors.accent,
-                    size: 40,
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.xxl),
-                Text(
-                  T.tr('thankYouMemory'),
-                  textAlign: TextAlign.center,
-                  style: AppTypography.display.copyWith(height: 1.3),
-                ),
-                const SizedBox(height: AppSpacing.m),
-                Text(
-                  T.tr('memorySavedCount').replaceAll('{count}', '$_questionsAnswered'),
-                  textAlign: TextAlign.center,
-                  style: AppTypography.body.copyWith(color: AppColors.textLight),
-                ),
-                const SizedBox(height: AppSpacing.xxl),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _goToNextQuestion,
-                    child: Text(T.tr('nextQuestion')),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.xl),
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.accent.withValues(alpha: 0.15),
+                        ),
+                        child: const Icon(
+                          Icons.favorite_rounded,
+                          color: AppColors.accent,
+                          size: 40,
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.xxl),
+                      Text(
+                        T.tr('thankYouMemory'),
+                        textAlign: TextAlign.center,
+                        style: AppTypography.display.copyWith(height: 1.3),
+                      ),
+                      const SizedBox(height: AppSpacing.m),
+                      Text(
+                        T
+                            .tr('memorySavedCount')
+                            .replaceAll('{count}', '$_questionsAnswered'),
+                        textAlign: TextAlign.center,
+                        style: AppTypography.body
+                            .copyWith(color: AppColors.textLight),
+                      ),
+                      const SizedBox(height: AppSpacing.xxl),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: _goToNextQuestion,
+                          child: Text(T.tr('nextQuestion')),
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.xl),
                     ],
                   ),
                 ),
@@ -962,53 +999,55 @@ class _QuestionScreenState extends State<QuestionScreen> with WidgetsBindingObse
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const SizedBox(height: AppSpacing.xxl),
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.primary.withValues(alpha: 0.1),
-                  ),
-                  child: const Icon(
-                    Icons.coffee_rounded,
-                    color: AppColors.primary,
-                    size: 40,
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.xxl),
-                Text(
-                  T.tr('breakTitle'),
-                  textAlign: TextAlign.center,
-                  style: AppTypography.display.copyWith(height: 1.3),
-                ),
-                const SizedBox(height: AppSpacing.m),
-                Text(
-                  T.tr('breakSubtitle'),
-                  textAlign: TextAlign.center,
-                  style: AppTypography.body.copyWith(color: AppColors.textLight),
-                ),
-                const SizedBox(height: AppSpacing.xxl),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _continueAfterBreak,
-                    child: Text(T.tr('continueRecording')),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.m),
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
-                    onPressed: _takeBreak,
-                    child: Text(T.tr('takeBreak')),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.xl),
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.primary.withValues(alpha: 0.1),
+                        ),
+                        child: const Icon(
+                          Icons.coffee_rounded,
+                          color: AppColors.primary,
+                          size: 40,
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.xxl),
+                      Text(
+                        T.tr('breakTitle'),
+                        textAlign: TextAlign.center,
+                        style: AppTypography.display.copyWith(height: 1.3),
+                      ),
+                      const SizedBox(height: AppSpacing.m),
+                      Text(
+                        T.tr('breakSubtitle'),
+                        textAlign: TextAlign.center,
+                        style: AppTypography.body
+                            .copyWith(color: AppColors.textLight),
+                      ),
+                      const SizedBox(height: AppSpacing.xxl),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: _continueAfterBreak,
+                          child: Text(T.tr('continueRecording')),
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.m),
+                      SizedBox(
+                        width: double.infinity,
+                        child: OutlinedButton(
+                          onPressed: _takeBreak,
+                          child: Text(T.tr('takeBreak')),
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.xl),
                     ],
                   ),
                 ),

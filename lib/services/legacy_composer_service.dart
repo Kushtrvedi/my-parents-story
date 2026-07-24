@@ -16,7 +16,7 @@ class LegacyComposerService {
     buffer.writeln('<head>');
     buffer.writeln('<meta charset="UTF-8">');
     buffer.writeln('<title>${profile.name} - Legacy Book</title>');
-    
+
     // Inject Paged.js config to auto-print when pagination completes
     buffer.writeln('''
       <script>
@@ -27,21 +27,24 @@ class LegacyComposerService {
         });
       </script>
     ''');
-    
+
     // Inject Paged.js
-    buffer.writeln('<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>');
-    
+    buffer.writeln(
+        '<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>');
+
     // Inject Heritage Linen CSS
     buffer.writeln('<style>${HeritageLinenTheme.css}</style>');
-    
+
     buffer.writeln('</head>');
     buffer.writeln('<body>');
 
     // 1. Cover Page
     buffer.writeln('<div class="cover-page">');
     buffer.writeln('<div class="cover-title">MY PARENTS\' STORY</div>');
-    buffer.writeln('<div class="cover-subtitle">The Life of<br><br>${profile.name}<br><br>${profile.birthYear.isNotEmpty ? "${profile.birthYear} — Present" : ""}</div>');
-    buffer.writeln('<div class="cover-author">Collected with love by<br>The Family</div>');
+    buffer.writeln(
+        '<div class="cover-subtitle">The Life of<br><br>${profile.name}<br><br>${profile.birthYear.isNotEmpty ? "${profile.birthYear} — Present" : ""}</div>');
+    buffer.writeln(
+        '<div class="cover-author">Collected with love by<br>The Family</div>');
     buffer.writeln('</div>'); // End Cover
 
     // 2. Chapters
@@ -50,14 +53,15 @@ class LegacyComposerService {
       if (chapter.content.trim().isEmpty) continue;
 
       buffer.writeln('<div class="chapter">');
-      
+
       buffer.writeln('<div class="chapter-header">');
       buffer.writeln('<div class="chapter-number">CHAPTER ${i + 1}</div>');
       buffer.writeln('<h2 class="chapter-title">${chapter.title}</h2>');
       buffer.writeln('</div>');
 
-      buffer.writeln('<div class="chapter-quote">"The story begins here..."</div>'); // Placeholder for specific extraction
-      
+      buffer.writeln(
+          '<div class="chapter-quote">"The story begins here..."</div>'); // Placeholder for specific extraction
+
       buffer.writeln('<div class="content-body">');
       // Simple split by double newline for paragraphs
       final paragraphs = chapter.content.split('\\n\\n');
@@ -72,7 +76,8 @@ class LegacyComposerService {
       buffer.writeln('<div class="voice-memory">');
       buffer.writeln('<p>🎤 Listen to this memory</p>');
       // Using a dummy QR code from an API for visual representation
-      buffer.writeln('<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=example" alt="QR Code" />');
+      buffer.writeln(
+          '<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=example" alt="QR Code" />');
       buffer.writeln('</div>');
 
       buffer.writeln('</div>'); // End Chapter
@@ -81,7 +86,8 @@ class LegacyComposerService {
     // 3. Final Letter / Legacy Page
     buffer.writeln('<div class="chapter">');
     buffer.writeln('<div class="chapter-header">');
-    buffer.writeln('<h2 class="chapter-title">What I Hope My Family Remembers</h2>');
+    buffer.writeln(
+        '<h2 class="chapter-title">What I Hope My Family Remembers</h2>');
     buffer.writeln('</div>');
     buffer.writeln('<div class="content-body">');
     final letterParagraphs = finalLetter.split('\\n\\n');
@@ -98,7 +104,8 @@ class LegacyComposerService {
     buffer.writeln('<div class="final-page">');
     buffer.writeln('<p>This book preserves one life.</p>');
     buffer.writeln('<p>May it inspire many more conversations.</p>');
-    buffer.writeln('<div class="platform-credit">Recorded using My Parents\' Story.</div>');
+    buffer.writeln(
+        '<div class="platform-credit">Recorded using My Parents\' Story.</div>');
     buffer.writeln('</div>');
 
     buffer.writeln('</body>');

@@ -9,7 +9,8 @@ class CuratedFallbackEngine implements AIEngine {
   String get name => 'Curated Questions';
 
   @override
-  Future<String> generateFollowUpQuestion(String context, String currentTranscript) async {
+  Future<String> generateFollowUpQuestion(
+      String context, String currentTranscript) async {
     // Basic fallback: just ask them to continue or tell another story.
     return 'That is fascinating. Would you like to tell me more, or move on to another memory?';
   }

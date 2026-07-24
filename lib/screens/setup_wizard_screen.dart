@@ -39,7 +39,7 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
     setState(() => _currentStep = 1);
     await Future.delayed(const Duration(milliseconds: 600));
     _micGranted = await _speechService.requestMicrophonePermission();
-    
+
     // Step 2: Speech recognition check
     setState(() => _currentStep = 2);
     await Future.delayed(const Duration(milliseconds: 600));
@@ -72,13 +72,15 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
     if (kIsWeb) {
       _showWebInstructionsDialog(
         title: 'Speech Recognition Not Enabled',
-        message: 'Speech recognition requires microphone permissions and browser support. Please ensure you are using a modern browser like Chrome, Edge, or Safari, and that you have granted microphone access to this site in your browser settings.',
+        message:
+            'Speech recognition requires microphone permissions and browser support. Please ensure you are using a modern browser like Chrome, Edge, or Safari, and that you have granted microphone access to this site in your browser settings.',
       );
       return;
     }
     if (defaultTargetPlatform == TargetPlatform.android) {
       try {
-        await const MethodChannel('com.myparentsstory/setup').invokeMethod('openSpeechSettings');
+        await const MethodChannel('com.myparentsstory/setup')
+            .invokeMethod('openSpeechSettings');
       } catch (_) {
         // Fallback
       }
@@ -89,20 +91,23 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
     if (kIsWeb) {
       _showWebInstructionsDialog(
         title: 'Language Pack Missing',
-        message: 'Your browser cannot find offline speech recognition for this language. \n\nIf you are on a phone, try opening your device Settings > System > Languages & Input > On-device Speech Recognition and download the language pack.\n\nAlternatively, ensure you are connected to the internet so the browser can use cloud speech recognition.',
+        message:
+            'Your browser cannot find offline speech recognition for this language. \n\nIf you are on a phone, try opening your device Settings > System > Languages & Input > On-device Speech Recognition and download the language pack.\n\nAlternatively, ensure you are connected to the internet so the browser can use cloud speech recognition.',
       );
       return;
     }
     if (defaultTargetPlatform == TargetPlatform.android) {
       try {
-        await const MethodChannel('com.myparentsstory/setup').invokeMethod('openLanguagePackSettings');
+        await const MethodChannel('com.myparentsstory/setup')
+            .invokeMethod('openLanguagePackSettings');
       } catch (_) {
         // Fallback
       }
     }
   }
 
-  void _showWebInstructionsDialog({required String title, required String message}) {
+  void _showWebInstructionsDialog(
+      {required String title, required String message}) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -112,7 +117,8 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text(T.tr('ok'), style: AppTypography.button.copyWith(color: AppColors.primary)),
+            child: Text(T.tr('ok'),
+                style: AppTypography.button.copyWith(color: AppColors.primary)),
           ),
         ],
       ),
@@ -140,117 +146,125 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
                   child: Column(
-                        children: [
-                          const SizedBox(height: AppSpacing.xl),
-                          
-                          // App Brand Badge
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                            decoration: BoxDecoration(
-                              color: AppColors.primary.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: AppColors.primary.withValues(alpha: 0.2)),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(Icons.auto_stories_rounded, size: 16, color: AppColors.primary),
-                                const SizedBox(width: 8),
-                                Flexible(
-                                  child: Text(
-                                    "REYOU - MY PARENTS' STORY",
-                                    style: AppTypography.caption.copyWith(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w700,
-                                      letterSpacing: 1.2,
-                                      color: AppColors.primary,
-                                    ),
-                                  ),
+                    children: [
+                      const SizedBox(height: AppSpacing.xl),
+
+                      // App Brand Badge
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: AppColors.primary.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                              color: AppColors.primary.withValues(alpha: 0.2)),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.auto_stories_rounded,
+                                size: 16, color: AppColors.primary),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                "REYOU - MY PARENTS' STORY",
+                                style: AppTypography.caption.copyWith(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 1.2,
+                                  color: AppColors.primary,
                                 ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: AppSpacing.l),
-                          
-                          // Progress indicator
-                          if (_currentStep < 4) ...[
-                            Text(
-                              'Step ${_currentStep == 0 ? 1 : _currentStep} of 4',
-                              style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.primary),
-                            ),
-                            const SizedBox(height: AppSpacing.xs),
-                            Text(
-                              'Preparing your phone',
-                              style: AppTypography.caption.copyWith(color: AppColors.textLight),
-                            ),
-                            const SizedBox(height: AppSpacing.l),
-                          ] else ...[
-                            const SizedBox(height: AppSpacing.xxl),
-                          ],
-
-                          // App icon
-                          Container(
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.primary.withValues(alpha: 0.08),
-                            ),
-                            child: const Icon(
-                              Icons.auto_stories_rounded,
-                              size: 40,
-                              color: AppColors.primary,
-                            ),
-                          ),
-                          const SizedBox(height: AppSpacing.xl),
-                          Text(
-                            T.tr('setupTitle'),
-                            textAlign: TextAlign.center,
-                            style: AppTypography.display,
-                          ),
-                          const SizedBox(height: AppSpacing.m),
-                          Text(
-                            'This usually takes less than 30 seconds.',
-                            textAlign: TextAlign.center,
-                            style: AppTypography.body.copyWith(color: AppColors.textLight),
-                          ),
-                          const SizedBox(height: AppSpacing.xxl),
-                          
-                          // Readiness Check Cards
-                          _buildReadinessCards(),
-                          
-                          const Spacer(),
-                          
-                          // Final Goal & Trust Card when checking
-                          if (_currentStep < 4) ...[
-                            _buildFinalGoalCard(),
-                            const SizedBox(height: AppSpacing.l),
-                            _buildTrustCard(),
-                            const SizedBox(height: AppSpacing.xl),
-                          ],
-
-                          // Bottom button
-                          if (_currentStep == 4 && !_isChecking) ...[
-                            const SizedBox(height: AppSpacing.xl),
-                            _buildDriveCard(),
-                            const SizedBox(height: AppSpacing.xl),
-                            SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: _finish,
-                                child: Text(T.tr('startMyStory')),
                               ),
                             ),
-                            const SizedBox(height: AppSpacing.xl),
                           ],
-                        ],
+                        ),
                       ),
-                    ),
+                      const SizedBox(height: AppSpacing.l),
+
+                      // Progress indicator
+                      if (_currentStep < 4) ...[
+                        Text(
+                          'Step ${_currentStep == 0 ? 1 : _currentStep} of 4',
+                          style: AppTypography.caption.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.primary),
+                        ),
+                        const SizedBox(height: AppSpacing.xs),
+                        Text(
+                          'Preparing your phone',
+                          style: AppTypography.caption
+                              .copyWith(color: AppColors.textLight),
+                        ),
+                        const SizedBox(height: AppSpacing.l),
+                      ] else ...[
+                        const SizedBox(height: AppSpacing.xxl),
+                      ],
+
+                      // App icon
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.primary.withValues(alpha: 0.08),
+                        ),
+                        child: const Icon(
+                          Icons.auto_stories_rounded,
+                          size: 40,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.xl),
+                      Text(
+                        T.tr('setupTitle'),
+                        textAlign: TextAlign.center,
+                        style: AppTypography.display,
+                      ),
+                      const SizedBox(height: AppSpacing.m),
+                      Text(
+                        'This usually takes less than 30 seconds.',
+                        textAlign: TextAlign.center,
+                        style: AppTypography.body
+                            .copyWith(color: AppColors.textLight),
+                      ),
+                      const SizedBox(height: AppSpacing.xxl),
+
+                      // Readiness Check Cards
+                      _buildReadinessCards(),
+
+                      const Spacer(),
+
+                      // Final Goal & Trust Card when checking
+                      if (_currentStep < 4) ...[
+                        _buildFinalGoalCard(),
+                        const SizedBox(height: AppSpacing.l),
+                        _buildTrustCard(),
+                        const SizedBox(height: AppSpacing.xl),
+                      ],
+
+                      // Bottom button
+                      if (_currentStep == 4 && !_isChecking) ...[
+                        const SizedBox(height: AppSpacing.xl),
+                        _buildDriveCard(),
+                        const SizedBox(height: AppSpacing.xl),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: _finish,
+                            child: Text(T.tr('startMyStory')),
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.xl),
+                      ],
+                    ],
                   ),
-                ],
+                ),
               ),
+            ],
+          ),
         ),
       ),
     );
@@ -292,7 +306,6 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
           isChecking: false,
           isPending: false,
         ),
-        
         if (!allReady && _currentStep == 4) ...[
           const SizedBox(height: AppSpacing.l),
           _buildRecoveryActions(),
@@ -369,12 +382,13 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.m),
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.l, vertical: AppSpacing.m),
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(AppRadius.m),
         border: Border.all(
-          color: (isReady || isChecking) 
+          color: (isReady || isChecking)
               ? stateColor.withValues(alpha: 0.3)
               : AppColors.divider,
         ),
@@ -398,7 +412,9 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
                   displayLabel,
                   style: AppTypography.body.copyWith(
                     color: labelColor,
-                    fontWeight: (isChecking || isReady) ? FontWeight.w500 : FontWeight.normal,
+                    fontWeight: (isChecking || isReady)
+                        ? FontWeight.w500
+                        : FontWeight.normal,
                   ),
                 ),
               ),
@@ -427,7 +443,8 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
         children: [
           Text(
             'Next',
-            style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.primary),
+            style: AppTypography.caption.copyWith(
+                fontWeight: FontWeight.w600, color: AppColors.primary),
           ),
           const SizedBox(height: AppSpacing.xs),
           Text(
@@ -463,18 +480,19 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
               children: [
                 Text(
                   'Private by Design',
-                  style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.text),
+                  style: AppTypography.caption.copyWith(
+                      fontWeight: FontWeight.w600, color: AppColors.text),
                 ),
                 const SizedBox(height: AppSpacing.xs),
                 Text(
                   'Your recordings stay on your phone.\nNothing is uploaded unless you choose to share it.',
-                  style: AppTypography.caption.copyWith(color: AppColors.textLight),
+                  style: AppTypography.caption
+                      .copyWith(color: AppColors.textLight),
                 ),
               ],
             ),
           ),
         ],
-      ),
       ),
     );
   }
@@ -500,7 +518,8 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
               const SizedBox(width: AppSpacing.m),
               Text(
                 'Secure Your Memories',
-                style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600, color: AppColors.text),
+                style: AppTypography.caption.copyWith(
+                    fontWeight: FontWeight.w600, color: AppColors.text),
               ),
             ],
           ),
@@ -513,9 +532,12 @@ class _SetupWizardScreenState extends State<SetupWizardScreen> {
           if (_driveService.isSignedIn)
             Row(
               children: [
-                const Icon(Icons.check_circle_rounded, color: AppColors.success, size: 16),
+                const Icon(Icons.check_circle_rounded,
+                    color: AppColors.success, size: 16),
                 const SizedBox(width: 8),
-                Text('Google Drive Linked', style: AppTypography.caption.copyWith(color: AppColors.success, fontWeight: FontWeight.bold)),
+                Text('Google Drive Linked',
+                    style: AppTypography.caption.copyWith(
+                        color: AppColors.success, fontWeight: FontWeight.bold)),
               ],
             )
           else

@@ -10,13 +10,15 @@ class CuratedConversationEngine implements ConversationEngine {
 
   @override
   Future<String> generateFollowUpQuestion(
-    List<Memory> history, 
+    List<Memory> history,
     String currentTranscript, {
     String? unfinishedTopic,
     String? timelineGap,
   }) async {
-    if (unfinishedTopic != null) return 'You mentioned $unfinishedTopic earlier. Could you tell me more about that?';
-    if (timelineGap != null) return 'I\'d love to hear some stories from the $timelineGap if you have any.';
+    if (unfinishedTopic != null)
+      return 'You mentioned $unfinishedTopic earlier. Could you tell me more about that?';
+    if (timelineGap != null)
+      return 'I\'d love to hear some stories from the $timelineGap if you have any.';
     return 'That is beautiful. How did that make you feel?';
   }
 

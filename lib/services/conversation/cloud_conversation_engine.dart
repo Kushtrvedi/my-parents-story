@@ -22,20 +22,24 @@ class CloudConversationEngine implements ConversationEngine {
 
   @override
   Future<String> generateFollowUpQuestion(
-    List<Memory> history, 
+    List<Memory> history,
     String currentTranscript, {
     String? unfinishedTopic,
     String? timelineGap,
   }) async {
     if (_model == null) return 'Could you tell me more about that?';
 
-    final recentContext = history.take(3).map((m) => m.displayAnswer).join("\n");
-    
-    String contextInstruction = 'Ask one gentle, open-ended follow-up question to help them elaborate on the current memory.';
+    final recentContext =
+        history.take(3).map((m) => m.displayAnswer).join("\n");
+
+    String contextInstruction =
+        'Ask one gentle, open-ended follow-up question to help them elaborate on the current memory.';
     if (unfinishedTopic != null) {
-      contextInstruction = 'The current memory seems complete. Gently ask them about this unfinished topic they mentioned previously: "$unfinishedTopic". Transition naturally.';
+      contextInstruction =
+          'The current memory seems complete. Gently ask them about this unfinished topic they mentioned previously: "$unfinishedTopic". Transition naturally.';
     } else if (timelineGap != null) {
-      contextInstruction = 'The current memory seems complete. We are missing stories from the $timelineGap. Gently ask them if they have any memories from that time.';
+      contextInstruction =
+          'The current memory seems complete. We are missing stories from the $timelineGap. Gently ask them if they have any memories from that time.';
     }
 
     final prompt = '''
@@ -68,7 +72,9 @@ Keep it brief and conversational. Do not ask multiple questions.
       'historicalEvents': [],
       'objects': [],
       'familyRelationships': [],
-      'summary': transcript.length > 50 ? '${transcript.substring(0, 50)}...' : transcript,
+      'summary': transcript.length > 50
+          ? '${transcript.substring(0, 50)}...'
+          : transcript,
     };
 
     if (_model == null) return fallback;
@@ -95,7 +101,11 @@ Output ONLY raw JSON.
     try {
       final content = [Content.text(prompt)];
       final response = await _model!.generateContent(content);
-      final raw = response.text?.replaceAll('```json', '').replaceAll('```', '').trim() ?? '';
+      final raw = response.text
+              ?.replaceAll('```json', '')
+              .replaceAll('```', '')
+              .trim() ??
+          '';
       return jsonDecode(raw) as Map<String, dynamic>;
     } catch (e) {
       return fallback;

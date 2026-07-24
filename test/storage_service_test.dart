@@ -49,7 +49,8 @@ void main() {
         originalTranscript: 'My childhood memory.',
       );
 
-      final retrieved = storageService.getMemory(profile.id, 'childhood', 'q_1');
+      final retrieved =
+          storageService.getMemory(profile.id, 'childhood', 'q_1');
       expect(retrieved, isNotNull);
       expect(retrieved!.originalTranscript, 'My childhood memory.');
     });

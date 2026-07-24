@@ -8,7 +8,8 @@ class BrowserAIEngine implements AIEngine {
   String get name => 'Browser AI (Gemini Nano)';
 
   @override
-  Future<String> generateFollowUpQuestion(String context, String currentTranscript) async {
+  Future<String> generateFollowUpQuestion(
+      String context, String currentTranscript) async {
     return 'Could you tell me more about that?';
   }
 

@@ -37,7 +37,8 @@ class ParentProfile {
       birthYear: map['birthYear'] ?? '',
       city: map['city'] ?? '',
       photoPath: map['photoPath'] ?? '',
-      createdAt: map['createdAt'] != null ? DateTime.parse(map['createdAt']) : null,
+      createdAt:
+          map['createdAt'] != null ? DateTime.parse(map['createdAt']) : null,
     );
   }
 }

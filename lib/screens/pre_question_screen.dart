@@ -45,7 +45,8 @@ class _PreQuestionScreenState extends State<PreQuestionScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, size: 26, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios_new,
+              size: 26, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
@@ -55,7 +56,8 @@ class _PreQuestionScreenState extends State<PreQuestionScreen> {
             child: GestureDetector(
               onTap: _toggleFamilyMode,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.m, vertical: AppSpacing.xs),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.m, vertical: AppSpacing.xs),
                 decoration: BoxDecoration(
                   color: _familyMode
                       ? Colors.white.withValues(alpha: 0.2)
@@ -95,64 +97,69 @@ class _PreQuestionScreenState extends State<PreQuestionScreen> {
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const SizedBox(height: AppSpacing.xxl),
-              const Icon(Icons.favorite_rounded, color: AppColors.accent, size: AppIcons.xxl),
-              const SizedBox(height: AppSpacing.xxl),
-              Text(
-                _familyMode ? T.tr('familyModeMessage') : T.tr('preQuestionMessage'),
-                textAlign: TextAlign.center,
-                style: AppTypography.display.copyWith(
-                  color: Colors.white,
-                  height: 1.4,
-                ),
-              ),
-              if (_familyMode) ...[
-                const SizedBox(height: AppSpacing.l),
-                Container(
-                  padding: const EdgeInsets.all(AppSpacing.m),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(AppRadius.m),
-                  ),
-                  child: Text(
-                    T.tr('familyModeHint'),
-                    textAlign: TextAlign.center,
-                    style: AppTypography.caption.copyWith(
-                      color: Colors.white.withValues(alpha: 0.8),
-                    ),
-                  ),
-                ),
-              ],
-              const SizedBox(height: AppSpacing.xxl),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: AppColors.primary,
-                    padding: const EdgeInsets.symmetric(vertical: AppSpacing.l),
-                  ),
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      PageTurnRoute(
-                        page: QuestionScreen(
-                          profile: widget.profile,
-                          chapterId: widget.chapterId,
-                          chapterIndex: widget.chapterIndex,
-                          familyMode: _familyMode,
+                      const Icon(Icons.favorite_rounded,
+                          color: AppColors.accent, size: AppIcons.xxl),
+                      const SizedBox(height: AppSpacing.xxl),
+                      Text(
+                        _familyMode
+                            ? T.tr('familyModeMessage')
+                            : T.tr('preQuestionMessage'),
+                        textAlign: TextAlign.center,
+                        style: AppTypography.display.copyWith(
+                          color: Colors.white,
+                          height: 1.4,
                         ),
                       ),
-                    );
-                  },
-                  child: Text(T.tr('beginStory')),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.xl),
+                      if (_familyMode) ...[
+                        const SizedBox(height: AppSpacing.l),
+                        Container(
+                          padding: const EdgeInsets.all(AppSpacing.m),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(AppRadius.m),
+                          ),
+                          child: Text(
+                            T.tr('familyModeHint'),
+                            textAlign: TextAlign.center,
+                            style: AppTypography.caption.copyWith(
+                              color: Colors.white.withValues(alpha: 0.8),
+                            ),
+                          ),
+                        ),
+                      ],
+                      const SizedBox(height: AppSpacing.xxl),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: AppColors.primary,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: AppSpacing.l),
+                          ),
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              PageTurnRoute(
+                                page: QuestionScreen(
+                                  profile: widget.profile,
+                                  chapterId: widget.chapterId,
+                                  chapterIndex: widget.chapterIndex,
+                                  familyMode: _familyMode,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Text(T.tr('beginStory')),
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.xl),
                     ],
                   ),
                 ),

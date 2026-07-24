@@ -9,7 +9,7 @@ abstract class ConversationEngine {
 
   /// Generates a follow-up question based on the conversation history.
   Future<String> generateFollowUpQuestion(
-    List<Memory> history, 
+    List<Memory> history,
     String currentTranscript, {
     String? unfinishedTopic,
     String? timelineGap,

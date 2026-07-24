@@ -25,7 +25,9 @@ class Memoir {
       version: map['version'] ?? 1,
       text: map['text'] ?? '',
       createdBy: map['createdBy'] ?? 'human',
-      editedAt: map['editedAt'] != null ? DateTime.parse(map['editedAt']) : DateTime.now(),
+      editedAt: map['editedAt'] != null
+          ? DateTime.parse(map['editedAt'])
+          : DateTime.now(),
     );
   }
 }

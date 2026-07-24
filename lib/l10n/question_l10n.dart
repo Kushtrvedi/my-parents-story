@@ -73,17 +73,26 @@ class QuestionL10n {
   static const Map<String, Map<String, String>> _questionTranslations = {
     'hi': {
       // ch01
-      'ch01_q01': 'अपने दादा-दादी या पूर्वजों के बारे में आपने सबसे पहली बात क्या सुनी थी?',
-      'ch01_q02': 'उस घर या स्थान के बारे में बताइए जहाँ आपके माता-पिता बड़े हुए थे।',
-      'ch01_q03': 'उस शहर या गाँव का क्या नाम था जहाँ आपका परिवार सबसे पहले रहता था?',
-      'ch01_q04': 'आप अपने पारिवारिक नाम या उपनाम के इतिहास के बारे में क्या जानते हैं?',
-      'ch01_q05': 'अपनी नानीजी (माताजी की माँ) के बारे में बताइए — वे कैसी इंसान थीं?',
-      'ch01_q06': 'अपने दादाजी (पिताजी के पिता) के बारे में बताइए — आपकी उनसे जुड़ी क्या यादें हैं?',
-      'ch01_q07': 'आपके माता-पिता की पहली मुलाकात कैसे हुई थी, इसकी क्या कहानी है?',
-      'ch01_q08': 'आपके परिवार में पीढ़ी-दर-पीढ़ी कौन सी खास कहानियाँ सुनाई जाती थीं?',
+      'ch01_q01':
+          'अपने दादा-दादी या पूर्वजों के बारे में आपने सबसे पहली बात क्या सुनी थी?',
+      'ch01_q02':
+          'उस घर या स्थान के बारे में बताइए जहाँ आपके माता-पिता बड़े हुए थे।',
+      'ch01_q03':
+          'उस शहर या गाँव का क्या नाम था जहाँ आपका परिवार सबसे पहले रहता था?',
+      'ch01_q04':
+          'आप अपने पारिवारिक नाम या उपनाम के इतिहास के बारे में क्या जानते हैं?',
+      'ch01_q05':
+          'अपनी नानीजी (माताजी की माँ) के बारे में बताइए — वे कैसी इंसान थीं?',
+      'ch01_q06':
+          'अपने दादाजी (पिताजी के पिता) के बारे में बताइए — आपकी उनसे जुड़ी क्या यादें हैं?',
+      'ch01_q07':
+          'आपके माता-पिता की पहली मुलाकात कैसे हुई थी, इसकी क्या कहानी है?',
+      'ch01_q08':
+          'आपके परिवार में पीढ़ी-दर-पीढ़ी कौन सी खास कहानियाँ सुनाई जाती थीं?',
 
       // ch02
-      'ch02_q01': 'आपके जन्म या शुरुआती दिनों के बारे में आपके माता-पिता क्या बताते थे?',
+      'ch02_q01':
+          'आपके जन्म या शुरुआती दिनों के बारे में आपके माता-पिता क्या बताते थे?',
       'ch02_q02': 'आपके बचपन की सबसे पुरानी और स्पष्ट याद कौन सी है?',
       'ch02_q03': 'बचपन में आपका पसंदीदा खिलौना, खेल या गतिविधि कौन सी थी?',
       'ch02_q04': 'बचपन में आपके घर का माहौल कैसा रहता था?',
@@ -92,10 +101,12 @@ class QuestionL10n {
       // ch03
       'ch03_q01': 'उस घर का वर्णन करें जहाँ आप पले-बढ़े। वह कैसा दिखता था?',
       'ch03_q02': 'आपके बचपन के पड़ोस का माहौल और वहाँ के लोग कैसे थे?',
-      'ch03_q03': 'आपके घर की रसोई और माँ के हाथों बने खाने की क्या खुशबू याद आती है?',
+      'ch03_q03':
+          'आपके घर की रसोई और माँ के हाथों बने खाने की क्या खुशबू याद आती है?',
 
       // ch04
-      'ch04_q01': 'स्कूल का आपका पहला दिन कैसा था? क्या आपको डर या खुशी महसूस हुई थी?',
+      'ch04_q01':
+          'स्कूल का आपका पहला दिन कैसा था? क्या आपको डर या खुशी महसूस हुई थी?',
       'ch04_q02': 'आपके पसंदीदा शिक्षक कौन थे और उन्होंने आपको क्या सिखाया?',
       'ch04_q03': 'स्कूल के दिनों का आपका सबसे प्यारा दोस्त कौन था?',
 
@@ -118,7 +129,8 @@ class QuestionL10n {
       'ch09_q01': 'जब आप पहली बार किसी के प्यार में पड़े, तो वह एहसास कैसा था?',
 
       // ch10
-      'ch10_q01': 'आपकी शादी का दिन कैसा था? उस दिन की सबसे खूबसूरत याद क्या है?',
+      'ch10_q01':
+          'आपकी शादी का दिन कैसा था? उस दिन की सबसे खूबसूरत याद क्या है?',
 
       // ch11
       'ch11_q01': 'जब आप पहली बार माता-पिता बने, तो वह पल कैसा था?',
@@ -128,7 +140,8 @@ class QuestionL10n {
       'ch12_q01': 'आपके घर में त्यौहार कैसे मनाए जाते थे?',
 
       // ch13
-      'ch13_q01': 'जीवन में आई सबसे कठिन चुनौती क्या थी और आपने उसका सामना कैसे किया?',
+      'ch13_q01':
+          'जीवन में आई सबसे कठिन चुनौती क्या थी और आपने उसका सामना कैसे किया?',
 
       // ch14
       'ch14_q01': 'आपके जीवन की सबसे बड़ी सफलता या गर्व का पल कौन सा रहा है?',
@@ -143,36 +156,46 @@ class QuestionL10n {
       'ch17_q01': 'जीवन ने आपको जो सबसे बड़ा पाठ सिखाया, वह क्या है?',
 
       // ch18
-      'ch18_q01': 'आज पीछे मुड़कर देखने पर आपको जीवन में सबसे ज़्यादा आभार किस बात का है?',
+      'ch18_q01':
+          'आज पीछे मुड़कर देखने पर आपको जीवन में सबसे ज़्यादा आभार किस बात का है?',
 
       // ch19
-      'ch19_q01': 'आप आने वाली पीढ़ियों (अपने पोते-पोतियों) को क्या संदेश देना चाहते हैं?',
+      'ch19_q01':
+          'आप आने वाली पीढ़ियों (अपने पोते-पोतियों) को क्या संदेश देना चाहते हैं?',
 
       // ch20
-      'ch20_q01': 'यदि आप अपनी पूरी जीवन यात्रा को एक वाक्य में कहें, तो वह क्या होगा?',
+      'ch20_q01':
+          'यदि आप अपनी पूरी जीवन यात्रा को एक वाक्य में कहें, तो वह क्या होगा?',
     },
     'gu': {
-      'ch01_q01': 'તમારા દાદા-દાદી અથવા પૂર્વજો વિશે તમે સાંભળેલી પ્રથમ વાત કઈ હતી?',
-      'ch01_q02': 'તમારું કુટુંબ મૂળ ક્યાંનું હતું અને તેઓ અહીં કેવી રીતે આવ્યા?',
-      'ch02_q01': 'તમારા જન્મ અથવા પ્રારંભિક દિવસો વિશે તમારા માતાપિતા શું કહેતા હતા?',
+      'ch01_q01':
+          'તમારા દાદા-દાદી અથવા પૂર્વજો વિશે તમે સાંભળેલી પ્રથમ વાત કઈ હતી?',
+      'ch01_q02':
+          'તમારું કુટુંબ મૂળ ક્યાંનું હતું અને તેઓ અહીં કેવી રીતે આવ્યા?',
+      'ch02_q01':
+          'તમારા જન્મ અથવા પ્રારંભિક દિવસો વિશે તમારા માતાપિતા શું કહેતા હતા?',
       'ch02_q02': 'તમારા બાળપણની સૌથી જૂની યાદ કઈ છે?',
       'ch03_q01': 'તમે જે ઘરમાં મોટા થયા છો તેનું વર્ણન કરો.',
       'ch04_q01': 'શાળાનો તમારો પહેલો દિવસ કેવો હતો?',
       'ch08_q01': 'તમારી પ્રથમ નોકરી કઈ હતી અને પ્રથમ કમાણી શું હતી?',
       'ch10_q01': 'તમારા લગ્નનો દિવસ કેવો હતો?',
-      'ch11_q01': 'જ્યારે તમે પ્રથમ વખત માતાપિતા બન્યા ત્યારે તે ક્ષણ કેવી હતી?',
+      'ch11_q01':
+          'જ્યારે તમે પ્રથમ વખત માતાપિતા બન્યા ત્યારે તે ક્ષણ કેવી હતી?',
       'ch19_q01': 'તમે ભવિષ્યની પેઢીઓને શું સંદેશ આપવા માંગો છો?',
     },
     'es': {
-      'ch01_q01': '¿Qué fue lo primero que escuchaste sobre tus abuelos o antepasados?',
+      'ch01_q01':
+          '¿Qué fue lo primero que escuchaste sobre tus abuelos o antepasados?',
       'ch01_q02': '¿De dónde era originaria tu familia y cómo llegaron aquí?',
       'ch02_q01': '¿Qué te contaban tus padres sobre el día en que naciste?',
       'ch02_q02': '¿Cuál es tu recuerdo más antiguo de la infancia?',
       'ch03_q01': 'Describe la casa donde creciste.',
       'ch04_q01': '¿Cómo fue tu primer día de escuela?',
-      'ch08_q01': '¿Cuál fue tu primer trabajo y qué hiciste con tu primer sueldo?',
+      'ch08_q01':
+          '¿Cuál fue tu primer trabajo y qué hiciste con tu primer sueldo?',
       'ch10_q01': '¿Cómo fue el día de tu boda?',
-      'ch11_q01': '¿Cómo te sentiste cuando fuiste padre/madre por primera vez?',
+      'ch11_q01':
+          '¿Cómo te sentiste cuando fuiste padre/madre por primera vez?',
       'ch19_q01': '¿Qué mensaje te gustaría dejar a las futuras generaciones?',
     },
   };
@@ -194,7 +217,8 @@ class QuestionL10n {
         return langMap[question.id]!;
       }
 
-      final normalizedId = question.id.replaceAll('ch', 'q').replaceAll('_', '');
+      final normalizedId =
+          question.id.replaceAll('ch', 'q').replaceAll('_', '');
       if (langMap.containsKey(normalizedId)) {
         return langMap[normalizedId]!;
       }
@@ -222,14 +246,17 @@ class QuestionL10n {
   }
 
   static String _generateHindiQuestionFallback(Question question) {
-    final title = _chapterTitles['hi']?[question.chapterId] ?? 'आपकी जीवन यात्रा';
+    final title =
+        _chapterTitles['hi']?[question.chapterId] ?? 'आपकी जीवन यात्रा';
     final text = question.question.toLowerCase();
 
     if (text.contains('grandparent') || text.contains('ancestor')) {
       return 'अपने दादा-दादी या पूर्वजों के बारे में अपनी कोई ख़ास याद बताइए।';
     } else if (text.contains('house') || text.contains('home')) {
       return 'उस घर और माहौल के बारे में बताइए जहाँ आप पले-बढ़े।';
-    } else if (text.contains('town') || text.contains('village') || text.contains('city')) {
+    } else if (text.contains('town') ||
+        text.contains('village') ||
+        text.contains('city')) {
       return 'अपने उस शहर या गाँव के बारे में बताइए जहाँ आपका बचपन बीता।';
     } else if (text.contains('father') || text.contains('dad')) {
       return 'अपने पिताजी के बारे में बताइए, वे किस स्वभाव के इंसान थे?';
@@ -239,15 +266,25 @@ class QuestionL10n {
       return 'स्कूल के दिनों और अपने शिक्षकों के बारे में बताइए।';
     } else if (text.contains('friend') || text.contains('friendship')) {
       return 'अपने बचपन के दोस्तों और साथ बिताए पलों के बारे में बताइए।';
-    } else if (text.contains('job') || text.contains('work') || text.contains('career')) {
+    } else if (text.contains('job') ||
+        text.contains('work') ||
+        text.contains('career')) {
       return 'अपनी पहली नौकरी या काम-काज के दिनों की यादें साझा करें।';
-    } else if (text.contains('marry') || text.contains('wedding') || text.contains('marriage')) {
+    } else if (text.contains('marry') ||
+        text.contains('wedding') ||
+        text.contains('marriage')) {
       return 'अपनी शादी के दिन और उन हसीन पलों के बारे में बताइए।';
-    } else if (text.contains('child') || text.contains('parent') || text.contains('baby')) {
+    } else if (text.contains('child') ||
+        text.contains('parent') ||
+        text.contains('baby')) {
       return 'जब आप पहली बार माता-पिता बने, तो वह अनुभव कैसा था?';
-    } else if (text.contains('festival') || text.contains('tradition') || text.contains('food')) {
+    } else if (text.contains('festival') ||
+        text.contains('tradition') ||
+        text.contains('food')) {
       return 'आपके घर में त्यौहार और परंपराएं कैसे मनाई जाती थीं?';
-    } else if (text.contains('lesson') || text.contains('wisdom') || text.contains('reflect')) {
+    } else if (text.contains('lesson') ||
+        text.contains('wisdom') ||
+        text.contains('reflect')) {
       return 'जीवन ने आपको जो सबसे बड़ा पाठ सिखाया, वह क्या है?';
     }
 
@@ -255,7 +292,8 @@ class QuestionL10n {
   }
 
   static String _generateGujaratiQuestionFallback(Question question) {
-    final title = _chapterTitles['gu']?[question.chapterId] ?? 'તમારી જીવન યાત્રા';
+    final title =
+        _chapterTitles['gu']?[question.chapterId] ?? 'તમારી જીવન યાત્રા';
     return '$title સાથે જોડાયેલી તમારી સુંદર યાદ શેર કરો.';
   }
 

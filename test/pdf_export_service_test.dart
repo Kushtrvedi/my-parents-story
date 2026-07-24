@@ -12,9 +12,10 @@ void main() {
 
   setUp(() async {
     tempDir = await Directory.systemTemp.createTemp('pdf_test');
-    
+
     // Mock path_provider MethodChannel
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
       const MethodChannel('plugins.flutter.io/path_provider'),
       (MethodCall methodCall) async {
         if (methodCall.method == 'getApplicationDocumentsDirectory') {
@@ -32,15 +33,17 @@ void main() {
   });
 
   group('PdfExportService Tests', () {
-    test('Book consistency test - generating twice produces same byte size and structure', () async {
+    test(
+        'Book consistency test - generating twice produces same byte size and structure',
+        () async {
       final service = PdfExportService();
-      
+
       final profile = ParentProfile(
         id: '1',
         name: 'Test Profile',
         parentType: 'father',
       );
-      
+
       final chapters = [
         GeneratedChapter(
           id: 'c1',
@@ -66,8 +69,8 @@ void main() {
       expect(bytes1.isNotEmpty, true);
       expect(bytes2.isNotEmpty, true);
 
-      // Since PDF generation includes timestamps/creation dates in metadata, 
-      // exact byte-for-byte matching might fail. However, we can assert 
+      // Since PDF generation includes timestamps/creation dates in metadata,
+      // exact byte-for-byte matching might fail. However, we can assert
       // the file size is very similar (within a tiny margin of bytes for time diff).
       // Or we can just ensure they generated successfully.
       expect(bytes1.length, closeTo(bytes2.length, 500));

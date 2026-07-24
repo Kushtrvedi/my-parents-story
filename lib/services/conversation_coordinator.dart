@@ -8,9 +8,10 @@ import 'storage_service.dart';
 import '../models/memory.dart';
 
 class ConversationCoordinator {
-  static final ConversationCoordinator _instance = ConversationCoordinator._internal();
+  static final ConversationCoordinator _instance =
+      ConversationCoordinator._internal();
   factory ConversationCoordinator() => _instance;
-  
+
   late final LifeContextEngine _contextEngine;
 
   ConversationCoordinator._internal();
@@ -40,7 +41,7 @@ class ConversationCoordinator {
     } else {
       _activeEngine = _fallbackEngine;
     }
-    
+
     return _activeEngine!;
   }
 
@@ -49,21 +50,23 @@ class ConversationCoordinator {
     return engine.modeName;
   }
 
-  Future<String> generateFollowUpQuestion(String profileId, String currentTranscript) async {
+  Future<String> generateFollowUpQuestion(
+      String profileId, String currentTranscript) async {
     final engine = await getActiveEngine();
-    final contextMemories = _contextEngine.getRelevantContext(profileId, currentTranscript);
-    
+    final contextMemories =
+        _contextEngine.getRelevantContext(profileId, currentTranscript);
+
     // Check if we need to surface an unfinished story or a timeline gap
     String? unfinishedTopic;
     String? timelineGap;
-    
+
     // Only inject gaps if we have a very short transcript that doesn't warrant deep follow up
     // Or just let the engine decide how to transition.
     if (currentTranscript.length < 50) {
       final unfinished = _contextEngine.getUnfinishedStory(profileId);
       if (unfinished != null) {
         unfinishedTopic = unfinished.summary ?? 'a previous story';
-        
+
         // Mark it as finished so we don't ask again immediately
         unfinished.isUnfinished = false;
         final storage = StorageService();
@@ -77,9 +80,9 @@ class ConversationCoordinator {
         timelineGap = _contextEngine.getTimelineGap(profileId);
       }
     }
-    
+
     return engine.generateFollowUpQuestion(
-      contextMemories, 
+      contextMemories,
       currentTranscript,
       unfinishedTopic: unfinishedTopic,
       timelineGap: timelineGap,

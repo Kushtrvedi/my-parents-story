@@ -18,9 +18,9 @@ class PageTurnRoute<T> extends PageRouteBuilder<T> {
 
                 return Transform(
                   transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.0015) 
-                    ..rotateY(-angle), 
-                  alignment: Alignment.centerLeft, 
+                    ..setEntry(3, 2, 0.0015)
+                    ..rotateY(-angle),
+                  alignment: Alignment.centerLeft,
                   child: Opacity(
                     opacity: opacity,
                     child: child,

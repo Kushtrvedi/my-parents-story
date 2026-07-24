@@ -35,15 +35,17 @@ class AdaptiveShell extends StatelessWidget {
         bottomNavigationBar: NavigationBar(
           selectedIndex: selectedIndex,
           onDestinationSelected: (idx) => destinations[idx].onTap(),
-          destinations: destinations.map((d) => NavigationDestination(
-            icon: Icon(d.icon),
-            selectedIcon: Icon(d.selectedIcon),
-            label: d.label,
-          )).toList(),
+          destinations: destinations
+              .map((d) => NavigationDestination(
+                    icon: Icon(d.icon),
+                    selectedIcon: Icon(d.selectedIcon),
+                    label: d.label,
+                  ))
+              .toList(),
         ),
       );
     }
-    
+
     if (context.isMedium) {
       return Scaffold(
         body: Row(
@@ -52,11 +54,13 @@ class AdaptiveShell extends StatelessWidget {
               selectedIndex: selectedIndex,
               onDestinationSelected: (idx) => destinations[idx].onTap(),
               labelType: NavigationRailLabelType.all,
-              destinations: destinations.map((d) => NavigationRailDestination(
-                icon: Icon(d.icon),
-                selectedIcon: Icon(d.selectedIcon),
-                label: Text(d.label),
-              )).toList(),
+              destinations: destinations
+                  .map((d) => NavigationRailDestination(
+                        icon: Icon(d.icon),
+                        selectedIcon: Icon(d.selectedIcon),
+                        label: Text(d.label),
+                      ))
+                  .toList(),
             ),
             const VerticalDivider(thickness: 1, width: 1),
             Expanded(child: child),
@@ -75,7 +79,9 @@ class AdaptiveShell extends StatelessWidget {
               children: [
                 for (var i = 0; i < destinations.length; i++)
                   ListTile(
-                    leading: Icon(i == selectedIndex ? destinations[i].selectedIcon : destinations[i].icon),
+                    leading: Icon(i == selectedIndex
+                        ? destinations[i].selectedIcon
+                        : destinations[i].icon),
                     title: Text(destinations[i].label),
                     selected: i == selectedIndex,
                     onTap: destinations[i].onTap,

@@ -21,7 +21,8 @@ class SpeechSetupResult {
     this.errorMessage,
   });
 
-  bool get allReady => microphoneGranted && speechAvailable && offlineLanguageReady;
+  bool get allReady =>
+      microphoneGranted && speechAvailable && offlineLanguageReady;
 }
 
 class SpeechSetupService {
@@ -32,8 +33,10 @@ class SpeechSetupService {
 
   bool _isInitialized = false;
 
-  bool get isSetupComplete => LocalStorage.settings.get(_setupCompleteKey, defaultValue: false) == true;
-  bool get isFamilyMode => LocalStorage.settings.get(_familyModeKey, defaultValue: false) == true;
+  bool get isSetupComplete =>
+      LocalStorage.settings.get(_setupCompleteKey, defaultValue: false) == true;
+  bool get isFamilyMode =>
+      LocalStorage.settings.get(_familyModeKey, defaultValue: false) == true;
 
   Future<void> markSetupComplete() async {
     await LocalStorage.settings.put(_setupCompleteKey, true);
@@ -124,7 +127,8 @@ class SpeechSetupService {
     if (kIsWeb) return; // Web doesn't need this
     if (defaultTargetPlatform == TargetPlatform.android) {
       try {
-        await const MethodChannel('com.myparentsstory/setup').invokeMethod('openSpeechSettings');
+        await const MethodChannel('com.myparentsstory/setup')
+            .invokeMethod('openSpeechSettings');
       } catch (_) {
         // Fallback: guide user manually
       }
@@ -135,7 +139,8 @@ class SpeechSetupService {
     if (kIsWeb) return; // Web doesn't need this
     if (defaultTargetPlatform == TargetPlatform.android) {
       try {
-        await const MethodChannel('com.myparentsstory/setup').invokeMethod('openLanguagePackSettings');
+        await const MethodChannel('com.myparentsstory/setup')
+            .invokeMethod('openLanguagePackSettings');
       } catch (_) {
         // Fallback: guide user manually
       }

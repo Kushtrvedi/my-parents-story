@@ -44,11 +44,36 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
   bool _familyMode = false;
 
   static const _groups = [
-    _LifeStageGroup(titleKey: 'groupChildhood', descKey: 'groupChildhoodDesc', emoji: '🌱', startChapter: 0, endChapter: 4),
-    _LifeStageGroup(titleKey: 'groupYouth', descKey: 'groupYouthDesc', emoji: '🌿', startChapter: 5, endChapter: 7),
-    _LifeStageGroup(titleKey: 'groupFamily', descKey: 'groupFamilyDesc', emoji: '🏡', startChapter: 8, endChapter: 12),
-    _LifeStageGroup(titleKey: 'groupJourney', descKey: 'groupJourneyDesc', emoji: '🛤️', startChapter: 13, endChapter: 16),
-    _LifeStageGroup(titleKey: 'groupLegacy', descKey: 'groupLegacyDesc', emoji: '🌟', startChapter: 17, endChapter: 19),
+    _LifeStageGroup(
+        titleKey: 'groupChildhood',
+        descKey: 'groupChildhoodDesc',
+        emoji: '🌱',
+        startChapter: 0,
+        endChapter: 4),
+    _LifeStageGroup(
+        titleKey: 'groupYouth',
+        descKey: 'groupYouthDesc',
+        emoji: '🌿',
+        startChapter: 5,
+        endChapter: 7),
+    _LifeStageGroup(
+        titleKey: 'groupFamily',
+        descKey: 'groupFamilyDesc',
+        emoji: '🏡',
+        startChapter: 8,
+        endChapter: 12),
+    _LifeStageGroup(
+        titleKey: 'groupJourney',
+        descKey: 'groupJourneyDesc',
+        emoji: '🛤️',
+        startChapter: 13,
+        endChapter: 16),
+    _LifeStageGroup(
+        titleKey: 'groupLegacy',
+        descKey: 'groupLegacyDesc',
+        emoji: '🌟',
+        startChapter: 17,
+        endChapter: 19),
   ];
 
   @override
@@ -74,7 +99,8 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
   Widget _buildEmptyStateOrProgress() {
     if (_totalAnswered == 0) {
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.s),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.l, vertical: AppSpacing.s),
         child: Text(
           T.tr('emptyMemories'),
           textAlign: TextAlign.center,
@@ -86,7 +112,8 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
       );
     } else {
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.s),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.l, vertical: AppSpacing.s),
         child: Text(
           T.tr('sharedMemoriesCount').replaceAll('{count}', '$_totalAnswered'),
           textAlign: TextAlign.center,
@@ -115,7 +142,8 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
             child: GestureDetector(
               onTap: _toggleFamilyMode,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.m, vertical: AppSpacing.xs),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.m, vertical: AppSpacing.xs),
                 decoration: BoxDecoration(
                   color: _familyMode
                       ? AppColors.primary.withValues(alpha: 0.1)
@@ -167,179 +195,214 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
                     final isExpanded = _expandedGroups.contains(groupIndex);
 
                     // Stage Progress via Dots
-                    final totalChaptersInGroup = group.endChapter - group.startChapter + 1;
+                    final totalChaptersInGroup =
+                        group.endChapter - group.startChapter + 1;
                     int fullyCompletedChapters = 0;
-                    for (int i = group.startChapter; i <= group.endChapter; i++) {
+                    for (int i = group.startChapter;
+                        i <= group.endChapter;
+                        i++) {
                       if (i >= chapters.length) continue;
                       final ch = chapters[i];
-                  final completed = _progress[ch.id] ?? 0;
-                  if (completed >= ch.questionCount && ch.questionCount > 0) {
-                    fullyCompletedChapters++;
-                  }
-                }
-                final isGroupDone = fullyCompletedChapters == totalChaptersInGroup;
+                      final completed = _progress[ch.id] ?? 0;
+                      if (completed >= ch.questionCount &&
+                          ch.questionCount > 0) {
+                        fullyCompletedChapters++;
+                      }
+                    }
+                    final isGroupDone =
+                        fullyCompletedChapters == totalChaptersInGroup;
 
-                return Container(
-                  margin: const EdgeInsets.only(bottom: AppSpacing.s),
-                  decoration: BoxDecoration(
-                    color: isGroupDone ? AppColors.primary.withValues(alpha: 0.06) : AppColors.card,
-                    borderRadius: BorderRadius.circular(AppRadius.l),
-                    border: Border.all(
-                      color: isGroupDone ? AppColors.primary.withValues(alpha: 0.3) : AppColors.divider,
-                      width: 1.5,
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            if (isExpanded) {
-                              _expandedGroups.remove(groupIndex);
-                            } else {
-                              _expandedGroups.add(groupIndex);
-                            }
-                          });
-                        },
-                        behavior: HitTestBehavior.opaque,
-                        child: Padding(
-                          padding: const EdgeInsets.all(AppSpacing.l),
-                          child: Row(
-                            children: [
-                              Text(group.emoji, style: const TextStyle(fontSize: 32)),
-                              const SizedBox(width: AppSpacing.m),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      T.tr(group.titleKey),
-                                      style: AppTypography.heading,
-                                    ),
-                                    const SizedBox(height: AppSpacing.xs),
-                                    Text(
-                                      T.tr(group.descKey),
-                                      style: AppTypography.caption,
-                                    ),
-                                    const SizedBox(height: AppSpacing.s),
-                                    _buildDotProgress(totalChaptersInGroup, fullyCompletedChapters),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(width: AppSpacing.s),
-                              Icon(
-                                isExpanded ? Icons.expand_less : Icons.expand_more,
-                                color: AppColors.textLight,
-                                size: AppIcons.l,
-                              ),
-                            ],
-                          ),
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: AppSpacing.s),
+                      decoration: BoxDecoration(
+                        color: isGroupDone
+                            ? AppColors.primary.withValues(alpha: 0.06)
+                            : AppColors.card,
+                        borderRadius: BorderRadius.circular(AppRadius.l),
+                        border: Border.all(
+                          color: isGroupDone
+                              ? AppColors.primary.withValues(alpha: 0.3)
+                              : AppColors.divider,
+                          width: 1.5,
                         ),
                       ),
-                      if (isExpanded)
-                        ...List.generate(totalChaptersInGroup, (i) {
-                          final chapterIndex = group.startChapter + i;
-                          if (chapterIndex >= chapters.length) return const SizedBox.shrink();
-                          final chapter = chapters[chapterIndex];
-                          final completed = _progress[chapter.id] ?? 0;
-                          final total = chapter.questionCount;
-                          final chapterDone = completed >= total && total > 0;
-
-                          return GestureDetector(
-                            onTap: () async {
-                              final Widget nextScreen = _totalAnswered == 0
-                                  ? PreQuestionScreen(
-                                      profile: widget.profile,
-                                      chapterId: chapter.id,
-                                      chapterIndex: chapterIndex,
-                                    )
-                                  : QuestionScreen(
-                                      profile: widget.profile,
-                                      chapterId: chapter.id,
-                                      chapterIndex: chapterIndex,
-                                    );
-                                    
-                              await Navigator.push(
-                                context,
-                                PageTurnRoute(page: nextScreen),
-                              );
-                              _loadProgress();
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (isExpanded) {
+                                  _expandedGroups.remove(groupIndex);
+                                } else {
+                                  _expandedGroups.add(groupIndex);
+                                }
+                              });
                             },
-                            child: Container(
-                              margin: const EdgeInsets.fromLTRB(AppSpacing.l, 0, AppSpacing.l, AppSpacing.m),
-                              padding: const EdgeInsets.all(AppSpacing.m),
-                              decoration: BoxDecoration(
-                                color: chapterDone
-                                    ? AppColors.primary.withValues(alpha: 0.04)
-                                    : AppColors.background,
-                                borderRadius: BorderRadius.circular(AppRadius.m),
-                              ),
+                            behavior: HitTestBehavior.opaque,
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppSpacing.l),
                               child: Row(
                                 children: [
-                                  Container(
-                                    width: AppTouchTargets.min - 16,
-                                    height: AppTouchTargets.min - 16,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: chapterDone
-                                          ? AppColors.primary
-                                          : AppColors.primary.withValues(alpha: 0.08),
-                                    ),
-                                    child: Center(
-                                      child: chapterDone
-                                          ? const Icon(Icons.check, color: Colors.white, size: AppIcons.m)
-                                          : Text(
-                                              '${chapter.number}',
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w700,
-                                                color: completed > 0
-                                                    ? AppColors.primary
-                                                    : AppColors.textLight,
-                                              ),
-                                            ),
-                                    ),
-                                  ),
+                                  Text(group.emoji,
+                                      style: const TextStyle(fontSize: 32)),
                                   const SizedBox(width: AppSpacing.m),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          chapter.getLocalizedTitle(localeProvider.locale.languageCode),
-                                          style: AppTypography.body,
+                                          T.tr(group.titleKey),
+                                          style: AppTypography.heading,
                                         ),
-                                        if (completed > 0) ...[
-                                          const SizedBox(height: AppSpacing.xs),
-                                          Text(
-                                            '$completed of $total memories shared',
-                                            style: AppTypography.caption.copyWith(color: AppColors.primary),
-                                          ),
-                                        ],
+                                        const SizedBox(height: AppSpacing.xs),
+                                        Text(
+                                          T.tr(group.descKey),
+                                          style: AppTypography.caption,
+                                        ),
+                                        const SizedBox(height: AppSpacing.s),
+                                        _buildDotProgress(totalChaptersInGroup,
+                                            fullyCompletedChapters),
                                       ],
                                     ),
                                   ),
+                                  const SizedBox(width: AppSpacing.s),
                                   Icon(
-                                    chapterDone ? Icons.check_circle_outline : Icons.chevron_right,
+                                    isExpanded
+                                        ? Icons.expand_less
+                                        : Icons.expand_more,
                                     color: AppColors.textLight,
                                     size: AppIcons.l,
                                   ),
                                 ],
                               ),
                             ),
-                          );
-                        }),
-                    ],
-                  ),
-                );
-              },
+                          ),
+                          if (isExpanded)
+                            ...List.generate(totalChaptersInGroup, (i) {
+                              final chapterIndex = group.startChapter + i;
+                              if (chapterIndex >= chapters.length)
+                                return const SizedBox.shrink();
+                              final chapter = chapters[chapterIndex];
+                              final completed = _progress[chapter.id] ?? 0;
+                              final total = chapter.questionCount;
+                              final chapterDone =
+                                  completed >= total && total > 0;
+
+                              return GestureDetector(
+                                onTap: () async {
+                                  final Widget nextScreen = _totalAnswered == 0
+                                      ? PreQuestionScreen(
+                                          profile: widget.profile,
+                                          chapterId: chapter.id,
+                                          chapterIndex: chapterIndex,
+                                        )
+                                      : QuestionScreen(
+                                          profile: widget.profile,
+                                          chapterId: chapter.id,
+                                          chapterIndex: chapterIndex,
+                                        );
+
+                                  await Navigator.push(
+                                    context,
+                                    PageTurnRoute(page: nextScreen),
+                                  );
+                                  _loadProgress();
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.fromLTRB(
+                                      AppSpacing.l,
+                                      0,
+                                      AppSpacing.l,
+                                      AppSpacing.m),
+                                  padding: const EdgeInsets.all(AppSpacing.m),
+                                  decoration: BoxDecoration(
+                                    color: chapterDone
+                                        ? AppColors.primary
+                                            .withValues(alpha: 0.04)
+                                        : AppColors.background,
+                                    borderRadius:
+                                        BorderRadius.circular(AppRadius.m),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: AppTouchTargets.min - 16,
+                                        height: AppTouchTargets.min - 16,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: chapterDone
+                                              ? AppColors.primary
+                                              : AppColors.primary
+                                                  .withValues(alpha: 0.08),
+                                        ),
+                                        child: Center(
+                                          child: chapterDone
+                                              ? const Icon(Icons.check,
+                                                  color: Colors.white,
+                                                  size: AppIcons.m)
+                                              : Text(
+                                                  '${chapter.number}',
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: completed > 0
+                                                        ? AppColors.primary
+                                                        : AppColors.textLight,
+                                                  ),
+                                                ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: AppSpacing.m),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              chapter.getLocalizedTitle(
+                                                  localeProvider
+                                                      .locale.languageCode),
+                                              style: AppTypography.body,
+                                            ),
+                                            if (completed > 0) ...[
+                                              const SizedBox(
+                                                  height: AppSpacing.xs),
+                                              Text(
+                                                '$completed of $total memories shared',
+                                                style: AppTypography.caption
+                                                    .copyWith(
+                                                        color:
+                                                            AppColors.primary),
+                                              ),
+                                            ],
+                                          ],
+                                        ),
+                                      ),
+                                      Icon(
+                                        chapterDone
+                                            ? Icons.check_circle_outline
+                                            : Icons.chevron_right,
+                                        color: AppColors.textLight,
+                                        size: AppIcons.l,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                        ],
+                      ),
+                    );
+                  },
                   childCount: _groups.length,
                 ),
               ),
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(AppSpacing.l, AppSpacing.s, AppSpacing.l, AppSpacing.xl),
+                padding: const EdgeInsets.fromLTRB(
+                    AppSpacing.l, AppSpacing.s, AppSpacing.l, AppSpacing.xl),
                 child: ElevatedButton.icon(
                   onPressed: () => Navigator.push(
                     context,
@@ -370,7 +433,9 @@ class _LifeJourneyScreenState extends State<LifeJourneyScreen> {
             shape: BoxShape.circle,
             color: isDone ? AppColors.primary : AppColors.divider,
             border: Border.all(
-              color: isDone ? AppColors.primary : AppColors.textLight.withValues(alpha: 0.3),
+              color: isDone
+                  ? AppColors.primary
+                  : AppColors.textLight.withValues(alpha: 0.3),
             ),
           ),
         );

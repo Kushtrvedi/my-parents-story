@@ -37,7 +37,8 @@ class GeneratedChapter {
       chapterNumber: map['chapterNumber'] ?? 0,
       title: map['title'] ?? '',
       content: map['content'] ?? '',
-      createdAt: map['createdAt'] != null ? DateTime.parse(map['createdAt']) : null,
+      createdAt:
+          map['createdAt'] != null ? DateTime.parse(map['createdAt']) : null,
     );
   }
 }

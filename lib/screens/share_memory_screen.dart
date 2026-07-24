@@ -19,7 +19,8 @@ class ShareMemoryScreen extends StatelessWidget {
   void _shareQuote(BuildContext context) {
     // In a real app, this would use a widget-to-image package to share the actual designed card.
     // For now, we share the text directly.
-    final textToShare = '"${memory.answer}"\n\n— ${profile.name}\nShared from My Parents\' Story';
+    final textToShare =
+        '"${memory.answer}"\n\n— ${profile.name}\nShared from My Parents\' Story';
     Share.share(textToShare);
   }
 
@@ -41,7 +42,8 @@ class ShareMemoryScreen extends StatelessWidget {
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.m),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.xl, vertical: AppSpacing.m),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -61,7 +63,8 @@ class ShareMemoryScreen extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            const Icon(Icons.format_quote_rounded, size: AppIcons.xl, color: AppColors.accent),
+                            const Icon(Icons.format_quote_rounded,
+                                size: AppIcons.xl, color: AppColors.accent),
                             const SizedBox(height: AppSpacing.l),
                             Text(
                               '"${memory.answer}"',

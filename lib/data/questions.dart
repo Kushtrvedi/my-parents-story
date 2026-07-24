@@ -6,140 +6,160 @@ class QuestionDatabase {
       id: 'ch01',
       number: 1,
       title: 'Roots and Family Origins',
-      description: 'Exploring where your family came from and the stories that shaped your earliest ancestors.',
+      description:
+          'Exploring where your family came from and the stories that shaped your earliest ancestors.',
       icon: 'Home',
     ),
     Chapter(
       id: 'ch02',
       number: 2,
       title: 'Birth and Early Childhood',
-      description: 'The very beginning of your life story - your birth, first years, and earliest memories.',
+      description:
+          'The very beginning of your life story - your birth, first years, and earliest memories.',
       icon: 'Baby',
     ),
     Chapter(
       id: 'ch03',
       number: 3,
       title: 'Home and Neighbourhood',
-      description: 'The places where you grew up, the streets you played on, and the community around you.',
+      description:
+          'The places where you grew up, the streets you played on, and the community around you.',
       icon: 'Map',
     ),
     Chapter(
       id: 'ch04',
       number: 4,
       title: 'School Days',
-      description: 'Your experiences in school - teachers, lessons, and the adventures of learning.',
+      description:
+          'Your experiences in school - teachers, lessons, and the adventures of learning.',
       icon: 'Book',
     ),
     Chapter(
       id: 'ch05',
       number: 5,
       title: 'Friends and Growing Up',
-      description: 'The friendships that shaped you and the journey from childhood to adolescence.',
+      description:
+          'The friendships that shaped you and the journey from childhood to adolescence.',
       icon: 'People',
     ),
     Chapter(
       id: 'ch06',
       number: 6,
       title: 'Dreams and Youth',
-      description: 'Your teenage years, the dreams you held, and the person you were becoming.',
+      description:
+          'Your teenage years, the dreams you held, and the person you were becoming.',
       icon: 'Star',
     ),
     Chapter(
       id: 'ch07',
       number: 7,
       title: 'Education and Learning',
-      description: 'Studies beyond school, skills you developed, and the knowledge that stayed with you.',
+      description:
+          'Studies beyond school, skills you developed, and the knowledge that stayed with you.',
       icon: 'Graduate',
     ),
     Chapter(
       id: 'ch08',
       number: 8,
       title: 'First Job and Career',
-      description: 'Your entry into the working world, the jobs you held, and the path you carved.',
+      description:
+          'Your entry into the working world, the jobs you held, and the path you carved.',
       icon: 'Briefcase',
     ),
     Chapter(
       id: 'ch09',
       number: 9,
       title: 'Love and Relationships',
-      description: 'How you met special people in your life and the relationships that mattered most.',
+      description:
+          'How you met special people in your life and the relationships that mattered most.',
       icon: 'Heart',
     ),
     Chapter(
       id: 'ch10',
       number: 10,
       title: 'Marriage and Partnership',
-      description: 'Your wedding, building a life together, and the journey of partnership.',
+      description:
+          'Your wedding, building a life together, and the journey of partnership.',
       icon: 'Rings',
     ),
     Chapter(
       id: 'ch11',
       number: 11,
       title: 'Parenthood',
-      description: 'Becoming a parent, raising children, and the joys and challenges of family.',
+      description:
+          'Becoming a parent, raising children, and the joys and challenges of family.',
       icon: 'Family',
     ),
     Chapter(
       id: 'ch12',
       number: 12,
       title: 'Home and Family Life',
-      description: 'The routines, traditions, and everyday moments that made your family special.',
+      description:
+          'The routines, traditions, and everyday moments that made your family special.',
       icon: 'House',
     ),
     Chapter(
       id: 'ch13',
       number: 13,
       title: 'Festivals, Food and Traditions',
-      description: 'Celebrations, recipes, and customs that brought your family together.',
+      description:
+          'Celebrations, recipes, and customs that brought your family together.',
       icon: 'Celebrate',
     ),
     Chapter(
       id: 'ch14',
       number: 14,
       title: 'Challenges and Difficult Times',
-      description: 'Hard moments in your life and how you found strength to move through them.',
+      description:
+          'Hard moments in your life and how you found strength to move through them.',
       icon: 'Mountain',
     ),
     Chapter(
       id: 'ch15',
       number: 15,
       title: 'Successes and Turning Points',
-      description: 'Moments of achievement and the decisions that changed the course of your life.',
+      description:
+          'Moments of achievement and the decisions that changed the course of your life.',
       icon: 'Trophy',
     ),
     Chapter(
       id: 'ch16',
       number: 16,
       title: 'Faith, Values and Beliefs',
-      description: 'What you believe in, the values you hold dear, and how they guide you.',
+      description:
+          'What you believe in, the values you hold dear, and how they guide you.',
       icon: 'Spirit',
     ),
     Chapter(
       id: 'ch17',
       number: 17,
       title: 'Travel and Adventures',
-      description: 'Places you have been, journeys you have taken, and the world you have seen.',
+      description:
+          'Places you have been, journeys you have taken, and the world you have seen.',
       icon: 'Compass',
     ),
     Chapter(
       id: 'ch18',
       number: 18,
       title: 'Wisdom and Life Lessons',
-      description: 'The lessons life has taught you and the wisdom you want to pass on.',
+      description:
+          'The lessons life has taught you and the wisdom you want to pass on.',
       icon: 'Lightbulb',
     ),
     Chapter(
       id: 'ch19',
       number: 19,
       title: 'Legacy for Future Generations',
-      description: 'What you want your grandchildren and great-grandchildren to know about you.',
+      description:
+          'What you want your grandchildren and great-grandchildren to know about you.',
       icon: 'Tree',
     ),
     Chapter(
       id: 'ch20',
       number: 20,
       title: 'Final Reflections',
-      description: 'Looking back on your life with gratitude and looking forward with hope.',
+      description:
+          'Looking back on your life with gratitude and looking forward with hope.',
       icon: 'Sunrise',
     ),
   ];
@@ -151,12 +171,19 @@ class QuestionDatabase {
       chapterId: 'ch01',
       chapterNumber: 1,
       questionNumber: 1,
-      question: 'What is the earliest thing you remember hearing about your grandparents?',
-      purpose: 'To begin exploring family history through early stories passed down.',
+      question:
+          'What is the earliest thing you remember hearing about your grandparents?',
+      purpose:
+          'To begin exploring family history through early stories passed down.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.short,
-      searchTags: ['grandparents', 'family history', 'earliest memory', 'stories'],
+      searchTags: [
+        'grandparents',
+        'family history',
+        'earliest memory',
+        'stories'
+      ],
       followUps: [
         'Who told you that story?',
         'How did that story make you feel?',
@@ -194,7 +221,8 @@ class QuestionDatabase {
       chapterId: 'ch01',
       chapterNumber: 1,
       questionNumber: 3,
-      question: 'What was the name of the town or village where your family first lived?',
+      question:
+          'What was the name of the town or village where your family first lived?',
       purpose: 'To establish geographical roots and connection to place.',
       expectedMemoryType: ExpectedMemoryType.factual,
       emotionalTone: EmotionalTone.curious,
@@ -215,7 +243,8 @@ class QuestionDatabase {
       chapterId: 'ch01',
       chapterNumber: 1,
       questionNumber: 4,
-      question: 'What do you know about your family name � where does it come from?',
+      question:
+          'What do you know about your family name � where does it come from?',
       purpose: 'To explore identity through the history of the family surname.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.curious,
@@ -280,7 +309,8 @@ class QuestionDatabase {
       chapterId: 'ch01',
       chapterNumber: 1,
       questionNumber: 7,
-      question: 'What stories did your parents tell you about how they met each other?',
+      question:
+          'What stories did your parents tell you about how they met each other?',
       purpose: 'To capture the romantic origin story of the family.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -302,8 +332,10 @@ class QuestionDatabase {
       chapterId: 'ch01',
       chapterNumber: 1,
       questionNumber: 8,
-      question: 'Were there any traditions your grandparents kept that you remember?',
-      purpose: 'To document cultural or family customs passed through generations.',
+      question:
+          'Were there any traditions your grandparents kept that you remember?',
+      purpose:
+          'To document cultural or family customs passed through generations.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.medium,
@@ -348,12 +380,18 @@ class QuestionDatabase {
       chapterId: 'ch01',
       chapterNumber: 1,
       questionNumber: 10,
-      question: 'Did your family face any big challenges when you were very young?',
+      question:
+          'Did your family face any big challenges when you were very young?',
       purpose: 'To acknowledge difficulties with care and build trust.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.long,
-      searchTags: ['challenges', 'hard times', 'difficulties', 'family struggles'],
+      searchTags: [
+        'challenges',
+        'hard times',
+        'difficulties',
+        'family struggles'
+      ],
       people: ['family'],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
@@ -371,7 +409,8 @@ class QuestionDatabase {
       chapterId: 'ch01',
       chapterNumber: 1,
       questionNumber: 11,
-      question: 'What was the neighbourhood like where your parents raised you?',
+      question:
+          'What was the neighbourhood like where your parents raised you?',
       purpose: 'To paint a picture of the community and environment.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
@@ -393,7 +432,8 @@ class QuestionDatabase {
       chapterId: 'ch01',
       chapterNumber: 1,
       questionNumber: 12,
-      question: 'Tell me about the first home you remember living in as a child.',
+      question:
+          'Tell me about the first home you remember living in as a child.',
       purpose: 'To explore personal early home memories.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.warm,
@@ -416,7 +456,8 @@ class QuestionDatabase {
       chapterNumber: 1,
       questionNumber: 13,
       question: 'What was the hardest part about growing up in your family?',
-      purpose: 'To gently explore challenges while maintaining emotional safety.',
+      purpose:
+          'To gently explore challenges while maintaining emotional safety.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.long,
@@ -438,7 +479,8 @@ class QuestionDatabase {
       chapterId: 'ch01',
       chapterNumber: 1,
       questionNumber: 14,
-      question: 'What is the funniest thing that happened in your family when you were young?',
+      question:
+          'What is the funniest thing that happened in your family when you were young?',
       purpose: 'To capture joy and humour in family life.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -460,7 +502,8 @@ class QuestionDatabase {
       chapterId: 'ch01',
       chapterNumber: 1,
       questionNumber: 15,
-      question: 'What is the most important thing you want your grandchildren to know about your family roots?',
+      question:
+          'What is the most important thing you want your grandchildren to know about your family roots?',
       purpose: 'To end the chapter with legacy and meaning.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
@@ -525,7 +568,8 @@ class QuestionDatabase {
       chapterId: 'ch02',
       chapterNumber: 2,
       questionNumber: 3,
-      question: 'What is your very earliest memory � the first thing you can picture in your mind?',
+      question:
+          'What is your very earliest memory � the first thing you can picture in your mind?',
       purpose: 'To capture the earliest personal memory.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.curious,
@@ -545,7 +589,8 @@ class QuestionDatabase {
       chapterId: 'ch02',
       chapterNumber: 2,
       questionNumber: 4,
-      question: 'What was your favourite toy or comfort object when you were very small?',
+      question:
+          'What was your favourite toy or comfort object when you were very small?',
       purpose: 'To explore early attachments and sources of comfort.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.nostalgic,
@@ -566,7 +611,8 @@ class QuestionDatabase {
       chapterId: 'ch02',
       chapterNumber: 2,
       questionNumber: 5,
-      question: 'Tell me about a meal you remember eating when you were about four or five years old.',
+      question:
+          'Tell me about a meal you remember eating when you were about four or five years old.',
       purpose: 'To use food as a doorway to sensory childhood memories.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
@@ -609,7 +655,8 @@ class QuestionDatabase {
       chapterId: 'ch02',
       chapterNumber: 2,
       questionNumber: 7,
-      question: 'Who was the first person outside your parents that you felt close to as a child?',
+      question:
+          'Who was the first person outside your parents that you felt close to as a child?',
       purpose: 'To explore early bonds beyond the immediate family.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -650,12 +697,19 @@ class QuestionDatabase {
       chapterId: 'ch02',
       chapterNumber: 2,
       questionNumber: 9,
-      question: 'Tell me about your first experience at a nursery or with a babysitter.',
+      question:
+          'Tell me about your first experience at a nursery or with a babysitter.',
       purpose: 'To explore early experiences away from parents.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['nursery', 'babysitter', 'childcare', 'first time', 'away from home'],
+      searchTags: [
+        'nursery',
+        'babysitter',
+        'childcare',
+        'first time',
+        'away from home'
+      ],
       people: ['babysitter', 'carer'],
       places: ['nursery', 'childcare'],
       priority: QuestionPriority.important,
@@ -673,7 +727,8 @@ class QuestionDatabase {
       chapterId: 'ch02',
       chapterNumber: 2,
       questionNumber: 10,
-      question: 'What was the happiest moment of your first five years of life?',
+      question:
+          'What was the happiest moment of your first five years of life?',
       purpose: 'To capture a peak positive memory from early childhood.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -692,7 +747,8 @@ class QuestionDatabase {
       chapterId: 'ch02',
       chapterNumber: 2,
       questionNumber: 11,
-      question: 'Did you have a favourite story or book when you were very young?',
+      question:
+          'Did you have a favourite story or book when you were very young?',
       purpose: 'To explore early influences through storytelling.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.warm,
@@ -734,7 +790,8 @@ class QuestionDatabase {
       chapterId: 'ch02',
       chapterNumber: 2,
       questionNumber: 13,
-      question: 'Was there a time when you felt scared or unsafe as a very young child?',
+      question:
+          'Was there a time when you felt scared or unsafe as a very young child?',
       purpose: 'To gently explore early fears with care.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -756,7 +813,8 @@ class QuestionDatabase {
       chapterId: 'ch02',
       chapterNumber: 2,
       questionNumber: 14,
-      question: 'What is something you were very proud of doing as a little child?',
+      question:
+          'What is something you were very proud of doing as a little child?',
       purpose: 'To capture early moments of achievement and pride.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
@@ -776,7 +834,8 @@ class QuestionDatabase {
       chapterId: 'ch02',
       chapterNumber: 2,
       questionNumber: 15,
-      question: 'If you could go back and spend one more day in your early childhood, what would you want to do?',
+      question:
+          'If you could go back and spend one more day in your early childhood, what would you want to do?',
       purpose: 'To end the chapter with a warm, reflective wish.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.hopeful,
@@ -796,7 +855,8 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 1,
-      question: 'What is the first house you remember living in � what did it look like from the outside?',
+      question:
+          'What is the first house you remember living in � what did it look like from the outside?',
       purpose: 'To begin the chapter with a clear visual image of home.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.warm,
@@ -838,8 +898,10 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 3,
-      question: 'What was your favourite place to play outside when you were a child?',
-      purpose: 'To explore outdoor play and the neighbourhood through a child eyes.',
+      question:
+          'What was your favourite place to play outside when you were a child?',
+      purpose:
+          'To explore outdoor play and the neighbourhood through a child eyes.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.short,
@@ -859,7 +921,8 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 4,
-      question: 'What was the kitchen like where your family cooked and ate meals?',
+      question:
+          'What was the kitchen like where your family cooked and ate meals?',
       purpose: 'To focus on the heart of the home through sensory details.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.warm,
@@ -882,7 +945,8 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 5,
-      question: 'Tell me about the neighbours you had when you were growing up.',
+      question:
+          'Tell me about the neighbours you had when you were growing up.',
       purpose: 'To explore community connections and the people around you.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.nostalgic,
@@ -905,8 +969,10 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 6,
-      question: 'Was there a shop or market near your home that you loved visiting?',
-      purpose: 'To explore daily routines and local places through childhood memories.',
+      question:
+          'Was there a shop or market near your home that you loved visiting?',
+      purpose:
+          'To explore daily routines and local places through childhood memories.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
       estimatedDuration: EstimatedDuration.short,
@@ -928,7 +994,8 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 7,
-      question: 'What sounds do you remember from the neighbourhood where you grew up?',
+      question:
+          'What sounds do you remember from the neighbourhood where you grew up?',
       purpose: 'To use sound to bring back the atmosphere of a place.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.reflective,
@@ -949,7 +1016,8 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 8,
-      question: 'Tell me about the garden or outdoor space around your childhood home.',
+      question:
+          'Tell me about the garden or outdoor space around your childhood home.',
       purpose: 'To explore the natural world close to home.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.warm,
@@ -971,7 +1039,8 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 9,
-      question: 'What was the weather like where you grew up, and how did it affect your daily life?',
+      question:
+          'What was the weather like where you grew up, and how did it affect your daily life?',
       purpose: 'To connect environment with daily experience.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.reflective,
@@ -991,7 +1060,8 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 10,
-      question: 'Did you ever feel lonely or different from other children in your neighbourhood?',
+      question:
+          'Did you ever feel lonely or different from other children in your neighbourhood?',
       purpose: 'To gently explore feelings of isolation with care.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -1013,7 +1083,8 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 11,
-      question: 'What was the most exciting place in your neighbourhood as a child?',
+      question:
+          'What was the most exciting place in your neighbourhood as a child?',
       purpose: 'To capture childhood wonder and adventure.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -1034,7 +1105,8 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 12,
-      question: 'Tell me about any pets or animals you remember from your childhood home.',
+      question:
+          'Tell me about any pets or animals you remember from your childhood home.',
       purpose: 'To explore the role of animals in family life.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -1056,7 +1128,8 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 13,
-      question: 'Was there a place in your neighbourhood that you were warned to stay away from?',
+      question:
+          'Was there a place in your neighbourhood that you were warned to stay away from?',
       purpose: 'To explore boundaries and childhood fears in a safe way.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.curious,
@@ -1098,8 +1171,10 @@ class QuestionDatabase {
       chapterId: 'ch03',
       chapterNumber: 3,
       questionNumber: 15,
-      question: 'If you could describe your childhood neighbourhood in three words, what would they be and why?',
-      purpose: 'To distill the essence of the neighbourhood into meaningful words.',
+      question:
+          'If you could describe your childhood neighbourhood in three words, what would they be and why?',
+      purpose:
+          'To distill the essence of the neighbourhood into meaningful words.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.short,
@@ -1185,7 +1260,8 @@ class QuestionDatabase {
       chapterId: 'ch04',
       chapterNumber: 4,
       questionNumber: 4,
-      question: 'What did your school look like � the building, the classrooms, the playground?',
+      question:
+          'What did your school look like � the building, the classrooms, the playground?',
       purpose: 'To recreate the physical environment of school.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
@@ -1229,7 +1305,8 @@ class QuestionDatabase {
       chapterId: 'ch04',
       chapterNumber: 4,
       questionNumber: 6,
-      question: 'Tell me about school lunches � what did you eat and where did you sit?',
+      question:
+          'Tell me about school lunches � what did you eat and where did you sit?',
       purpose: 'To use food as a doorway to school social memories.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
@@ -1275,7 +1352,8 @@ class QuestionDatabase {
       chapterId: 'ch04',
       chapterNumber: 4,
       questionNumber: 8,
-      question: 'Did you take part in any school plays, concerts, or sports days?',
+      question:
+          'Did you take part in any school plays, concerts, or sports days?',
       purpose: 'To capture moments of performance and participation.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.proud,
@@ -1298,7 +1376,8 @@ class QuestionDatabase {
       chapterId: 'ch04',
       chapterNumber: 4,
       questionNumber: 9,
-      question: 'What was the school uniform like � and how did you feel wearing it?',
+      question:
+          'What was the school uniform like � and how did you feel wearing it?',
       purpose: 'To explore identity and belonging through clothing.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.reflective,
@@ -1319,7 +1398,8 @@ class QuestionDatabase {
       chapterId: 'ch04',
       chapterNumber: 4,
       questionNumber: 10,
-      question: 'Was there ever a time at school when you felt really proud of yourself?',
+      question:
+          'Was there ever a time at school when you felt really proud of yourself?',
       purpose: 'To capture a moment of achievement and self-worth.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
@@ -1449,7 +1529,8 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 1,
-      question: 'Who was your very first best friend � and how did you meet them?',
+      question:
+          'Who was your very first best friend � and how did you meet them?',
       purpose: 'To begin the friendship chapter with the earliest bond.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.warm,
@@ -1471,8 +1552,10 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 2,
-      question: 'What did you and your friends do for fun when you were children?',
-      purpose: 'To explore the activities and adventures of childhood friendships.',
+      question:
+          'What did you and your friends do for fun when you were children?',
+      purpose:
+          'To explore the activities and adventures of childhood friendships.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.medium,
@@ -1493,7 +1576,8 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 3,
-      question: 'Tell me about a time when a friend made you laugh really hard.',
+      question:
+          'Tell me about a time when a friend made you laugh really hard.',
       purpose: 'To capture joy and connection through shared humour.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -1514,8 +1598,10 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 4,
-      question: 'Was there ever a time when you and a friend had a disagreement or fell out?',
-      purpose: 'To explore the complexity of childhood relationships with care.',
+      question:
+          'Was there ever a time when you and a friend had a disagreement or fell out?',
+      purpose:
+          'To explore the complexity of childhood relationships with care.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
@@ -1536,8 +1622,10 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 5,
-      question: 'What did your friends homes look like � were they different from yours?',
-      purpose: 'To explore diversity and belonging through visiting friends homes.',
+      question:
+          'What did your friends homes look like � were they different from yours?',
+      purpose:
+          'To explore diversity and belonging through visiting friends homes.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.medium,
@@ -1621,7 +1709,8 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 9,
-      question: 'What did you want to be when you grew up � and how did that dream change?',
+      question:
+          'What did you want to be when you grew up � and how did that dream change?',
       purpose: 'To explore childhood dreams and their evolution.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.hopeful,
@@ -1641,7 +1730,8 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 10,
-      question: 'What was the first time you realised you were growing up � the moment it felt real?',
+      question:
+          'What was the first time you realised you were growing up � the moment it felt real?',
       purpose: 'To capture a pivotal moment of self-awareness.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -1661,7 +1751,8 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 11,
-      question: 'Did you have a favourite hiding place or secret spot as a child?',
+      question:
+          'Did you have a favourite hiding place or secret spot as a child?',
       purpose: 'To explore the private world of childhood imagination.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
@@ -1702,7 +1793,8 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 13,
-      question: 'Tell me about a moment when you stood up for yourself or someone else.',
+      question:
+          'Tell me about a moment when you stood up for yourself or someone else.',
       purpose: 'To explore courage and moral development.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
@@ -1725,7 +1817,8 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 14,
-      question: 'What is something you believed as a child that you later found out was not true?',
+      question:
+          'What is something you believed as a child that you later found out was not true?',
       purpose: 'To capture the innocent wonder of childhood beliefs.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -1745,7 +1838,8 @@ class QuestionDatabase {
       chapterId: 'ch05',
       chapterNumber: 5,
       questionNumber: 15,
-      question: 'What is the best thing about the friendships you made while growing up?',
+      question:
+          'What is the best thing about the friendships you made while growing up?',
       purpose: 'To end the chapter with gratitude for meaningful connections.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
@@ -1766,7 +1860,8 @@ class QuestionDatabase {
       chapterId: 'ch06',
       chapterNumber: 6,
       questionNumber: 1,
-      question: 'What was life like for you as a teenager � what did a typical day look like?',
+      question:
+          'What was life like for you as a teenager � what did a typical day look like?',
       purpose: 'To set the scene for the teenage years.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.nostalgic,
@@ -1806,7 +1901,8 @@ class QuestionDatabase {
       chapterId: 'ch06',
       chapterNumber: 6,
       questionNumber: 3,
-      question: 'Tell me about the first time you noticed someone special � someone you had a crush on.',
+      question:
+          'Tell me about the first time you noticed someone special � someone you had a crush on.',
       purpose: 'To explore early romantic feelings with warmth and care.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -1829,7 +1925,8 @@ class QuestionDatabase {
       chapterId: 'ch06',
       chapterNumber: 6,
       questionNumber: 4,
-      question: 'What were your biggest dreams when you were in your teenage years?',
+      question:
+          'What were your biggest dreams when you were in your teenage years?',
       purpose: 'To explore the aspirations and hopes of youth.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.hopeful,
@@ -1869,7 +1966,8 @@ class QuestionDatabase {
       chapterId: 'ch06',
       chapterNumber: 6,
       questionNumber: 6,
-      question: 'Who was a friend from your teenage years that you will never forget?',
+      question:
+          'Who was a friend from your teenage years that you will never forget?',
       purpose: 'To honour a meaningful friendship from adolescence.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -1891,7 +1989,8 @@ class QuestionDatabase {
       chapterId: 'ch06',
       chapterNumber: 6,
       questionNumber: 7,
-      question: 'Tell me about a movie, book, or TV show that had a big impact on you as a young person.',
+      question:
+          'Tell me about a movie, book, or TV show that had a big impact on you as a young person.',
       purpose: 'To explore cultural influences on personal development.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -1932,7 +2031,8 @@ class QuestionDatabase {
       chapterId: 'ch06',
       chapterNumber: 6,
       questionNumber: 9,
-      question: 'What were you like as a teenager � how would your friends have described you?',
+      question:
+          'What were you like as a teenager � how would your friends have described you?',
       purpose: 'To explore self-image through the eyes of others.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.curious,
@@ -1953,7 +2053,8 @@ class QuestionDatabase {
       chapterId: 'ch06',
       chapterNumber: 6,
       questionNumber: 10,
-      question: 'Did you have a part-time job or any way of earning money as a teenager?',
+      question:
+          'Did you have a part-time job or any way of earning money as a teenager?',
       purpose: 'To explore early work experience and responsibility.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.proud,
@@ -1976,8 +2077,10 @@ class QuestionDatabase {
       chapterId: 'ch06',
       chapterNumber: 6,
       questionNumber: 11,
-      question: 'What were your parents like when you were a teenager � how did you get along?',
-      purpose: 'To explore the parent-teen relationship during a turbulent time.',
+      question:
+          'What were your parents like when you were a teenager � how did you get along?',
+      purpose:
+          'To explore the parent-teen relationship during a turbulent time.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
@@ -2000,7 +2103,8 @@ class QuestionDatabase {
       chapterId: 'ch06',
       chapterNumber: 6,
       questionNumber: 12,
-      question: 'Tell me about a time you took a risk or tried something new as a teenager.',
+      question:
+          'Tell me about a time you took a risk or tried something new as a teenager.',
       purpose: 'To explore courage and adventure in youth.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.proud,
@@ -2042,7 +2146,8 @@ class QuestionDatabase {
       chapterId: 'ch06',
       chapterNumber: 6,
       questionNumber: 14,
-      question: 'What is something you wish you had known when you were younger?',
+      question:
+          'What is something you wish you had known when you were younger?',
       purpose: 'To reflect on wisdom gained through experience.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2083,12 +2188,19 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 1,
-      question: 'What did you study after you finished school � if you continued your education?',
+      question:
+          'What did you study after you finished school � if you continued your education?',
       purpose: 'To begin the education chapter with post-school choices.',
       expectedMemoryType: ExpectedMemoryType.factual,
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.short,
-      searchTags: ['education', 'study', 'college', 'university', 'after school'],
+      searchTags: [
+        'education',
+        'study',
+        'college',
+        'university',
+        'after school'
+      ],
       places: ['college', 'university'],
       followUps: [
         'Why did you choose that path?',
@@ -2103,7 +2215,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 2,
-      question: 'Tell me about a teacher or professor who made learning come alive for you.',
+      question:
+          'Tell me about a teacher or professor who made learning come alive for you.',
       purpose: 'To honour the educators who inspired.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
@@ -2124,7 +2237,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 3,
-      question: 'What was the most interesting thing you ever learned � something that fascinated you?',
+      question:
+          'What was the most interesting thing you ever learned � something that fascinated you?',
       purpose: 'To explore genuine intellectual passion.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.curious,
@@ -2144,7 +2258,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 4,
-      question: 'Did you learn any practical skills � like cooking, fixing things, or using your hands?',
+      question:
+          'Did you learn any practical skills � like cooking, fixing things, or using your hands?',
       purpose: 'To value hands-on learning and practical wisdom.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.proud,
@@ -2164,7 +2279,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 5,
-      question: 'Tell me about a book that changed your thinking or stayed with you.',
+      question:
+          'Tell me about a book that changed your thinking or stayed with you.',
       purpose: 'To explore the impact of reading on personal growth.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -2185,7 +2301,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 6,
-      question: 'Was there a time when you had to give up something you loved in order to keep learning?',
+      question:
+          'Was there a time when you had to give up something you loved in order to keep learning?',
       purpose: 'To explore sacrifice and dedication in education.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2206,7 +2323,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 7,
-      question: 'Did you ever feel like giving up on your education � and what kept you going?',
+      question:
+          'Did you ever feel like giving up on your education � and what kept you going?',
       purpose: 'To explore resilience in learning.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -2249,7 +2367,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 9,
-      question: 'What did your parents think about your education � how important was it to them?',
+      question:
+          'What did your parents think about your education � how important was it to them?',
       purpose: 'To understand the family attitude towards learning.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2270,12 +2389,19 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 10,
-      question: 'Did you travel or move away for your education � what was that like?',
+      question:
+          'Did you travel or move away for your education � what was that like?',
       purpose: 'To explore the experience of studying away from home.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['travel', 'move', 'education', 'away from home', 'new place'],
+      searchTags: [
+        'travel',
+        'move',
+        'education',
+        'away from home',
+        'new place'
+      ],
       places: ['college', 'university', 'new city'],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
@@ -2293,7 +2419,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 11,
-      question: 'What is a skill you learned that has been most useful in your life?',
+      question:
+          'What is a skill you learned that has been most useful in your life?',
       purpose: 'To identify the most valuable practical knowledge.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.proud,
@@ -2313,7 +2440,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 12,
-      question: 'Tell me about a time you taught someone else something � and how that felt.',
+      question:
+          'Tell me about a time you taught someone else something � and how that felt.',
       purpose: 'To explore the joy of sharing knowledge.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
@@ -2334,7 +2462,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 13,
-      question: 'Was there something you wanted to learn but never had the chance?',
+      question:
+          'Was there something you wanted to learn but never had the chance?',
       purpose: 'To explore unfulfilled aspirations with empathy.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2355,7 +2484,8 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 14,
-      question: 'What is the biggest lesson you have learned outside of school or formal education?',
+      question:
+          'What is the biggest lesson you have learned outside of school or formal education?',
       purpose: 'To value life experience as a teacher.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2376,8 +2506,10 @@ class QuestionDatabase {
       chapterId: 'ch07',
       chapterNumber: 7,
       questionNumber: 15,
-      question: 'What would you say to a young person today about the value of learning?',
-      purpose: 'To end the chapter with wisdom and encouragement for the future.',
+      question:
+          'What would you say to a young person today about the value of learning?',
+      purpose:
+          'To end the chapter with wisdom and encouragement for the future.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.short,
@@ -2398,7 +2530,8 @@ class QuestionDatabase {
       chapterNumber: 8,
       questionNumber: 1,
       question: 'Tell me about the very first job you ever had.',
-      purpose: 'To begin the career chapter with the foundational work experience.',
+      purpose:
+          'To begin the career chapter with the foundational work experience.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.warm,
       estimatedDuration: EstimatedDuration.medium,
@@ -2439,7 +2572,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 3,
-      question: 'Who was the best boss or manager you ever had � and what made them great?',
+      question:
+          'Who was the best boss or manager you ever had � and what made them great?',
       purpose: 'To explore positive leadership and workplace relationships.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
@@ -2462,7 +2596,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 4,
-      question: 'What was the hardest job you ever had � and why was it so tough?',
+      question:
+          'What was the hardest job you ever had � and why was it so tough?',
       purpose: 'To explore work challenges and resilience.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2504,7 +2639,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 6,
-      question: 'Did you have a colleague or coworker who became a close friend?',
+      question:
+          'Did you have a colleague or coworker who became a close friend?',
       purpose: 'To explore friendships formed in the workplace.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -2526,7 +2662,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 7,
-      question: 'What did you do when you faced a problem at work that seemed impossible to solve?',
+      question:
+          'What did you do when you faced a problem at work that seemed impossible to solve?',
       purpose: 'To explore problem-solving and perseverance.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2548,7 +2685,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 8,
-      question: 'What was the most important thing your career taught you about yourself?',
+      question:
+          'What was the most important thing your career taught you about yourself?',
       purpose: 'To explore self-discovery through work.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2569,7 +2707,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 9,
-      question: 'Did your career take you to unexpected places � literally or figuratively?',
+      question:
+          'Did your career take you to unexpected places � literally or figuratively?',
       purpose: 'To explore the surprising paths that work can take.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.curious,
@@ -2589,7 +2728,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 10,
-      question: 'What was the most meaningful work you ever did � the work that felt like it mattered?',
+      question:
+          'What was the most meaningful work you ever did � the work that felt like it mattered?',
       purpose: 'To explore purpose and meaning in work.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
@@ -2609,7 +2749,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 11,
-      question: 'Tell me about a time you made a mistake at work and how you handled it.',
+      question:
+          'Tell me about a time you made a mistake at work and how you handled it.',
       purpose: 'To explore accountability and growth through failure.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2632,7 +2773,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 12,
-      question: 'How did your work affect your family life � was it hard to balance?',
+      question:
+          'How did your work affect your family life � was it hard to balance?',
       purpose: 'To explore the intersection of work and family.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2676,7 +2818,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 14,
-      question: 'What advice would you give to someone starting their first job today?',
+      question:
+          'What advice would you give to someone starting their first job today?',
       purpose: 'To pass on career wisdom to the next generation.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
@@ -2696,7 +2839,8 @@ class QuestionDatabase {
       chapterId: 'ch08',
       chapterNumber: 8,
       questionNumber: 15,
-      question: 'When you look back on your working life, what makes you smile the most?',
+      question:
+          'When you look back on your working life, what makes you smile the most?',
       purpose: 'To end the chapter with gratitude and joy for a life of work.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.legacy,
@@ -2716,7 +2860,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 1,
-      question: 'How did you first meet your spouse or partner � can you tell me that story?',
+      question:
+          'How did you first meet your spouse or partner � can you tell me that story?',
       purpose: 'To begin the love chapter with the meeting story.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.warm,
@@ -2737,7 +2882,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 2,
-      question: 'What was it like falling in love � how did you know it was real?',
+      question:
+          'What was it like falling in love � how did you know it was real?',
       purpose: 'To explore the experience of falling in love.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -2781,7 +2927,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 4,
-      question: 'What was the most romantic thing your partner ever did for you?',
+      question:
+          'What was the most romantic thing your partner ever did for you?',
       purpose: 'To capture a moment of love and devotion.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -2802,7 +2949,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 5,
-      question: 'Were there any challenges or obstacles in your relationship before you got married?',
+      question:
+          'Were there any challenges or obstacles in your relationship before you got married?',
       purpose: 'To explore the real journey of love with its difficulties.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2824,7 +2972,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 6,
-      question: 'What qualities did you admire most in your partner when you first fell in love?',
+      question:
+          'What qualities did you admire most in your partner when you first fell in love?',
       purpose: 'To explore what attracted you to your partner.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -2845,7 +2994,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 7,
-      question: 'Did you have any doubts before you committed to your partner � and how did you overcome them?',
+      question:
+          'Did you have any doubts before you committed to your partner � and how did you overcome them?',
       purpose: 'To explore the honesty and courage of commitment.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2867,7 +3017,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 8,
-      question: 'What was the hardest thing you have ever had to tell your partner?',
+      question:
+          'What was the hardest thing you have ever had to tell your partner?',
       purpose: 'To explore honesty and vulnerability in love.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -2889,7 +3040,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 9,
-      question: 'Tell me about the moment you knew you wanted to spend your life with this person.',
+      question:
+          'Tell me about the moment you knew you wanted to spend your life with this person.',
       purpose: 'To capture the turning point of commitment.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -2910,7 +3062,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 10,
-      question: 'What is the secret to a long and happy relationship � what have you learned?',
+      question:
+          'What is the secret to a long and happy relationship � what have you learned?',
       purpose: 'To extract wisdom from a lasting partnership.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2930,7 +3083,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 11,
-      question: 'What was the biggest surprise about being in a committed relationship?',
+      question:
+          'What was the biggest surprise about being in a committed relationship?',
       purpose: 'To explore unexpected lessons in love.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.curious,
@@ -2951,7 +3105,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 12,
-      question: 'How did your families feel about your relationship � were they supportive?',
+      question:
+          'How did your families feel about your relationship � were they supportive?',
       purpose: 'To explore family dynamics in romantic choices.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -2973,7 +3128,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 13,
-      question: 'Tell me about a time you and your partner laughed together until you could not stop.',
+      question:
+          'Tell me about a time you and your partner laughed together until you could not stop.',
       purpose: 'To capture shared joy and connection.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -2994,7 +3150,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 14,
-      question: 'What is the most important thing your partner has taught you about yourself?',
+      question:
+          'What is the most important thing your partner has taught you about yourself?',
       purpose: 'To explore self-discovery through love.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -3016,7 +3173,8 @@ class QuestionDatabase {
       chapterId: 'ch09',
       chapterNumber: 9,
       questionNumber: 15,
-      question: 'If you could say one thing to your partner right now about what they mean to you, what would it be?',
+      question:
+          'If you could say one thing to your partner right now about what they mean to you, what would it be?',
       purpose: 'To end the chapter with a direct expression of love.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -3037,7 +3195,8 @@ class QuestionDatabase {
       chapterId: 'ch10',
       chapterNumber: 10,
       questionNumber: 1,
-      question: 'How did your partner propose � or how did you decide to get married?',
+      question:
+          'How did your partner propose � or how did you decide to get married?',
       purpose: 'To begin the marriage chapter with the proposal story.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -3103,7 +3262,8 @@ class QuestionDatabase {
       chapterId: 'ch10',
       chapterNumber: 10,
       questionNumber: 4,
-      question: 'What was the most challenging part of the first year of marriage?',
+      question:
+          'What was the most challenging part of the first year of marriage?',
       purpose: 'To explore the adjustment period with honesty.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -3125,7 +3285,8 @@ class QuestionDatabase {
       chapterId: 'ch10',
       chapterNumber: 10,
       questionNumber: 5,
-      question: 'Tell me about the home you set up together � your first shared space.',
+      question:
+          'Tell me about the home you set up together � your first shared space.',
       purpose: 'To explore building a life together through physical space.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
@@ -3148,7 +3309,8 @@ class QuestionDatabase {
       chapterId: 'ch10',
       chapterNumber: 10,
       questionNumber: 6,
-      question: 'What did you and your partner enjoy doing together in the early years of your marriage?',
+      question:
+          'What did you and your partner enjoy doing together in the early years of your marriage?',
       purpose: 'To explore shared activities and bonding.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -3169,7 +3331,8 @@ class QuestionDatabase {
       chapterId: 'ch10',
       chapterNumber: 10,
       questionNumber: 7,
-      question: 'How did you and your partner handle money and finances in the early days?',
+      question:
+          'How did you and your partner handle money and finances in the early days?',
       purpose: 'To explore the practical side of partnership.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -3191,7 +3354,8 @@ class QuestionDatabase {
       chapterId: 'ch10',
       chapterNumber: 10,
       questionNumber: 8,
-      question: 'Did you and your partner ever have a big disagreement � and how did you fix it?',
+      question:
+          'Did you and your partner ever have a big disagreement � and how did you fix it?',
       purpose: 'To explore conflict resolution in marriage.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -3213,7 +3377,8 @@ class QuestionDatabase {
       chapterId: 'ch10',
       chapterNumber: 10,
       questionNumber: 9,
-      question: 'How did your relationship with your in-laws develop over time?',
+      question:
+          'How did your relationship with your in-laws develop over time?',
       purpose: 'To explore the extended family dynamics of marriage.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -3277,7 +3442,8 @@ class QuestionDatabase {
       chapterId: 'ch10',
       chapterNumber: 10,
       questionNumber: 12,
-      question: 'Tell me about a trip or holiday you took together that you will always remember.',
+      question:
+          'Tell me about a trip or holiday you took together that you will always remember.',
       purpose: 'To explore shared adventures as a couple.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -3300,7 +3466,8 @@ class QuestionDatabase {
       chapterId: 'ch10',
       chapterNumber: 10,
       questionNumber: 13,
-      question: 'How did you and your partner grow and change together over the decades?',
+      question:
+          'How did you and your partner grow and change together over the decades?',
       purpose: 'To explore the evolution of a lifelong partnership.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -3343,7 +3510,8 @@ class QuestionDatabase {
       chapterId: 'ch10',
       chapterNumber: 10,
       questionNumber: 15,
-      question: 'What do you want your grandchildren to understand about love and marriage?',
+      question:
+          'What do you want your grandchildren to understand about love and marriage?',
       purpose: 'To end the chapter with wisdom for future generations.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
@@ -3364,7 +3532,8 @@ class QuestionDatabase {
       chapterId: 'ch11',
       chapterNumber: 11,
       questionNumber: 1,
-      question: 'How did you feel when you first learned you were going to become a parent?',
+      question:
+          'How did you feel when you first learned you were going to become a parent?',
       purpose: 'To begin the parenthood chapter with the moment of discovery.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -3429,7 +3598,8 @@ class QuestionDatabase {
       chapterId: 'ch11',
       chapterNumber: 11,
       questionNumber: 4,
-      question: 'What was the first word your child said, and what was that moment like?',
+      question:
+          'What was the first word your child said, and what was that moment like?',
       purpose: 'To capture a beloved parenting milestone.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -3471,7 +3641,8 @@ class QuestionDatabase {
       chapterId: 'ch11',
       chapterNumber: 11,
       questionNumber: 6,
-      question: 'Tell me about a time your child made you laugh so hard you cried.',
+      question:
+          'Tell me about a time your child made you laugh so hard you cried.',
       purpose: 'To capture the joy and humour of raising children.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -3492,7 +3663,8 @@ class QuestionDatabase {
       chapterId: 'ch11',
       chapterNumber: 11,
       questionNumber: 7,
-      question: 'Was there a time when you were really worried about your child � and how did you handle it?',
+      question:
+          'Was there a time when you were really worried about your child � and how did you handle it?',
       purpose: 'To explore parental fear and protective love.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -3534,7 +3706,8 @@ class QuestionDatabase {
       chapterId: 'ch11',
       chapterNumber: 11,
       questionNumber: 9,
-      question: 'How did you and your partner divide the responsibilities of raising your children?',
+      question:
+          'How did you and your partner divide the responsibilities of raising your children?',
       purpose: 'To explore the practical teamwork of parenting.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -3556,7 +3729,8 @@ class QuestionDatabase {
       chapterId: 'ch11',
       chapterNumber: 11,
       questionNumber: 10,
-      question: 'Tell me about a family tradition or routine that your children loved.',
+      question:
+          'Tell me about a family tradition or routine that your children loved.',
       purpose: 'To explore the rituals that created family bonds.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.warm,
@@ -3578,7 +3752,8 @@ class QuestionDatabase {
       chapterId: 'ch11',
       chapterNumber: 11,
       questionNumber: 11,
-      question: 'How did you discipline your children � what worked and what did not?',
+      question:
+          'How did you discipline your children � what worked and what did not?',
       purpose: 'To explore parenting approaches with honesty.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -3663,7 +3838,8 @@ class QuestionDatabase {
       chapterId: 'ch11',
       chapterNumber: 11,
       questionNumber: 15,
-      question: 'What do you want your children to know about your love for them?',
+      question:
+          'What do you want your children to know about your love for them?',
       purpose: 'To end the chapter with a message of unconditional love.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.legacy,
@@ -3684,7 +3860,8 @@ class QuestionDatabase {
       chapterId: 'ch12',
       chapterNumber: 12,
       questionNumber: 1,
-      question: 'What did a typical morning look like in your family home when the children were young?',
+      question:
+          'What did a typical morning look like in your family home when the children were young?',
       purpose: 'To set the scene of daily family life.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
@@ -3705,7 +3882,8 @@ class QuestionDatabase {
       chapterId: 'ch12',
       chapterNumber: 12,
       questionNumber: 2,
-      question: 'Tell me about the home where you raised your family � what made it special?',
+      question:
+          'Tell me about the home where you raised your family � what made it special?',
       purpose: 'To explore the family home as a place of love and memory.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.warm,
@@ -3726,7 +3904,8 @@ class QuestionDatabase {
       chapterId: 'ch12',
       chapterNumber: 12,
       questionNumber: 3,
-      question: 'What did your children?? do at home � what were their favourite activities?',
+      question:
+          'What did your children?? do at home � what were their favourite activities?',
       purpose: 'To capture the playful energy of family life.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -3748,7 +3927,8 @@ class QuestionDatabase {
       chapterId: 'ch12',
       chapterNumber: 12,
       questionNumber: 4,
-      question: 'What was the most chaotic or messy moment in your family home?',
+      question:
+          'What was the most chaotic or messy moment in your family home?',
       purpose: 'To capture the real, imperfect side of family life.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -3771,7 +3951,8 @@ class QuestionDatabase {
       chapterId: 'ch12',
       chapterNumber: 12,
       questionNumber: 5,
-      question: 'How did you and your partner spend your evenings after the children went to bed?',
+      question:
+          'How did you and your partner spend your evenings after the children went to bed?',
       purpose: 'To explore the quiet moments of adult connection.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.warm,
@@ -3815,7 +3996,8 @@ class QuestionDatabase {
       chapterId: 'ch12',
       chapterNumber: 12,
       questionNumber: 7,
-      question: 'Tell me about the garden or outdoor space where your children played.',
+      question:
+          'Tell me about the garden or outdoor space where your children played.',
       purpose: 'To explore the natural world within family life.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.warm,
@@ -3861,7 +4043,8 @@ class QuestionDatabase {
       chapterId: 'ch12',
       chapterNumber: 12,
       questionNumber: 9,
-      question: 'How did you make your home feel warm and welcoming for your family?',
+      question:
+          'How did you make your home feel warm and welcoming for your family?',
       purpose: 'To explore the care and love put into creating a home.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.warm,
@@ -3904,7 +4087,8 @@ class QuestionDatabase {
       chapterId: 'ch12',
       chapterNumber: 12,
       questionNumber: 11,
-      question: 'How did you handle busy days when everything seemed to be happening at once?',
+      question:
+          'How did you handle busy days when everything seemed to be happening at once?',
       purpose: 'To explore the reality of managing family life.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -3949,7 +4133,8 @@ class QuestionDatabase {
       chapterId: 'ch12',
       chapterNumber: 12,
       questionNumber: 13,
-      question: 'Tell me about a time when the whole family was together and everything felt perfect.',
+      question:
+          'Tell me about a time when the whole family was together and everything felt perfect.',
       purpose: 'To capture a moment of family harmony.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -3971,7 +4156,8 @@ class QuestionDatabase {
       chapterId: 'ch12',
       chapterNumber: 12,
       questionNumber: 14,
-      question: 'What is the most important lesson your family life taught you?',
+      question:
+          'What is the most important lesson your family life taught you?',
       purpose: 'To extract wisdom from the experience of family.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -4015,12 +4201,19 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 1,
-      question: 'What was your favourite festival or celebration when you were growing up?',
+      question:
+          'What was your favourite festival or celebration when you were growing up?',
       purpose: 'To begin the chapter with a joyful childhood celebration.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.joyful,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['festival', 'celebration', 'favourite', 'childhood', 'happy'],
+      searchTags: [
+        'festival',
+        'celebration',
+        'favourite',
+        'childhood',
+        'happy'
+      ],
       people: ['family'],
       places: ['home', 'celebration venue'],
       followUps: [
@@ -4037,7 +4230,8 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 2,
-      question: 'Tell me about a special dish that was always made in your family for celebrations.',
+      question:
+          'Tell me about a special dish that was always made in your family for celebrations.',
       purpose: 'To explore food as a carrier of memory and tradition.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
@@ -4059,7 +4253,8 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 3,
-      question: 'What recipe from your childhood do you wish you could taste again?',
+      question:
+          'What recipe from your childhood do you wish you could taste again?',
       purpose: 'To use food to evoke deep emotional memories.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.nostalgic,
@@ -4082,7 +4277,8 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 4,
-      question: 'How did your family prepare for special occasions � what was the excitement like?',
+      question:
+          'How did your family prepare for special occasions � what was the excitement like?',
       purpose: 'To capture the anticipation and preparation of celebrations.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.joyful,
@@ -4104,8 +4300,10 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 5,
-      question: 'What tradition did your family keep that was unique or unusual?',
-      purpose: 'To explore the special customs that made your family different.',
+      question:
+          'What tradition did your family keep that was unique or unusual?',
+      purpose:
+          'To explore the special customs that made your family different.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.medium,
@@ -4126,7 +4324,8 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 6,
-      question: 'What did your home smell like during the holidays or special occasions?',
+      question:
+          'What did your home smell like during the holidays or special occasions?',
       purpose: 'To use scent to evoke celebration memories.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
@@ -4148,7 +4347,8 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 7,
-      question: 'Who was the best cook in your family, and what was their signature dish?',
+      question:
+          'Who was the best cook in your family, and what was their signature dish?',
       purpose: 'To honour the family cooks and their culinary legacy.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -4171,7 +4371,8 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 8,
-      question: 'Tell me about a time when a celebration did not go as planned.',
+      question:
+          'Tell me about a time when a celebration did not go as planned.',
       purpose: 'To capture the humour and reality of imperfect celebrations.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -4194,7 +4395,8 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 9,
-      question: 'What foods from your childhood do you still enjoy eating today?',
+      question:
+          'What foods from your childhood do you still enjoy eating today?',
       purpose: 'To connect past and present through food.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.nostalgic,
@@ -4214,7 +4416,8 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 10,
-      question: 'How did you celebrate your birthday as a child � and as an adult?',
+      question:
+          'How did you celebrate your birthday as a child � and as an adult?',
       purpose: 'To explore how celebrations change across life stages.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -4236,7 +4439,8 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 11,
-      question: 'What was the most memorable holiday or vacation your family took together?',
+      question:
+          'What was the most memorable holiday or vacation your family took together?',
       purpose: 'To explore shared adventures and travel memories.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -4305,7 +4509,8 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 14,
-      question: 'What is a tradition from your childhood that you have kept alive in your own family?',
+      question:
+          'What is a tradition from your childhood that you have kept alive in your own family?',
       purpose: 'To explore the passing of traditions through generations.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.proud,
@@ -4327,8 +4532,10 @@ class QuestionDatabase {
       chapterId: 'ch13',
       chapterNumber: 13,
       questionNumber: 15,
-      question: 'What is your favourite family memory that involves food or celebration?',
-      purpose: 'To end the chapter with a warm, joyful food or celebration memory.',
+      question:
+          'What is your favourite family memory that involves food or celebration?',
+      purpose:
+          'To end the chapter with a warm, joyful food or celebration memory.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
@@ -4350,7 +4557,8 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 1,
-      question: 'What was the biggest challenge you faced in your early adult life?',
+      question:
+          'What was the biggest challenge you faced in your early adult life?',
       purpose: 'To begin the challenges chapter with early difficulties.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -4371,7 +4579,8 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 2,
-      question: 'Tell me about a time when you felt really low � and how you found your way back.',
+      question:
+          'Tell me about a time when you felt really low � and how you found your way back.',
       purpose: 'To explore darkness and recovery with care.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -4393,7 +4602,8 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 3,
-      question: 'Was there a time when you lost someone important to you � and how did you cope?',
+      question:
+          'Was there a time when you lost someone important to you � and how did you cope?',
       purpose: 'To explore grief and loss with sensitivity.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -4416,7 +4626,8 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 4,
-      question: 'How did you handle financial difficulties � and what did you learn from them?',
+      question:
+          'How did you handle financial difficulties � and what did you learn from them?',
       purpose: 'To explore money struggles with empathy.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -4439,7 +4650,8 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 5,
-      question: 'Tell me about a time when you had to make a very difficult decision.',
+      question:
+          'Tell me about a time when you had to make a very difficult decision.',
       purpose: 'To explore the weight of hard choices.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -4483,7 +4695,8 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 7,
-      question: 'Was there a time when you felt betrayed or let down by someone you trusted?',
+      question:
+          'Was there a time when you felt betrayed or let down by someone you trusted?',
       purpose: 'To explore betrayal with care and understanding.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -4506,7 +4719,8 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 8,
-      question: 'How did you cope with the loss of your independence � if that ever happened?',
+      question:
+          'How did you cope with the loss of your independence � if that ever happened?',
       purpose: 'To explore changes in capability with dignity.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -4528,12 +4742,19 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 9,
-      question: 'Tell me about a health challenge you or a family member faced.',
+      question:
+          'Tell me about a health challenge you or a family member faced.',
       purpose: 'To explore health struggles with sensitivity.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['health', 'challenge', 'illness', 'family member', 'recovery'],
+      searchTags: [
+        'health',
+        'challenge',
+        'illness',
+        'family member',
+        'recovery'
+      ],
       people: ['family member'],
       places: ['hospital'],
       difficulty: Difficulty.moderate,
@@ -4551,12 +4772,18 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 10,
-      question: 'Was there ever a time when you felt you could not go on � and what pulled you through?',
+      question:
+          'Was there ever a time when you felt you could not go on � and what pulled you through?',
       purpose: 'To explore the darkest moments and the sources of strength.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.long,
-      searchTags: ['could not go on', 'pull through', 'strength', 'dark moment'],
+      searchTags: [
+        'could not go on',
+        'pull through',
+        'strength',
+        'dark moment'
+      ],
       difficulty: Difficulty.sensitive,
       priority: QuestionPriority.important,
       followUps: [
@@ -4595,7 +4822,8 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 12,
-      question: 'What was the loneliest period of your life � and how did you get through it?',
+      question:
+          'What was the loneliest period of your life � and how did you get through it?',
       purpose: 'To explore loneliness with empathy and care.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -4639,7 +4867,8 @@ class QuestionDatabase {
       chapterId: 'ch14',
       chapterNumber: 14,
       questionNumber: 14,
-      question: 'What is the hardest thing you have ever had to forgive � and how did you do it?',
+      question:
+          'What is the hardest thing you have ever had to forgive � and how did you do it?',
       purpose: 'To explore forgiveness and healing.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -4662,7 +4891,8 @@ class QuestionDatabase {
       chapterNumber: 14,
       questionNumber: 15,
       question: 'How did your hardest times lead to your greatest growth?',
-      purpose: 'To end the chapter with hope and the meaning found in struggle.',
+      purpose:
+          'To end the chapter with hope and the meaning found in struggle.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.hopeful,
       estimatedDuration: EstimatedDuration.medium,
@@ -4683,7 +4913,8 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 1,
-      question: 'What was the first major success or achievement that made you feel proud of yourself?',
+      question:
+          'What was the first major success or achievement that made you feel proud of yourself?',
       purpose: 'To begin the successes chapter with an early moment of pride.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
@@ -4702,7 +4933,8 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 2,
-      question: 'Tell me about a turning point in your life � a moment that changed everything.',
+      question:
+          'Tell me about a turning point in your life � a moment that changed everything.',
       purpose: 'To capture a pivotal moment that altered the course of life.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.reflective,
@@ -4723,7 +4955,8 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 3,
-      question: 'What was the biggest risk you ever took � and was it worth it?',
+      question:
+          'What was the biggest risk you ever took � and was it worth it?',
       purpose: 'To explore courage and the rewards of boldness.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.proud,
@@ -4745,12 +4978,19 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 4,
-      question: 'How did it feel to achieve something you had worked hard for over a long time?',
+      question:
+          'How did it feel to achieve something you had worked hard for over a long time?',
       purpose: 'To explore the deep satisfaction of earned success.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['achieve', 'hard work', 'long time', 'success', 'satisfaction'],
+      searchTags: [
+        'achieve',
+        'hard work',
+        'long time',
+        'success',
+        'satisfaction'
+      ],
       followUps: [
         'What had you been working towards?',
         'How long did it take?',
@@ -4765,7 +5005,8 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 5,
-      question: 'Who helped you achieve something important � and how did they help?',
+      question:
+          'Who helped you achieve something important � and how did they help?',
       purpose: 'To honour the people who supported your success.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -4787,7 +5028,8 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 6,
-      question: 'What was the happiest day of your life � the day everything came together?',
+      question:
+          'What was the happiest day of your life � the day everything came together?',
       purpose: 'To capture the peak experience of a perfect day.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.joyful,
@@ -4807,7 +5049,8 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 7,
-      question: 'Tell me about a time when you surprised yourself with what you could do.',
+      question:
+          'Tell me about a time when you surprised yourself with what you could do.',
       purpose: 'To explore self-discovery through unexpected capability.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
@@ -4890,7 +5133,8 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 11,
-      question: 'Tell me about a moment when you felt truly blessed or grateful.',
+      question:
+          'Tell me about a moment when you felt truly blessed or grateful.',
       purpose: 'To capture a moment of deep gratitude.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -4930,7 +5174,8 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 13,
-      question: 'How did you handle success without letting it change who you are?',
+      question:
+          'How did you handle success without letting it change who you are?',
       purpose: 'To explore humility in the face of achievement.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -4951,12 +5196,19 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 14,
-      question: 'What achievement are you most grateful for � not the biggest, but the one that matters most?',
+      question:
+          'What achievement are you most grateful for � not the biggest, but the one that matters most?',
       purpose: 'To distinguish between impressive and meaningful success.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['grateful', 'matters', 'achievement', 'meaningful', 'important'],
+      searchTags: [
+        'grateful',
+        'matters',
+        'achievement',
+        'meaningful',
+        'important'
+      ],
       difficulty: Difficulty.moderate,
       followUps: [
         'What makes it so meaningful?',
@@ -4971,7 +5223,8 @@ class QuestionDatabase {
       chapterId: 'ch15',
       chapterNumber: 15,
       questionNumber: 15,
-      question: 'What is the one success story you most want your grandchildren to hear?',
+      question:
+          'What is the one success story you most want your grandchildren to hear?',
       purpose: 'To end the chapter with a legacy story for future generations.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.legacy,
@@ -4992,7 +5245,8 @@ class QuestionDatabase {
       chapterId: 'ch16',
       chapterNumber: 16,
       questionNumber: 1,
-      question: 'What did your family believe in � were there values that guided your upbringing?',
+      question:
+          'What did your family believe in � were there values that guided your upbringing?',
       purpose: 'To begin the values chapter with the foundations of belief.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.warm,
@@ -5095,12 +5349,19 @@ class QuestionDatabase {
       chapterId: 'ch16',
       chapterNumber: 16,
       questionNumber: 6,
-      question: 'What is something you believe that many people might disagree with?',
+      question:
+          'What is something you believe that many people might disagree with?',
       purpose: 'To explore unique or unconventional beliefs.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.curious,
       estimatedDuration: EstimatedDuration.short,
-      searchTags: ['believe', 'disagree', 'unique', 'unconventional', 'opinion'],
+      searchTags: [
+        'believe',
+        'disagree',
+        'unique',
+        'unconventional',
+        'opinion'
+      ],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5137,7 +5398,8 @@ class QuestionDatabase {
       chapterId: 'ch16',
       chapterNumber: 16,
       questionNumber: 8,
-      question: 'Was there a time when your values were tested � and how did you respond?',
+      question:
+          'Was there a time when your values were tested � and how did you respond?',
       purpose: 'To explore moral courage under pressure.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -5158,7 +5420,8 @@ class QuestionDatabase {
       chapterId: 'ch16',
       chapterNumber: 16,
       questionNumber: 9,
-      question: 'What does kindness mean to you � and when have you seen it make a difference?',
+      question:
+          'What does kindness mean to you � and when have you seen it make a difference?',
       purpose: 'To explore the power of kindness in your life.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.warm,
@@ -5225,7 +5488,13 @@ class QuestionDatabase {
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['after death', 'believe', 'spiritual', 'afterlife', 'meaning'],
+      searchTags: [
+        'after death',
+        'believe',
+        'spiritual',
+        'afterlife',
+        'meaning'
+      ],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5241,7 +5510,8 @@ class QuestionDatabase {
       chapterId: 'ch16',
       chapterNumber: 16,
       questionNumber: 13,
-      question: 'What is the most important lesson life has taught you about being a good person?',
+      question:
+          'What is the most important lesson life has taught you about being a good person?',
       purpose: 'To extract the deepest moral wisdom from a lifetime.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -5261,12 +5531,19 @@ class QuestionDatabase {
       chapterId: 'ch16',
       chapterNumber: 16,
       questionNumber: 14,
-      question: 'How do you want to be remembered for the way you lived your life?',
+      question:
+          'How do you want to be remembered for the way you lived your life?',
       purpose: 'To explore legacy through the lens of character.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['remembered', 'life', 'legacy', 'character', 'way of living'],
+      searchTags: [
+        'remembered',
+        'life',
+        'legacy',
+        'character',
+        'way of living'
+      ],
       followUps: [
         'What qualities do you want to be remembered for?',
         'How have you lived those qualities?',
@@ -5280,7 +5557,8 @@ class QuestionDatabase {
       chapterId: 'ch16',
       chapterNumber: 16,
       questionNumber: 15,
-      question: 'What wisdom about faith, values, and beliefs do you most want to pass on?',
+      question:
+          'What wisdom about faith, values, and beliefs do you most want to pass on?',
       purpose: 'To end the chapter with a message of moral legacy.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
@@ -5301,7 +5579,8 @@ class QuestionDatabase {
       chapterId: 'ch17',
       chapterNumber: 17,
       questionNumber: 1,
-      question: 'What was the first time you travelled somewhere new � and what was that like?',
+      question:
+          'What was the first time you travelled somewhere new � and what was that like?',
       purpose: 'To begin the travel chapter with the first journey.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.curious,
@@ -5370,7 +5649,13 @@ class QuestionDatabase {
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['travel', 'change', 'see the world', 'perspective', 'growth'],
+      searchTags: [
+        'travel',
+        'change',
+        'see the world',
+        'perspective',
+        'growth'
+      ],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5386,7 +5671,8 @@ class QuestionDatabase {
       chapterId: 'ch17',
       chapterNumber: 17,
       questionNumber: 5,
-      question: 'What was the funniest thing that happened while you were travelling?',
+      question:
+          'What was the funniest thing that happened while you were travelling?',
       purpose: 'To capture travel humour and unexpected moments.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.joyful,
@@ -5407,7 +5693,8 @@ class QuestionDatabase {
       chapterId: 'ch17',
       chapterNumber: 17,
       questionNumber: 6,
-      question: 'Tell me about a meal you had while travelling that you will never forget.',
+      question:
+          'Tell me about a meal you had while travelling that you will never forget.',
       purpose: 'To use food as a doorway to travel memories.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.nostalgic,
@@ -5450,7 +5737,8 @@ class QuestionDatabase {
       chapterId: 'ch17',
       chapterNumber: 17,
       questionNumber: 8,
-      question: 'What was the most beautiful natural landscape you have ever seen?',
+      question:
+          'What was the most beautiful natural landscape you have ever seen?',
       purpose: 'To capture the wonder of nature encountered during travel.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.warm,
@@ -5493,7 +5781,8 @@ class QuestionDatabase {
       chapterId: 'ch17',
       chapterNumber: 17,
       questionNumber: 10,
-      question: 'What is a place you visited that had a deep emotional impact on you?',
+      question:
+          'What is a place you visited that had a deep emotional impact on you?',
       purpose: 'To explore the emotional power of certain places.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.reflective,
@@ -5515,7 +5804,8 @@ class QuestionDatabase {
       chapterId: 'ch17',
       chapterNumber: 17,
       questionNumber: 11,
-      question: 'How did you prepare for a big trip � what was the excitement like?',
+      question:
+          'How did you prepare for a big trip � what was the excitement like?',
       purpose: 'To explore the anticipation and preparation of travel.',
       expectedMemoryType: ExpectedMemoryType.sensory,
       emotionalTone: EmotionalTone.joyful,
@@ -5558,7 +5848,8 @@ class QuestionDatabase {
       chapterId: 'ch17',
       chapterNumber: 17,
       questionNumber: 13,
-      question: 'What is a place you always dreamed of visiting but never went to?',
+      question:
+          'What is a place you always dreamed of visiting but never went to?',
       purpose: 'To explore unfulfilled travel dreams.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.curious,
@@ -5578,7 +5869,8 @@ class QuestionDatabase {
       chapterId: 'ch17',
       chapterNumber: 17,
       questionNumber: 14,
-      question: 'What did you bring back from your travels � not objects, but ideas or memories?',
+      question:
+          'What did you bring back from your travels � not objects, but ideas or memories?',
       purpose: 'To explore the intangible gifts of travel.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -5599,7 +5891,8 @@ class QuestionDatabase {
       chapterId: 'ch17',
       chapterNumber: 17,
       questionNumber: 15,
-      question: 'What is your favourite travel memory � the one you return to in your mind?',
+      question:
+          'What is your favourite travel memory � the one you return to in your mind?',
       purpose: 'To end the chapter with the most cherished travel moment.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.legacy,
@@ -5718,7 +6011,8 @@ class QuestionDatabase {
       chapterId: 'ch18',
       chapterNumber: 18,
       questionNumber: 6,
-      question: 'What is the relationship between hard work and success � what have you learned?',
+      question:
+          'What is the relationship between hard work and success � what have you learned?',
       purpose: 'To explore the role of effort in achieving goals.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -5738,12 +6032,19 @@ class QuestionDatabase {
       chapterId: 'ch18',
       chapterNumber: 18,
       questionNumber: 7,
-      question: 'How do you deal with disappointment � and what keeps you going?',
+      question:
+          'How do you deal with disappointment � and what keeps you going?',
       purpose: 'To explore resilience and the ability to keep moving forward.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['disappointment', 'deal', 'keep going', 'resilience', 'hope'],
+      searchTags: [
+        'disappointment',
+        'deal',
+        'keep going',
+        'resilience',
+        'hope'
+      ],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
       followUps: [
@@ -5759,7 +6060,8 @@ class QuestionDatabase {
       chapterId: 'ch18',
       chapterNumber: 18,
       questionNumber: 8,
-      question: 'What is the best way to spend time � according to your life experience?',
+      question:
+          'What is the best way to spend time � according to your life experience?',
       purpose: 'To explore what truly matters when time is precious.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -5800,7 +6102,8 @@ class QuestionDatabase {
       chapterId: 'ch18',
       chapterNumber: 18,
       questionNumber: 10,
-      question: 'What is the most important lesson you learned about relationships?',
+      question:
+          'What is the most important lesson you learned about relationships?',
       purpose: 'To extract the deepest truth about human connection.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -5839,7 +6142,8 @@ class QuestionDatabase {
       chapterId: 'ch18',
       chapterNumber: 18,
       questionNumber: 12,
-      question: 'What is the most important thing about growing older that no one tells you?',
+      question:
+          'What is the most important thing about growing older that no one tells you?',
       purpose: 'To share the hidden wisdom of ageing.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -5865,7 +6169,13 @@ class QuestionDatabase {
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.short,
-      searchTags: ['grateful', 'gratitude', 'practice', 'hard times', 'thankful'],
+      searchTags: [
+        'grateful',
+        'gratitude',
+        'practice',
+        'hard times',
+        'thankful'
+      ],
       priority: QuestionPriority.important,
       followUps: [
         'What are you most grateful for?',
@@ -5885,7 +6195,13 @@ class QuestionDatabase {
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['live well', 'good life', 'meaning', 'purpose', 'definition'],
+      searchTags: [
+        'live well',
+        'good life',
+        'meaning',
+        'purpose',
+        'definition'
+      ],
       followUps: [
         'How did you come to that definition?',
         'Have you lived well by your own measure?',
@@ -5899,12 +6215,19 @@ class QuestionDatabase {
       chapterId: 'ch18',
       chapterNumber: 18,
       questionNumber: 15,
-      question: 'What is the single most important thing you want the next generation to understand about life?',
+      question:
+          'What is the single most important thing you want the next generation to understand about life?',
       purpose: 'To end the chapter with the ultimate life wisdom.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['next generation', 'important', 'life', 'understand', 'wisdom'],
+      searchTags: [
+        'next generation',
+        'important',
+        'life',
+        'understand',
+        'wisdom'
+      ],
       people: ['next generation'],
       followUps: [
         'Why is that so important?',
@@ -5920,7 +6243,8 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 1,
-      question: 'When your grandchildren think of you, what do you want them to remember first?',
+      question:
+          'When your grandchildren think of you, what do you want them to remember first?',
       purpose: 'To begin the legacy chapter with the most important memory.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
@@ -5940,7 +6264,8 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 2,
-      question: 'What family stories do you want your grandchildren to always know?',
+      question:
+          'What family stories do you want your grandchildren to always know?',
       purpose: 'To identify the stories that define your family legacy.',
       expectedMemoryType: ExpectedMemoryType.narrative,
       emotionalTone: EmotionalTone.legacy,
@@ -5960,12 +6285,19 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 3,
-      question: 'What qualities do you hope your grandchildren inherit from you?',
+      question:
+          'What qualities do you hope your grandchildren inherit from you?',
       purpose: 'To explore the character traits you hope to pass on.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['qualities', 'inherit', 'grandchildren', 'character', 'pass on'],
+      searchTags: [
+        'qualities',
+        'inherit',
+        'grandchildren',
+        'character',
+        'pass on'
+      ],
       people: ['grandchildren'],
       followUps: [
         'Why are those qualities important?',
@@ -5980,7 +6312,8 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 4,
-      question: 'What values do you hope your grandchildren carry into the future?',
+      question:
+          'What values do you hope your grandchildren carry into the future?',
       purpose: 'To explore the moral compass you want to pass on.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
@@ -6000,12 +6333,20 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 5,
-      question: 'What would you want your grandchildren to know about the times you lived through?',
-      purpose: 'To place your life in the context of history for future generations.',
+      question:
+          'What would you want your grandchildren to know about the times you lived through?',
+      purpose:
+          'To place your life in the context of history for future generations.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.long,
-      searchTags: ['times', 'lived through', 'history', 'grandchildren', 'know'],
+      searchTags: [
+        'times',
+        'lived through',
+        'history',
+        'grandchildren',
+        'know'
+      ],
       people: ['grandchildren'],
       difficulty: Difficulty.moderate,
       priority: QuestionPriority.important,
@@ -6041,12 +6382,19 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 7,
-      question: 'What do you want your grandchildren to know about hard work and perseverance?',
+      question:
+          'What do you want your grandchildren to know about hard work and perseverance?',
       purpose: 'To pass on the value of effort and determination.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['hard work', 'perseverance', 'grandchildren', 'value', 'effort'],
+      searchTags: [
+        'hard work',
+        'perseverance',
+        'grandchildren',
+        'value',
+        'effort'
+      ],
       people: ['grandchildren'],
       priority: QuestionPriority.important,
       followUps: [
@@ -6062,7 +6410,8 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 8,
-      question: 'What is a mistake you made that you want your grandchildren to learn from?',
+      question:
+          'What is a mistake you made that you want your grandchildren to learn from?',
       purpose: 'To share lessons learned from failure with humility.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -6110,7 +6459,13 @@ class QuestionDatabase {
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['traditions', 'continue', 'grandchildren', 'family', 'custom'],
+      searchTags: [
+        'traditions',
+        'continue',
+        'grandchildren',
+        'family',
+        'custom'
+      ],
       people: ['grandchildren'],
       priority: QuestionPriority.important,
       followUps: [
@@ -6126,7 +6481,8 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 11,
-      question: 'What message do you want to leave for a grandchild who has not been born yet?',
+      question:
+          'What message do you want to leave for a grandchild who has not been born yet?',
       purpose: 'To speak across time to someone who will never meet you.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.legacy,
@@ -6146,7 +6502,8 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 12,
-      question: 'How do you want to be remembered by your family � in one sentence?',
+      question:
+          'How do you want to be remembered by your family � in one sentence?',
       purpose: 'To distil a lifetime into a single, powerful statement.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
@@ -6187,7 +6544,8 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 14,
-      question: 'What would you want your grandchildren to say at your celebration of life?',
+      question:
+          'What would you want your grandchildren to say at your celebration of life?',
       purpose: 'To reflect on how you want to be honoured.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
@@ -6209,12 +6567,19 @@ class QuestionDatabase {
       chapterId: 'ch19',
       chapterNumber: 19,
       questionNumber: 15,
-      question: 'What is the greatest gift you can give your grandchildren � beyond anything material?',
+      question:
+          'What is the greatest gift you can give your grandchildren � beyond anything material?',
       purpose: 'To end the chapter with the most precious non-material legacy.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['greatest', 'gift', 'grandchildren', 'non-material', 'legacy'],
+      searchTags: [
+        'greatest',
+        'gift',
+        'grandchildren',
+        'non-material',
+        'legacy'
+      ],
       people: ['grandchildren'],
       followUps: [
         'Why is that gift so valuable?',
@@ -6230,7 +6595,8 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 1,
-      question: 'When you look back on your life as a whole, what comes to mind first?',
+      question:
+          'When you look back on your life as a whole, what comes to mind first?',
       purpose: 'To begin the final chapter with a broad, reflective overview.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.reflective,
@@ -6249,7 +6615,8 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 2,
-      question: 'What are you most grateful for when you think about your life?',
+      question:
+          'What are you most grateful for when you think about your life?',
       purpose: 'To explore the deepest gratitude of a lifetime.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -6268,12 +6635,19 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 3,
-      question: 'What was the best decision you ever made � and how did it shape your life?',
+      question:
+          'What was the best decision you ever made � and how did it shape your life?',
       purpose: 'To identify the choice that made all the difference.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.proud,
       estimatedDuration: EstimatedDuration.medium,
-      searchTags: ['best decision', 'shaped', 'life', 'choice', 'turning point'],
+      searchTags: [
+        'best decision',
+        'shaped',
+        'life',
+        'choice',
+        'turning point'
+      ],
       difficulty: Difficulty.moderate,
       followUps: [
         'What was the decision?',
@@ -6307,7 +6681,8 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 5,
-      question: 'How do you want to spend the years ahead � what matters most to you now?',
+      question:
+          'How do you want to spend the years ahead � what matters most to you now?',
       purpose: 'To explore hopes and priorities for the remaining years.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.hopeful,
@@ -6326,7 +6701,8 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 6,
-      question: 'What do you want people to know about the life you have lived?',
+      question:
+          'What do you want people to know about the life you have lived?',
       purpose: 'To capture how you want your story to be understood.',
       expectedMemoryType: ExpectedMemoryType.reflective,
       emotionalTone: EmotionalTone.legacy,
@@ -6345,7 +6721,8 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 7,
-      question: 'If you could relive one moment of your life, which would it be and why?',
+      question:
+          'If you could relive one moment of your life, which would it be and why?',
       purpose: 'To capture the most precious moment of a lifetime.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -6386,7 +6763,8 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 9,
-      question: 'What are you most proud of � not an achievement, but who you have become?',
+      question:
+          'What are you most proud of � not an achievement, but who you have become?',
       purpose: 'To distinguish between what you have done and who you are.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.proud,
@@ -6406,7 +6784,8 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 10,
-      question: 'How do you want your family to remember you � in their hearts?',
+      question:
+          'How do you want your family to remember you � in their hearts?',
       purpose: 'To capture the emotional legacy you want to leave.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.legacy,
@@ -6465,7 +6844,8 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 13,
-      question: 'What is the most beautiful thing about the life you have lived?',
+      question:
+          'What is the most beautiful thing about the life you have lived?',
       purpose: 'To capture the beauty and grace of a life fully experienced.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.warm,
@@ -6484,7 +6864,8 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 14,
-      question: 'Is there anything you have not said that you would like to say � for the record?',
+      question:
+          'Is there anything you have not said that you would like to say � for the record?',
       purpose: 'To give the parent a final, unfiltered voice.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.legacy,
@@ -6503,8 +6884,10 @@ class QuestionDatabase {
       chapterId: 'ch20',
       chapterNumber: 20,
       questionNumber: 15,
-      question: 'What is the one thing you want everyone to know � the final word from your heart?',
-      purpose: 'To end the entire autobiography with a message of love, hope, or wisdom.',
+      question:
+          'What is the one thing you want everyone to know � the final word from your heart?',
+      purpose:
+          'To end the entire autobiography with a message of love, hope, or wisdom.',
       expectedMemoryType: ExpectedMemoryType.emotional,
       emotionalTone: EmotionalTone.legacy,
       estimatedDuration: EstimatedDuration.medium,
