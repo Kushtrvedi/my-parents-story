@@ -31,7 +31,7 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
+          foregroundColor: AppColors.text,
           minimumSize: const Size(double.infinity, AppTouchTargets.min + 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.l),
