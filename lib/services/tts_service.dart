@@ -1,5 +1,4 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'dart:io' as io;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 class TextToSpeechService {
@@ -10,10 +9,8 @@ class TextToSpeechService {
 
   Future<void> init() async {
     double rate = 1.0;
-    if (!kIsWeb) {
-      if (io.Platform.isIOS || io.Platform.isMacOS) {
-        rate = 0.5;
-      }
+    if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS) {
+      rate = 0.5;
     }
     await _tts.setSpeechRate(rate); // Natural conversational human pace
     await _tts.setVolume(1.0);
